@@ -4,11 +4,11 @@ services:
   # ── PostgreSQL database ──────────────────────────────────────────────────────
   postgres:
     image: postgres:16-alpine
-    container_name: booksphere_db
+    container_name: Bookify_db
     environment:
       POSTGRES_USER:     ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      POSTGRES_DB:       ${POSTGRES_DB:-booksphere}
+      POSTGRES_DB:       ${POSTGRES_DB:-Bookify}
     ports:
       - "5432:5432"
     volumes:
@@ -16,7 +16,7 @@ services:
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
       - ./database/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-booksphere}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-Bookify}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -27,10 +27,10 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: booksphere_backend
+    container_name: Bookify_backend
     env_file: ./backend/.env
     environment:
-      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-booksphere}
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-Bookify}
       AI_SERVICE_URL: http://ai-service:8000
     ports:
       - "5000:5000"
@@ -46,10 +46,10 @@ services:
     build:
       context: ./ai-service
       dockerfile: Dockerfile
-    container_name: booksphere_ai
+    container_name: Bookify_ai
     env_file: ./ai-service/.env
     environment:
-      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-booksphere}
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-Bookify}
     ports:
       - "8000:8000"
     depends_on:

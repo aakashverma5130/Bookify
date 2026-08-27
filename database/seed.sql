@@ -1,6 +1,6 @@
 -- ============================================================================
--- Booksphere — Seed Data
--- Run AFTER schema.sql:  psql -U postgres -d booksphere -f database/seed.sql
+-- Bookify — Seed Data
+-- Run AFTER schema.sql:  psql -U postgres -d Bookify -f database/seed.sql
 -- ============================================================================
 
 BEGIN;
@@ -160,12 +160,12 @@ INSERT INTO books (book_id, title, isbn, publisher, publication_year, descriptio
 
 INSERT INTO users (user_id, name, email, password_hash, role, phone, notify_email, notify_web_push) VALUES
 -- Librarians
-('u1000000-0000-0000-0000-000000000001','Dr. Ananya Sharma','head@booksphere.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','HEAD_LIBRARIAN','9876543210',TRUE,FALSE),
-('u1000000-0000-0000-0000-000000000002','Rajan Mehta','assistant@booksphere.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','ASSISTANT_LIBRARIAN','9876543211',TRUE,FALSE),
-('u1000000-0000-0000-0000-000000000003','Priya Nair','assistant2@booksphere.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','ASSISTANT_LIBRARIAN','9876543212',TRUE,FALSE),
-('u1000000-0000-0000-0000-000000000004','Vikram Joshi','head2@booksphere.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','HEAD_LIBRARIAN','9876543213',TRUE,TRUE),
+('u1000000-0000-0000-0000-000000000001','Dr. Ananya Sharma','head@Bookify.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','HEAD_LIBRARIAN','9876543210',TRUE,FALSE),
+('u1000000-0000-0000-0000-000000000002','Rajan Mehta','assistant@Bookify.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','ASSISTANT_LIBRARIAN','9876543211',TRUE,FALSE),
+('u1000000-0000-0000-0000-000000000003','Priya Nair','assistant2@Bookify.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','ASSISTANT_LIBRARIAN','9876543212',TRUE,FALSE),
+('u1000000-0000-0000-0000-000000000004','Vikram Joshi','head2@Bookify.edu','$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMUMked.X9XU7qF9v/3YZLp1Hm','HEAD_LIBRARIAN','9876543213',TRUE,TRUE),
 -- Students
-('u1000000-0000-0000-0000-000000000005','Arjun Kapoor','student@booksphere.edu','$2b$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC//C7H5/SXHVlRQE0HW','STUDENT','9000000001',TRUE,TRUE),
+('u1000000-0000-0000-0000-000000000005','Arjun Kapoor','student@Bookify.edu','$2b$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC//C7H5/SXHVlRQE0HW','STUDENT','9000000001',TRUE,TRUE),
 ('u1000000-0000-0000-0000-000000000006','Sneha Patel','sneha.patel@student.edu','$2b$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC//C7H5/SXHVlRQE0HW','STUDENT','9000000002',TRUE,FALSE),
 ('u1000000-0000-0000-0000-000000000007','Rohan Singh','rohan.singh@student.edu','$2b$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC//C7H5/SXHVlRQE0HW','STUDENT','9000000003',FALSE,TRUE),
 ('u1000000-0000-0000-0000-000000000008','Pooja Verma','pooja.verma@student.edu','$2b$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC//C7H5/SXHVlRQE0HW','STUDENT','9000000004',TRUE,TRUE),

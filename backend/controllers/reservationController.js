@@ -1,6 +1,10 @@
 const db = require('../config/db');
 const { withTransaction } = require('../config/db');
 const notificationService = require('../services/notificationService');
+const {
+  lazyExpireOverdueReservations,
+  reservationExpiryJob,
+} = require('../jobs/reservationExpiryJob');
 
 /**
  * POST /api/reservations
@@ -20,6 +24,10 @@ const createReservation = async (req, res) => {
       return res.status(403).json({ error: 'Only students can reserve books' });
     }
     const studentId = studentResult.rows[0].student_id;
+
+    // Self-heal: if the previous holder's 24h hold just lapsed but the cron
+    // hasn't run yet, run the expiry sweep now so availability is correct.
+    await reservationExpiryJob();
 
     const result = await withTransaction(async (client) => {
       // Check book exists
@@ -105,6 +113,11 @@ const cancelReservation = async (req, res) => {
  */
 const getReservations = async (req, res) => {
   try {
+    // Lazy sweep: ensure no NOTIFIED row past its expiry is returned to the
+    // client. The dedicated cron job handles the full cascade (notify next,
+    // release held copy, etc.); this just keeps the read path consistent.
+    await lazyExpireOverdueReservations();
+
     let where = '';
     const params = [];
 

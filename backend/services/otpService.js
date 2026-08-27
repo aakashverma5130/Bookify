@@ -31,11 +31,11 @@ const generateAndSendOTP = async (userId, email) => {
 
   await sendEmail({
     to: email,
-    subject: 'Booksphere — Password Reset OTP',
+    subject: 'Bookify — Password Reset OTP',
     text: `Your OTP for password reset is: ${otp}\n\nThis OTP expires in ${OTP_EXPIRY_MINUTES} minutes.\n\nIf you did not request this, please ignore this email.`,
     html: `
       <div style="font-family:sans-serif;max-width:400px;margin:auto;padding:24px;border:1px solid #e5e7eb;border-radius:8px;">
-        <h2 style="color:#312e81">Booksphere Password Reset</h2>
+        <h2 style="color:#312e81">Bookify Password Reset</h2>
         <p>Your One-Time Password (OTP) is:</p>
         <div style="font-size:32px;font-weight:bold;letter-spacing:8px;color:#4338ca;padding:16px;background:#f0f4ff;border-radius:4px;text-align:center">${otp}</div>
         <p style="color:#6b7280;font-size:14px">This OTP expires in ${OTP_EXPIRY_MINUTES} minutes.</p>

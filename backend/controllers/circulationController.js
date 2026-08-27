@@ -78,6 +78,18 @@ const issueBook = async (req, res) => {
         [copyId]
       );
 
+      // 5b. If this student had an active (NOTIFIED) reservation for this book,
+      // mark it FULFILLED — they picked up the reserved copy. We update by
+      // (book_id, student_id) since the SQLite fallback's reservation_id is
+      // nullable (no DEFAULT).
+      await client.query(
+        `UPDATE book_reservations
+            SET status = 'FULFILLED', updated_at = datetime('now')
+          WHERE book_id = $1 AND student_id = $2
+            AND status = 'NOTIFIED'`,
+        [copy.book_id, studentId]
+      );
+
       return { issue: issueResult.rows[0], copy, settings };
     });
 
@@ -201,18 +213,18 @@ const returnBook = async (req, res) => {
 
         if (queueResult.rows.length) {
           nextReservation = queueResult.rows[0];
-          const holdExpiry = new Date(Date.now() + 48 * 60 * 60 * 1000); // 48-hour hold
+          const holdExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24-hour pickup window
 
           await client.query(
             `UPDATE book_reservations
-             SET status = 'NOTIFIED', expiry_date = $1, updated_at = NOW()
-             WHERE reservation_id = $2`,
-            [holdExpiry.toISOString(), nextReservation.reservation_id]
+             SET status = 'NOTIFIED', expiry_date = $1, updated_at = datetime('now')
+             WHERE book_id = $2 AND student_id = $3 AND status = 'WAITING'`,
+            [holdExpiry.toISOString(), issue.book_id, nextReservation.student_id]
           );
 
           // Temporarily mark copy as RESERVED so no one else grabs it
           await client.query(
-            `UPDATE book_copies SET status = 'RESERVED', updated_at = NOW() WHERE copy_id = $1`,
+            `UPDATE book_copies SET status = 'RESERVED', updated_at = datetime('now') WHERE copy_id = $1`,
             [issue.copy_id]
           );
         }
@@ -253,7 +265,7 @@ const returnBook = async (req, res) => {
           userId:  nextUserResult.rows[0].user_id,
           type:    'RESERVATION',
           title:   'Your Reserved Book is Available!',
-          message: `A copy of "${result.issue.book_title}" is now available for you. Please collect it from the library within 48 hours.`,
+          message: `A copy of "${result.issue.book_title}" is now available for you. Please collect it from the library within 24 hours — your hold will expire after that.`,
         });
       }
     }

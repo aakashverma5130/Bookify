@@ -1,14 +1,15 @@
-# Booksphere — Architecture & Flow Map
+# Bookify — Architecture & Flow Map
 
 > **For the first-time reader:** This file tells you how the system actually runs — what starts what, how a real request moves through the code, and what changed in each work session. It is a living document: Parts A and B are updated whenever a new entry point or core flow is added; Part C gets a new entry after every work session.
 >
-> All file paths are relative to the repo root (`c:/Users/FSOS/Desktop/Booksphere/`).
+> All file paths are relative to the repo root (`c:/Users/FSOS/Desktop/Bookify/`).
 
 ---
 
 ## Part A — Entry Points
 
-*What starts each service, what gets registered before it is ready to serve requests.*
+*What starts each service, what gets registered before it is re
+ady to serve requests.*
 
 ### Frontend (`frontend/`)
 **Starts with:** `npm run dev` (Vite dev server) or `npm run build` + serve the `dist/` folder.

@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { UNAUTHORIZED_EVENT } from '../services/api';
 
 const AuthContext = createContext(null);
 
-const TOKEN_KEY = 'booksphere_token';
-const USER_KEY  = 'booksphere_user';
+const TOKEN_KEY = 'bookify_token';
+const USER_KEY  = 'bookify_user';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -12,6 +13,13 @@ export const AuthProvider = ({ children }) => {
   });
   const [token, setToken] = useState(() => localStorage.getItem(TOKEN_KEY) || null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const logout = useCallback(() => {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
+    setToken(null);
+    setUser(null);
+  }, []);
 
   // Validate token on mount and whenever it changes
   useEffect(() => {
@@ -26,20 +34,24 @@ export const AuthProvider = ({ children }) => {
       }
     }
     setIsLoading(false);
-  }, [token]);
+  }, [token, logout]);
+
+  // Listen for global "unauthorized" events from the Axios interceptor.
+  // The interceptor already cleared localStorage; we just need to sync
+  // React state so route guards re-evaluate. Navigation to /login is
+  // handled by <UnauthorizedListener /> inside <BrowserRouter> so we
+  // avoid a full page reload (which would wipe freshly stored auth).
+  useEffect(() => {
+    const handler = () => logout();
+    window.addEventListener(UNAUTHORIZED_EVENT, handler);
+    return () => window.removeEventListener(UNAUTHORIZED_EVENT, handler);
+  }, [logout]);
 
   const login = useCallback((tokenValue, userData) => {
     localStorage.setItem(TOKEN_KEY, tokenValue);
     localStorage.setItem(USER_KEY, JSON.stringify(userData));
     setToken(tokenValue);
     setUser(userData);
-  }, []);
-
-  const logout = useCallback(() => {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(USER_KEY);
-    setToken(null);
-    setUser(null);
   }, []);
 
   const isAuthenticated = !!token && !!user;

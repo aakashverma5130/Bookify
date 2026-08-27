@@ -9,12 +9,12 @@ const QRDisplay = ({ value, label, sublabel, size = 180 }) => {
   if (!value) return null;
 
   const downloadQR = () => {
-    const canvas = document.getElementById('booksphere-qr-canvas');
+    const canvas = document.getElementById('bookify-qr-canvas');
     if (!canvas) return;
     const url = canvas.toDataURL('image/png');
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'booksphere-pass.png';
+    a.download = 'bookify-pass.png';
     a.click();
   };
 
@@ -22,7 +22,7 @@ const QRDisplay = ({ value, label, sublabel, size = 180 }) => {
     <div className="card flex flex-col items-center gap-4 max-w-xs mx-auto">
       <div className="p-4 bg-white rounded-2xl">
         <QRCodeCanvas
-          id="booksphere-qr-canvas"
+          id="bookify-qr-canvas"
           value={value}
           size={size}
           level="M"

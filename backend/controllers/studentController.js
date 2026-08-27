@@ -112,14 +112,14 @@ const getDashboard = async (req, res) => {
     const [booksResult, finesResult, reservationsResult] = await Promise.all([
       db.query(
         `SELECT
-           COUNT(*) FILTER (WHERE status IN ('ISSUED','OVERDUE')) AS currently_borrowed,
-           COUNT(*) FILTER (WHERE status IN ('ISSUED','OVERDUE') AND due_date - CURRENT_DATE <= 3) AS due_soon,
-           COUNT(*) FILTER (WHERE status = 'OVERDUE' OR (status = 'ISSUED' AND due_date < CURRENT_DATE)) AS overdue
+           COALESCE(SUM(CASE WHEN status IN ('ISSUED','OVERDUE') THEN 1 ELSE 0 END), 0) AS currently_borrowed,
+           COALESCE(SUM(CASE WHEN status IN ('ISSUED','OVERDUE') AND due_date <= DATE('now', '+3 days') THEN 1 ELSE 0 END), 0) AS due_soon,
+           COALESCE(SUM(CASE WHEN status = 'OVERDUE' OR (status = 'ISSUED' AND due_date < DATE('now')) THEN 1 ELSE 0 END), 0) AS overdue
          FROM issues WHERE student_id = $1`,
         [studentId]
       ),
       db.query(
-        `SELECT COALESCE(SUM(amount),0) AS total_fines FROM fines WHERE student_id = $1 AND paid = FALSE`,
+        `SELECT COALESCE(SUM(amount),0) AS total_fines FROM fines WHERE student_id = $1 AND (paid = 0 OR paid = FALSE)`,
         [studentId]
       ),
       db.query(

@@ -1,4 +1,4 @@
-# Booksphere — Decision Log
+# Bookify — Decision Log
 
 > Every time a non-mechanical choice is made — a library, a schema shape, a naming convention, a trade-off, a resolved ambiguity, or a deviation from the brief — an entry is added here.
 > Plain English, no unexplained jargon. Written as decisions are made, not batched at the end.
@@ -13,13 +13,13 @@
 ---
 
 ## Step 1 — Project name
-**Decision:** The project is named **Booksphere** (not LibConnect).
-**Why:** User confirmed "Booksphere is project name" after the initial plan was drafted. All branding, metadata, and docs use Booksphere.
+**Decision:** The project is named **Bookify** (originally Booksphere, renamed via global find-and-replace in 2026).
+**Why:** User requested the rename to "bookify" while preserving casing. All branding, metadata, and docs use Bookify.
 
 ---
 
 ## Step 1 — Repo structure (no double-nesting)
-**Decision:** All source lives directly inside `c:/Users/FSOS/Desktop/Booksphere/` — `frontend/`, `backend/`, `ai-service/`, `database/`, `docs/`, and root-level docs. No inner `booksphere/` or `libconnect/` subfolder.
+**Decision:** All source lives directly inside `c:/Users/FSOS/Desktop/Bookify/` — `frontend/`, `backend/`, `ai-service/`, `database/`, `docs/`, and root-level docs. No inner `bookify/` or `libconnect/` subfolder.
 **Why:** The workspace already had `frontend/` and `backend/` as empty top-level directories. Creating another sub-folder would force every `cd` path to be one level deeper for no benefit.
 
 ---

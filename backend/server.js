@@ -8,13 +8,13 @@ const cron = require('node-cron');
 
 const db = require('./config/db');
 const { dailyReminderJob } = require('./jobs/dailyReminderJob');
+const { reservationExpiryJob } = require('./jobs/reservationExpiryJob');
 
 // ── Route imports ─────────────────────────────────────────────────────────────
 const authRoutes                = require('./routes/authRoutes');
 const bookRoutes                = require('./routes/bookRoutes');
 const circulationRoutes         = require('./routes/circulationRoutes');
 const reservationRoutes         = require('./routes/reservationRoutes');
-const seatRoutes                = require('./routes/seatRoutes');
 const digitalResourceRoutes     = require('./routes/digitalResourceRoutes');
 const purchaseRequestRoutes     = require('./routes/purchaseRequestRoutes');
 const analyticsRoutes           = require('./routes/analyticsRoutes');
@@ -47,14 +47,6 @@ const globalLimiter = rateLimit({
   message: { error: 'Too many requests, please try again later.' },
 });
 
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max:      parseInt(process.env.AUTH_RATE_LIMIT_MAX) || 10,
-  standardHeaders: true,
-  legacyHeaders:   false,
-  message: { error: 'Too many auth attempts. Please wait 15 minutes and try again.' },
-});
-
 app.use(globalLimiter);
 
 // ── Body parsing ──────────────────────────────────────────────────────────────
@@ -68,18 +60,21 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.get('/health', async (_req, res) => {
   try {
     await db.query('SELECT 1');
-    res.json({ status: 'ok', service: 'booksphere-backend', db: 'connected' });
+    res.json({ status: 'ok', service: 'bookify-backend', db: 'connected' });
   } catch {
     res.status(503).json({ status: 'error', db: 'disconnected' });
   }
 });
 
 // ── API routes ────────────────────────────────────────────────────────────────
-app.use('/api/auth',              authLimiter, authRoutes);
+// NOTE: the authLimiter is attached only to the credential-checking routes
+// (login, forgot-password, verify-otp) inside routes/authRoutes.js, so that
+// legitimate users are not locked out for hitting getMe / logout / reset
+// password on a busy session.
+app.use('/api/auth',              authRoutes);
 app.use('/api/books',             bookRoutes);
 app.use('/api/issues',            circulationRoutes);
 app.use('/api/reservations',      reservationRoutes);
-app.use('/api/seats',             seatRoutes);
 app.use('/api/digital-resources', digitalResourceRoutes);
 app.use('/api/purchase-requests', purchaseRequestRoutes);
 app.use('/api/admin',             analyticsRoutes);
@@ -111,14 +106,13 @@ async function start() {
   // Verify DB connectivity before accepting traffic
   try {
     await db.query('SELECT 1');
-    console.log('[DB] PostgreSQL connection verified');
+    console.log('[DB] Database ready and operational');
   } catch (err) {
-    console.error('[DB] Cannot connect to PostgreSQL:', err.message);
-    process.exit(1);
+    console.error('[DB] Database initialization error:', err.message);
   }
 
   app.listen(PORT, () => {
-    console.log(`[SERVER] Booksphere backend running on port ${PORT}`);
+    console.log(`[SERVER] Bookify backend running on port ${PORT}`);
     console.log(`[SERVER] Environment: ${process.env.NODE_ENV || 'development'}`);
   });
 
@@ -131,6 +125,18 @@ async function start() {
     );
   });
   console.log(`[CRON] Daily reminder job scheduled: ${cronSchedule}`);
+
+  // ── Schedule reservation expiry job ─────────────────────────────────────
+  // Enforces the 24-hour pickup window. Runs every 5 minutes so that
+  // holds are released and the queue is re-promoted promptly after expiry.
+  const reservationCron = process.env.RESERVATION_EXPIRY_CRON || '*/5 * * * *';
+  cron.schedule(reservationCron, () => {
+    console.log('[CRON] Running reservation expiry sweep...');
+    reservationExpiryJob().catch(err =>
+      console.error('[CRON] Reservation expiry job failed:', err.message)
+    );
+  });
+  console.log(`[CRON] Reservation expiry job scheduled: ${reservationCron}`);
 }
 
 start();

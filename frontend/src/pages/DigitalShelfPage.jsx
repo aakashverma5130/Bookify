@@ -355,14 +355,14 @@ const DigitalShelfPage = () => {
                   <h1 className="text-2xl font-bold font-display">{readingDoc.title}</h1>
                   <p className="text-sm opacity-80 mt-1">by {readingDoc.author || 'Academic Faculty'}</p>
                   <span className="text-xs uppercase tracking-wider opacity-60 mt-2 inline-block">
-                    Booksphere Digital Archive · Format: {readingDoc.type}
+                    Bookify Digital Archive · Format: {readingDoc.type}
                   </span>
                 </div>
 
                 <div className="space-y-4">
                   <h3 className="text-lg font-bold">Chapter 1: Foundations & Overview</h3>
                   <p>
-                    This digital textbook resource is served directly through the Booksphere Digital Shelf system.
+                    This digital textbook resource is served directly through the Bookify Digital Shelf system.
                     All digital copies are optimized for rapid in-browser indexing, high readability across desktop and mobile devices,
                     and strict university IP access controls.
                   </p>

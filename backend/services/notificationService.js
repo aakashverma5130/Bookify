@@ -37,7 +37,7 @@ const getTransporter = async () => {
 // ── Web Push setup ────────────────────────────────────────────────────────────
 if (process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
   webpush.setVapidDetails(
-    process.env.VAPID_SUBJECT || 'mailto:admin@booksphere.edu',
+    process.env.VAPID_SUBJECT || 'mailto:admin@bookify.edu',
     process.env.VAPID_PUBLIC_KEY,
     process.env.VAPID_PRIVATE_KEY
   );
@@ -98,7 +98,7 @@ const createNotification = async ({ userId, type, title, message, metadata, clie
 const sendEmail = async ({ to, subject, text, html }) => {
   const t = await getTransporter();
   const info = await t.sendMail({
-    from: process.env.EMAIL_FROM || '"Booksphere Library" <noreply@booksphere.edu>',
+    from: process.env.EMAIL_FROM || '"Bookify Library" <noreply@bookify.edu>',
     to,
     subject,
     text,

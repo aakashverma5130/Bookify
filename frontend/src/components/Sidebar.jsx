@@ -2,8 +2,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, BookOpen, BookMarked, RotateCcw,
-  BarChart2, Users, Scan, Package, Bell, Settings,
-  ArrowLeftRight, LogOut, ChevronRight, Library, Armchair, BrainCircuit,
+  BarChart2, Users, Scan, Package, Settings,
+  ArrowLeftRight, LogOut, Library, BrainCircuit,
   Calendar,
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
@@ -13,7 +13,6 @@ const LibrarianNav = [
   { label: 'Catalog',       to: '/lib/books',         icon: BookOpen },
   { label: 'Issue / Return',to: '/lib/circulation',   icon: ArrowLeftRight },
   { label: 'Reservations',  to: '/lib/reservations',  icon: BookMarked },
-  { label: 'Seats',         to: '/lib/seats',          icon: Armchair },
   { label: 'Digital Shelf', to: '/lib/digital',       icon: Package },
   { label: 'Inventory',     to: '/lib/audit',          icon: Scan },
   { label: 'Analytics',     to: '/lib/analytics',     icon: BarChart2 },
@@ -28,7 +27,6 @@ const StudentNav = [
   { label: 'Explore Books',  to: '/student/books',      icon: BookOpen },
   { label: 'My Books',       to: '/student/my-books',   icon: BookMarked },
   { label: 'Calendar',       to: '/student/calendar',   icon: Calendar },
-  { label: 'Book a Seat',    to: '/student/seats',       icon: Armchair },
   { label: 'Digital Shelf',  to: '/student/digital',    icon: Library },
   { label: 'Fines',          to: '/student/fines',       icon: RotateCcw },
   { label: 'Request a Book', to: '/student/purchase-request', icon: Package },
@@ -69,7 +67,7 @@ const Sidebar = ({ collapsed = false, onToggle }) => {
               exit={{ opacity: 0, x: -10 }}
               transition={{ duration: 0.2 }}
             >
-              <h1 className="text-base font-bold text-white font-display tracking-tight">Booksphere</h1>
+              <h1 className="text-base font-bold text-white font-display tracking-tight">Bookify</h1>
               <p className="text-xs text-slate-500 capitalize">{user?.role?.replace('_', ' ').toLowerCase()}</p>
             </motion.div>
           )}

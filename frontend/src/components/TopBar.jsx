@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, Bell, Search as SearchIcon, ChevronLeft } from 'lucide-react';
+import { Menu, Bell, Search as SearchIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 

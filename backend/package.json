@@ -1,7 +1,7 @@
 {
-  "name": "booksphere-backend",
+  "name": "bookify-backend",
   "version": "1.0.0",
-  "description": "Booksphere Library Management System — Node.js/Express REST API",
+  "description": "Bookify Library Management System — Node.js/Express REST API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -25,11 +25,13 @@
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.14",
+    "pdfkit": "^0.15.0",
     "pg": "^8.11.5",
+    "pg-mem": "^3.0.14",
+    "sqlite3": "^6.0.1",
     "uuid": "^9.0.1",
     "web-push": "^3.6.7",
-    "xlsx": "^0.18.5",
-    "pdfkit": "^0.15.0"
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "nodemon": "^3.1.3"

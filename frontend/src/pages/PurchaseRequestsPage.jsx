@@ -51,8 +51,14 @@ const PurchaseRequestsPage = () => {
     try {
       const res = await purchaseApi.getAll();
       setRequests(res.data.requests || []);
-    } catch {
-      toast.error('Failed to load book purchase requests');
+    } catch (err) {
+      const status = err.response?.status;
+      const msg = status === 429
+        ? 'Too many requests — please wait a moment and try again.'
+        : status === 401
+          ? 'Your session has expired. Please sign in again.'
+          : err.message || 'Failed to load book purchase requests';
+      toast.error(msg);
     } finally {
       setLoading(false);
     }

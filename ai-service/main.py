@@ -1,4 +1,6 @@
+# pyrefly: ignore [missing-import]
 from fastapi import FastAPI
+# pyrefly: ignore [missing-import]
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import os
@@ -21,8 +23,8 @@ async def lifespan(app: FastAPI):
     print("[AI SERVICE] Shutting down.")
 
 app = FastAPI(
-    title="Booksphere AI Service",
-    description="Semantic search, recommendations, and demand forecasting for Booksphere",
+    title="Bookify AI Service",
+    description="Semantic search, recommendations, and demand forecasting for Bookify",
     version="1.0.0",
     lifespan=lifespan,
 )

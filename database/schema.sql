@@ -1,7 +1,7 @@
 -- ============================================================================
--- Booksphere — Database Schema
+-- Bookify — Database Schema
 -- PostgreSQL 15+
--- Run: psql -U postgres -d booksphere -f database/schema.sql
+-- Run: psql -U postgres -d Bookify -f database/schema.sql
 -- ============================================================================
 
 -- Drop tables in reverse dependency order for clean re-runs
@@ -315,7 +315,7 @@ CREATE TABLE library_settings (
     default_loan_days       SMALLINT NOT NULL DEFAULT 15,
     renewal_limit           SMALLINT NOT NULL DEFAULT 2,
     seat_grace_minutes      SMALLINT NOT NULL DEFAULT 15,
-    library_name            VARCHAR(200) NOT NULL DEFAULT 'Booksphere Library',
+    library_name            VARCHAR(200) NOT NULL DEFAULT 'Bookify Library',
     library_email           VARCHAR(255),
     updated_at              TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by              UUID REFERENCES users(user_id) ON DELETE SET NULL
@@ -505,5 +505,5 @@ WHERE status = 'OVERDUE' OR (status = 'ISSUED' AND due_date < CURRENT_DATE);
 
 -- Insert default library settings (if not already present)
 INSERT INTO library_settings (fine_per_day, max_books_per_student, default_loan_days, renewal_limit, seat_grace_minutes, library_name)
-VALUES (2.00, 3, 15, 2, 15, 'Booksphere Library')
+VALUES (2.00, 3, 15, 2, 15, 'Bookify Library')
 ON CONFLICT DO NOTHING;

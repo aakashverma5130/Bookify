@@ -25,8 +25,17 @@ const AIForecastPage = () => {
     try {
       const res = await analyticsApi.getForecast();
       setForecasts(res.data.forecasts || []);
-    } catch { toast.error('Failed to load forecasts'); }
-    finally { setLoading(false); }
+    } catch (err) {
+      const status = err.response?.status;
+      const msg = status === 429
+        ? 'Too many requests — please wait a moment and try again.'
+        : status === 401
+          ? 'Your session has expired. Please sign in again.'
+          : err.message || 'Failed to load forecasts';
+      toast.error(msg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => { fetchForecasts(); }, []);

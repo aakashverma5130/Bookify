@@ -39,13 +39,6 @@ export const reservationApi = {
   getAll:        ()       => api.get('/reservations'),
 };
 
-export const seatApi = {
-  getSeats:      (params) => api.get('/seats', { params }),
-  reserve:       (data)   => api.post('/seats/reserve', data),
-  checkIn:       (data)   => api.post('/seats/checkin', data),
-  checkOut:      (data)   => api.post('/seats/checkout', data),
-};
-
 export const digitalApi = {
   getAll:        (params) => api.get('/digital-resources', { params }),
   upload:        (formData) => api.post('/digital-resources', formData, {

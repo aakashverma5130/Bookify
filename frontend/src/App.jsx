@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './hooks/useAuth';
+import { UNAUTHORIZED_EVENT } from './services/api';
 
 // Pages
 import LoginPage              from './pages/LoginPage';
@@ -11,7 +13,6 @@ import DigitalShelfPage       from './pages/DigitalShelfPage';
 import PurchaseRequestsPage   from './pages/PurchaseRequestsPage';
 import BookSearchPage         from './pages/BookSearchPage';
 import BookDetailPage         from './pages/BookDetailPage';
-import SeatBookingPage        from './pages/SeatBookingPage';
 import NotificationsPage      from './pages/NotificationsPage';
 
 // Librarian Pages
@@ -52,6 +53,26 @@ const StudentRoute = ({ children }) => {
   return children;
 };
 
+// ── Unauthorized listener ─────────────────────────────────────────────────────
+// The Axios interceptor in `services/api.js` dispatches a custom event on 401
+// (see UNAUTHORIZED_EVENT). This component must live INSIDE <BrowserRouter>
+// so it can call `navigate` for a soft, client-side redirect — never a full
+// page reload. This is the fix for the "page auto-refresh after login" bug.
+const UnauthorizedListener = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    const handler = () => {
+      if (location.pathname !== '/login') {
+        navigate('/login', { replace: true });
+      }
+    };
+    window.addEventListener(UNAUTHORIZED_EVENT, handler);
+    return () => window.removeEventListener(UNAUTHORIZED_EVENT, handler);
+  }, [navigate, location.pathname]);
+  return null;
+};
+
 // ── App routing ───────────────────────────────────────────────────────────────
 const AppRoutes = () => (
   <Routes>
@@ -68,7 +89,6 @@ const AppRoutes = () => (
     <Route path="/student/books"            element={<StudentRoute><BookSearchPage /></StudentRoute>} />
     <Route path="/student/my-books"         element={<StudentRoute><StudentMyBooksPage /></StudentRoute>} />
     <Route path="/student/calendar"         element={<StudentRoute><BorrowingCalendarPage /></StudentRoute>} />
-    <Route path="/student/seats"            element={<StudentRoute><SeatBookingPage /></StudentRoute>} />
     <Route path="/student/digital"          element={<StudentRoute><DigitalShelfPage /></StudentRoute>} />
     <Route path="/student/fines"            element={<StudentRoute><StudentMyBooksPage /></StudentRoute>} />
     <Route path="/student/purchase-request" element={<StudentRoute><PurchaseRequestsPage /></StudentRoute>} />
@@ -78,7 +98,6 @@ const AppRoutes = () => (
     <Route path="/lib/books"        element={<LibrarianRoute><BookSearchPage /></LibrarianRoute>} />
     <Route path="/lib/circulation"  element={<LibrarianRoute><CirculationPage /></LibrarianRoute>} />
     <Route path="/lib/reservations" element={<LibrarianRoute><ReservationsPage /></LibrarianRoute>} />
-    <Route path="/lib/seats"        element={<LibrarianRoute><SeatBookingPage /></LibrarianRoute>} />
     <Route path="/lib/digital"      element={<LibrarianRoute><DigitalShelfPage /></LibrarianRoute>} />
     <Route path="/lib/audit"        element={<LibrarianRoute><InventoryAuditPage /></LibrarianRoute>} />
     <Route path="/lib/analytics"    element={<LibrarianRoute><LibrarianDashboard /></LibrarianRoute>} />
@@ -95,6 +114,7 @@ const AppRoutes = () => (
 const App = () => (
   <AuthProvider>
     <BrowserRouter>
+      <UnauthorizedListener />
       <AppRoutes />
       <Toaster
         position="top-right"

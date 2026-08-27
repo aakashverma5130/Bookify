@@ -7,12 +7,11 @@ const aiClient = require('../services/aiClient');
  */
 const getDashboard = async (req, res) => {
   try {
-    const [books, issues, fines, students, seats] = await Promise.all([
+    const [books, issues, fines, students] = await Promise.all([
       db.query(`SELECT total_copies, available_copies FROM books`),
       db.query(`SELECT status, COUNT(*) AS count FROM issues GROUP BY status`),
       db.query(`SELECT COALESCE(SUM(amount),0) AS total, COUNT(*) FILTER (WHERE paid=FALSE) AS unpaid_count FROM fines`),
       db.query(`SELECT COUNT(*) AS total FROM students`),
-      db.query(`SELECT status, COUNT(*) AS count FROM seat_reservations WHERE date = CURRENT_DATE GROUP BY status`),
     ]);
 
     const totalCopies     = books.rows.reduce((s, b) => s + parseInt(b.total_copies), 0);
@@ -22,7 +21,7 @@ const getDashboard = async (req, res) => {
 
     // Copies not with AVAILABLE or ISSUED — damaged/lost
     const damagedLostResult = await db.query(
-      `SELECT COUNT(*) FROM book_copies WHERE status IN ('DAMAGED','LOST')`
+      `SELECT COUNT(*) AS count FROM book_copies WHERE status IN ('DAMAGED','LOST')`
     );
 
     res.json({
@@ -34,7 +33,6 @@ const getDashboard = async (req, res) => {
       totalFinesRs:     parseFloat(fines.rows[0].total).toFixed(2),
       unpaidFinesCount: parseInt(fines.rows[0].unpaid_count),
       damagedLostCopies: parseInt(damagedLostResult.rows[0].count),
-      todaySeatBookings: seats.rows.find(r => r.status === 'BOOKED')?.count || 0,
     });
   } catch (err) {
     console.error('[ANALYTICS] getDashboard error:', err.message);

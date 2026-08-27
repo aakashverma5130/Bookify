@@ -1,8 +1,8 @@
-# 📚 Booksphere
+# 📚 Bookify
 
 > **Search. Borrow. Track. Return. Your Library, Anywhere.**
 
-Booksphere is a full-stack, AI-assisted college library management website with two role-based portals — a **Student Portal** and a **Librarian Dashboard** — sharing one codebase and one login page.
+Bookify is a full-stack, AI-assisted college library management website with two role-based portals — a **Student Portal** and a **Librarian Dashboard** — sharing one codebase and one login page.
 
 ## What it does
 
@@ -20,7 +20,7 @@ Booksphere is a full-stack, AI-assisted college library management website with 
 ## Architecture
 
 ```
-Booksphere/
+Bookify/
   frontend/       React + Vite + Tailwind + Framer Motion + GSAP
   backend/        Node.js + Express REST API (port 5000)
   ai-service/     Python + FastAPI — search, recommendations, forecast (port 8000)
@@ -40,7 +40,7 @@ Booksphere/
 ```bash
 # 1. Clone the repo
 git clone <repo-url>
-cd Booksphere
+cd Bookify
 
 # 2. Copy and fill in env files
 cp backend/.env.example backend/.env
@@ -69,10 +69,10 @@ The first `docker compose up` run will:
 
 ### PostgreSQL
 
-Create a database named `booksphere` and run:
+Create a database named `bookify` and run:
 ```bash
-psql -U postgres -d booksphere -f database/schema.sql
-psql -U postgres -d booksphere -f database/seed.sql
+psql -U postgres -d bookify -f database/schema.sql
+psql -U postgres -d bookify -f database/seed.sql
 ```
 
 ### Backend
@@ -125,10 +125,12 @@ See [`backend/.env.example`](backend/.env.example) and [`ai-service/.env.example
 
 | Role | Email | Password |
 |---|---|---|
-| Head Librarian | `head@booksphere.edu` | `Admin@123` |
-| Assistant Librarian | `assistant@booksphere.edu` | `Admin@123` |
-| Student | `student@booksphere.edu` | `Student@123` |
+| Head Librarian | `head@university.edu` | `Admin@123` |
+| Assistant Librarian | `librarian@university.edu` | `Admin@123` |
+| Student | `student1@university.edu` | `Student@123` |
 
+> Additional seeded students (same password `Student@123`): `student2@university.edu`, `student3@university.edu`, `student4@university.edu`.
+>
 > ⚠️ Change all passwords immediately if deploying to a real environment.
 
 ## Role Permissions

@@ -1,17 +1,8 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import {
-  Settings,
   IndianRupee,
-  BookOpen,
-  Calendar,
-  RotateCcw,
   Clock,
-  Save,
-  Shield,
-  CheckCircle2,
-  Bell,
-  Mail
+  Save
 } from 'lucide-react';
 import AppShell from '../components/AppShell';
 import Card from '../components/Card';
@@ -22,7 +13,7 @@ import { useAuth } from '../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const LibrarySettingsPage = () => {
-  const { isHeadLibrarian } = useAuth();
+  const { isHeadLibrarian: _ } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [settings, setSettings] = useState({
@@ -31,7 +22,7 @@ const LibrarySettingsPage = () => {
     default_loan_days: 15,
     renewal_limit: 2,
     seat_grace_minutes: 15,
-    library_name: 'Booksphere Library'
+    library_name: 'Bookify Library'
   });
 
   const fetchSettings = async () => {

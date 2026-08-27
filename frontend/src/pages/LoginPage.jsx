@@ -134,7 +134,7 @@ const LoginPage = () => {
           >
             <Library size={28} className="text-white" />
           </motion.div>
-          <h1 className="text-3xl font-bold font-display text-gradient">Booksphere</h1>
+          <h1 className="text-3xl font-bold font-display text-gradient">Bookify</h1>
           <p className="text-slate-400 text-sm mt-1">Library Management System</p>
         </div>
 
@@ -168,7 +168,7 @@ const LoginPage = () => {
                   <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                   <input
                     value={email} onChange={e => setEmail(e.target.value)}
-                    type="email" required placeholder="you@university.edu"
+                    type="email" required placeholder="student1@university.edu"
                     className="input pl-9" autoComplete="email"
                   />
                 </div>
@@ -210,7 +210,7 @@ const LoginPage = () => {
               <div>
                 <label className="text-xs text-slate-400 mb-1 block">Email</label>
                 <input value={email} onChange={e => setEmail(e.target.value)}
-                  type="email" required placeholder="you@university.edu" className="input" />
+                  type="email" required placeholder="student1@university.edu" className="input" />
               </div>
               <button type="submit" disabled={isLoading} className="btn-primary btn w-full justify-center">
                 {isLoading ? '...' : 'Send OTP'}
@@ -245,7 +245,7 @@ const LoginPage = () => {
         </div>
 
         <p className="text-center text-xs text-slate-600 mt-6">
-          Booksphere LMS v1.0 · Built for your university library
+          Bookify LMS v1.0 · Built for your university library
         </p>
       </motion.div>
     </div>

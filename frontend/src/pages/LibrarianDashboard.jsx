@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   BookOpen, Users, AlertTriangle, IndianRupee,
-  TrendingUp, BookMarked, Scan, Armchair,
+  TrendingUp, BookMarked, Scan,
 } from 'lucide-react';
 import {
   AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
@@ -32,8 +32,14 @@ const LibrarianDashboard = () => {
         ]);
         setStats(dashRes.data);
         setReports(reportRes.data);
-      } catch {
-        toast.error('Failed to load dashboard data');
+      } catch (err) {
+        const status = err.response?.status;
+        const msg = status === 429
+          ? 'Too many requests — please wait a moment and try again.'
+          : status === 401
+            ? 'Your session has expired. Please sign in again.'
+            : 'Failed to load dashboard data';
+        toast.error(msg);
       } finally {
         setLoading(false);
       }
@@ -47,7 +53,6 @@ const LibrarianDashboard = () => {
     { label: 'Overdue Issues',    value: stats.overdueIssues,    icon: AlertTriangle, color: 'text-danger-400'   },
     { label: 'Total Students',    value: stats.totalStudents,    icon: Users,         color: 'text-accent-purple'},
     { label: 'Unpaid Fines (Rs)', value: parseFloat(stats.totalFinesRs), icon: IndianRupee, color: 'text-warning-400', prefix: 'Rs. ' },
-    { label: 'Today Seat Bookings', value: parseInt(stats.todaySeatBookings||0), icon: Armchair, color: 'text-success-400' },
     { label: 'Damaged / Lost',    value: stats.damagedLostCopies, icon: Scan,         color: 'text-orange-400'  },
     { label: 'Available Copies',  value: stats.availableCopies,  icon: TrendingUp,    color: 'text-success-400' },
   ] : [];
@@ -62,7 +67,7 @@ const LibrarianDashboard = () => {
     <AppShell title="Library Dashboard">
       {/* Stats */}
       {loading
-        ? <SkeletonLoader variant="stat" count={8} />
+        ? <SkeletonLoader variant="stat" count={7} />
         : (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {statCards.map((card, i) => (
