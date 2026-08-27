@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import './styles/tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: var(--font-sans); }
+  body {
+    background-color: #0f0f27;
+    color: #f8fafc;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* ── Buttons ────────────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-200 cursor-pointer select-none;
+    transform: translateZ(0); /* GPU composite layer */
+  }
+  .btn:active { transform: scale(0.97); }
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-500;
+    box-shadow: 0 0 0 0 rgba(99,102,241,0);
+  }
+  .btn-primary:hover { box-shadow: var(--glow-primary); }
+
+  .btn-secondary {
+    @apply btn bg-bg-600 text-slate-200 hover:bg-bg-500;
+    border: 1px solid var(--color-border);
+  }
+  .btn-secondary:hover { border-color: var(--color-border-hover); }
+
+  .btn-danger {
+    @apply btn bg-danger-600 text-white hover:bg-danger-500;
+  }
+
+  .btn-ghost {
+    @apply btn text-slate-300 hover:text-white hover:bg-bg-600;
+  }
+
+  .btn-sm { @apply btn text-xs px-3 py-1.5 rounded-lg; }
+  .btn-lg { @apply btn text-base px-7 py-3.5 rounded-2xl; }
+
+  /* ── Cards ──────────────────────────────────────────────────────────────── */
+  .card {
+    @apply rounded-2xl p-6 transition-all duration-300;
+    background: linear-gradient(135deg, rgba(19,19,45,0.9), rgba(26,26,62,0.9));
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+  .card-hover:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-xl), var(--glow-primary);
+    transform: translateY(-2px);
+  }
+
+  /* ── Inputs ─────────────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-500 outline-none transition-all duration-200;
+    background: rgba(19,19,45,0.8);
+    border: 1px solid var(--color-border);
+  }
+  .input:focus {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+  }
+
+  /* ── Badges ─────────────────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  /* ── Skeleton loader ────────────────────────────────────────────────────── */
+  .skeleton {
+    @apply rounded-xl animate-pulse;
+    background: linear-gradient(90deg, rgba(30,30,80,0.6) 25%, rgba(50,50,120,0.6) 50%, rgba(30,30,80,0.6) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* ── Sidebar ────────────────────────────────────────────────────────────── */
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-400 transition-all duration-200 cursor-pointer;
+  }
+  .sidebar-link:hover {
+    @apply text-white bg-bg-600;
+  }
+  .sidebar-link.active {
+    @apply text-white bg-primary-900;
+    border-left: 3px solid var(--color-primary-400);
+    box-shadow: var(--glow-primary);
+  }
+
+  /* ── Page header ────────────────────────────────────────────────────────── */
+  .page-title {
+    @apply text-2xl font-bold text-white font-display;
+  }
+  .page-subtitle {
+    @apply text-sm text-slate-400 mt-1;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #818cf8, #a855f7, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-glass {
+    background: rgba(19, 19, 45, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
