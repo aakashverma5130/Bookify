@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Borrowing - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#3e2700",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-bright": "#fbf8fc",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#4e5e81",
+                      "secondary": "#4950c7",
+                      "surface-container-high": "#e9e7eb",
+                      "on-secondary-fixed-variant": "#3035af",
+                      "on-tertiary-fixed-variant": "#5d4217",
+                      "secondary-fixed-dim": "#bfc2ff",
+                      "secondary-container": "#7d84fe",
+                      "secondary-fixed": "#e0e0ff",
+                      "surface": "#fbf8fc",
+                      "surface-dim": "#dbd9dc",
+                      "surface-container-highest": "#e4e2e5",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed-variant": "#364768",
+                      "on-surface-variant": "#44474e",
+                      "inverse-surface": "#303033",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#b08d5b",
+                      "on-secondary-fixed": "#02006d",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#f5f3f6",
+                      "inverse-primary": "#b6c6ef",
+                      "on-primary-container": "#8293b8",
+                      "surface-container": "#efedf0",
+                      "outline-variant": "#c5c6cf",
+                      "inverse-on-surface": "#f2f0f3",
+                      "surface-variant": "#e4e2e5",
+                      "on-surface": "#1b1b1e",
+                      "tertiary-fixed-dim": "#e8c08a",
+                      "primary-container": "#1a2b4b",
+                      "outline": "#75777f",
+                      "on-primary-fixed": "#081b3a",
+                      "primary": "#031635",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#070494",
+                      "tertiary-fixed": "#ffddb1",
+                      "on-tertiary-fixed": "#291800",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "on-error": "#ffffff",
+                      "on-background": "#1b1b1e",
+                      "background": "#fbf8fc",
+                      "tertiary": "#231400"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          body {
+              background-color: #F9F8F6; /* Academic Minimalism Base */
+          }
+      </style>
+</head>
+<body class="text-on-background min-h-screen pb-margin-desktop">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-outline-variant dark:border-outline bg-surface dark:bg-surface-container-lowest" style="height: 64px;">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">
+                    Bookify
+                </a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity font-title-sm text-title-sm font-label-caps text-label-caps cursor-pointer transition-all duration-200 active:scale-95" href="#">
+                        Catalog
+                    </a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 hover:opacity-80 transition-opacity font-title-sm text-title-sm font-label-caps text-label-caps cursor-pointer transition-all duration-200 active:scale-95" href="#">
+                        My Borrowing
+                    </a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity font-title-sm text-title-sm font-label-caps text-label-caps cursor-pointer transition-all duration-200 active:scale-95" href="#">
+                        Reservations
+                    </a>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer transition-all duration-200 active:scale-95 p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer transition-all duration-200 active:scale-95 p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="Student Avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover cursor-pointer" data-alt="A minimal, professional avatar of a young student in a softly lit, high-key academic setting. Clean background, muted colors reflecting the academic minimalism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5gAM-OCeMNmWiUs99Muf9Fje5AZHPbozMjdpaN2BsiIbeqFIg_oPCTLpewmNk1rOzNtANvhfpFOX36_YtKUP1GrGhKN22kse7Q1N4KbTYv5veunXvRLzC-uaB7sxOWpSuJ0pwIvt-UJMY2FARB55jTpG7R3LvxqsPyt2C34VPMb2ozBttv8OR0OFARfwjnN5qEmCrJfxoyuFv4zcVw_LRY0jZCjfFwJNboRHuZWFoys4TMSg0M4ei"/>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="pt-[104px] px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col gap-12">
+<!-- Header Section -->
+<header>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-2">My Borrowing</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your current loans, view history, and discover new readings.</p>
+</header>
+<!-- Current Loans Bento Grid -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Current Loans (3)</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Loan Card 1: Overdue -->
+<div class="bg-surface-container-lowest border border-error rounded-lg p-6 relative overflow-hidden flex flex-col justify-between" style="box-shadow: 0px 4px 20px rgba(26, 43, 75, 0.04);">
+<div class="absolute top-0 right-0 w-16 h-16 bg-error opacity-5 rounded-bl-full"></div>
+<div class="flex gap-4 mb-4">
+<img alt="Book Cover" class="w-20 h-30 object-cover border border-outline-variant rounded" data-alt="Book cover featuring an abstract architectural drawing in stark black and white with subtle geometric overlays. The design is highly minimal, fitting a premium academic context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ0qN-pFTURshEn3JxkBOHycy11NU28W4CkDZE3A3XN7-qbmxFes-_H9rLCXfE8BtzvJ_hqItcQrbLSHGm1rdAt0VN3x0v23d62ygXWHqU-hcC872ZVoBTnkqXIWZAr6qO68NaCdyuNVmFoOnq0skz7LBzQ6JJBCfWFrksgTesLVaiNv9VbmYoMGfXG-Ve31xPTopeSiEYHcpsyACRbfcP-pr4_izt5fE1eEc0o4UHX8oGsk57HWv2"/>
+<div>
+<span class="inline-block px-2 py-1 bg-error/10 text-error font-label-caps text-label-caps rounded mb-2">OVERDUE</span>
+<h3 class="font-title-sm text-title-sm text-primary line-clamp-2">The Architecture of City Structures</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kevin Lynch</p>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mb-1">
+<span>Returned: 2 days ago</span>
+<span class="text-error font-bold">-2 Days</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full w-full"></div>
+</div>
+<button class="mt-4 w-full border border-primary text-primary hover:bg-surface-container-low font-title-sm text-title-sm py-2 rounded transition-colors">Renew Loan</button>
+</div>
+</div>
+<!-- Loan Card 2: Safe -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 relative overflow-hidden flex flex-col justify-between" style="box-shadow: 0px 4px 20px rgba(26, 43, 75, 0.04);">
+<div class="flex gap-4 mb-4">
+<img alt="Book Cover" class="w-20 h-30 object-cover border border-outline-variant rounded" data-alt="Minimalist book cover featuring a simple, bold typography layout reading 'Modern Database Systems' on an off-white background. The aesthetic is clean, academic, and serious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD0V8OrRQ9grlzLXvaPqiH2Ddfh-tOrfrbnny9C_TSgFj5PlqqP_9gY4fgOTh5MLPTpT2fjqHtxW0vKhbFpTz0asZWSr7JEK2WXooAKpb1E6XT_q8mZ2BrYoXoW4orVmoa8Kw1cGRpY_OiMKMKj13YcZKZ5yJlyBLitmPPBmc5gLcwIu_T8Q6Pa5ad24crPDLWiMigMkdz3FXLM8EjQIgFf634ywiGL_fD8-8kP-iWAsJefjg96m8K"/>
+<div>
+<span class="inline-block px-2 py-1 bg-primary/10 text-primary font-label-caps text-label-caps rounded mb-2">DUE IN 14 DAYS</span>
+<h3 class="font-title-sm text-title-sm text-primary line-clamp-2">Modern Database Systems</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">C.J. Date</p>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mb-1">
+<span>Borrowed: Oct 12</span>
+<span>50%</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/2 rounded-full"></div>
+</div>
+<button class="mt-4 w-full text-secondary hover:bg-surface-container-low font-title-sm text-title-sm py-2 rounded transition-colors border border-transparent hover:border-outline-variant">Return Early</button>
+</div>
+</div>
+<!-- Loan Card 3: Safe -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 relative overflow-hidden flex flex-col justify-between" style="box-shadow: 0px 4px 20px rgba(26, 43, 75, 0.04);">
+<div class="flex gap-4 mb-4">
+<img alt="Book Cover" class="w-20 h-30 object-cover border border-outline-variant rounded" data-alt="A clean, typographic book cover design for 'Introduction to Algorithms' using stark sans-serif fonts against a pale gray background. Highly professional and academic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGYVhUB4XHeCHm_Ali2AkwH_5hFnweSLc3L7BEb1XJO3QZq_cox4YucPwgpt3J9AdqSGjNox8LgGeTiw0C4PI_yfyS1Ygm4cwy6wD5gcPqk7QQI0KA6w4YIu-fwWswWIzTpAaaBizZrVdK85Rme3-xKczdjScFNHnhBkj2Z6bqFH6StKoetV7dZXFq7t9P4PUiyj2zmWqaA_0dIWVfNF3WSZFfRIWa3ZA0YumxsSb5hoHjQob6MvSP"/>
+<div>
+<span class="inline-block px-2 py-1 bg-primary/10 text-primary font-label-caps text-label-caps rounded mb-2">DUE IN 21 DAYS</span>
+<h3 class="font-title-sm text-title-sm text-primary line-clamp-2">Introduction to Algorithms</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thomas H. Cormen</p>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mb-1">
+<span>Borrowed: Oct 19</span>
+<span>25%</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/4 rounded-full"></div>
+</div>
+<button class="mt-4 w-full text-secondary hover:bg-surface-container-low font-title-sm text-title-sm py-2 rounded transition-colors border border-transparent hover:border-outline-variant">Return Early</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

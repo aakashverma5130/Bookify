@@ -45,6 +45,7 @@ CREATE TABLE users (
     notify_web_push BOOLEAN NOT NULL DEFAULT FALSE,
     notify_email    BOOLEAN NOT NULL DEFAULT TRUE,
     is_active       BOOLEAN NOT NULL DEFAULT TRUE,
+    token_version   INTEGER NOT NULL DEFAULT 0,            -- H-3: bump on logout/reset to invalidate JWTs
     created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

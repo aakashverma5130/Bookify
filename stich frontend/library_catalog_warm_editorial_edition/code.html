@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Library Catalog - Bookify</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#ffb95f",
+                        "surface": "#fdf9e9",
+                        "on-background": "#1c1c13",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f8f4e4",
+                        "surface-tint": "#855300",
+                        "tertiary": "#474647",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#1c1b1c",
+                        "ink-secondary": "#474747",
+                        "surface-bright": "#fdf9e9",
+                        "inverse-surface": "#323126",
+                        "surface-variant": "#e6e3d3",
+                        "inverse-primary": "#fdb965",
+                        "tertiary-fixed-dim": "#c8c6c6",
+                        "on-primary-container": "#ffd09a",
+                        "primary": "#653e00",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#855300",
+                        "on-primary-fixed-variant": "#653e00",
+                        "surface-container-highest": "#e6e3d3",
+                        "ink-primary": "#1B1B1B",
+                        "surface-container-high": "#ece8d9",
+                        "on-surface": "#1c1c13",
+                        "tertiary-container": "#5f5e5e",
+                        "on-tertiary-container": "#dbd8d7",
+                        "secondary-container": "#fea619",
+                        "secondary-fixed": "#ffddb8",
+                        "surface-dim": "#dedacb",
+                        "on-surface-variant": "#514538",
+                        "inverse-on-surface": "#f5f1e1",
+                        "primary-fixed": "#ffddb8",
+                        "outline": "#837566",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#fdb965",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#2a1700",
+                        "outline-variant": "#d5c4b2",
+                        "on-secondary-container": "#684000",
+                        "on-secondary": "#ffffff",
+                        "surface-base": "#FFFBEB",
+                        "on-tertiary-fixed-variant": "#474647",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "secondary": "#855300",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container": "#f2eede",
+                        "accent-warm": "#F59E0B",
+                        "accent-deep": "#D97706",
+                        "background": "#fdf9e9",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "content-max-width": "1280px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "data-mono": ["monospace"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-sm min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-dim h-screen w-64 fixed left-0 top-0 border-r border-outline-variant/40 flex flex-col h-full p-6 z-40 hidden md:flex transition-all duration-200 ease-in-out">
+<div class="mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">auto_stories</span>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Bookify</h1>
+<p class="font-body-sm text-body-sm text-ink-secondary">Academic Library</p>
+</div>
+</div>
+<button class="mb-8 w-full bg-accent-warm text-on-primary py-2 px-4 rounded font-title-sm text-title-sm shadow-sm hover:bg-accent-deep transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+            New Research
+        </button>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 p-3 rounded-lg text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body-sm text-body-sm">Home</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 bg-secondary-container dark:bg-secondary-fixed text-on-secondary-container dark:text-on-secondary-fixed font-bold rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined filled">explore</span>
+<span class="font-body-sm text-body-sm">Explore Books</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 rounded-lg text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-body-sm text-body-sm">My Books</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 rounded-lg text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-body-sm text-body-sm">Calendar</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 rounded-lg text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">shelves</span>
+<span class="font-body-sm text-body-sm">Digital Shelf</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 rounded-lg text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-sm text-body-sm">Fines</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 p-3 rounded-lg text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-body-sm text-body-sm">Request a Book</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto flex items-center gap-3 pt-6 border-t border-outline-variant/40">
+<img alt="User profile avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant/40" data-alt="A professional headshot of a student in a library setting, warm lighting, focused expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYT5i-aIBCBI5ywqvOH24mDGb0JMefzHfsdpwaUwNEwd-9CmkdLfPwflRwLviJ6gKHge6iMDQatcF-x6hqRqaT92nCY4YPGgnGPUtPofDrK2mGW2cAub6eGZnOcuSKW0byD8kQ1mVasV3MvCSn1IL2Rnb27zomtKb-ix_uX31lgT3svxl08bbaKQnGp_B-R_2H4r1baGmIyH5rX5l35B58NWTISoQJZ3kfq9NSm7rr2mHehZgntbzM"/>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-primary">Alex Mercer</span>
+<span class="font-body-sm text-body-sm text-ink-secondary">Computer Science</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-md h-16 border-b border-outline-variant/40 sticky top-0 z-30 px-margin-mobile md:px-margin-desktop flex justify-between items-center w-full">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-ink-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-high border border-outline-variant/40 rounded focus:outline-none focus:border-accent-warm focus:ring-1 focus:ring-accent-warm font-body-sm text-body-sm text-on-surface placeholder-ink-secondary" placeholder="Search catalog, authors, or subjects..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-primary dark:text-primary-fixed-dim hover:text-accent-deep transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-primary dark:text-primary-fixed-dim hover:text-accent-deep transition-colors md:hidden">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="md:hidden p-2 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Catalog Canvas -->
+<div class="px-margin-mobile md:px-margin-desktop py-8 max-w-content-max-width mx-auto w-full flex-1">
+<!-- Page Header & Filters -->
+<div class="mb-10">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">Library Catalog</h2>
+<p class="font-body-lg text-body-lg text-ink-secondary max-w-2xl">Browse the extensive collection of academic texts, journals, and reference materials available in the central repository.</p>
+<div class="flex flex-wrap gap-3 mt-6 border-b border-outline-variant/40 pb-4">
+<button class="px-4 py-2 text-accent-warm border-b-2 border-accent-warm font-title-sm text-title-sm">All Subjects</button>
+<button class="px-4 py-2 text-ink-secondary hover:text-accent-deep transition-colors font-title-sm text-title-sm">Computer Science</button>
+<button class="px-4 py-2 text-ink-secondary hover:text-accent-deep transition-colors font-title-sm text-title-sm">Philosophy</button>
+<button class="px-4 py-2 text-ink-secondary hover:text-accent-deep transition-colors font-title-sm text-title-sm">Humanities</button>
+<button class="px-4 py-2 text-ink-secondary hover:text-accent-deep transition-colors font-title-sm text-title-sm flex items-center gap-1 ml-auto">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filters
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Catalog -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Book Card 1 -->
+<article class="bg-surface-container-high border border-outline-variant/40 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col h-full group relative">
+<div class="aspect-[2/3] w-full relative overflow-hidden bg-surface-variant p-6 flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-tint/20 to-transparent z-10"></div>
+<img class="w-full h-full object-cover shadow-lg rounded z-0 group-hover:scale-105 transition-transform duration-500" data-alt="A hyper-realistic book cover depicting abstract geometric nodes connecting in a neural network pattern, deep navy background with glowing gold lines, elegant serif title typography 'Algorithms &amp; Data Structures'. Warm, academic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWUjsiUQOb5IPFV001HNFVtgav4dejDNxM__VvO88iRNDE6ZWlWNOF6SdODQyTKqeMFOT3W-oO-1iLQweziRawOhhXUnDOjGfUh4QmGTqFKc-YR3vAcjx0miB8bihNk93ECXKZRzsiJLG1EpPbICzrjinCd4LjCHc2yJvC7w1WLcXC5NQwF7gni4XyUN1KUhtVRx0tnI2ALIfYrbB7Xkqre3h6fYZFspxp-OM5Kkr4Fjy5HiKAE1m-"/>
+<span class="absolute top-3 right-3 z-20 bg-surface/90 backdrop-blur px-2 py-1 rounded text-[#4d7c0f] font-label-caps text-label-caps border border-[#4d7c0f]/20 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Available
+                        </span>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-caps text-label-caps text-accent-deep mb-1">Computer Science</span>
+<h3 class="font-title-sm text-title-sm text-primary mb-1 line-clamp-2 group-hover:text-accent-warm transition-colors">Algorithms &amp; Data Structures in Practice</h3>
+<p class="font-body-sm text-body-sm text-ink-secondary mb-4">Dr. Sarah Jenkins</p>
+<div class="mt-auto pt-3 border-t border-outline-variant/20 flex items-center gap-2 text-ink-secondary">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="font-data-mono text-data-mono text-xs">Central Library → Floor 2 → CS-A4</span>
+</div>
+</div>
+</article>
+<!-- Book Card 2 -->
+<article class="bg-surface-container-high border border-outline-variant/40 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col h-full group relative">
+<div class="aspect-[2/3] w-full relative overflow-hidden bg-surface-variant p-6 flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-tint/20 to-transparent z-10"></div>
+<img class="w-full h-full object-cover shadow-lg rounded z-0 group-hover:scale-105 transition-transform duration-500" data-alt="A hyper-realistic book cover featuring a classic marble bust of Socrates partially obscured by geometric modern shapes in muted gold and ivory. Title reads 'Modern Ethics'. Editorial design, soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMXxAkXhz6hyCAPFxbUc5MVK1kNEbZiOW2Y7FTgC9WiBAEJICdErXD_AzxcL_l6wyrJO1eaVgm2xrU6RtNexFBt_xkTBX2mD_pprZ1qMkcXjtbq7lK3ZzOJOjR62iiwHZgGBHl6uVXsQurCcZA3lcBuW9rBwgiHrdMMF-EcNtask1vwg1yjJuPoYiiyZfSj6qEN88c4rCPXKEcF6PGmvT32Uf_xeInvuwKWTM3SaLr8sxxEi-A5LeS"/>
+<span class="absolute top-3 right-3 z-20 bg-surface/90 backdrop-blur px-2 py-1 rounded text-[#0369a1] font-label-caps text-label-caps border border-[#0369a1]/20 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bookmark</span> Reserved
+                        </span>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-caps text-label-caps text-accent-deep mb-1">Philosophy</span>
+<h3 class="font-title-sm text-title-sm text-primary mb-1 line-clamp-2 group-hover:text-accent-warm transition-colors">Modern Ethics and Technological Imperatives</h3>
+<p class="font-body-sm text-body-sm text-ink-secondary mb-4">Marcus Valerius</p>
+<div class="mt-auto pt-3 border-t border-outline-variant/20 flex items-center gap-2 text-ink-secondary">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="font-data-mono text-data-mono text-xs">East Wing → Floor 1 → PH-3B</span>
+</div>
+</div>
+</article>
+<!-- Book Card 3 -->
+<article class="bg-surface-container-high border border-outline-variant/40 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col h-full group relative xl:col-span-2">
+<div class="flex flex-col sm:flex-row h-full">
+<div class="sm:w-1/2 aspect-[2/3] sm:aspect-auto relative overflow-hidden bg-surface-variant p-6 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-outline-variant/40">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-tint/20 to-transparent z-10"></div>
+<img class="w-3/4 sm:w-full h-auto object-cover shadow-lg rounded z-0 group-hover:scale-105 transition-transform duration-500" data-alt="A hyper-realistic book cover showing a beautifully bound classical history text. The cover features an intricate gold foil map of ancient Rome on a deep crimson, textured leather background. Rich, warm lighting highlighting the textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM4alnAfYkzbTESbVlllV3l0SGQKVFdTPVBoW6Wv-hI5tvBHOROGG6v0IVMjJqZW-OMKUdfzoSqCA_MNOHcx_j6-C9uElRMRnokP138yduuO5-E6Fob_KW1_cPb2LjEa2lzCjhTlYh3Cl30V8aeMxbmE6adZ5iQnkTUmenaQ8NhHr2CYgmIWwcBmgtdiBDNqJUa0qiKqoGYzxxT-EeX949c_kN9RRvlLmfMytCFBEZUJuAvsYKEy9V"/>
+<span class="absolute top-3 right-3 z-20 bg-surface/90 backdrop-blur px-2 py-1 rounded text-[#4d7c0f] font-label-caps text-label-caps border border-[#4d7c0f]/20 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Available
+                            </span>
+</div>
+<div class="p-6 flex flex-col sm:w-1/2 justify-center">
+<div class="mb-4">
+<span class="inline-block px-2 py-1 bg-accent-warm/10 text-accent-deep font-label-caps text-label-caps rounded mb-3">Featured Faculty Publication</span>
+</div>
+<span class="font-label-caps text-label-caps text-accent-deep mb-1">Humanities</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2 group-hover:text-accent-warm transition-colors">The Fall and Rise of Classical Empires: A New Perspective</h3>
+<p class="font-body-lg text-body-lg text-ink-secondary mb-4">Prof. Eleanor Vance, Dept. of History</p>
+<p class="font-body-sm text-body-sm text-ink-secondary mb-6 line-clamp-3">A comprehensive re-evaluation of structural collapses in antiquity, utilizing modern econometric models applied to historical trade routes.</p>
+<div class="mt-auto pt-4 border-t border-outline-variant/20 flex items-center justify-between text-ink-secondary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="font-data-mono text-data-mono text-xs">Main Atrium → Display A</span>
+</div>
+<button class="text-accent-warm hover:text-accent-deep font-title-sm text-title-sm transition-colors">Reserve</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Book Card 4 -->
+<article class="bg-surface-container-high border border-outline-variant/40 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col h-full group relative">
+<div class="aspect-[2/3] w-full relative overflow-hidden bg-surface-variant p-6 flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-tint/20 to-transparent z-10"></div>
+<img class="w-full h-full object-cover shadow-lg rounded z-0 group-hover:scale-105 transition-transform duration-500" data-alt="A hyper-realistic minimal book cover with a stark white background and a single, precise black and gold architectural blueprint line drawing. Clean, sparse typography reads 'Design Patterns'. Professional, crisp studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN_LnfwiwZCchuVGRq18HZ0qJG7ZIrObBp8d71BGFQyxxkXQ_UzSGA84V6p-jg6R5Rz-XA63-yGlTDwsetp4pcGrAlIM9FUZk1F9_60ULexb2NnrRgj7Wt6D27WMT6JqDo9DbDL1BJgi7mMbgh-NVAw8Q6jmVw4OQ4jz7OwJ1c-k-VelDEgKI7Ay-KhvhWBBsx_CQX7gsKC5Um4pYBru6_Crq5NiIOEfiIdfNInTfxQjBrrdLjz9o5"/>
+<span class="absolute top-3 right-3 z-20 bg-surface/90 backdrop-blur px-2 py-1 rounded text-[#4d7c0f] font-label-caps text-label-caps border border-[#4d7c0f]/20 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Available
+                        </span>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-caps text-label-caps text-accent-deep mb-1">Computer Science</span>
+<h3 class="font-title-sm text-title-sm text-primary mb-1 line-clamp-2 group-hover:text-accent-warm transition-colors">Design Patterns &amp; Architecture</h3>
+<p class="font-body-sm text-body-sm text-ink-secondary mb-4">H. Reynolds</p>
+<div class="mt-auto pt-3 border-t border-outline-variant/20 flex items-center gap-2 text-ink-secondary">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="font-data-mono text-data-mono text-xs">Central Library → Floor 2 → CS-B1</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-low border-t border-outline-variant/40 w-full py-8 mt-auto flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-content-max-width mx-auto">
+<p class="font-body-sm text-body-sm text-ink-secondary dark:text-tertiary-fixed-dim mb-4 md:mb-0">© 2024 Bookify Academic Editorial System. All rights reserved.</p>
+<ul class="flex items-center gap-6">
+<li><a class="font-body-sm text-body-sm text-ink-secondary opacity-70 hover:opacity-100 underline underline-offset-4 transition-opacity duration-200" href="#">Privacy Policy</a></li>
+<li><a class="font-body-sm text-body-sm text-ink-secondary opacity-70 hover:opacity-100 underline underline-offset-4 transition-opacity duration-200" href="#">Terms of Service</a></li>
+<li><a class="font-body-sm text-body-sm text-ink-secondary opacity-70 hover:opacity-100 underline underline-offset-4 transition-opacity duration-200" href="#">Library Support</a></li>
+</ul>
+</footer>
+</main>
+</body></html>

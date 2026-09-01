@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Books - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#684000",
+                    "primary-fixed": "#ffddb8",
+                    "tertiary": "#474647",
+                    "on-tertiary-fixed": "#1c1b1c",
+                    "surface": "#fdf9e9",
+                    "on-primary-fixed-variant": "#653e00",
+                    "inverse-surface": "#323126",
+                    "inverse-primary": "#fdb965",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#fdb965",
+                    "outline-variant": "#d5c4b2",
+                    "background": "#fdf9e9",
+                    "on-primary": "#ffffff",
+                    "ink-secondary": "#474747",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f2eede",
+                    "primary": "#653e00",
+                    "on-background": "#1C1C13",
+                    "surface-container-high": "#ece8d9",
+                    "surface-variant": "#e6e3d3",
+                    "surface-container-highest": "#e6e3d3",
+                    "on-primary-container": "#ffd09a",
+                    "secondary-fixed": "#ffddb8",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#514538",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#e5e2e1",
+                    "surface-container-low": "#f8f4e4",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "accent-warm": "#F59E0B",
+                    "surface-base": "#FFFBEB",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#5f5e5e",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#dbd8d7",
+                    "accent-deep": "#D97706",
+                    "primary-container": "#855300",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "surface-bright": "#fdf9e9",
+                    "secondary-container": "#fea619",
+                    "secondary": "#855300",
+                    "inverse-on-surface": "#f5f1e1",
+                    "surface-dim": "#dedacb",
+                    "outline": "#837566",
+                    "on-primary-fixed": "#2a1700",
+                    "on-tertiary-fixed-variant": "#474647",
+                    "on-surface": "#1c1c13",
+                    "surface-tint": "#855300",
+                    "ink-primary": "#1B1B1B",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#2a1700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "content-max-width": "1280px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "data-mono": [
+                            "monospace"
+                    ],
+                    "display-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "data-mono": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "title-sm": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "26px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+    </style>
+</head>
+<body class="flex min-h-screen font-body-sm text-body-sm">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 border-r border-outline-variant/40 bg-surface dark:bg-surface-container py-8 px-4 z-40">
+<div class="mb-8 px-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify</h1>
+<p class="text-ink-secondary text-sm">Academic Portal</p>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+                    Catalog
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-primary font-bold border-r-2 border-accent-warm bg-surface-container-high/50" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+                    My Books
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="event_seat">event_seat</span>
+                    My Reservations
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person_outline">person_outline</span>
+                    My Profile
+                </a>
+</li>
+</ul>
+<div class="mt-auto">
+<button class="w-full bg-accent-warm text-on-primary py-3 rounded font-title-sm text-title-sm mb-6 hover:bg-accent-deep transition-colors">Browse New Arrivals</button>
+<ul class="flex flex-col gap-2">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 relative min-h-screen pb-24 md:pb-8">
+<!-- TopNavBar (Mobile) / Header (Desktop) -->
+<header class="flex justify-between items-center h-16 w-full pl-4 md:pl-8 pr-4 md:pr-10 max-w-content-max-width mx-auto bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-outline-variant/40 sticky top-0 z-30">
+<div class="md:hidden">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify</h1>
+</div>
+<div class="hidden md:flex items-center flex-1">
+<!-- Desktop search could go here -->
+</div>
+<div class="flex items-center gap-4">
+<button class="text-ink-secondary hover:text-accent-warm transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-ink-secondary hover:text-accent-warm transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<button class="bg-accent-warm text-on-primary px-4 py-2 rounded font-title-sm text-title-sm hover:bg-accent-deep transition-colors">Check In</button>
+<img alt="Academic profile avatar" class="w-8 h-8 rounded-full border border-outline-variant/40 object-cover" data-alt="A small circular avatar of a university student looking professional in a well-lit academic setting, warm lighting, scholarly mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnVKopruJsUT0qowbaB3AURpsne4QvQKlVqJ4WwtOeT8aHtDkqAkYMJe9aff84l3BcBoMyAs2sw5-ugcAmAfNlc0pFZswaXVYMOBPdTJxInV7kKimQmuhWDQMJZpjUlLahvko4gXWDuUrONLVQ1wW6kwo8VagfRtE95XgbVfNxw3xoEKPI4N5vz3C_CCvzYR8wbC6I92elafI4RF3TyM8kAgPVcbrGanJJukIXvk-PyDLcHRcs1ekD"/>
+</div>
+</header>
+<div class="max-w-content-max-width mx-auto px-4 md:px-margin-desktop py-8">
+<div class="mb-12">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">My Books</h2>
+<p class="text-ink-secondary font-body-lg text-body-lg">Manage your currently borrowed materials and review your reading history.</p>
+</div>
+<!-- Currently Borrowed Section -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-background">Currently Borrowed</h3>
+<span class="bg-surface-container-high text-primary px-3 py-1 rounded-full font-label-caps text-label-caps border border-outline-variant/40">3 Items</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Book Card 1 (Overdue) -->
+<article class="bg-surface-container-high rounded-lg border border-error/30 shadow-sm overflow-hidden flex flex-col relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-error"></div>
+<div class="flex p-4 gap-4 flex-grow">
+<div class="w-24 shrink-0 shadow-sm rounded overflow-hidden">
+<img alt="Book cover" class="w-full h-36 object-cover" data-alt="Cover of an academic textbook on structural engineering, modern typography, minimalist design, beige and rust colors, well-lit studio shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnxBcBEdm5hLlKndlu1vQklJtzNu8l5mIjSl2p-cGVZRpeHLn26Cv_Fec2Jlf30AdxzOg-uUMQqMqw6UDSaFBLqhvJd4evaplawELTBsF4i6TUyHaUrCNgZJOjwbx393_q-fB8UeoVKyPqWTzMLY_wJlron63ZX6RznlgWPJONlSWOPZFV-oqWwOSljTUSI4PXvDwSHgqTEz0qmDUQ5GrOmf6Rh_d5kzdEOHlB6YnzBzd5_FEvS4TF"/>
+</div>
+<div class="flex flex-col flex-grow justify-between">
+<div>
+<h4 class="font-title-sm text-title-sm text-on-background line-clamp-2 mb-1">Principles of Structural Design</h4>
+<p class="text-ink-secondary text-sm mb-2">W.F. Chen</p>
+<div class="flex items-center gap-1 text-error font-data-mono text-data-mono">
+<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
+                                        Overdue by 2 days
+                                    </div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-4 border-t border-outline-variant/40 flex justify-end gap-3">
+<button class="px-4 py-2 rounded text-error border border-error/50 font-title-sm text-title-sm hover:bg-error/10 transition-colors">Pay Fine</button>
+<button class="bg-accent-warm text-on-primary px-4 py-2 rounded font-title-sm text-title-sm hover:bg-accent-deep transition-colors">Renew</button>
+</div>
+</article>
+<!-- Book Card 2 (Due soon) -->
+<article class="bg-surface-container-high rounded-lg border border-outline-variant/40 shadow-sm overflow-hidden flex flex-col">
+<div class="flex p-4 gap-4 flex-grow">
+<div class="w-24 shrink-0 shadow-sm rounded overflow-hidden">
+<img alt="Book cover" class="w-full h-36 object-cover" data-alt="Cover of a classic literature book, perhaps Shakespeare or Homer, elegant serif typography, dark green and gold embossed cover, scholarly environment lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0DlYDNwKuYjfeNU8_5b2YCTNW_9SjlM8pgA3x7DS0Q1dSUv7aSm8g2tgVM1rViPSniIJ3rgYIs_NF3LjrBfGPp2N2Czbo7RGXqrf0EQ2skUoeyeXIgv_DDK5Nd5U--0xzdPZySgcmYMRmXzEd8o9Ft-9sJMBJEFB9Yi9KBuj53snEQVl3EuLiCGgrnE60ia3Es6LYM2wg2FTRh5UwXj4Te3DgK0PYkV2P9IkVxH5Si0xFt1QtsExV"/>
+</div>
+<div class="flex flex-col flex-grow justify-between">
+<div>
+<h4 class="font-title-sm text-title-sm text-on-background line-clamp-2 mb-1">The Odyssey: Translation</h4>
+<p class="text-ink-secondary text-sm mb-2">Robert Fagles</p>
+<div class="flex items-center gap-1 text-accent-deep font-data-mono text-data-mono">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+                                        Due Tomorrow
+                                    </div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-4 border-t border-outline-variant/40 flex justify-end">
+<button class="bg-accent-warm text-on-primary px-4 py-2 rounded font-title-sm text-title-sm hover:bg-accent-deep transition-colors">Renew</button>
+</div>
+</article>
+<!-- Book Card 3 (Normal) -->
+<article class="bg-surface-container-high rounded-lg border border-outline-variant/40 shadow-sm overflow-hidden flex flex-col">
+<div class="flex p-4 gap-4 flex-grow">
+<div class="w-24 shrink-0 shadow-sm rounded overflow-hidden">
+<img alt="Book cover" class="w-full h-36 object-cover" data-alt="Cover of a modern computer science book on algorithms, abstract geometric shapes in blue and grey on the cover, bright clear studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoroC0dPslXaym50755t3v5YAarGFRlUy5o_hmGYQG19dJVpd1Z6893D7c2etv_oSwK423xVH23m-T576y0cnhWiMiInuEABc4BIHCTgrv-iJEhq3zi97dhvv-6fdArXyeDTdl-UoWF4QAS6ZGA7Ha_w15gvTEwycagZOCeX6RLbi-ExbC6AWScsk1BcCuEtboCCNMD_zBO2B1Jsk1ndoRl1UiFXdS8wBojVUyzzagiKte23RoXH1n"/>
+</div>
+<div class="flex flex-col flex-grow justify-between">
+<div>
+<h4 class="font-title-sm text-title-sm text-on-background line-clamp-2 mb-1">Introduction to Algorithms</h4>
+<p class="text-ink-secondary text-sm mb-2">Thomas H. Cormen</p>
+<div class="flex items-center gap-1 text-ink-secondary font-data-mono text-data-mono">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span>
+                                        Due Oct 24, 2023
+                                    </div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-4 border-t border-outline-variant/40 flex justify-end">
+<button class="bg-accent-warm text-on-primary px-4 py-2 rounded font-title-sm text-title-sm hover:bg-accent-deep transition-colors">Renew</button>
+</div>
+</article>
+</div>
+</section>
+<!-- Reading History Section (List Layout) -->
+<section>
+<div class="flex items-center justify-between mb-6 border-b border-outline-variant/40 pb-4">
+<h3 class="font-headline-md text-headline-md text-on-background">Reading History</h3>
+<button class="text-primary hover:text-accent-warm font-title-sm text-title-sm flex items-center gap-1 transition-colors">
+                        View All <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- History Item 1 -->
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-lg border border-outline-variant/20 hover:border-outline-variant/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 shrink-0 bg-surface-variant rounded overflow-hidden shadow-sm">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="Small thumbnail of a history book cover, vintage map motif, warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlo2QyLpETEiX_UZljzuxxF_V_dVAyTOGleNj4hl_zhklWmwSFsbF1OSLu5CJ4vZQtaGL7x2i8QvHDgZDKpK6VQfxCBrjLImbGGc_aQyFv6T1z8aYXvxCuPHTqy8OXZId9WfHHphMdlwhbxzN-n9-rilZUihu1mb9r2bz1Icun6-1RNCb-REYhEDSb3pDCbhcoI3MrwMTR_fG2Qj_JF5CYflaZvtcbosLyIR7IlrO6iqQGjJBm66pa"/>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-background">A People's History of the United States</h4>
+<p class="text-ink-secondary text-sm">Howard Zinn</p>
+</div>
+</div>
+<div class="text-right hidden sm:block">
+<p class="font-data-mono text-data-mono text-ink-secondary">Returned on Sep 12, 2023</p>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-lg border border-outline-variant/20 hover:border-outline-variant/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-16 shrink-0 bg-surface-variant rounded overflow-hidden shadow-sm">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="Small thumbnail of a biology textbook cover, microscopic cell image, clinical lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGfzyZtSPfD5RaE606NMzGNKHlodnPtCHv6s1RiO7pCX1W2QcHH39pD3Qos3zEv39j6DhhgcCuwK34V_rYDHwLff-aNvjEp5tl_aBVPxekaaKiUODivmr4lm0k_gVFeRNrgSYgbwB5By7fWeF9JWKt84k64gq48ILOWQQYRHSFoL0orSUuI8jdibuO8fC3FGfKSLuGRcxGUYhM3RMOHjVlAHp80NrvKyI_S09PwI51-ZnhcIwJ771z"/>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-background">Campbell Biology</h4>
+<p class="text-ink-secondary text-sm">Lisa A. Urry</p>
+</div>
+</div>
+<div class="text-right hidden sm:block">
+<p class="font-data-mono text-data-mono text-ink-secondary">Returned on Aug 30, 2023</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-outline-variant/40 z-50 flex justify-around py-3">
+<a class="flex flex-col items-center gap-1 text-ink-secondary hover:text-accent-warm transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps text-[10px]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-ink-secondary hover:text-accent-warm transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-caps text-label-caps text-[10px]">Catalog</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="library_books" data-weight="fill">library_books</span>
+<span class="font-label-caps text-label-caps text-[10px] font-bold">My Books</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-ink-secondary hover:text-accent-warm transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="event_seat">event_seat</span>
+<span class="font-label-caps text-label-caps text-[10px]">Reserve</span>
+</a>
+</nav>
+</body></html>

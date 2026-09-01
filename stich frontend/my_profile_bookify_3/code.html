@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Student Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#3e2700",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-bright": "#fbf8fc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4e5e81",
+                        "secondary": "#4950c7",
+                        "surface-container-high": "#e9e7eb",
+                        "on-secondary-fixed-variant": "#3035af",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "secondary-container": "#7d84fe",
+                        "secondary-fixed": "#e0e0ff",
+                        "surface": "#fbf8fc",
+                        "surface-dim": "#dbd9dc",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-surface-variant": "#44474e",
+                        "inverse-surface": "#303033",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#b08d5b",
+                        "on-secondary-fixed": "#02006d",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f5f3f6",
+                        "inverse-primary": "#b6c6ef",
+                        "on-primary-container": "#8293b8",
+                        "surface-container": "#efedf0",
+                        "outline-variant": "#c5c6cf",
+                        "inverse-on-surface": "#f2f0f3",
+                        "surface-variant": "#e4e2e5",
+                        "on-surface": "#1b1b1e",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "primary-container": "#1a2b4b",
+                        "outline": "#75777f",
+                        "on-primary-fixed": "#081b3a",
+                        "primary": "#031635",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#070494",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-tertiary-fixed": "#291800",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "on-error": "#ffffff",
+                        "on-background": "#1b1b1e",
+                        "background": "#fbf8fc",
+                        "tertiary": "#231400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F9F8F6; color: #1b1b1e; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-container-lowest font-title-sm text-title-sm font-label-caps text-label-caps fixed top-0 w-full z-50 flat no shadows border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight" href="#">Bookify</a>
+<nav class="hidden md:flex gap-6 h-full items-center">
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity" href="#">Catalog</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity" href="#">My Borrowing</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity" href="#">Reservations</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="pl-9 pr-4 py-1.5 rounded-full border border-outline-variant bg-surface-container-lowest text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Search catalog..." type="text"/>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm ml-2 cursor-pointer border-2 border-primary">
+<img alt="Student Avatar" class="w-full h-full rounded-full object-cover" data-alt="A clean, professional headshot of a university student looking directly at the camera with a subtle smile. High-key lighting, soft shadows, taken against a bright, warm off-white minimalist background. The student wears a simple navy blue sweater, complementing the academic Bookify platform aesthetic. Sharp focus on the face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0RGH1rsbmemCTAG5WOSEsw5XMvry4YtylyiJNyw0Bzn1QKW6G4n99BdNokDH0Y_SoPC52Di0dMrWO3jK5SULNo4REvMkD3O8p_iP20M36pFqxVxAfzEl6wazTQrRatv9MmXoZUO60YqNzUrdYlo8RJ2aHOugsVUvO5hwNfvbgCYt1E5th3AFb9QK_EPG5Wiato_lEt9RR8ZNuyb84EN9Sow1mH8_POBmaXZVUQpOK3PGtrJMrp1m0"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 mt-16 px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto w-full">
+<!-- Main Content -->
+<div class="text-center mt-20">
+<h1 class="font-display-lg text-display-lg text-primary">Student Profile Design Initiated</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-4 max-w-2xl mx-auto">This page structure is prepared for the complete student profile implementation following the Academic Minimalism aesthetic.</p>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f0edf1",
+                        "on-error-container": "#93000a",
+                        "background": "#fbf8fc",
+                        "on-surface-light": "#1b1b1e",
+                        "accent-violet": "#7d84fe",
+                        "inverse-on-surface": "#f3f0f4",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-primary-fixed": "#081b3a",
+                        "on-secondary-container": "#060693",
+                        "surface-container-high": "#eae7eb",
+                        "inverse-surface": "#303033",
+                        "inverse-primary": "#b6c6ef",
+                        "tertiary-container": "#3e2700",
+                        "secondary-fixed": "#e0e0ff",
+                        "primary-container": "#1a2b4b",
+                        "secondary": "#4950c7",
+                        "on-surface-dark": "#f2f0f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "on-primary-container": "#8293b8",
+                        "surface-light": "#fbf8fc",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface-bright": "#fbf8fc",
+                        "surface-variant": "#e4e1e5",
+                        "on-surface": "#1b1b1e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#291800",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dcd9dd",
+                        "primary-fixed": "#d8e2ff",
+                        "primary": "#031635",
+                        "secondary-container": "#7d85fe",
+                        "warm-gray": "#e4e2e5",
+                        "surface-container-low": "#f5f3f7",
+                        "tertiary": "#231400",
+                        "outline": "#75777f",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#01006e",
+                        "surface": "#fbf8fc",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c5c6cf",
+                        "surface-dark": "#1a2b4b",
+                        "on-secondary-fixed-variant": "#2f35ae",
+                        "surface-container-highest": "#e4e1e5",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "on-surface-variant": "#44474e",
+                        "on-tertiary-container": "#b08d5b",
+                        "on-background": "#1b1b1e",
+                        "surface-tint": "#4e5e81"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    },
+                    "keyframes": {
+                        "fade-in-up": {
+                            "0%": { opacity: 0, transform: "translateY(20px)" },
+                            "100%": { opacity: 1, transform: "translateY(0)" }
+                        }
+                    },
+                    "animation": {
+                        "fade-in-up": "fade-in-up 0.8s ease-out forwards"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface h-screen w-screen overflow-hidden relative">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img alt="Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPSqOhJ3RXD61bGEom10CBx3EAQIbpelqrQzbz7qq7Bt75AYT4gNyAJ7EM6yZUG9XP5KbWhUoTu0SVlySqIY3m04ZU6LgCMuGDdF8rIF1EgaIVoH1goUiD2aqvYoAn2P2Ouf2BcKgZel5IzFIkBt0QgjI3xsSmLEppXsC0oAWKWoEQoURUh3ekg0aJ9Zkp_X1rPbd47DAiV3RBD47ADhVDwPB5fxln5eW84IrhtJnO5GBoccZjSlE_wZR07O6t0EyoCA"/>
+</div>
+<!-- WebGL Shader Overlay -->
+<div class="absolute inset-0 z-10 pointer-events-none mix-blend-overlay opacity-80 animate-pulse">
+
+</div>
+<!-- Vignette / Darkening overlay for better text legibility if needed -->
+<div class="absolute inset-0 z-10 bg-black/30 pointer-events-none"></div>
+<!-- Centered Content -->
+<main class="relative z-20 h-full w-full flex items-center justify-center p-margin-mobile md:p-margin-desktop">
+<!-- Glassmorphic Card -->
+<div class="w-full max-w-[480px] bg-white/10 backdrop-blur-[20px] rounded-xl border border-white/20 p-8 md:p-10 shadow-2xl animate-fade-in-up">
+<!-- Header -->
+<div class="text-center mb-8 md:mb-10">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:text-[40px] md:leading-[48px] text-white mb-2 md:mb-3 tracking-tight">Welcome Back</h1>
+<p class="font-body-sm text-body-sm md:text-body-lg text-white/80">Enter your credentials to access the academic archive.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6 md:space-y-8">
+<!-- Student ID -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps md:text-sm text-white/90 mb-2 uppercase tracking-wider" for="studentId">Student ID</label>
+<div class="relative transition-transform duration-300 hover:scale-105">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 md:pl-4 text-white/50">
+<span aria-hidden="true" class="material-symbols-outlined text-sm md:text-base" data-icon="badge">badge</span>
+</span>
+<input class="w-full bg-white/5 border border-white/20 rounded pl-10 md:pl-12 pr-4 py-3 md:py-4 text-white placeholder-white/30 font-body-sm md:text-body-lg focus:outline-none focus:border-accent-violet focus:ring-1 focus:ring-accent-violet transition-colors" id="studentId" name="studentId" placeholder="e.g. 12345678" required="" type="text"/>
+</div>
+</div>
+<!-- Password -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps md:text-sm text-white/90 mb-2 uppercase tracking-wider" for="password">Password</label>
+<div class="relative transition-transform duration-300 hover:scale-105">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 md:pl-4 text-white/50">
+<span aria-hidden="true" class="material-symbols-outlined text-sm md:text-base" data-icon="lock">lock</span>
+</span>
+<input class="w-full bg-white/5 border border-white/20 rounded pl-10 md:pl-12 pr-10 md:pr-12 py-3 md:py-4 text-white placeholder-white/30 font-body-sm md:text-body-lg focus:outline-none focus:border-accent-violet focus:ring-1 focus:ring-accent-violet transition-colors" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 flex items-center pr-3 md:pr-4 text-white/50 hover:text-white transition-colors focus:outline-none" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-sm md:text-base" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between mt-2 md:mt-4">
+<a class="font-body-sm text-body-sm md:text-base text-white/70 hover:text-white transition-colors" href="#">Forgot credentials?</a>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary font-title-sm text-title-sm md:text-lg py-3 md:py-4 rounded border border-primary hover:bg-primary/90 hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 mt-6 md:mt-8 shadow-lg shadow-primary/20" type="submit">
+                    Sign In
+                    <span aria-hidden="true" class="material-symbols-outlined text-sm md:text-base" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Links -->
+<div class="mt-8 md:mt-10 text-center border-t border-white/10 pt-6 md:pt-8">
+<p class="font-body-sm text-body-sm md:text-base text-white/60">
+                    Don't have an account? <a class="text-accent-violet font-semibold hover:text-white transition-colors ml-1" href="#">Join Bookify</a>
+</p>
+</div>
+</div>
+</main>
+</body></html>

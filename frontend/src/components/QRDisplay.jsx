@@ -20,7 +20,7 @@ const QRDisplay = ({ value, label, sublabel, size = 180 }) => {
 
   return (
     <div className="card flex flex-col items-center gap-4 max-w-xs mx-auto">
-      <div className="p-4 bg-white rounded-2xl">
+      <div className="p-4 bg-white rounded-lg">
         <QRCodeCanvas
           id="bookify-qr-canvas"
           value={value}
@@ -28,8 +28,8 @@ const QRDisplay = ({ value, label, sublabel, size = 180 }) => {
           level="M"
         />
       </div>
-      {label && <p className="text-white font-semibold text-center">{label}</p>}
-      {sublabel && <p className="text-slate-400 text-sm text-center">{sublabel}</p>}
+      {label && <p className="font-semibold text-center" style={{ color: 'var(--color-on-surface)' }}>{label}</p>}
+      {sublabel && <p className="text-sm text-center" style={{ color: 'var(--color-on-surface-variant)' }}>{sublabel}</p>}
       <button
         onClick={downloadQR}
         className="btn-secondary btn flex items-center gap-2 text-xs"

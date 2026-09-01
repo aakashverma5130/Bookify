@@ -26,7 +26,7 @@ const Modal = ({ isOpen, onClose, title, children, size = 'md' }) => {
         <div className="fixed inset-0 z-[400] flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -42,10 +42,13 @@ const Modal = ({ isOpen, onClose, title, children, size = 'md' }) => {
             transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
           >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">{title}</h2>
+              <h2 className="text-xl font-bold" style={{ color: 'var(--color-on-surface)' }}>{title}</h2>
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-bg-500 transition-colors"
+                className="p-1.5 rounded-md transition-colors"
+                style={{ color: 'var(--color-on-surface-variant)' }}
+                onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-on-surface)'; e.currentTarget.style.background = 'var(--color-surface-container-low)'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-on-surface-variant)'; e.currentTarget.style.background = ''; }}
               >
                 <X size={18} />
               </button>

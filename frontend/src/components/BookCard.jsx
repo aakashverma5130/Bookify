@@ -54,7 +54,10 @@ const BookCard = ({ book, onClick, delay = 0 }) => {
         style={reduced ? {} : { rotateX, rotateY, transformStyle: 'preserve-3d' }}
       >
         {/* Cover */}
-        <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-bg-600">
+        <div
+          className="relative aspect-[3/4] rounded-md overflow-hidden mb-4"
+          style={{ background: 'var(--color-surface-container-low)' }}
+        >
           {book.cover_image_url ? (
             <img
               src={book.cover_image_url}
@@ -73,18 +76,21 @@ const BookCard = ({ book, onClick, delay = 0 }) => {
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-white text-sm leading-tight line-clamp-2 mb-1">
+          <h3 className="font-semibold text-sm leading-tight line-clamp-2 mb-1" style={{ color: 'var(--color-on-surface)' }}>
             {book.title}
           </h3>
-          <p className="text-xs text-slate-400 line-clamp-1">{book.author_name || 'Unknown Author'}</p>
+          <p className="text-xs line-clamp-1" style={{ color: 'var(--color-on-surface-variant)' }}>{book.author_name || 'Unknown Author'}</p>
           {book.category_name && (
-            <p className="text-xs text-primary-400 mt-1">{book.category_name}</p>
+            <p className="text-xs mt-1" style={{ color: 'var(--color-primary)' }}>{book.category_name}</p>
           )}
         </div>
 
         {/* Copies */}
         {book.total_copies !== undefined && (
-          <div className="mt-3 pt-3 border-t border-white/5 flex justify-between text-xs text-slate-500">
+          <div
+            className="mt-3 pt-3 flex justify-between text-xs"
+            style={{ borderTop: '1px solid var(--color-outline-variant)', color: 'var(--color-on-surface-muted)' }}
+          >
             <span>{book.available_copies} / {book.total_copies} available</span>
           </div>
         )}

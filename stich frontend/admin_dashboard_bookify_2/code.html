@@ -1,0 +1,520 @@
+<!DOCTYPE html><html class="h-full" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Admin Dashboard - Bookify Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "secondary-container": "#7d84fe",
+                      "on-primary-fixed-variant": "#364768",
+                      "primary": "#031635",
+                      "surface-bright": "#fbf8fc",
+                      "on-tertiary-container": "#b08d5b",
+                      "tertiary-fixed": "#ffddb1",
+                      "surface-container": "#efedf0",
+                      "inverse-primary": "#b6c6ef",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#303033",
+                      "on-background": "#1b1b1e",
+                      "secondary": "#4950c7",
+                      "inverse-on-surface": "#f2f0f3",
+                      "secondary-fixed-dim": "#bfc2ff",
+                      "surface": "#fbf8fc",
+                      "surface-tint": "#4e5e81",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#291800",
+                      "on-tertiary-fixed-variant": "#5d4217",
+                      "on-secondary-fixed": "#02006d",
+                      "on-primary-fixed": "#081b3a",
+                      "on-secondary-fixed-variant": "#3035af",
+                      "secondary-fixed": "#e0e0ff",
+                      "background": "#fbf8fc",
+                      "outline": "#75777f",
+                      "on-error-container": "#93000a",
+                      "on-surface": "#1b1b1e",
+                      "surface-container-low": "#f5f3f6",
+                      "tertiary": "#231400",
+                      "error-container": "#ffdad6",
+                      "on-primary-container": "#8293b8",
+                      "surface-variant": "#e4e2e5",
+                      "surface-container-high": "#e9e7eb",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "on-secondary-container": "#070494",
+                      "on-surface-variant": "#44474e",
+                      "primary-container": "#1a2b4b",
+                      "primary-fixed": "#d8e2ff",
+                      "tertiary-container": "#3e2700",
+                      "outline-variant": "#c5c6cf",
+                      "surface-dim": "#dbd9dc",
+                      "surface-container-highest": "#e4e2e5",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#e8c08a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background dark:bg-inverse-surface text-on-background dark:text-inverse-on-surface h-full font-body-lg flex antialiased selection:bg-primary-container selection:text-on-primary-container transition-colors duration-200">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden w-full bg-surface-bright dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-mobile h-16 fixed top-0 z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary font-bold">library_books</span>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Bookify Admin</span>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-surface-variant">menu</span>
+</button>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full py-unit w-64 border-r border-outline-variant dark:border-outline bg-surface-container-low dark:bg-surface-container-high fixed left-0 top-0 z-40 transition-colors">
+<div class="px-6 py-4 flex flex-col gap-1 mb-6 border-b border-outline-variant dark:border-outline pb-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary flex items-center justify-center font-bold font-title-sm text-title-sm">
+                    AD
+                 </div>
+<div>
+<h2 class="font-headline-md text-title-sm font-bold text-primary dark:text-inverse-primary">Bookify Admin</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">Library System</p>
+</div>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-high dark:bg-surface-container-highest text-primary dark:text-inverse-primary font-bold font-label-caps text-label-caps transition-all opacity-90" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Library Overview
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+                Catalog Management
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">people</span>
+                User Management
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+                Circulation
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">assessment</span>
+                Reports
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                Settings
+            </a>
+</div>
+<div class="p-4 border-t border-outline-variant dark:border-outline mt-auto flex flex-col gap-1">
+<button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-label-caps text-label-caps text-left" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined text-[20px] dark:hidden">light_mode</span>
+<span class="material-symbols-outlined text-[20px] hidden dark:inline">dark_mode</span>
+                Toggle Theme
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                Log Out
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 pt-16 md:pt-0 p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto overflow-y-auto">
+<header class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary dark:text-inverse-primary">Library Overview</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant dark:text-surface-variant mt-2 max-w-2xl">High-level insights into library operations and resource utilization for the current term.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-primary dark:border-inverse-primary text-primary dark:text-inverse-primary font-label-caps text-label-caps rounded-DEFAULT hover:bg-primary/5 dark:hover:bg-inverse-primary/10 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export Report
+                </button>
+</div>
+</header>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+<div class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg p-4 flex flex-col justify-between shadow-[0px_4px_20px_rgba(26,43,75,0.02)]">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant uppercase">Total Books</span>
+<span class="material-symbols-outlined text-on-primary-container dark:text-primary-fixed-dim text-[20px]">library_books</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary dark:text-inverse-primary mt-auto">124,592</div>
+</div>
+<div class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg p-4 flex flex-col justify-between shadow-[0px_4px_20px_rgba(26,43,75,0.02)]">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant uppercase">Available</span>
+<span class="material-symbols-outlined text-secondary-container dark:text-secondary-fixed-dim text-[20px]">check_circle</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary dark:text-inverse-primary mt-auto">89,204</div>
+</div>
+<div class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg p-4 flex flex-col justify-between shadow-[0px_4px_20px_rgba(26,43,75,0.02)]">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant uppercase">Issued</span>
+<span class="material-symbols-outlined text-primary-container dark:text-primary-fixed text-[20px]">assignment_turned_in</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary dark:text-inverse-primary mt-auto">34,180</div>
+</div>
+<div class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg p-4 flex flex-col justify-between shadow-[0px_4px_20px_rgba(26,43,75,0.02)]">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant uppercase">Overdue</span>
+<span class="material-symbols-outlined text-error dark:text-error-container text-[20px]">warning</span>
+</div>
+<div class="font-headline-md text-headline-md text-error dark:text-error-container mt-auto">1,208</div>
+</div>
+<div class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg p-4 flex flex-col justify-between shadow-[0px_4px_20px_rgba(26,43,75,0.02)]">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant uppercase">Active Students</span>
+<span class="material-symbols-outlined text-on-primary-container dark:text-primary-fixed-dim text-[20px]">school</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary dark:text-inverse-primary mt-auto">15,400</div>
+</div>
+<div class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg p-4 flex flex-col justify-between shadow-[0px_4px_20px_rgba(26,43,75,0.02)]">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant uppercase">Fines ($)</span>
+<span class="material-symbols-outlined text-on-primary-container dark:text-primary-fixed-dim text-[20px]">payments</span>
+</div>
+<div class="font-headline-md text-headline-md text-primary dark:text-inverse-primary mt-auto">4,250</div>
+</div>
+</section>
+<!-- Main Middle Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+<!-- Recent Activity Table -->
+<section class="lg:col-span-2 bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg shadow-[0px_4px_20px_rgba(26,43,75,0.04)] overflow-hidden">
+<div class="p-6 border-b border-outline-variant dark:border-outline flex justify-between items-center bg-surface-container-low/50 dark:bg-surface-container-highest/50">
+<h2 class="font-title-sm text-title-sm text-primary dark:text-inverse-primary">Recent Activity</h2>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:underline" href="#">View All</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low dark:bg-surface-container-high font-label-caps text-label-caps text-on-surface-variant dark:text-surface-variant uppercase">
+<th class="p-4 border-b border-outline-variant dark:border-outline font-bold">Student</th>
+<th class="p-4 border-b border-outline-variant dark:border-outline font-bold">Book</th>
+<th class="p-4 border-b border-outline-variant dark:border-outline font-bold">Action</th>
+<th class="p-4 border-b border-outline-variant dark:border-outline font-bold">Date</th>
+<th class="p-4 border-b border-outline-variant dark:border-outline font-bold">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors border-b border-outline-variant/50 dark:border-outline/50">
+<td class="p-4 py-4 text-primary dark:text-inverse-primary font-medium">Eleanor Vance</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">The Haunting of Hill House</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Checkout</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Today, 09:15 AM</td>
+<td class="p-4"><span class="bg-primary-container/10 dark:bg-primary-fixed/20 text-primary-container dark:text-primary-fixed px-2 py-1 rounded font-label-caps text-[10px]">Active</span></td>
+</tr>
+<tr class="hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors border-b border-outline-variant/50 dark:border-outline/50">
+<td class="p-4 py-4 text-primary dark:text-inverse-primary font-medium">John Smith</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Principles of Economics</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Return</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Today, 08:45 AM</td>
+<td class="p-4"><span class="bg-outline/10 dark:bg-outline-variant/20 text-outline dark:text-outline-variant px-2 py-1 rounded font-label-caps text-[10px]">Returned</span></td>
+</tr>
+<tr class="hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors border-b border-outline-variant/50 dark:border-outline/50">
+<td class="p-4 py-4 text-primary dark:text-inverse-primary font-medium">Maria Garcia</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Introduction to Algorithms</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Renew</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Yesterday</td>
+<td class="p-4"><span class="bg-secondary-container/10 dark:bg-secondary-fixed/20 text-secondary-container dark:text-secondary-fixed px-2 py-1 rounded font-label-caps text-[10px]">Renewed</span></td>
+</tr>
+<tr class="hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors border-b border-outline-variant/50 dark:border-outline/50">
+<td class="p-4 py-4 text-primary dark:text-inverse-primary font-medium">David Chen</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Organic Chemistry</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Checkout</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Yesterday</td>
+<td class="p-4"><span class="bg-error/10 dark:bg-error-container/20 text-error dark:text-error-container px-2 py-1 rounded font-label-caps text-[10px]">Overdue</span></td>
+</tr>
+<tr class="hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors">
+<td class="p-4 py-4 text-primary dark:text-inverse-primary font-medium">Sarah Jenkins</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Art History Vol II</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Reserve</td>
+<td class="p-4 text-on-surface-variant dark:text-surface-variant">Oct 24, 2023</td>
+<td class="p-4"><span class="bg-tertiary-fixed-dim/30 dark:bg-tertiary-fixed/20 text-tertiary-container dark:text-tertiary-fixed px-2 py-1 rounded font-label-caps text-[10px]">Pending</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Most Borrowed Books -->
+<section class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg shadow-[0px_4px_20px_rgba(26,43,75,0.04)] flex flex-col">
+<div class="p-6 border-b border-outline-variant dark:border-outline bg-surface-container-low/50 dark:bg-surface-container-highest/50">
+<h2 class="font-title-sm text-title-sm text-primary dark:text-inverse-primary">Most Borrowed Books</h2>
+</div>
+<div class="p-4 flex-1 flex flex-col gap-4">
+<div class="flex gap-4 items-center border-b border-outline-variant/30 dark:border-outline/30 pb-4">
+<div class="w-12 h-16 bg-surface-variant dark:bg-surface-container-high rounded border border-outline-variant/50 dark:border-outline/50 overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A minimalist, academic cover design for a book titled 'Introduction to Algorithms'. The cover features clean, geometric lines on a muted cream background, evoking a sense of structured logic. The title is set in a sharp, modern serif typeface. Soft, high-key lighting creates a professional, intellectual atmosphere appropriate for a university library setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlcHraDExnpXQr0mA0NUTr7VF7Yva4UaXVFiyh7pcEZX7tQzGrnJfaTWE9930CaSiCzytBrHyly37qel3Oi6uGTfc87avWq03eqNu1fIDt618oqP2Inb4OBtUNa4yNm42qzNkSySH7jc2eqqyGXGVG_JqsYJmRiRMxRMSGC0FcgzgA5pYBF4UoUmXoXZAlmirefJzb5b5eYbf3pgcBKFXIQO_ZooQwTAxxwsZyjDdXwECv_G1FdavB">
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary dark:text-inverse-primary line-clamp-1">Introduction to Algorithms</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">Cormen, Leiserson...</p>
+<div class="mt-1 flex items-center gap-1 font-label-caps text-[10px] text-secondary dark:text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 420 checkouts
+                            </div>
+</div>
+</div>
+<div class="flex gap-4 items-center border-b border-outline-variant/30 dark:border-outline/30 pb-4">
+<div class="w-12 h-16 bg-surface-variant dark:bg-surface-container-high rounded border border-outline-variant/50 dark:border-outline/50 overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A clean, sophisticated book cover for 'Principles of Economics'. The design uses a deep navy blue background with a subtle, stylized line graph motif in white and pale violet. The typography is elegant and restrained, utilizing a classic serif font for the title. The overall aesthetic is premium, academic, and modern, illuminated by soft, neutral lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLTU8pTvAtI8DsO6Oy_PWpaCaGXQQzfyyVOXYULjyChiCfHUnOtlpOLRrSi3in0KEHRY2CwFA6HGHD63NzgQEp2-SVAdlkFW4YK2nO17t6bfOOKuHSI7YjXXr9tKCnWn8MJA5GPsezht5iyTaeTajSR3gXr96Dl14hrW7KM1tDXidT0O-0tzM_ACRzur9sp_T9-3tdjN9bEruOiaks0_fpYlBnT5Fpa9B6tMf2ERjCLJa2p19lD-N">
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary dark:text-inverse-primary line-clamp-1">Principles of Economics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">N. Gregory Mankiw</p>
+<div class="mt-1 flex items-center gap-1 font-label-caps text-[10px] text-secondary dark:text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 385 checkouts
+                            </div>
+</div>
+</div>
+<div class="flex gap-4 items-center border-b border-outline-variant/30 dark:border-outline/30 pb-4">
+<div class="w-12 h-16 bg-surface-variant dark:bg-surface-container-high rounded border border-outline-variant/50 dark:border-outline/50 overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="An austere, minimalist book cover design for 'Campbell Biology'. The cover features a highly detailed, abstract macro photograph of a leaf cell structure in muted, natural greens against a warm off-white background. The title text is clean and modern, avoiding generic textbook clutter. The lighting is soft and analytical, emphasizing texture and intellectual focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFA7x6uyxJq6RiWunAHru6-dU46GprKhRhrSbnihpQMe9fcTZKdM_VeiKoH_-z4gikEKiPivUGOPj-GNWhc3HAoR9kZbMoYkTOAZoRHP2KY62arX03b-qjf2KDGHv4eo_IiHTMTEJKGyhrZIQ0xqNuq2VciWgdJv39Lc8gUiqN4ZmH6OxR_-ScCnhPAnXhc6zNrpGg_7d3mi1ESx_HwoF9EIJXssGrrNjg_195PdgHx8APN9LK2X26">
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary dark:text-inverse-primary line-clamp-1">Campbell Biology</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">Lisa A. Urry et al.</p>
+<div class="mt-1 flex items-center gap-1 font-label-caps text-[10px] text-secondary dark:text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 312 checkouts
+                            </div>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<div class="w-12 h-16 bg-surface-variant dark:bg-surface-container-high rounded border border-outline-variant/50 dark:border-outline/50 overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A premium, academic book cover for 'A History of the Modern World'. The design features a subdued, sepia-toned vintage map faded into a rich, warm grey background. The title is rendered in an elegant, traditional serif typeface with generous spacing. The overall visual style is quiet, organized, and sophisticated, suited for a high-end digital library interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmu1X1xVYhpvU2qoTTGUju8i945Jn6DShSBqooWinoa3YUJ_6ADiQcSOPukcvDDMkQRRt8A5s9IWcI57tFDGyBFdvDUNb5mFhB3r8E7FrDtD8jTvXUqjVPGYHd6Wa1579qiHypEfrYQU0UhuXlE6-68h_olWKujp_H_1Mm-F2P0kAZXxJyO3kEaSZ7zGDXIVAK59Gmw3rhMMi9tUIkVPMDbvdwtPCbi1YT90WUBJY2D0SR_OwduN6i">
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary dark:text-inverse-primary line-clamp-1">A History of the Modern World</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">R.R. Palmer</p>
+<div class="mt-1 flex items-center gap-1 font-label-caps text-[10px] text-secondary dark:text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 290 checkouts
+                            </div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Borrowing Trends Chart -->
+<section class="bg-surface-container-lowest dark:bg-surface-container-highest border border-outline-variant dark:border-outline rounded-lg shadow-[0px_4px_20px_rgba(26,43,75,0.04)] p-6 mb-12">
+<header class="flex justify-between items-center mb-6">
+<div>
+<h2 class="font-title-sm text-title-sm text-primary dark:text-inverse-primary">Borrowing Trends</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">Volume of checkouts vs returns over the past week.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-container-high dark:bg-surface-container-highest rounded font-label-caps text-[10px] text-primary dark:text-inverse-primary">Week</button>
+<button class="px-3 py-1 bg-transparent rounded font-label-caps text-[10px] text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest">Month</button>
+</div>
+</header>
+<div class="w-full h-64">
+<canvas height="320" id="borrowingChart" style="display: block; box-sizing: border-box; height: 256px; width: 894.4px;" width="1118"></canvas>
+</div>
+</section>
+</main>
+<script>
+        // Chart.js Configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('borrowingChart').getContext('2d');
+            
+            Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+            Chart.defaults.color = '#75777f'; // outline color
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Checkouts',
+                            data: [420, 580, 490, 610, 750, 320, 250],
+                            borderColor: '#031635', // primary
+                            backgroundColor: 'rgba(3, 22, 53, 0.05)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#031635',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        },
+                        {
+                            label: 'Returns',
+                            data: [380, 420, 510, 480, 600, 280, 200],
+                            borderColor: '#8293b8', // on-primary-container
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            tension: 0.4,
+                            fill: false,
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#8293b8',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 6,
+                                boxHeight: 6,
+                                font: {
+                                    size: 12,
+                                    weight: '600'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#ffffff',
+                            titleColor: '#031635',
+                            bodyColor: '#44474e',
+                            borderColor: '#c5c6cf',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e5e7eb', // subtle grid line
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                }
+            });
+        });
+    </script>
+</body></html>

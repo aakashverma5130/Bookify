@@ -1,0 +1,385 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Bookify - My Books</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-dim": "#dbd9dc",
+                "surface": "#fbf8fc",
+                "on-error-container": "#93000a",
+                "secondary": "#4950c7",
+                "on-primary": "#ffffff",
+                "on-secondary-container": "#070494",
+                "on-secondary-fixed-variant": "#3035af",
+                "on-tertiary-fixed": "#291800",
+                "error": "#ba1a1a",
+                "on-tertiary": "#ffffff",
+                "surface-container-highest": "#e4e2e5",
+                "inverse-primary": "#b6c6ef",
+                "primary": "#031635",
+                "on-tertiary-fixed-variant": "#5d4217",
+                "on-tertiary-container": "#b08d5b",
+                "inverse-on-surface": "#f2f0f3",
+                "inverse-surface": "#303033",
+                "surface-container-low": "#f5f3f6",
+                "secondary-fixed-dim": "#bfc2ff",
+                "surface-variant": "#e4e2e5",
+                "on-secondary": "#ffffff",
+                "outline": "#75777f",
+                "secondary-container": "#7d84fe",
+                "background": "#fbf8fc",
+                "tertiary-fixed-dim": "#e8c08a",
+                "primary-container": "#1a2b4b",
+                "primary-fixed": "#d8e2ff",
+                "surface-container-high": "#e9e7eb",
+                "on-secondary-fixed": "#02006d",
+                "on-primary-container": "#8293b8",
+                "tertiary": "#231400",
+                "tertiary-fixed": "#ffddb1",
+                "on-primary-fixed-variant": "#364768",
+                "surface-bright": "#fbf8fc",
+                "on-primary-fixed": "#081b3a",
+                "on-surface": "#1b1b1e",
+                "primary-fixed-dim": "#b6c6ef",
+                "on-surface-variant": "#44474e",
+                "surface-tint": "#4e5e81",
+                "on-error": "#ffffff",
+                "tertiary-container": "#3e2700",
+                "surface-container-lowest": "#ffffff",
+                "on-background": "#1b1b1e",
+                "surface-container": "#efedf0",
+                "secondary-fixed": "#e0e0ff",
+                "outline-variant": "#c5c6cf",
+                "error-container": "#ffdad6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "margin-desktop": "40px",
+                "margin-mobile": "16px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-caps": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "26px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen text-on-surface bg-background">
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex flex-col h-full py-unit h-screen w-64 border-r border-outline-variant bg-surface sticky top-0">
+<!-- Brand/Header -->
+<div class="px-gutter pt-gutter pb-8 border-b border-outline-variant bg-surface flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden shrink-0">
+<img alt="Student Profile Picture" class="w-full h-full object-cover" data-alt="A clean, professional portrait of a university student looking forward, natural lighting, light-mode minimalist background. High-quality academic library setting context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlEeI_MGp3FCIhiPW0yMLe_PcJNDHiXZKFs0OQQznB75yAH7cNloUT2VqFQOcWEFFQVhL9BsTVuMUtaNmsDY0MfbfivwmpvTRUpMyRmmqx2c_nVuNwgPTrIjsBPT-1MEM2iVC-z52qB87kmVUUyjF7Me1f5-dQsUb0NC97caUt_GxHO3Sa2ShKFGg9tXOnBCLS9aWDQcqMcp-aYrbA4IJpXAGYTpvVhPoGsuOMtjL5eTPg0Wmfb2Ad">
+</div>
+<div>
+<h1 class="font-display-lg text-display-lg-mobile text-primary font-bold">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Student Portal</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 px-unit py-6 space-y-1 overflow-y-auto">
+<!-- Dashboard -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-outline">dashboard</span>
+<span class="font-body-lg text-body-lg">Dashboard</span>
+</a>
+<!-- Catalog -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-outline">menu_book</span>
+<span class="font-body-lg text-body-lg">Catalog</span>
+</a>
+<!-- My Loans (Active) -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-surface-container-low opacity-90 transition-all border-r-2 border-primary text-primary font-bold" href="#">
+<span class="material-symbols-outlined text-primary">collections_bookmark</span>
+<span class="font-body-lg text-body-lg">My Loans</span>
+</a>
+<!-- Reservations -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-outline">event_available</span>
+<span class="font-body-lg text-body-lg">Reservations</span>
+</a>
+<!-- Study Rooms -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-outline">meeting_room</span>
+<span class="font-body-lg text-body-lg">Study Rooms</span>
+</a>
+<!-- History -->
+<a class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-outline">history</span>
+<span class="font-body-lg text-body-lg">History</span>
+</a>
+</nav>
+<!-- CTA & Footer -->
+<div class="px-unit pb-gutter space-y-4">
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-title-sm text-title-sm hover:opacity-90 transition-opacity flex items-center justify-center space-x-2 border border-primary">
+<span>Renew Books</span>
+</button>
+<div class="space-y-1 pt-4 border-t border-outline-variant">
+<button class="flex w-full items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" onclick="toggleTheme()">
+<span class="material-symbols-outlined text-outline">dark_mode</span>
+<span class="font-body-sm text-body-sm">Toggle Theme</span>
+</button>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-outline">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-outline">help_outline</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen bg-background">
+<!-- TopAppBar (Mobile/Desktop Shared Header) -->
+<header class="flex justify-between items-center w-full px-margin-desktop py-4 sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant bg-surface md:hidden">
+<div class="flex items-center space-x-4">
+<!-- Mobile Menu Toggle -->
+<button class="text-on-surface-variant hover:text-secondary transition-colors md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold">Bookify</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:text-secondary transition-colors" onclick="toggleTheme()">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-12">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">My Books</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your current loans, track reservations, and view borrowing history.</p>
+</div>
+<!-- Content Area - Level 1 Container -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<!-- Tabs -->
+<div class="flex border-b border-outline-variant px-6 pt-4 space-x-8 overflow-x-auto hide-scrollbar">
+<button class="pb-4 font-title-sm text-title-sm text-primary border-b-2 border-primary whitespace-nowrap">
+                        Currently Borrowed
+                    </button>
+<button class="pb-4 font-title-sm text-title-sm text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap opacity-80">
+                        Reservations
+                    </button>
+<button class="pb-4 font-title-sm text-title-sm text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap opacity-80">
+                        History
+                    </button>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto p-6">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Book Details</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Issue Date</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Due Date</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<!-- Row 1: Active -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-16 bg-surface-container-low border border-outline-variant rounded shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">menu_book</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-primary mb-1">Design of Everyday Things</p>
+<p class="text-on-surface-variant">Don Norman</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant">Oct 12, 2023</td>
+<td class="py-4 px-4">
+<span class="block text-on-surface">Oct 26, 2023</span>
+<span class="text-on-surface-variant">7 days left</span>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-primary-container text-on-primary-container font-medium border border-primary-container">
+                                        Active
+                                    </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="bg-transparent border border-outline text-on-surface px-4 py-2 rounded-lg hover:bg-surface-container-low transition-colors">
+                                        Renew
+                                    </button>
+</td>
+</tr>
+<!-- Row 2: Overdue -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-16 bg-surface-container-low border border-outline-variant rounded shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">menu_book</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-primary mb-1">Thinking, Fast and Slow</p>
+<p class="text-on-surface-variant">Daniel Kahneman</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant">Sep 20, 2023</td>
+<td class="py-4 px-4">
+<span class="block text-error">Oct 04, 2023</span>
+<span class="text-error">Overdue (Fine: ₹70)</span>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-error-container text-on-error-container font-medium border border-error-container">
+                                        Overdue
+                                    </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="bg-transparent border border-outline text-on-surface-variant px-4 py-2 rounded-lg opacity-50 cursor-not-allowed">
+                                        Renew
+                                    </button>
+</td>
+</tr>
+<!-- Row 3: Returned (History context) - Included for structure demo -->
+<tr class="hover:bg-surface-container-lowest transition-colors border-b border-outline-variant">
+<td class="py-4 px-4">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-16 bg-surface-container-low border border-outline-variant rounded shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">menu_book</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-primary mb-1">Information Architecture</p>
+<p class="text-on-surface-variant">Louis Rosenfeld</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant">Sep 01, 2023</td>
+<td class="py-4 px-4 text-on-surface-variant">
+<span class="block line-through opacity-70">Sep 15, 2023</span>
+<span>Returned: Sep 14</span>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-surface-container text-on-surface font-medium border border-outline-variant">
+                                        Returned
+                                    </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="text-secondary hover:underline font-medium">
+                                        View Details
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</body></html>

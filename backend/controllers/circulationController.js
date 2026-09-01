@@ -2,6 +2,7 @@ const db = require('../config/db');
 const { withTransaction } = require('../config/db');
 const fineService = require('../services/fineService');
 const notificationService = require('../services/notificationService');
+const log = require('../logger');
 
 /**
  * POST /api/issues
@@ -15,6 +16,22 @@ const issueBook = async (req, res) => {
   }
 
   try {
+    // L-11: confirm the studentId actually exists before issuing. The
+    // endpoint is gated by `LIBRARIAN_ROLES`, but a compromised or
+    // typo'd librarian could otherwise issue books against a bogus ID.
+    const studentCheck = await db.query(
+      `SELECT s.student_id, s.user_id, u.is_active
+       FROM students s JOIN users u ON u.user_id = s.user_id
+       WHERE s.student_id = $1`,
+      [studentId]
+    );
+    if (!studentCheck.rows.length) {
+      throw Object.assign(new Error('Student not found'), { status: 404 });
+    }
+    if (!studentCheck.rows[0].is_active) {
+      throw Object.assign(new Error('Student account is deactivated'), { status: 403 });
+    }
+
     const result = await withTransaction(async (client) => {
       // 1. Verify copy is AVAILABLE
       const copyResult = await client.query(
@@ -332,7 +349,7 @@ const getIssues = async (req, res) => {
 
     res.json({ issues: result.rows });
   } catch (err) {
-    console.error('[CIRCULATION] getIssues error:', err.message);
+    log.error('circulation_get_issues_failed', { message: err.message });
     res.status(500).json({ error: 'Failed to fetch issues' });
   }
 };

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Student Dashboard Mobile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#ffb95f",
+                    "surface": "#fdf9e9",
+                    "on-background": "#1c1c13",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f8f4e4",
+                    "surface-tint": "#855300",
+                    "tertiary": "#474647",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1c1b1c",
+                    "ink-secondary": "#474747",
+                    "surface-bright": "#fdf9e9",
+                    "inverse-surface": "#323126",
+                    "surface-variant": "#e6e3d3",
+                    "inverse-primary": "#fdb965",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "on-primary-container": "#ffd09a",
+                    "primary": "#653e00",
+                    "on-secondary-fixed": "#2a1700",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#855300",
+                    "on-primary-fixed-variant": "#653e00",
+                    "surface-container-highest": "#e6e3d3",
+                    "ink-primary": "#1B1B1B",
+                    "surface-container-high": "#ece8d9",
+                    "on-surface": "#1c1c13",
+                    "tertiary-container": "#5f5e5e",
+                    "on-tertiary-container": "#dbd8d7",
+                    "secondary-container": "#fea619",
+                    "secondary-fixed": "#ffddb8",
+                    "surface-dim": "#dedacb",
+                    "on-surface-variant": "#514538",
+                    "inverse-on-surface": "#f5f1e1",
+                    "primary-fixed": "#ffddb8",
+                    "outline": "#837566",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#fdb965",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#2a1700",
+                    "outline-variant": "#d5c4b2",
+                    "on-secondary-container": "#684000",
+                    "on-secondary": "#ffffff",
+                    "surface-base": "#FFFBEB",
+                    "on-tertiary-fixed-variant": "#474647",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "secondary": "#855300",
+                    "tertiary-fixed": "#e5e2e1",
+                    "surface-container": "#f2eede",
+                    "accent-warm": "#F59E0B",
+                    "accent-deep": "#D97706",
+                    "background": "#fdf9e9",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "content-max-width": "1280px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "data-mono": [
+                            "monospace"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "title-sm": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-mono": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "26px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Hide scrollbar for horizontal scrolling containers */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-sans antialiased md:hidden">
+<!-- Top Navigation (Mobile Version of TopAppBar) -->
+<header class="bg-surface/90 backdrop-blur-md border-b border-outline-variant/40 sticky top-0 z-50 h-16 flex justify-between items-center px-margin-mobile">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">Bookify</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:text-accent-deep transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-primary hover:text-accent-deep transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/40">
+<img alt="User profile avatar" class="object-cover w-full h-full" data-alt="A small, circular avatar portrait of a confident university student in a well-lit modern library setting. The lighting is warm and natural, casting soft shadows. The overall aesthetic matches the ivory and amber tones of the Bookify platform, ensuring visual consistency across the dashboard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIL9nVrFxr4sahcHdaZD9RrqbFxVMEGGBfHyn0sLwEsbfULfZj4NLnwOqxSvdZAxew_FGZWLvvHhfkVBHh6h1i8fC7Mr_-yAA3dZZE_qqWI5mxi6NIrkzIjZeMDqK5Sm7zulhyQ60JKllKdkGe4x7GzUXvZRnrHMZzoK5YJfp9iuZLoD5qrPQTFRdu1TVmAMcl3FqlP5ArWrtIYiMDXrCgs-33lDyTPDck2XwVoWaarcsza1BW2S94"/>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-24 pt-6 flex flex-col gap-8">
+<!-- Welcome Section -->
+<section class="px-margin-mobile flex flex-col gap-2">
+<p class="font-body-sm text-body-sm text-ink-secondary">Welcome back,</p>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold">Eleanor Rigby</h1>
+</section>
+<!-- Stats Carousel -->
+<section class="pl-margin-mobile">
+<h2 class="font-title-sm text-title-sm text-on-surface mb-4">Your Semester</h2>
+<div class="flex overflow-x-auto gap-4 pr-margin-mobile pb-4 no-scrollbar snap-x">
+<!-- Stat Card 1 -->
+<div class="snap-center shrink-0 w-64 bg-surface-container-high rounded-xl p-4 border border-outline-variant/40 shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-center mb-2">
+<span aria-hidden="true" class="material-symbols-outlined text-accent-warm" data-icon="menu_book">menu_book</span>
+<span class="font-label-caps text-label-caps text-ink-secondary">BOOKS READ</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary">12</span>
+<span class="font-body-sm text-body-sm text-ink-secondary mb-1">/ 20</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-accent-warm h-1.5 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="snap-center shrink-0 w-64 bg-surface-container-high rounded-xl p-4 border border-outline-variant/40 shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-center mb-2">
+<span aria-hidden="true" class="material-symbols-outlined text-accent-warm" data-icon="payments">payments</span>
+<span class="font-label-caps text-label-caps text-ink-secondary">FINES DUE</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary">$0.00</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-secondary mt-2">All clear!</p>
+</div>
+<!-- Stat Card 3 -->
+<div class="snap-center shrink-0 w-64 bg-surface-container-high rounded-xl p-4 border border-outline-variant/40 shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-center mb-2">
+<span aria-hidden="true" class="material-symbols-outlined text-accent-warm" data-icon="shelves">shelves</span>
+<span class="font-label-caps text-label-caps text-ink-secondary">CURRENTLY BORROWED</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary">3</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-secondary mt-2">Due in 5 days</p>
+</div>
+</div>
+</section>
+<!-- Recommended Books Carousel -->
+<section class="pl-margin-mobile">
+<div class="flex justify-between items-center pr-margin-mobile mb-4">
+<h2 class="font-title-sm text-title-sm text-on-surface">Recommended for You</h2>
+<button class="font-body-sm text-body-sm text-accent-warm font-medium">See all</button>
+</div>
+<div class="flex overflow-x-auto gap-4 pr-margin-mobile pb-4 no-scrollbar snap-x">
+<!-- Book Card 1 -->
+<div class="snap-center shrink-0 w-40 flex flex-col gap-3">
+<div class="w-full aspect-[2/3] bg-surface-container-high rounded-lg border border-outline-variant/40 shadow-sm overflow-hidden relative">
+<img alt="Book Cover: The Architecture of Tomorrow" class="object-cover w-full h-full" data-alt="A beautifully designed book cover titled 'The Architecture of Tomorrow'. The cover features abstract, modern geometric shapes in warm amber, deep brown, and ivory tones, perfectly complementing the Bookify interface. The aesthetic is clean, academic, and highly professional, looking like a premium university press publication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPcq6LYj23jcNM1yCRQBDUbu0IxKZ71EeYgDpLPk0kVl99M5xlz-hlGUHxPM1EI7JllS1eo0gdx8ldvvvJD_fMX0MshjU7MN-oiNjx-ntyyYZF4n1GNEeiN_3QhreLetfeYmRJQzbRu9dBL8ubjX_Uro_vnBgm2JMq49BeVmHpmzKYSphTHiu7oKveU9u-flJDxCHJ0_WH1pp_SlBmaVaAbRDLNn5s7YcQWADKIK2hT9UMFGaGrcYL"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">The Architecture of Tomorrow</h3>
+<p class="font-body-sm text-body-sm text-ink-secondary">Jane Doe</p>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="snap-center shrink-0 w-40 flex flex-col gap-3">
+<div class="w-full aspect-[2/3] bg-surface-container-high rounded-lg border border-outline-variant/40 shadow-sm overflow-hidden relative">
+<img alt="Book Cover: Digital Humanities" class="object-cover w-full h-full" data-alt="A striking book cover design titled 'Digital Humanities'. The artwork uses a sophisticated minimalist approach, combining digital glitch elements with classic serif typography. The color palette focuses on soft parchment tones mixed with subtle, warm golden accents, maintaining the premium, editorial feel of the library dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3FyAvUl2tJagjC5mZuFhra-VDpWHv3kCY5rxWNxFesmGi792er1KOBpeGMqkumuWrHEFcUYd_dm8zxULaNLeOFPt3A9_o7N5minuEFaf1LQaQWhMEwEbwku4eb4IIcwBSIDsGyuzUob8x3xDrFe_V9xnIC1cXe2HYQVynAG5DP1M_gU0XuUVbPkTJ3_8nVV8LWH9MvApPrV4GMjgp73ZISZbH_FVeO_grH-gLBPSm7m45Gp_MrN4G"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Digital Humanities</h3>
+<p class="font-body-sm text-body-sm text-ink-secondary">John Smith</p>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="snap-center shrink-0 w-40 flex flex-col gap-3">
+<div class="w-full aspect-[2/3] bg-surface-container-high rounded-lg border border-outline-variant/40 shadow-sm overflow-hidden relative">
+<img alt="Book Cover: Structural Engineering Basics" class="object-cover w-full h-full" data-alt="An elegant book cover titled 'Structural Engineering Basics'. The cover features detailed architectural blueprints rendered in thin, precise lines over a warm, textured ivory background. The visual style is highly technical yet aesthetically pleasing, aligning with the sophisticated, academic environment of the platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQn9LPjrAoYdcRw4SfMJ8Y49EyOrZgT18dIAO3FYPglZBIeixUJ28ximVqSEgFA2zm83H4E8pUqN4hM9YjCT2uv05Cr963nZdc-YTacA0JQT2H4kp2_BeUVdWnKYqqtYED4t9jSMhgeVuBqFB1jh8B4zZMR1s-V9h-WSuKHsSla7O1P8SHxrLJJAryxchdIZ2TfdoOwY7itOvZ3b218u26vtP5purXDTwCg62tzx51wM8U9fqPEm02"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface line-clamp-1">Structural Engineering</h3>
+<p class="font-body-sm text-body-sm text-ink-secondary">A. Jenkins</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/40 h-20 flex justify-around items-center px-4 pb-2 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<!-- Active Tab: Home -->
+<a class="flex flex-col items-center gap-1 min-w-[64px] text-accent-warm" href="#">
+<div class="px-4 py-1 rounded-full bg-secondary-container/20">
+<span aria-hidden="true" class="material-symbols-outlined" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-body-sm text-body-sm text-[10px] font-bold">Home</span>
+</a>
+<!-- Inactive Tab: Explore -->
+<a class="flex flex-col items-center gap-1 min-w-[64px] text-ink-secondary hover:text-primary transition-colors" href="#">
+<div class="px-4 py-1 rounded-full hover:bg-surface-container-high transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined" data-icon="explore">explore</span>
+</div>
+<span class="font-body-sm text-body-sm text-[10px]">Explore Books</span>
+</a>
+<!-- Inactive Tab: My Books -->
+<a class="flex flex-col items-center gap-1 min-w-[64px] text-ink-secondary hover:text-primary transition-colors" href="#">
+<div class="px-4 py-1 rounded-full hover:bg-surface-container-high transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</div>
+<span class="font-body-sm text-body-sm text-[10px]">My Books</span>
+</a>
+<!-- Inactive Tab: Profile -->
+<a class="flex flex-col items-center gap-1 min-w-[64px] text-ink-secondary hover:text-primary transition-colors" href="#">
+<div class="px-4 py-1 rounded-full hover:bg-surface-container-high transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<span class="font-body-sm text-body-sm text-[10px]">Profile</span>
+</a>
+</nav>
+</body></html>

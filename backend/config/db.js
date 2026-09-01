@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 const { getSqliteDb } = require('./sqliteFallback');
+const log = require('../logger');
 
 let usePostgres = false;
 let pgPool = null;
@@ -17,17 +18,17 @@ const initDb = async () => {
       await testPool.query('SELECT 1');
       pgPool = testPool;
       usePostgres = true;
-      console.log('[DB] Connected to PostgreSQL successfully');
+      log.info('db_connected', { driver: 'postgres' });
       return;
     } catch (err) {
-      console.log('[DB] PostgreSQL unavailable (' + err.message + '). Switching to embedded Local SQLite DB...');
+      log.warn('db_postgres_unavailable', { message: err.message });
     }
   }
 
   // Fallback to SQLite
   sqliteDb = await getSqliteDb();
   usePostgres = false;
-  console.log('[DB] Running in Local SQLite Demo Mode (zero-config, full features enabled)');
+  log.info('db_connected', { driver: 'sqlite', mode: 'demo' });
 };
 
 // Auto-init on module load
@@ -49,6 +50,26 @@ const query = async (text, params = []) => {
 
     // Strip PostgreSQL typecasts (e.g. ::TIME, ::INTEGER, ::TEXT)
     sql = sql.replace(/::[a-zA-Z0-9_]+/gi, '');
+
+    // Adapt GREATEST/LEAST. SQLite added MAX/MIN support, but not
+    // GREATEST until very late. We rewrite GREATEST(a, b, ...) as a
+    // nested MAX() expression which is supported on all SQLite versions.
+    // IMPORTANT: this must run BEFORE we expand CURRENT_DATE → DATE('now'),
+    // because the adapter's regex doesn't allow nested parens.
+    const adaptGreatest = (m, args) => {
+      const parts = args.split(',').map(s => s.trim()).filter(Boolean);
+      let expr = parts[0];
+      for (let i = 1; i < parts.length; i++) expr = `MAX(${expr}, ${parts[i]})`;
+      return expr;
+    };
+    sql = sql.replace(/GREATEST\s*\(([^()]+?)\)/gi, adaptGreatest);
+    const adaptLeast = (m, args) => {
+      const parts = args.split(',').map(s => s.trim()).filter(Boolean);
+      let expr = parts[0];
+      for (let i = 1; i < parts.length; i++) expr = `MIN(${expr}, ${parts[i]})`;
+      return expr;
+    };
+    sql = sql.replace(/LEAST\s*\(([^()]+?)\)/gi, adaptLeast);
 
     // Adapt common PostgreSQL specific syntax to SQLite
     sql = sql.replace(/ILIKE/gi, 'LIKE');
@@ -73,6 +94,13 @@ const query = async (text, params = []) => {
     sql = sql.replace(/search_vector\s*@@\s*plainto_tsquery\([^)]+\)/gi, "1=1");
     sql = sql.replace(/ts_rank\([^)]+\)/gi, "1.0");
 
+    // Strip PostgreSQL row-level locking clauses. SQLite is single-writer
+    // so locking is implicit; the FOR UPDATE / FOR UPDATE OF keywords
+    // cause a syntax error. The semantics we lose are: explicit row locks
+    // to prevent concurrent updates. In dev this is acceptable; in
+    // production we run against PostgreSQL where these are preserved.
+    sql = sql.replace(/\bFOR\s+UPDATE(\s+OF\s+[a-zA-Z0-9_,\s]+)?/gi, '');
+
     // Adapt FILTER (WHERE condition) with function replacer
     sql = sql.replace(/COUNT\(\*\)\s+FILTER\s*\(\s*WHERE\s+([\s\S]*?)\)(?=\s+AS|\s*,|\s+FROM)/gi, (m, cond) => `COALESCE(SUM(CASE WHEN ${cond} THEN 1 ELSE 0 END), 0)`);
     sql = sql.replace(/SUM\(amount\)\s+FILTER\s*\(\s*WHERE\s+([\s\S]*?)\)(?=\s+AS|\s*,|\s+FROM)/gi, (m, cond) => `COALESCE(SUM(CASE WHEN ${cond} THEN amount ELSE 0 END), 0)`);
@@ -85,7 +113,14 @@ const query = async (text, params = []) => {
     if (isSelect) {
       sqliteDb.all(sql, params, (err, rows) => {
         if (err) {
-          console.error('[SQLITE ERROR]:', err.message, '\nSQL:', sql);
+          // L-1: log the error message but NOT the full rewritten SQL
+          // (which can include user-supplied substrings in the FILTER
+          // adapter). The error code is sufficient for debugging.
+          log.error('db_sqlite_query_failed', {
+            code: err.code,
+            message: err.message,
+            sqlPreview: sql.slice(0, 200),
+          });
           return reject(err);
         }
         resolve({ rows: rows || [], rowCount: rows ? rows.length : 0 });
@@ -93,7 +128,11 @@ const query = async (text, params = []) => {
     } else {
       sqliteDb.run(sql, params, function (err) {
         if (err) {
-          console.error('[SQLITE ERROR]:', err.message, '\nSQL:', sql);
+          log.error('db_sqlite_exec_failed', {
+            code: err.code,
+            message: err.message,
+            sqlPreview: sql.slice(0, 200),
+          });
           return reject(err);
         }
         // If query was expecting a returned id, simulate it with lastID or random uuid

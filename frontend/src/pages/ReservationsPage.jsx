@@ -82,21 +82,25 @@ const ReservationsPage = () => {
       {/* Overview Stat Chips */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {[
-          { key: 'WAITING', label: 'In Queue (Waiting)', count: counts.WAITING, color: 'text-warning-400', badge: 'due-soon' },
-          { key: 'NOTIFIED', label: 'Ready for Pickup', count: counts.NOTIFIED, color: 'text-success-400', badge: 'available' },
-          { key: 'COMPLETED', label: 'Fulfilled', count: counts.COMPLETED, color: 'text-primary-400', badge: 'issued' },
-          { key: 'CANCELLED', label: 'Cancelled', count: counts.CANCELLED, color: 'text-slate-400', badge: 'neutral' },
+          { key: 'WAITING', label: 'In Queue (Waiting)', count: counts.WAITING, color: 'var(--color-warning)', badge: 'due-soon' },
+          { key: 'NOTIFIED', label: 'Ready for Pickup', count: counts.NOTIFIED, color: 'var(--color-success)', badge: 'available' },
+          { key: 'COMPLETED', label: 'Fulfilled', count: counts.COMPLETED, color: 'var(--color-primary)', badge: 'issued' },
+          { key: 'CANCELLED', label: 'Cancelled', count: counts.CANCELLED, color: 'var(--color-on-surface-variant)', badge: 'neutral' },
         ].map(item => (
           <button
             key={item.key}
             onClick={() => setFilterStatus(f => f === item.key ? 'ALL' : item.key)}
-            className={`card p-4 text-left transition-all cursor-pointer ${filterStatus === item.key ? 'border-primary-500 bg-primary-950/20' : ''}`}
+            className="p-4 text-left transition-all cursor-pointer rounded-xl"
+            style={{
+              background: filterStatus === item.key ? 'color-mix(in srgb, var(--color-primary) 6%, var(--color-surface-container-lowest))' : 'var(--color-surface-container-lowest)',
+              border: filterStatus === item.key ? '1.5px solid var(--color-primary)' : '1px solid var(--color-outline-variant)',
+            }}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400">{item.label}</span>
+              <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>{item.label}</span>
               <Badge variant={item.badge}>{item.key}</Badge>
             </div>
-            <p className={`text-2xl font-bold font-display mt-2 ${item.color}`}>
+            <p className="text-2xl font-bold font-display mt-2" style={{ color: item.color }}>
               {item.count}
             </p>
           </button>
@@ -104,9 +108,9 @@ const ReservationsPage = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="card flex flex-col sm:flex-row gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row gap-4 mb-6 rounded-xl p-4" style={{ background: 'var(--color-surface-container-lowest)', border: '1px solid var(--color-outline-variant)' }}>
         <div className="relative flex-1">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-on-surface-muted)' }} />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -132,10 +136,10 @@ const ReservationsPage = () => {
         <SkeletonLoader variant="table-row" count={6} />
       ) : filtered.length === 0 ? (
         <Card>
-          <div className="text-center py-16 text-slate-400 flex flex-col items-center gap-3">
-            <BookMarked size={48} className="text-slate-600" />
-            <p className="text-base font-semibold text-white">No reservations in this view</p>
-            <p className="text-sm text-slate-500">
+          <div className="text-center py-16 flex flex-col items-center gap-3" style={{ color: 'var(--color-on-surface-variant)' }}>
+            <BookMarked size={48} style={{ color: 'var(--color-on-surface-muted)' }} />
+            <p className="text-base font-semibold" style={{ color: 'var(--color-on-surface)' }}>No reservations in this view</p>
+            <p className="text-sm" style={{ color: 'var(--color-on-surface-muted)' }}>
               Students are automatically queued when all physical copies are borrowed.
             </p>
           </div>
@@ -145,38 +149,43 @@ const ReservationsPage = () => {
           {filtered.map((item, idx) => (
             <motion.div
               key={item.reservation_id}
-              className={`card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all
-                ${item.status === 'NOTIFIED' ? 'border-success-500/40 bg-success-950/10' : ''}
-              `}
+              className="card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all"
+              style={item.status === 'NOTIFIED'
+                ? { borderColor: 'color-mix(in srgb, var(--color-success) 40%, transparent)', background: 'color-mix(in srgb, var(--color-success) 10%, transparent)' }
+                : undefined
+              }
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, delay: idx * 0.03 }}
             >
               {/* Left: Queue Position & Book Details */}
               <div className="flex items-center gap-4 min-w-0">
-                <div className={`w-12 h-12 rounded-2xl flex flex-col items-center justify-center flex-shrink-0 font-display font-bold border
-                  ${item.status === 'NOTIFIED' ? 'bg-success-500/20 border-success-500/40 text-success-300' : 'bg-primary-900/50 border-primary-500/30 text-primary-300'}
-                `}>
-                  <span className="text-[9px] uppercase tracking-tighter text-slate-400">Pos</span>
+                <div className="w-12 h-12 rounded-2xl flex flex-col items-center justify-center flex-shrink-0 font-display font-bold border"
+                  style={item.status === 'NOTIFIED'
+                    ? { background: 'color-mix(in srgb, var(--color-success) 20%, transparent)', borderColor: 'color-mix(in srgb, var(--color-success) 40%, transparent)', color: 'var(--color-success)' }
+                    : { background: 'color-mix(in srgb, var(--color-primary-container) 50%, transparent)', borderColor: 'color-mix(in srgb, var(--color-primary) 30%, transparent)', color: 'var(--color-primary)' }
+                  }
+                >
+                  <span className="text-[9px] uppercase tracking-tighter" style={{ color: 'var(--color-on-surface-variant)' }}>Pos</span>
                   <span className="text-base leading-none">#{item.queue_position || 1}</span>
                 </div>
 
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <h4 className="font-bold text-white text-sm sm:text-base truncate">{item.book_title}</h4>
+                    <h4 className="font-bold text-sm sm:text-base truncate" style={{ color: 'var(--color-on-surface)' }}>{item.book_title}</h4>
                     <Badge variant={item.status === 'NOTIFIED' ? 'available' : item.status === 'WAITING' ? 'due-soon' : 'neutral'}>
                       {item.status === 'NOTIFIED' ? 'Ready for Pickup (48h Hold)' : item.status}
                     </Badge>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
-                    <span className="text-slate-300">by {item.author_name || 'Author'}</span>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
+                    <span style={{ color: 'var(--color-on-surface)' }}>by {item.author_name || 'Author'}</span>
                     {isLibrarian && (
-                      <span className="flex items-center gap-1 text-primary-300">
+                      <span className="flex items-center gap-1" style={{ color: 'var(--color-primary)' }}>
                         <User size={12} /> {item.student_name} ({item.enrollment_no})
                       </span>
                     )}
-                    <span className="text-slate-500">
+                    <span style={{ color: 'var(--color-on-surface-muted)' }}>
                       Reserved: {format(new Date(item.reservation_date), 'dd MMM yyyy')}
                     </span>
                   </div>
@@ -184,13 +193,13 @@ const ReservationsPage = () => {
               </div>
 
               {/* Right: Expiry time / Action */}
-              <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-0 border-white/5">
+              <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-0" style={{ borderColor: 'var(--color-outline-variant)' }}>
                 {item.status === 'NOTIFIED' && item.expiry_date && (
                   <div className="text-left sm:text-right">
-                    <p className="text-[10px] text-success-400 font-semibold flex items-center gap-1">
+                    <p className="text-[10px] font-semibold flex items-center gap-1" style={{ color: 'var(--color-success)' }}>
                       <Clock size={11} /> Hold Expires
                     </p>
-                    <p className="text-xs text-white font-mono">
+                    <p className="text-xs font-mono" style={{ color: 'var(--color-on-surface)' }}>
                       {format(new Date(item.expiry_date), 'dd MMM, HH:mm')}
                     </p>
                   </div>

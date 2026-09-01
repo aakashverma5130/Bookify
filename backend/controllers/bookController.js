@@ -3,6 +3,7 @@ const { withTransaction } = require('../config/db');
 const fineService = require('../services/fineService');
 const notificationService = require('../services/notificationService');
 const aiClient = require('../services/aiClient');
+const log = require('../logger');
 
 // ── Search & Browse ───────────────────────────────────────────────────────────
 
@@ -71,7 +72,7 @@ const getBooks = async (req, res) => {
       },
     });
   } catch (err) {
-    console.error('[BOOKS] getBooks error:', err.message);
+    log.error('books_get_failed', { message: err.message });
     res.status(500).json({ error: 'Failed to fetch books' });
   }
 };
@@ -160,7 +161,7 @@ const searchBooks = async (req, res) => {
       },
     });
   } catch (err) {
-    console.error('[BOOKS] searchBooks error:', err.message);
+    log.error('books_search_failed', { message: err.message, query: req.query.q });
     res.status(500).json({ error: 'Search failed' });
   }
 };
@@ -218,7 +219,7 @@ const getBookById = async (req, res) => {
       ebookFallback, // null when physical copies are available
     });
   } catch (err) {
-    console.error('[BOOKS] getBookById error:', err.message);
+    log.error('books_get_by_id_failed', { message: err.message, bookId: req.params.id });
     res.status(500).json({ error: 'Failed to fetch book' });
   }
 };
@@ -241,7 +242,7 @@ const createBook = async (req, res) => {
     );
     res.status(201).json({ bookId: result.rows[0].book_id, message: 'Book created' });
   } catch (err) {
-    console.error('[BOOKS] createBook error:', err.message);
+    log.error('books_create_failed', { message: err.message, title: req.body.title });
     res.status(500).json({ error: 'Failed to create book' });
   }
 };

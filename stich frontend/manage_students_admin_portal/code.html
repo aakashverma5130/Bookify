@@ -1,0 +1,420 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Manage Students - Bookify Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbf8fc",
+                        "secondary": "#4950c7",
+                        "surface-container-low": "#f5f3f6",
+                        "surface-bright": "#fbf8fc",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#3035af",
+                        "inverse-surface": "#303033",
+                        "on-background": "#1b1b1e",
+                        "surface-container": "#efedf0",
+                        "tertiary": "#231400",
+                        "on-primary-container": "#8293b8",
+                        "outline-variant": "#c5c6cf",
+                        "inverse-primary": "#b6c6ef",
+                        "surface-dim": "#dbd9dc",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#7d84fe",
+                        "on-secondary-fixed": "#02006d",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f2f0f3",
+                        "on-surface-variant": "#44474e",
+                        "outline": "#75777f",
+                        "on-tertiary-container": "#b08d5b",
+                        "on-surface": "#1b1b1e",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface": "#fbf8fc",
+                        "on-secondary-container": "#070494",
+                        "on-primary-fixed": "#081b3a",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "surface-tint": "#4e5e81",
+                        "tertiary-container": "#3e2700",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#1a2b4b",
+                        "on-primary-fixed-variant": "#364768",
+                        "surface-container-high": "#e9e7eb",
+                        "primary": "#031635",
+                        "secondary-fixed": "#e0e0ff",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "surface-variant": "#e4e2e5",
+                        "on-tertiary-fixed": "#291800",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "unit": "8px"
+                    },
+                    fontFamily: {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "display-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "title-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F9F8F6; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="font-body-lg text-on-surface antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden lg:flex flex-col h-full p-4 h-screen w-72 bg-primary text-on-primary shadow-sm z-10 shrink-0">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-8 px-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed-dim">
+<img alt="Librarian Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a librarian in a modern library setting. The lighting is soft and natural, emphasizing a calm and intellectual mood. The librarian is wearing academic attire, set against an out-of-focus background of well-lit bookshelves. Clean, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgSap2gGndGE7C3sKcRVVChQ4tSnsqVIYT6oZMcbCrnKl65-n15ltrNzg4GcuZyeBX-L7ImEBEiBIeQDyMt6omFAS8V9sy5akdnL6jsQ_thYjXbZOqEfG8ub6eV9bei6ea0_GnEt3Damj9o1sI1O7M6ZgKc8G_K0B7auHEiNzWrR9wPfGwqP2GDQ0Nc8rHcxX3OwYYO1QE3YS4S4z8LkpAXw5OMbYxiwZ0bCn0cTG6wl9HD6lfuCC5">
+</div>
+<div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-primary">Bookify Admin</h1>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim opacity-80">Management Suite</p>
+</div>
+</div>
+<!-- Main Tabs -->
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Overview
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                    Inventory
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+                    Circulation
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold translate-x-1 shadow-sm" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="group">group</span>
+                    Members
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                    Reports
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                    System Logs
+                </a>
+</li>
+</ul>
+<!-- CTA -->
+<div class="mt-4 mb-8">
+<button class="w-full py-3 px-4 bg-primary-fixed-variant hover:bg-primary-fixed-dim hover:text-primary transition-colors rounded-lg font-title-sm text-title-sm text-on-primary flex items-center justify-center gap-2 border border-primary-fixed-dim">
+<span class="material-symbols-outlined text-lg">add</span>
+                Add New Book
+            </button>
+</div>
+<!-- Footer Tabs -->
+<ul class="flex flex-col gap-2 mt-auto border-t border-primary-fixed-variant pt-4">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+                    Admin Settings
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 font-body-sm text-body-sm text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- TopAppBar (from JSON) -->
+<header class="flex justify-between items-center w-full px-margin-desktop py-4 sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant shrink-0">
+<!-- Mobile Menu Toggle (hidden on lg) -->
+<button class="lg:hidden p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary-fixed-dim transition-all placeholder:text-outline-variant" placeholder="Search members, IDs, or emails..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-2 ml-auto">
+<button aria-label="notifications" class="p-2 text-on-surface-variant hover:text-secondary transition-colors rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="account_circle" class="p-2 text-on-surface-variant hover:text-secondary transition-colors rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<div class="flex-1 overflow-y-auto p-4 md:p-margin-desktop">
+<div class="max-w-[1400px] mx-auto w-full">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-1">Manage Students</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">View and manage library memberships across departments.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg font-title-sm text-title-sm text-primary bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary border border-primary rounded-lg font-title-sm text-title-sm hover:opacity-90 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                            Add Student
+                        </button>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 mb-8 flex flex-wrap gap-4 items-center shadow-[0_4px_20px_rgba(26,43,75,0.02)]">
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Department</label>
+<select class="pl-3 pr-8 py-2 bg-transparent border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary-fixed-dim transition-all appearance-none cursor-pointer w-48">
+<option value="all">All Departments</option>
+<option value="cs">Computer Science</option>
+<option value="lit">Literature</option>
+<option value="eng">Engineering</option>
+<option value="med">Medicine</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Year</label>
+<select class="pl-3 pr-8 py-2 bg-transparent border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary-fixed-dim transition-all appearance-none cursor-pointer w-32">
+<option value="all">All Years</option>
+<option value="1">Freshman</option>
+<option value="2">Sophomore</option>
+<option value="3">Junior</option>
+<option value="4">Senior</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Status</label>
+<select class="pl-3 pr-8 py-2 bg-transparent border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary-fixed-dim transition-all appearance-none cursor-pointer w-36">
+<option value="all">Any Status</option>
+<option value="active">Active</option>
+<option value="blocked">Blocked</option>
+</select>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(26,43,75,0.04)]">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F3F4F6] border-b border-outline-variant">
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold">Student Name</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold">Student ID</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold">Department</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold">Year</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold text-right">Books Issued</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold text-right">Total Fine</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold">Status</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-title-sm text-title-sm shrink-0">
+                                                AH
+                                            </div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Alice Harper</p>
+<p class="font-body-sm text-body-sm text-outline text-[12px]">alice.h@university.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">STU-2021-042</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Computer Science</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Junior</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant text-right">3</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant text-right">$0.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-sm text-xs font-semibold bg-emerald-100 text-emerald-800">
+                                            Active
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors p-1" title="Edit Student">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors p-1 ml-2" title="More Options">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-title-sm text-title-sm shrink-0">
+                                                BC
+                                            </div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Benjamin Chen</p>
+<p class="font-body-sm text-body-sm text-outline text-[12px]">b.chen@university.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">STU-2023-118</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Literature</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Freshman</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant text-right">1</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-error font-medium text-right">$15.50</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-sm text-xs font-semibold bg-rose-100 text-rose-800">
+                                            Blocked
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors p-1" title="Edit Student">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors p-1 ml-2" title="More Options">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-title-sm text-title-sm shrink-0">
+                                                DP
+                                            </div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Diana Prince</p>
+<p class="font-body-sm text-body-sm text-outline text-[12px]">d.prince@university.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">STU-2020-007</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Engineering</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Senior</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant text-right">0</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant text-right">$0.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-sm text-xs font-semibold bg-emerald-100 text-emerald-800">
+                                            Active
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors p-1" title="Edit Student">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors p-1 ml-2" title="More Options">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-tint text-on-primary flex items-center justify-center font-title-sm text-title-sm shrink-0">
+                                                MK
+                                            </div>
+<div>
+<p class="font-title-sm text-title-sm text-on-surface group-hover:text-primary transition-colors">Marcus Kane</p>
+<p class="font-body-sm text-body-sm text-outline text-[12px]">m.kane@university.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">STU-2022-089</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Medicine</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant">Sophomore</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant text-right">5</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface-variant text-right">$2.50</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-sm text-xs font-semibold bg-amber-100 text-amber-800">
+                                            Warning
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors p-1" title="Edit Student">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors p-1 ml-2" title="More Options">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination (Simplified) -->
+<div class="px-6 py-4 border-t border-outline-variant flex items-center justify-between bg-surface-container-lowest">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 4 of 42 entries</p>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded text-outline hover:bg-surface-container-low hover:text-primary disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary font-body-sm text-body-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface font-body-sm text-body-sm flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface font-body-sm text-body-sm flex items-center justify-center">3</button>
+<button class="p-1 rounded text-outline hover:bg-surface-container-low hover:text-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

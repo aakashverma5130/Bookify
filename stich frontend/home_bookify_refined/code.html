@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Your College Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1b1b1e",
+                        "on-tertiary-fixed": "#291800",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-primary-fixed": "#081b3a",
+                        "on-surface": "#1b1b1e",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "primary": "#031635",
+                        "tertiary-fixed": "#ffddb1",
+                        "surface-variant": "#e4e2e5",
+                        "secondary": "#4950c7",
+                        "surface-bright": "#fbf8fc",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "secondary-container": "#7d84fe",
+                        "inverse-on-surface": "#f2f0f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e7eb",
+                        "outline-variant": "#c5c6cf",
+                        "background": "#fbf8fc",
+                        "on-surface-variant": "#44474e",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface": "#fbf8fc",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#070494",
+                        "inverse-primary": "#b6c6ef",
+                        "on-secondary-fixed": "#02006d",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b08d5b",
+                        "primary-container": "#1a2b4b",
+                        "secondary-fixed": "#e0e0ff",
+                        "on-secondary-fixed-variant": "#3035af",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4e5e81",
+                        "on-primary-fixed-variant": "#364768",
+                        "inverse-surface": "#303033",
+                        "primary-fixed": "#d8e2ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f5f3f6",
+                        "error": "#ba1a1a",
+                        "surface-container": "#efedf0",
+                        "on-primary-container": "#8293b8",
+                        "outline": "#75777f",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#3e2700",
+                        "tertiary": "#231400",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbd9dc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<nav class="bg-surface-bright dark:bg-surface-dim docked full-width top-0 sticky border-b border-outline-variant dark:border-outline flat no shadows z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-display-lg text-title-sm md:text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">Bookify</a>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary h-16 flex items-center px-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors font-label-caps text-label-caps opacity-90 transition-opacity" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant h-16 flex items-center px-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors font-label-caps text-label-caps" href="#">Library</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant h-16 flex items-center px-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors font-label-caps text-label-caps" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant h-16 flex items-center px-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors font-label-caps text-label-caps" href="#">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block font-label-caps text-label-caps text-primary border border-transparent hover:bg-surface-container-high transition-colors px-4 py-2 rounded">Login</button>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-2 rounded hover:opacity-90 transition-opacity flex items-center gap-2">Sign Up</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors text-on-surface-variant dark:text-on-surface" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-16 md:pt-32 pb-16 md:pb-24 flex flex-col md:flex-row items-center gap-12 md:gap-24">
+<div class="flex-1 flex flex-col items-start gap-8 z-10"><div class="w-full max-w-3xl relative mb-8">
+<span class="material-symbols-outlined absolute left-6 top-1/2 transform -translate-y-1/2 text-on-surface-variant text-[28px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-6 pl-16 pr-6 font-title-sm text-title-sm text-primary placeholder-on-surface-variant focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary/20 transition-all shadow-[0_4px_20px_rgba(26,43,75,0.04)]" placeholder="Search by title, author or ISBN..." type="text"/>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary max-w-2xl leading-tight">
+                    Your college library, without the waiting.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Search books, check availability, track your borrowings, and never miss a due date. Experience a modern academic workflow designed for focus and efficiency.
+                </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-8 py-3 rounded border border-primary hover:opacity-90 transition-opacity">
+                        Explore Library
+                    </button>
+<button class="bg-transparent text-primary font-label-caps text-label-caps px-8 py-3 rounded border border-primary hover:bg-surface-container-low transition-colors">Sign Up</button>
+</div>
+</div>
+<div class="flex-1 w-full relative min-h-[400px] md:min-h-[500px] bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex items-center justify-center p-8 shadow-[0_4px_20px_rgba(26,43,75,0.04)]"><div class="w-full max-w-3xl relative mb-8">
+<span class="material-symbols-outlined absolute left-6 top-1/2 transform -translate-y-1/2 text-on-surface-variant text-[28px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-6 pl-16 pr-6 font-title-sm text-title-sm text-primary placeholder-on-surface-variant focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary/20 transition-all shadow-[0_4px_20px_rgba(26,43,75,0.04)]" placeholder="Search by title, author or ISBN..." type="text"/>
+</div>
+<!-- Placeholder for academic illustration -->
+<div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-90" data-alt="A minimalist, sophisticated digital illustration of a modern academic library space. The scene features tall, elegant wooden bookshelves filled with neatly arranged books, softly illuminated by natural light streaming through large architectural windows. A sleek, modern study desk with a single open book and a minimalist lamp sits in the foreground. The color palette is composed of warm off-whites, deep navy blues, and subtle touches of wood tones, reflecting a clean, light-mode, premium editorial style. The mood is calm, focused, and intellectual." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWzGRYyzFRzi2dby67vdv4fDgrjlZ8BB4HQcwzbwIniXjmP7b4p5OyRRjN-SDCwbgwOCbmMb4draOgeAVsVVtDjI53ReJHSaWnivsuhAkMeR-TugEPKX0F5GjzOXIID7xM4ckjreuo9DunK5PoTIhx_1iXlaSwT6kPjEbyjmqnjMx4bhCwNNte0k62hFgi2IG7YV5xO2zJnD6axU8OurufyOLVfiyKiJJJ_TRltF8B9kFyHH0C6ymb')"></div>
+<div class="absolute inset-0 bg-gradient-to-tr from-surface/40 to-transparent"></div>
+</div>
+</section>
+<!-- Search Bar Section -->
+<!-- Stats Section -->
+<section class="w-full py-16 md:py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-display-lg-mobile md:text-headline-md text-primary mb-2">Curated Collections</h2>
+<p class="text-on-surface-variant">Hand-picked resources for your academic journey.</p>
+</div>
+<button class="hidden md:flex items-center gap-2 text-primary font-label-caps text-label-caps hover:opacity-70 transition-opacity">
+                View All Collections <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-bright p-8 border border-outline-variant rounded-lg hover:shadow-lg transition-all group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]">memory</span>
+<h3 class="font-title-sm text-primary mb-2">AI &amp; Future Tech</h3>
+<p class="text-body-sm text-on-surface-variant">Exploring the frontiers of machine learning and robotics.</p>
+</div>
+<div class="bg-surface-bright p-8 border border-outline-variant rounded-lg hover:shadow-lg transition-all group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]">history_edu</span>
+<h3 class="font-title-sm text-primary mb-2">Classical Literature</h3>
+<p class="text-body-sm text-on-surface-variant">Timeless works that shaped human thought and culture.</p>
+</div>
+<div class="bg-surface-bright p-8 border border-outline-variant rounded-lg hover:shadow-lg transition-all group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]">microscope</span>
+<h3 class="font-title-sm text-primary mb-2">Research Essentials</h3>
+<p class="text-body-sm text-on-surface-variant">Core methodologies and foundational scientific texts.</p>
+</div>
+<div class="bg-surface-bright p-8 border border-outline-variant rounded-lg hover:shadow-lg transition-all group cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]">star</span>
+<h3 class="font-title-sm text-primary mb-2">Student Favorites</h3>
+<p class="text-body-sm text-on-surface-variant">The most borrowed and highly rated titles this semester.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full py-16 md:py-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-display-lg-mobile md:text-headline-md text-primary text-center mb-16">What Students Are Saying</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-6 p-8 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-secondary opacity-40 text-[40px]">format_quote</span>
+<p class="font-body-lg text-on-surface italic">"Bookify has completely transformed how I manage my thesis research. The availability tracking is a lifesaver."</p>
+<div class="mt-auto">
+<p class="font-bold text-primary">Elena Rodriguez</p>
+<p class="text-body-sm text-on-surface-variant">Department of Architecture</p>
+</div>
+</div>
+<div class="flex flex-col gap-6 p-8 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-secondary opacity-40 text-[40px]">format_quote</span>
+<p class="font-body-lg text-on-surface italic">"The interface is so clean and intuitive. I can find and reserve books in seconds between my lectures."</p>
+<div class="mt-auto">
+<p class="font-bold text-primary">James Chen</p>
+<p class="text-body-sm text-on-surface-variant">Computer Science</p>
+</div>
+</div>
+<div class="flex flex-col gap-6 p-8 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-secondary opacity-40 text-[40px]">format_quote</span>
+<p class="font-body-lg text-on-surface italic">"Finally, a library system that feels like it belongs in the 21st century. The curated lists are fantastic."</p>
+<div class="mt-auto">
+<p class="font-bold text-primary">Sarah Jenkins</p>
+<p class="text-body-sm text-on-surface-variant">English Literature</p>
+</div>
+</div>
+</div>
+</div>
+</section></main>
+</body></html>

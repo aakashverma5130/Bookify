@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-base": "#FFFBEB",
+                        "secondary-fixed": "#ffdcc3",
+                        "on-secondary-fixed-variant": "#6e3900",
+                        "surface-container-low": "#f8f4e4",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-high": "#ece8d9",
+                        "on-tertiary-container": "#444343",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fdf9e9",
+                        "outline-variant": "#d8c3ad",
+                        "surface-container-highest": "#e6e3d3",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb77d",
+                        "on-secondary-container": "#663500",
+                        "surface-dim": "#dedacb",
+                        "ink-secondary": "#474747",
+                        "primary-fixed": "#ffddb8",
+                        "background": "#fdf9e9",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fdf9e9",
+                        "primary": "#855300",
+                        "secondary": "#904d00",
+                        "inverse-on-surface": "#f5f1e1",
+                        "primary-fixed-dim": "#ffb95f",
+                        "ink-primary": "#1B1B1B",
+                        "inverse-primary": "#ffb95f",
+                        "accent-deep": "#D97706",
+                        "on-surface-variant": "#534434",
+                        "outline": "#867461",
+                        "on-background": "#1c1c13",
+                        "on-primary-container": "#613b00",
+                        "accent-warm": "#F59E0B",
+                        "on-primary-fixed-variant": "#653e00",
+                        "on-primary-fixed": "#2a1700",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#b2b0b0",
+                        "primary-container": "#f59e0b",
+                        "tertiary": "#5f5e5e",
+                        "surface-container": "#F9F4E1",
+                        "secondary-container": "#fe932c",
+                        "inverse-surface": "#323126",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1c1c13",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#855300",
+                        "surface-variant": "#e6e3d3",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#2f1500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "content-max-width": "1280px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "data-mono": ["monospace"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: theme('colors.surface-base');
+            color: theme('colors.ink-primary');
+        }
+    </style>
+</head>
+<body class="bg-surface-base text-ink-primary min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-content-max-width mx-auto">
+<div class="flex items-center gap-6">
+<a class="font-headline-md text-headline-md text-primary font-bold" href="#">Bookify</a>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-title-sm text-title-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded" href="#">Home</a>
+<a class="font-title-sm text-title-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded" href="#">Library</a>
+<a class="font-title-sm text-title-sm text-primary border-b-2 border-primary font-bold px-2 py-1" href="#">About</a>
+<a class="font-title-sm text-title-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-2 py-1 rounded" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-caps text-label-caps text-primary uppercase tracking-wider px-4 py-2 hover:bg-surface-container-high rounded transition-colors">Login</button>
+<button class="font-label-caps text-label-caps bg-accent-warm text-ink-primary uppercase tracking-wider px-4 py-2 rounded hover:opacity-90 transition-opacity">Sign Up</button>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-content-max-width mx-auto w-full px-margin-mobile md:px-margin-desktop py-12 md:py-20 flex flex-col gap-16 md:gap-24">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div class="flex flex-col gap-unit">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-ink-primary">Sanctuary for the Modern Mind.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-4 max-w-lg">Bookify is more than a repository of texts; it is a dynamic ecosystem designed to foster intellectual growth, deep collaboration, and scholarly discovery in the digital age.</p>
+</div>
+<div class="relative h-64 md:h-96 rounded-xl overflow-hidden border border-outline-variant">
+<div class="bg-cover bg-center w-full h-full" data-alt="A brightly lit, modern academic library interior. Sunlight streams through large windows, illuminating rows of oak desks and comfortable seating. Students are engaged in quiet study and collaborative discussion. The aesthetic is warm, scholarly, and inviting, with a palette of creamy whites, deep woods, and subtle orange accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7s2bJDujNEYLJP0xT5ab8yKfebZ-VbX_td4vitxodOzwEnWPJOEaWBuvlAhog_Wf2UpCV67sQ4BbmDZc8dCMEz-r15bJ-NwIuBEswTMSeBQkvKzYcupts1Rde6mFPYgeIbERfCVElQGp92QL972GUIBQ9RXEGJH5tBHjFuu3gzmtk9UF8XuvJ19kRBOeVmQrXwq5CGcXvZKWnHIC8w8YumxwrNaq4vXkYEfnVwCiW5rGOO_vr3fwU')"></div>
+</div>
+</section>
+<!-- Our Mission (Bento Grid) -->
+<section class="flex flex-col gap-gutter">
+<h2 class="font-headline-md text-headline-md text-primary border-b border-outline-variant pb-2">Our Mission</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-unit">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col gap-4">
+<span class="material-symbols-outlined text-accent-deep text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-title-sm text-title-sm text-ink-primary">Elevate Discovery</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">We build intuitive tools that transform the arduous process of research into a seamless journey of intellectual exploration.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col gap-4">
+<span class="material-symbols-outlined text-accent-deep text-3xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+<h3 class="font-title-sm text-title-sm text-ink-primary">Foster Community</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The modern library is a hub. We provide spaces, both digital and physical, for minds to meet, debate, and collaborate.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col gap-4">
+<span class="material-symbols-outlined text-accent-deep text-3xl" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<h3 class="font-title-sm text-title-sm text-ink-primary">Preserve Knowledge</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Balancing tradition with technology, we ensure that the wisdom of the past remains accessible and relevant to future generations.</p>
+</div>
+</div>
+</section>
+<!-- History & Archives -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div class="order-2 md:order-1 relative h-64 md:h-80 rounded-xl overflow-hidden border border-outline-variant">
+<div class="bg-cover bg-center w-full h-full" data-alt="A close-up view of hands carefully turning the pages of an old, leather-bound archival document. The scene is illuminated by warm, focused task lighting. Next to the ancient text sits a sleek, modern tablet displaying digitized notes, illustrating the blend of historical preservation and modern technology. Warm academic aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuArrfD-AOojarM8bKyQ3HIAPV9o9q27hvI923rBTxN0TQT5rH8Qg17r0areQ7An3v6UKJ6GkJLR85pdcns9kinKN6J4g_WsINe59M0qOJHdzREp1RKTwQBzwzD_Donx_a72vs3_1eRcGnJNqx2Fl4w_ma43p9c5a6inLKK8X_VWsug_Wgr1vpInpMxDOi0yFpZoGdqx83t3-4aG2tMmYftwc-xvPKHW7eZV_GtPF8EJzdHXB8GwQ_1T')"></div>
+</div>
+<div class="flex flex-col gap-unit order-1 md:order-2">
+<h2 class="font-headline-md text-headline-md text-primary">Library History &amp; Modern Archives</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Founded on the principles of open access and rigorous scholarship, Bookify evolved from a traditional collegiate archive into a comprehensive digital knowledge platform. Our Modern Archives integrate centuries-old manuscripts with cutting-edge semantic search technologies, ensuring that history is not just stored, but actively engaged with.</p>
+<div class="mt-6">
+<span class="inline-flex items-center gap-2 bg-accent-deep text-on-primary font-label-caps text-label-caps px-3 py-1 rounded-full uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-surface-base"></span>
+                        Digitizing 10M+ Records
+                    </span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container w-full py-12 px-margin-mobile md:px-margin-desktop border-t border-outline-variant">
+<div class="max-w-content-max-width mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-gutter">
+<div>
+<span class="font-display-lg text-display-lg text-ink-primary">Bookify</span>
+<p class="font-body-sm text-body-sm text-on-tertiary-container mt-2">© 2024 Bookify Library Systems. All intellectual property reserved.</p>
+</div>
+<div class="flex flex-wrap gap-4 md:justify-end">
+<a class="font-body-sm text-body-sm text-on-tertiary-container hover:text-primary hover:underline transition-all duration-200" href="#">Institutional Access</a>
+<a class="font-body-sm text-body-sm text-on-tertiary-container hover:text-primary hover:underline transition-all duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-tertiary-container hover:text-primary hover:underline transition-all duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-tertiary-container hover:text-primary hover:underline transition-all duration-200" href="#">Archival Standards</a>
+</div>
+</div>
+</footer>
+</body></html>

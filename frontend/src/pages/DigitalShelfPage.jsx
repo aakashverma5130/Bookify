@@ -141,15 +141,15 @@ const DigitalShelfPage = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles size={18} className="text-accent-purple" />
-              <span className="text-xs uppercase tracking-wider font-semibold text-primary-400">
+              <Sparkles size={18} style={{ color: 'var(--color-tertiary)' }} />
+              <span className="text-xs uppercase tracking-wider font-semibold" style={{ color: 'var(--color-primary)' }}>
                 E-Library & Digital Repository
               </span>
             </div>
-            <h2 className="text-2xl font-bold text-white font-display">
+            <h2 className="text-2xl font-bold font-display" style={{ color: 'var(--color-on-surface)' }}>
               Read Online & Download Digital Textbooks
             </h2>
-            <p className="text-sm text-slate-300 mt-1 max-w-xl">
+            <p className="text-sm mt-1 max-w-xl" style={{ color: 'var(--color-on-surface)' }}>
               Access digital course materials, syllabi, lecture notes, and e-books 24/7 without borrowing limits.
             </p>
           </div>
@@ -158,7 +158,7 @@ const DigitalShelfPage = () => {
             <Button
               onClick={() => setShowUploadModal(true)}
               icon={Upload}
-              className="self-start md:self-auto shadow-glow-primary"
+              className="self-start md:self-auto shadow-glow"
             >
               Upload Digital Resource
             </Button>
@@ -169,7 +169,7 @@ const DigitalShelfPage = () => {
       {/* Filter & Search Bar */}
       <div className="card flex flex-col md:flex-row gap-4 mb-6">
         <div className="relative flex-1">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-on-surface-muted)' }} />
           <input
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
@@ -209,10 +209,10 @@ const DigitalShelfPage = () => {
         <SkeletonLoader variant="book-card" count={8} />
       ) : filteredResources.length === 0 ? (
         <Card>
-          <div className="text-center py-16 text-slate-400 flex flex-col items-center gap-3">
-            <FileText size={48} className="text-slate-600" />
-            <p className="text-base font-semibold text-white">No digital resources found</p>
-            <p className="text-sm text-slate-500">Try adjusting your search criteria or filters.</p>
+          <div className="text-center py-16 flex flex-col items-center gap-3" style={{ color: 'var(--color-on-surface-variant)' }}>
+            <FileText size={48} style={{ color: 'var(--color-on-surface-muted)' }} />
+            <p className="text-base font-semibold" style={{ color: 'var(--color-on-surface)' }}>No digital resources found</p>
+            <p className="text-sm" style={{ color: 'var(--color-on-surface-muted)' }}>Try adjusting your search criteria or filters.</p>
           </div>
         </Card>
       ) : (
@@ -232,7 +232,9 @@ const DigitalShelfPage = () => {
                     {res.type}
                   </Badge>
                   {res.access_level === 'COURSE_RESTRICTED' ? (
-                    <span className="badge bg-warning-500/20 text-warning-400 border border-warning-500/30 flex items-center gap-1 text-[10px]">
+                    <span className="badge flex items-center gap-1 text-[10px]"
+                      style={{ background: 'color-mix(in srgb, var(--color-warning) 20%, transparent)', color: 'var(--color-warning)', border: '1px solid color-mix(in srgb, var(--color-warning) 30%, transparent)' }}
+                    >
                       <Lock size={10} /> {res.restricted_course || 'Restricted'}
                     </span>
                   ) : (
@@ -241,13 +243,13 @@ const DigitalShelfPage = () => {
                 </div>
 
                 {/* Title and Author */}
-                <h3 className="font-bold text-white text-base line-clamp-2 mb-1" title={res.title}>
+                <h3 className="font-bold text-base line-clamp-2 mb-1" style={{ color: 'var(--color-on-surface)' }} title={res.title}>
                   {res.title}
                 </h3>
-                <p className="text-xs text-slate-400 mb-3">{res.author || 'Author not specified'}</p>
+                <p className="text-xs mb-3" style={{ color: 'var(--color-on-surface-variant)' }}>{res.author || 'Author not specified'}</p>
 
                 {/* Meta stats */}
-                <div className="flex items-center gap-3 text-[11px] text-slate-500 mb-4 pt-2 border-t border-white/5">
+                <div className="flex items-center gap-3 text-[11px] mb-4 pt-2" style={{ color: 'var(--color-on-surface-muted)', borderTop: '1px solid var(--color-outline-variant)' }}>
                   <span className="flex items-center gap-1">
                     <Download size={12} /> {res.download_count || 0} downloads
                   </span>
@@ -293,24 +295,27 @@ const DigitalShelfPage = () => {
         {readingDoc && (
           <div className="flex flex-col h-[75vh]">
             {/* Reader Toolbar */}
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-xs">
+            <div className="flex items-center justify-between pb-3 mb-3 text-xs" style={{ borderBottom: '1px solid var(--color-outline-variant)' }}>
               <div className="flex items-center gap-2">
-                <span className="text-slate-400">Theme:</span>
+                <span style={{ color: 'var(--color-on-surface-variant)' }}>Theme:</span>
                 <button
                   onClick={() => setReaderTheme('dark')}
-                  className={`px-2 py-1 rounded-md flex items-center gap-1 ${readerTheme === 'dark' ? 'bg-primary-600 text-white' : 'bg-bg-600 text-slate-300'}`}
+                  className={`px-2 py-1 rounded-md flex items-center gap-1 ${readerTheme === 'dark' ? 'text-white' : ''}`}
+                  style={{ background: readerTheme === 'dark' ? 'var(--color-primary)' : 'var(--color-surface-container-low)', color: readerTheme === 'dark' ? 'var(--color-on-surface)' : 'var(--color-on-surface)' }}
                 >
                   <Moon size={12} /> Dark
                 </button>
                 <button
                   onClick={() => setReaderTheme('sepia')}
-                  className={`px-2 py-1 rounded-md flex items-center gap-1 ${readerTheme === 'sepia' ? 'bg-amber-800 text-amber-100' : 'bg-bg-600 text-slate-300'}`}
+                  className={`px-2 py-1 rounded-md flex items-center gap-1 ${readerTheme === 'sepia' ? 'bg-amber-800 text-amber-100' : ''}`}
+                  style={{ background: readerTheme !== 'sepia' ? 'var(--color-surface-container-low)' : undefined }}
                 >
                   <Sun size={12} /> Sepia
                 </button>
                 <button
                   onClick={() => setReaderTheme('light')}
-                  className={`px-2 py-1 rounded-md flex items-center gap-1 ${readerTheme === 'light' ? 'bg-slate-200 text-slate-900 font-bold' : 'bg-bg-600 text-slate-300'}`}
+                  className={`px-2 py-1 rounded-md flex items-center gap-1 ${readerTheme === 'light' ? 'bg-slate-200 text-slate-900 font-bold' : ''}`}
+                  style={{ background: readerTheme !== 'light' ? 'var(--color-surface-container-low)' : undefined }}
                 >
                   Light
                 </button>
@@ -319,15 +324,17 @@ const DigitalShelfPage = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setZoomLevel(z => Math.max(75, z - 15))}
-                  className="p-1.5 rounded-lg bg-bg-600 hover:bg-bg-500 text-slate-300"
+                  className="p-1.5 rounded-lg"
+                  style={{ background: 'var(--color-surface-container-low)', color: 'var(--color-on-surface)' }}
                   title="Zoom Out"
                 >
                   <ZoomOut size={14} />
                 </button>
-                <span className="text-slate-400 font-mono text-xs w-12 text-center">{zoomLevel}%</span>
+                <span className="font-mono text-xs w-12 text-center" style={{ color: 'var(--color-on-surface-variant)' }}>{zoomLevel}%</span>
                 <button
                   onClick={() => setZoomLevel(z => Math.min(150, z + 15))}
-                  className="p-1.5 rounded-lg bg-bg-600 hover:bg-bg-500 text-slate-300"
+                  className="p-1.5 rounded-lg"
+                  style={{ background: 'var(--color-surface-container-low)', color: 'var(--color-on-surface)' }}
                   title="Zoom In"
                 >
                   <ZoomIn size={14} />
@@ -344,11 +351,14 @@ const DigitalShelfPage = () => {
             {/* Reader Content Pane */}
             <div
               className={`flex-1 overflow-y-auto p-8 rounded-xl transition-colors duration-300 shadow-inner
-                ${readerTheme === 'dark' ? 'bg-bg-900 text-slate-200' :
+                ${readerTheme === 'dark' ? '' :
                   readerTheme === 'sepia' ? 'bg-[#fbf0d9] text-[#5f4b32]' :
                   'bg-white text-slate-900'}
               `}
-              style={{ fontSize: `${(zoomLevel / 100) * 1}rem` }}
+              style={{
+                fontSize: `${(zoomLevel / 100) * 1}rem`,
+                ...(readerTheme === 'dark' ? { background: 'var(--color-surface-dim)', color: 'var(--color-on-surface)' } : {})
+              }}
             >
               <div className="max-w-2xl mx-auto space-y-6 leading-relaxed">
                 <div className="text-center pb-6 border-b border-current/10">
@@ -397,7 +407,7 @@ const DigitalShelfPage = () => {
         >
           <form onSubmit={handleUpload} className="space-y-4">
             <div>
-              <label className="text-xs text-slate-400 mb-1 block">Document Title *</label>
+              <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Document Title *</label>
               <input
                 value={uploadForm.title}
                 onChange={e => setUploadForm({ ...uploadForm, title: e.target.value })}
@@ -409,7 +419,7 @@ const DigitalShelfPage = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Author / Faculty</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Author / Faculty</label>
                 <input
                   value={uploadForm.author}
                   onChange={e => setUploadForm({ ...uploadForm, author: e.target.value })}
@@ -419,7 +429,7 @@ const DigitalShelfPage = () => {
               </div>
 
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Format *</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Format *</label>
                 <select
                   value={uploadForm.type}
                   onChange={e => setUploadForm({ ...uploadForm, type: e.target.value })}
@@ -434,7 +444,7 @@ const DigitalShelfPage = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Access Policy *</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Access Policy *</label>
                 <select
                   value={uploadForm.accessLevel}
                   onChange={e => setUploadForm({ ...uploadForm, accessLevel: e.target.value })}
@@ -447,7 +457,7 @@ const DigitalShelfPage = () => {
 
               {uploadForm.accessLevel === 'COURSE_RESTRICTED' && (
                 <div>
-                  <label className="text-xs text-slate-400 mb-1 block">Course Code *</label>
+                  <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Course Code *</label>
                   <input
                     value={uploadForm.restrictedCourse}
                     onChange={e => setUploadForm({ ...uploadForm, restrictedCourse: e.target.value })}
@@ -460,13 +470,14 @@ const DigitalShelfPage = () => {
             </div>
 
             <div>
-              <label className="text-xs text-slate-400 mb-1 block">Select File (.pdf, .epub, .mobi) *</label>
+              <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Select File (.pdf, .epub, .mobi) *</label>
               <input
                 type="file"
                 accept=".pdf,.epub,.mobi"
                 onChange={e => setSelectedFile(e.target.files[0] || null)}
                 required
-                className="input py-2 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-600 file:text-white hover:file:bg-primary-500 cursor-pointer"
+                className="input py-2 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:text-white cursor-pointer"
+                style={{ '--file-bg': 'var(--color-primary)' }}
               />
             </div>
 

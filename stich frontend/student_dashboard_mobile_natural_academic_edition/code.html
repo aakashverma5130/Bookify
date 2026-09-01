@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4d614e",
+                        "on-primary-fixed": "#0d1f11",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#304a5b",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-on-surface": "#f3f0f0",
+                        "secondary": "#486173",
+                        "secondary-container": "#c8e3f8",
+                        "primary-fixed-dim": "#b6ccb5",
+                        "on-surface-variant": "#434842",
+                        "tertiary": "#894b35",
+                        "on-primary-fixed-variant": "#384b3a",
+                        "primary-container": "#657a66",
+                        "on-secondary-container": "#4c6678",
+                        "surface-container-highest": "#e4e2e1",
+                        "inverse-primary": "#b6ccb5",
+                        "primary-fixed": "#d2e9d0",
+                        "on-secondary-fixed": "#011e2e",
+                        "surface-bright": "#fbf9f8",
+                        "outline-variant": "#c3c8c0",
+                        "secondary-fixed-dim": "#afcadf",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#cbe6fb",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#4f6350",
+                        "surface": "#fbf9f8",
+                        "surface-container": "#f0eded",
+                        "background": "#fbf9f8",
+                        "surface-variant": "#e4e2e1",
+                        "surface-container-high": "#eae8e7",
+                        "tertiary-container": "#a6634b",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "surface-dim": "#dcd9d9",
+                        "outline": "#737872",
+                        "on-primary-container": "#f7fff3",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#6f3722",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-background": "#1b1c1c",
+                        "on-surface": "#1b1c1c",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "xl": "80px",
+                        "lg": "48px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "md": "24px",
+                        "xs": "4px"
+                    },
+                    fontFamily: {
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md pb-[80px]">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface-bright dark:bg-surface-dim shadow-sm flex justify-between items-center w-full px-md h-xl z-50 sticky top-0">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]">menu</span>
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-primary-fixed-dim">Bookify</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<button class="p-xs hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-on-surface-variant relative">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-[6px] right-[6px] w-[8px] h-[8px] bg-error rounded-full border border-surface-bright"></span>
+</button>
+<button class="p-xs hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+</button>
+</div>
+</header>
+<main class="px-[16px] py-md flex flex-col gap-lg max-w-[480px] mx-auto">
+<!-- Welcome Section -->
+<section class="flex flex-col gap-xs">
+<h1 class="font-headline-md text-headline-md text-on-surface">Welcome back, Alex.</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your library is waiting for you.</p>
+</section>
+<!-- Stats Cards -->
+<section class="flex flex-col gap-sm">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Books Borrowed</p>
+<p class="font-headline-md text-headline-md text-primary mt-xs">0</p>
+</div>
+<div class="w-lg h-lg rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Active Reservations</p>
+<p class="font-headline-md text-headline-md text-secondary mt-xs">0</p>
+</div>
+<div class="w-lg h-lg rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">bookmark_add</span>
+</div>
+</div>
+</section>
+<!-- My Current Books (Empty State) -->
+<section class="flex flex-col gap-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">My Current Books</h2>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg shadow-sm flex flex-col items-center text-center gap-md">
+<img class="w-[120px] h-[120px] object-cover rounded-lg" data-alt="A stylized, soft 3D rendering of a stack of elegant, minimalist books floating slightly above a soft ivory surface. The lighting is warm and diffused, casting gentle shadows. The color palette features sage greens, soft creams, and muted earthy tones, creating a calm, academic, and modern library aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9K1j3NXYYXfhhRKsL-n7-SdFRDsvaPl5JTouoHNAmBJ1k8PvGqenFLsOZ_IUnFGsywK2upCwYUYVvR2XqnZO3dq4yZvBE-wV7bPdpUeRpeWfKFbvQVPxFNolqIS-v4SHUtaaAm8hPX3XBOx37uOXNCQk6WkIh8hevlQW3HIsNmhl-mnSEL5cqqaARKDb05pgdIxfiBi8uSqy_WOFkmx9aDCLs_gIvQo2nIb96-akGvL16WM_yWRKV"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface mb-xs">Your shelf is empty</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Start browsing the catalog to find your next great read.</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-lg shadow-sm hover:bg-primary/90 transition-all active:shadow-none translate-y-[1px]">
+                    Explore Books
+                </button>
+</div>
+</section>
+<!-- Recommended For You (Carousel) -->
+<section class="flex flex-col gap-sm">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recommended For You</h2>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex overflow-x-auto gap-md pb-sm hide-scroll snap-x">
+<!-- Book Card 1 -->
+<div class="snap-start shrink-0 w-[160px] flex flex-col gap-sm">
+<div class="relative rounded-lg overflow-hidden shadow-md aspect-[2/3] bg-surface-container-low border-l-4 border-primary">
+<img class="w-full h-full object-cover" data-alt="A minimalist book cover design featuring abstract geometric shapes representing architecture. The background is a soft ivory cream, with thin, elegant lines in sage green and charcoal. The typography is modern and understated. The overall aesthetic is clean, academic, and calm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEU6d6Z6KjwJyqKA6yR7JKYQ6U9iD_BADn7yeApbtvOiho6WgfecQ_F3Q9Ci8hNjkG_3yDZRsR84qpAlonSlUf8h9FoAKKej0fj1Ax30QdR5aSmCt2ZSLkf8TL05lWhvUEi9VQOJAt_I-4R2R1ylWbB_yuh4Uxlcvp9ezhJzwSLFRJ7Iwmb8fEMPeTBkds0h-o0aE2l_ndW40pt1bn1FzyaFp9l58PjEbId0vTXNPAMoL3e1rzNAle"/>
+<div class="absolute top-sm right-sm bg-surface-container-lowest/90 backdrop-blur-sm px-sm py-[2px] rounded-full">
+<span class="font-label-sm text-label-sm text-primary">Available</span>
+</div>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Design Patterns</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Christopher Alexander</p>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="snap-start shrink-0 w-[160px] flex flex-col gap-sm">
+<div class="relative rounded-lg overflow-hidden shadow-md aspect-[2/3] bg-surface-container-low border-l-4 border-secondary">
+<img class="w-full h-full object-cover" data-alt="A minimalist book cover design focusing on nature and botany. A single, delicately drawn sage green fern leaf sits on a textured cream paper background. The title text is small and elegant. The lighting implies a soft, warm natural light source, creating a tranquil, academic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo3hiGFGobbFq_zaDJ1ufAdLrR-YbVNzYzKUi6QNXqIFutHWjFhgEre4UILeJlLZXmGYhbzPpjXmzR8jkVpqL28cuv7s9TTOLLGxTECeBCty17_lhF7mxsb8M8zX2JUmLbssinA1uDxrHJI1kOgVXIH6vZHanUXlb3MuXABhBfW5TM_o9EMvxEn2GoeIOH8jYaDtjkcfVS7w_Vbxt-MBkabL9N_s5GoCLVq9eA6gA7nPGYD1Tih-Oo"/>
+<div class="absolute top-sm right-sm bg-surface-container-lowest/90 backdrop-blur-sm px-sm py-[2px] rounded-full">
+<span class="font-label-sm text-label-sm text-secondary">Waitlist</span>
+</div>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">The Hidden Life</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Peter Wohlleben</p>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="snap-start shrink-0 w-[160px] flex flex-col gap-sm">
+<div class="relative rounded-lg overflow-hidden shadow-md aspect-[2/3] bg-surface-container-low border-l-4 border-primary">
+<img class="w-full h-full object-cover" data-alt="A minimalist book cover abstractly representing data and information. Thin, precise concentric circles in soft muted blue and charcoal gray overlay a warm ivory background. The composition is structured and clean, fitting a modern library aesthetic focused on knowledge management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG0R5QPaC4vvXbaRXhQmO_zUqZjt_SHs0kQqfrmtFu2kpYXyiykUKXCfGNG2YROOnX89R5cMxMBWa2TGLlgbIaUVkgblDh4KM4NsVflYVtxHUyQ1cHvgOhbgGGrkeBtzNDXNgUR4NKprYZO9vRR_bVpAMlqvwSsswcIb09zQ-exdu426EoHj8t9HYz34H5RSfq02k1dQPaXqAp9hATMLaeu7JyU7IIg94r8FJxraUJSQUbgQ6zCIIW"/>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Information Theory</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Claude Shannon</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant/30 flex justify-around items-center h-[80px] px-sm z-50">
+<button class="flex flex-col items-center gap-xs w-[64px]">
+<div class="bg-primary-container text-on-primary-container rounded-full w-[48px] h-[32px] flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Home</span>
+</button>
+<button class="flex flex-col items-center gap-xs w-[64px] text-on-surface-variant hover:text-on-surface transition-colors">
+<div class="w-[48px] h-[32px] flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</div>
+<span class="font-label-sm text-label-sm">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-xs w-[64px] text-on-surface-variant hover:text-on-surface transition-colors">
+<div class="w-[48px] h-[32px] flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<span class="font-label-sm text-label-sm">My Books</span>
+</button>
+<button class="flex flex-col items-center gap-xs w-[64px] text-on-surface-variant hover:text-on-surface transition-colors">
+<div class="w-[48px] h-[32px] flex items-center justify-center">
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+</body></html>

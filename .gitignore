@@ -73,6 +73,15 @@ backend/uploads/
 # ── Database ──────────────────────────────────────────────────────────────────
 *.sql.bak
 *.dump
+# SQLite dev databases — M-11: must never be committed (contain
+# seeded credentials and any PII entered during local testing).
+*.db
+*.db-shm
+*.db-wal
+backend/bookify_dev.db*
+ai-service/*.db
+ai-service/*.db-shm
+ai-service/*.db-wal
 
 # ── OS generated ─────────────────────────────────────────────────────────────
 .DS_Store

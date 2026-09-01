@@ -91,13 +91,21 @@ const cancelReservation = async (req, res) => {
       `SELECT student_id FROM students WHERE user_id = $1`,
       [req.user.userId]
     );
+    const studentId = studentResult.rows[0]?.student_id;
+
+    // L-7: explicit guard so a non-student (librarian with no `students`
+    // row) cannot accidentally pass `undefined` to the SQL, which would
+    // either match nothing (PG) or fail in a confusing way (SQLite).
+    if (!studentId) {
+      return res.status(403).json({ error: 'Only students can cancel reservations' });
+    }
 
     const result = await db.query(
       `UPDATE book_reservations
        SET status = 'CANCELLED', updated_at = NOW()
        WHERE reservation_id = $1 AND student_id = $2 AND status IN ('WAITING','NOTIFIED')
        RETURNING reservation_id`,
-      [req.params.id, studentResult.rows[0]?.student_id]
+      [req.params.id, studentId]
     );
 
     if (!result.rows.length) return res.status(404).json({ error: 'Reservation not found' });

@@ -1,0 +1,402 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Bookify - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1b1b1e",
+                      "on-tertiary-fixed": "#291800",
+                      "surface-container-highest": "#e4e2e5",
+                      "on-primary-fixed": "#081b3a",
+                      "on-surface": "#1b1b1e",
+                      "on-tertiary-fixed-variant": "#5d4217",
+                      "tertiary-fixed-dim": "#e8c08a",
+                      "primary": "#031635",
+                      "tertiary-fixed": "#ffddb1",
+                      "surface-variant": "#e4e2e5",
+                      "secondary": "#4950c7",
+                      "surface-bright": "#fbf8fc",
+                      "secondary-fixed-dim": "#bfc2ff",
+                      "secondary-container": "#7d84fe",
+                      "inverse-on-surface": "#f2f0f3",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#e9e7eb",
+                      "outline-variant": "#c5c6cf",
+                      "background": "#fbf8fc",
+                      "on-surface-variant": "#44474e",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "surface": "#fbf8fc",
+                      "on-error-container": "#93000a",
+                      "on-secondary-container": "#070494",
+                      "inverse-primary": "#b6c6ef",
+                      "on-secondary-fixed": "#02006d",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#b08d5b",
+                      "primary-container": "#1a2b4b",
+                      "secondary-fixed": "#e0e0ff",
+                      "on-secondary-fixed-variant": "#3035af",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#4e5e81",
+                      "on-primary-fixed-variant": "#364768",
+                      "inverse-surface": "#303033",
+                      "primary-fixed": "#d8e2ff",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f5f3f6",
+                      "error": "#ba1a1a",
+                      "surface-container": "#efedf0",
+                      "on-primary-container": "#8293b8",
+                      "outline": "#75777f",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#3e2700",
+                      "tertiary": "#231400",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#dbd9dc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #F9F8F6; } /* Level 0 Base */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #E5E7EB;
+        }
+        .soft-shadow {
+            box-shadow: 0px 4px 20px rgba(26, 43, 75, 0.04);
+        }
+    </style>
+</head>
+<body class="font-sans text-on-surface flex h-full overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full py-unit w-64 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest shrink-0 z-20">
+<div class="px-6 py-4 mb-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed mb-1">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Academic Year 2023-24</p>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<ul class="space-y-1 px-3">
+<li class="">
+<a class="flex items-center px-3 py-2.5 rounded-lg text-primary dark:text-primary-fixed font-bold bg-surface-container-high transition-colors" data-active="true" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-title-sm text-title-sm">Dashboard</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg text-on-surface-variant group-hover:text-primary transition-colors">menu_book</span>
+<span class="font-title-sm text-title-sm">Catalog</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg text-on-surface-variant group-hover:text-primary transition-colors">history_edu</span>
+<span class="font-title-sm text-title-sm">My Borrowing</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg text-on-surface-variant group-hover:text-primary transition-colors">bookmark</span>
+<span class="font-title-sm text-title-sm">Reservations</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg text-on-surface-variant group-hover:text-primary transition-colors">map</span>
+<span class="font-title-sm text-title-sm">Library Map</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg text-on-surface-variant group-hover:text-primary transition-colors">settings</span>
+<span class="font-title-sm text-title-sm">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="px-3 mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg text-on-surface-variant group-hover:text-primary transition-colors">logout</span>
+<span class="font-title-sm text-title-sm">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background">
+<!-- TopNavBar (Mobile mainly, but keeping structural elements for desktop top bar) -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 max-w-container-max mx-auto bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline shrink-0 z-10 sticky top-0 md:border-b-0 md:bg-transparent md:px-8">
+<div class="flex items-center md:hidden">
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Bookify</span>
+</div>
+<!-- Search Bar (Desktop) -->
+<div class="hidden md:flex flex-1 max-w-xl mx-8 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-full font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search books, authors, ISBN..." type="text">
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hidden md:block">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young male student, Aarav, looking slightly to the side with a warm smile. Soft, natural lighting highlights his features against a plain, warm off-white background. The image has a calm, academic, and premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV21lXr0B8n5SC9a8SGD77_emKPJy1NVZxweJYA2WmPUhJ_PwCmxLDhhh-kM3E_dLyes49yR3_lkfLp9diqcAB5xwVbu_ykQyKJerUBsy_Lup0BvQOq-bfiLV_I65TV139QvAn-azLVyScySRFwhPPr34f1ctsdQTrJpbRG6KLOK-s0cxDJ-lU6hiUE7NN2_fXMSutJlUBcJvn9_8kNl3ITrKsM4lSuJk_zLHSk797_Qy6Q8owEJDh">
+</div>
+<span class="font-title-sm text-title-sm text-on-surface hidden md:block">Aarav</span>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 lg:px-margin-desktop w-full max-w-container-max mx-auto">
+<!-- Welcome Section -->
+<section class="mb-12">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg font-bold text-primary mb-2">Good morning, Aarav.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here’s what’s happening with your library account.</p>
+</section>
+<!-- Account Overview Bento Grid -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-gutter mb-12">
+<!-- Info Block 1 -->
+<div class="glass-card soft-shadow rounded-xl p-5 flex flex-col justify-between h-32 hover:border-primary/30 transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Currently Borrowed</span>
+<div class="flex items-end justify-between">
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary leading-none">3</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-50">menu_book</span>
+</div>
+</div>
+<!-- Info Block 2 -->
+<div class="glass-card soft-shadow rounded-xl p-5 flex flex-col justify-between h-32 hover:border-primary/30 transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Due This Week</span>
+<div class="flex items-end justify-between">
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold text-secondary leading-none">1</span>
+<span class="material-symbols-outlined text-secondary opacity-50">event</span>
+</div>
+</div>
+<!-- Info Block 3 -->
+<div class="glass-card soft-shadow rounded-xl p-5 flex flex-col justify-between h-32 hover:border-primary/30 transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Reservations</span>
+<div class="flex items-end justify-between">
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary leading-none">2</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-50">bookmark</span>
+</div>
+</div>
+<!-- Info Block 4 -->
+<div class="glass-card soft-shadow rounded-xl p-5 flex flex-col justify-between h-32 border-error/20 bg-error-container/10">
+<span class="font-label-caps text-label-caps text-on-error-container uppercase tracking-wider">Current Fine</span>
+<div class="flex items-end justify-between">
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold text-error leading-none">₹40</span>
+<span class="material-symbols-outlined text-error opacity-50">payments</span>
+</div>
+</div>
+</section>
+<!-- Currently Borrowed Table Section -->
+<section class="mb-16">
+<div class="flex justify-between items-end mb-6">
+<h3 class="font-headline-md text-headline-md font-bold text-primary">Currently Borrowed</h3>
+<button class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center">
+                        View All <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden soft-shadow">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">Book</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant hidden md:table-cell">Due Date</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant hidden sm:table-cell">Days Left</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant hidden md:table-cell">Fine</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">Status</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 Active -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-6 py-4">
+<div class="font-title-sm text-title-sm text-on-surface">Clean Code</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Robert C. Martin</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm hidden md:table-cell">Sep 3, 2024</td>
+<td class="px-6 py-4 font-body-sm text-body-sm hidden sm:table-cell">7 days</td>
+<td class="px-6 py-4 font-body-sm text-body-sm hidden md:table-cell">₹0</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-secondary/10 text-secondary font-label-caps text-[10px]">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1.5 rounded hover:bg-primary hover:text-on-primary transition-colors">Renew</button>
+</td>
+</tr>
+<!-- Row 2 Overdue -->
+<tr class="hover:bg-surface-bright transition-colors bg-error-container/5">
+<td class="px-6 py-4">
+<div class="font-title-sm text-title-sm text-on-surface">Database System Concepts</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Abraham Silberschatz</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-error hidden md:table-cell">Aug 20, 2024</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-error font-semibold hidden sm:table-cell">-7 days</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-error hidden md:table-cell">₹70</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-error/10 text-error font-label-caps text-[10px]">Overdue</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1.5 rounded opacity-50 cursor-not-allowed">Renew</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Recommended Section -->
+<section class="mb-12">
+<h3 class="font-headline-md text-headline-md font-bold text-primary mb-6">Recommended for you</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+<!-- Book Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] w-full bg-surface-container-high rounded-lg mb-3 overflow-hidden border border-outline-variant relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A minimalist, academic book cover design for 'Clean Code'. The cover is stark white with bold, elegant dark navy typography. There is a very subtle geometric pattern in the background. The overall look is premium, clean, and highly legible, fitting a modern digital library interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDku0ap20-7yvuHDbhAw9jpPPs335NB6Gn2-1BomIqzgWGg003LPxXAxErrSTz-ub1T2HYSLvNZ13aiyD0npwBPcyVaDRam8HU-nYy2G7qLbGNhRSSFq6PIQ8fsGP_B7ZB7ZCNvbAOIDe29G2H--EhJ942K9XOf5DBEIM08anHgcMWzP-FYXyj_IXh0VvWDr_Wb1M-pmRhU5o7FQ35crsGi9U6ucxqHmB23VLVBGCMixvFGaKZb9NGu">
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-on-surface bg-surface-container-lowest/80 rounded-full p-1 text-sm backdrop-blur-sm">bookmark_add</span>
+</div>
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface line-clamp-1 group-hover:text-primary transition-colors">Clean Architecture</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Robert C. Martin</p>
+<span class="inline-block mt-1 font-label-caps text-[10px] text-secondary">Available</span>
+</div>
+<!-- Book Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] w-full bg-surface-container-high rounded-lg mb-3 overflow-hidden border border-outline-variant relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A minimalist, modern book cover design for 'Computer Networks'. The cover features an abstract, elegant visualization of network nodes using thin, precise lines on a muted warm gray background. The title is set in a crisp, sans-serif font. The aesthetic is sophisticated and academic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJSDdJs1rUdybDKlmNzRtvh23LcpyXQXV9l_8NXG09f8mgAoIsrKrAPr0a-0ab3DmYoFiLUlAxnAQWTBWpxMviOSBS0C-BC8gC8_0CHf_M73kUA4c5WVvaDsxSS6joZZ8B6uU7mE84rQBXPgMYK-G7E5_T7XRyDseIeimhoyHnXnfKSPUVWuGKx0p2OehYU7F90pYl3FqZO8lDqUww8kOwLBzj1c6rmTnmOgdD111D3bGucQGOGz8w">
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface line-clamp-1 group-hover:text-primary transition-colors">Computer Networks</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Andrew S. Tanenbaum</p>
+<span class="inline-block mt-1 font-label-caps text-[10px] text-on-surface-variant">Waitlist</span>
+</div>
+<!-- Book Card 3 -->
+<div class="group cursor-pointer hidden sm:block">
+<div class="aspect-[2/3] w-full bg-surface-container-high rounded-lg mb-3 overflow-hidden border border-outline-variant relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A clean, premium book cover design for 'Design Patterns'. The cover utilizes ample whitespace and a subtle, debossed-style geometric icon in the center. The color palette is restricted to off-white and deep primary navy. It evokes a sense of structured, timeless knowledge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp2ufJkZXutv7d-NSX27iTR-PdfmgvekXVoyYoyV93_yTxMi3KzUREiKNOKxcEjHSg03Zjub1YZDruPKGl2KhTwiqWzSp4CrAdEa4TYWmeTed_DN3a0k80_-bN9BWRR8nD7vtiIsipg5LVkGyHawj_mhOcCtHK5k418O7CmBKOL2r-YdOd_GHsso2BlYacGUa3O6nrw_gmNT2tRdBUroUnzfAj9zNiRiL2KFUpZueK-KjOxKR9U8P9">
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface line-clamp-1 group-hover:text-primary transition-colors">Design Patterns</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Erich Gamma, et al.</p>
+<span class="inline-block mt-1 font-label-caps text-[10px] text-secondary">Available</span>
+</div>
+<!-- Book Card 4 -->
+<div class="group cursor-pointer hidden md:block">
+<div class="aspect-[2/3] w-full bg-surface-container-high rounded-lg mb-3 overflow-hidden border border-outline-variant relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A high-end, minimalist book cover for 'Introduction to Algorithms'. The design features a delicate, intricate tree structure graphic on a pale beige background. The typography is classic and refined, signaling an authoritative academic text within a modern library setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxIphapTApo-S76YB6Fszr1XYUKxMkRI9jevGfsSy080dmldkz10Y_mfYMEDko_uG61-lq3zJuxPt1JWwkmLflidY1wvVp8oQrcmFZYVqe9bvjX23SEulipINZ1l94k42BuiQ8IHip60r7Cq4wta56gF99S8pM1oJsj44VA4xOMY03gSEGOTJTFDYM9_HQJnCk9ohuDyCv6axxcD0--Df7OfgLaF7PcdgQKIeB5XGe2Zr8j-bzGQv1">
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface line-clamp-1 group-hover:text-primary transition-colors">Intro to Algorithms</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thomas H. Cormen</p>
+<span class="inline-block mt-1 font-label-caps text-[10px] text-secondary">Available</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+
+</body></html>

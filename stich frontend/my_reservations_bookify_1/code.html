@@ -1,0 +1,392 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Bookify - Reservations</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-dim": "#dbd9dc",
+                "surface": "#fbf8fc",
+                "on-error-container": "#93000a",
+                "secondary": "#4950c7",
+                "on-primary": "#ffffff",
+                "on-secondary-container": "#070494",
+                "on-secondary-fixed-variant": "#3035af",
+                "on-tertiary-fixed": "#291800",
+                "error": "#ba1a1a",
+                "on-tertiary": "#ffffff",
+                "surface-container-highest": "#e4e2e5",
+                "inverse-primary": "#b6c6ef",
+                "primary": "#031635",
+                "on-tertiary-fixed-variant": "#5d4217",
+                "on-tertiary-container": "#b08d5b",
+                "inverse-on-surface": "#f2f0f3",
+                "inverse-surface": "#303033",
+                "surface-container-low": "#f5f3f6",
+                "secondary-fixed-dim": "#bfc2ff",
+                "surface-variant": "#e4e2e5",
+                "on-secondary": "#ffffff",
+                "outline": "#75777f",
+                "secondary-container": "#7d84fe",
+                "background": "#fbf8fc",
+                "tertiary-fixed-dim": "#e8c08a",
+                "primary-container": "#1a2b4b",
+                "primary-fixed": "#d8e2ff",
+                "surface-container-high": "#e9e7eb",
+                "on-secondary-fixed": "#02006d",
+                "on-primary-container": "#8293b8",
+                "tertiary": "#231400",
+                "tertiary-fixed": "#ffddb1",
+                "on-primary-fixed-variant": "#364768",
+                "surface-bright": "#fbf8fc",
+                "on-primary-fixed": "#081b3a",
+                "on-surface": "#1b1b1e",
+                "primary-fixed-dim": "#b6c6ef",
+                "on-surface-variant": "#44474e",
+                "surface-tint": "#4e5e81",
+                "on-error": "#ffffff",
+                "tertiary-container": "#3e2700",
+                "surface-container-lowest": "#ffffff",
+                "on-background": "#1b1b1e",
+                "surface-container": "#efedf0",
+                "secondary-fixed": "#e0e0ff",
+                "outline-variant": "#c5c6cf",
+                "error-container": "#ffdad6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "margin-desktop": "40px",
+                "margin-mobile": "16px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-caps": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "26px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Base styles to ensure light mode intent */
+        body {
+            background-color: var(--theme-background, #fbf8fc);
+            color: var(--theme-on-background, #1b1b1e);
+        }
+        .dark body {
+            background-color: #1b1b1e;
+            color: #e4e2e5;
+        }
+        
+        /* Table row hover effect - subtle */
+        tbody tr:hover {
+            background-color: rgba(245, 243, 246, 0.5); /* surface-container-low with opacity */
+        }
+        .dark tbody tr:hover {
+            background-color: rgba(48, 48, 51, 0.5);
+        }
+    </style>
+<script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</head>
+<body class="flex h-screen overflow-hidden bg-background dark:bg-on-background text-on-background dark:text-surface-variant transition-colors duration-200">
+<!-- 
+      SIDENAVBAR
+      Source: Shared Components JSON 
+      Intent: Student Portal Main Navigation
+    -->
+<nav aria-label="Main Navigation" class="hidden md:flex flex-col h-screen w-64 border-r border-outline-variant bg-surface dark:bg-[#1b1b1e] dark:border-outline-variant/30 py-unit shrink-0 z-10 transition-colors duration-200">
+<!-- Header -->
+<div class="px-6 py-6 mb-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant dark:bg-inverse-surface overflow-hidden shrink-0 border border-outline-variant dark:border-outline-variant/30">
+<img alt="Student Profile Picture" class="w-full h-full object-cover" data-alt="A minimalist, high-key portrait of a university student in a softly lit, modern library setting. The style is clean, editorial photography with a muted, academic color palette of warm off-whites and deep navies." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHfqC0bShmHuXeEhwDhWxJrGDINESCbRcAN07Fjf4cZ1rmDuMPwOssONwz8jxyeDdAfSohiIcdzz7MrngqHSNqD7b1NVFvn8nBAbsPg4BnYDigNthG8ADDXX2SbjeFJzyyvrKWAin3-q5WCBtCpW-EQbNOnaaNDYNcM6hDCNAnYRz4av4B-1M19rnBx3-LO5Y02-ppUt3PQjoytHzRHCo9GiK4Kyjtv_lC-2RoLEFtMKyCstsFMWG1">
+</div>
+<div>
+<h1 class="font-title-sm text-title-sm text-primary dark:text-primary-fixed m-0">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline m-0 opacity-80">Student Portal</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-80 group-hover:opacity-100 transition-opacity">dashboard</span>
+<span class="font-body-lg text-body-lg">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-80 group-hover:opacity-100 transition-opacity">menu_book</span>
+<span class="font-body-lg text-body-lg">Catalog</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-80 group-hover:opacity-100 transition-opacity">collections_bookmark</span>
+<span class="font-body-lg text-body-lg">My Loans</span>
+</a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-3 px-3 py-2 text-primary dark:text-primary-fixed font-bold border-r-2 border-primary dark:border-primary-fixed bg-surface-container-low/50 dark:bg-primary-container/20 opacity-90 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">event_available</span>
+<span class="font-body-lg text-body-lg">Reservations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-80 group-hover:opacity-100 transition-opacity">meeting_room</span>
+<span class="font-body-lg text-body-lg">Study Rooms</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-80 group-hover:opacity-100 transition-opacity">history</span>
+<span class="font-body-lg text-body-lg">History</span>
+</a>
+</div>
+<!-- CTA & Footer -->
+<div class="px-4 py-4 mt-auto border-t border-outline-variant/30">
+<button class="w-full mb-4 px-4 py-2 bg-primary dark:bg-primary-fixed text-on-primary dark:text-primary-container font-title-sm text-title-sm rounded border border-primary dark:border-primary-fixed hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">autorenew</span>
+                Renew Books
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70">help_outline</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- 
+      MAIN CANVAS
+      Content: Reservations Tracking
+    -->
+<main class="flex-1 h-full overflow-y-auto bg-background dark:bg-on-background px-margin-mobile py-8 md:px-margin-desktop md:py-12 transition-colors duration-200">
+<div class="max-w-[1024px] mx-auto relative">
+<!-- Theme Toggle -->
+<button aria-label="Toggle dark mode" class="absolute top-0 right-0 p-2 rounded-full bg-surface-container-low dark:bg-inverse-surface text-on-surface-variant dark:text-outline hover:opacity-80 transition-opacity" onclick="toggleTheme()">
+<span class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined text-[20px] hidden dark:block">light_mode</span>
+</button>
+<!-- Page Header -->
+<header class="mb-8 md:mb-12 pr-12">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed mb-2">Reservations</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant dark:text-outline max-w-2xl">
+                    Track the status of your requested materials. You will receive an email notification when an item is ready for pickup at the circulation desk.
+                </p>
+</header>
+<!-- Data Presentation: Table within a Level 1 Surface -->
+<div class="bg-surface dark:bg-[#1b1b1e] rounded-lg border border-outline-variant dark:border-outline-variant/30 overflow-hidden transition-colors duration-200">
+<!-- Toolbar/Filter area (Optional but adds high-end feel) -->
+<div class="px-6 py-4 border-b border-outline-variant dark:border-outline-variant/30 bg-surface dark:bg-[#1b1b1e] flex justify-between items-center transition-colors duration-200">
+<h3 class="font-title-sm text-title-sm text-on-surface dark:text-surface-variant">Active Requests <span class="text-on-surface-variant dark:text-outline font-normal ml-1">(3)</span></h3>
+<div class="flex gap-2">
+<button aria-label="Filter list" class="p-1.5 rounded text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<!-- Header Row: bg-surface-container-low, label-caps typography -->
+<thead class="bg-surface-container-low dark:bg-inverse-surface transition-colors duration-200">
+<tr>
+<th class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline px-6 py-4 font-normal">Book Title</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline px-6 py-4 font-normal">Reserved On</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline px-6 py-4 font-normal">Queue Position</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline px-6 py-4 font-normal">Expected</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline px-6 py-4 font-normal text-right">Status</th>
+</tr>
+</thead>
+<!-- Body Rows: 1px horizontal borders, 16px padding -->
+<tbody class="divide-y divide-outline-variant dark:divide-outline-variant/30">
+<!-- Row 1: Ready -->
+<tr class="transition-colors duration-150">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<!-- Book Thumbnail: 2:3 aspect ratio, 1px border -->
+<div class="w-10 h-15 shrink-0 border border-outline-variant/50 shadow-sm bg-surface-container-highest dark:bg-inverse-surface">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A minimalist book cover design for 'The Design of Everyday Things' resting on a clean, white marble desk. The aesthetic is sophisticated, bright, and academic, fitting a premium digital library interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1GdUNNvasemaTnDRWphly8qhLSxLIRZRkNwAAUJ7SEsL31Sx-iPOBuvXbi6HzR3yp6-7bphH_OMflLQBu8bP37dzgLX-lwod6r1jMtRKXIuQihaw4NNLcSxadUmjVKdknFlA188CzXpwVzMSiH3-VyOFF_Pb5cr7OIw647BWaR-uEXuE-YUXXTyx_t9wUqr_ho_ZCrgyyHy-eXdU7vak0a9kcevzW8R1bdXl7c9PthPFMrqGFxjQn">
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-primary dark:text-primary-fixed mb-0.5">The Design of Everyday Things</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline">Don Norman</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">Oct 12, 2023</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-surface-container-high dark:bg-inverse-surface text-primary dark:text-primary-fixed font-bold">1</span>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">Available Now</td>
+<td class="px-6 py-4 text-right">
+<!-- Badge: 4px radius, functional colors -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] bg-secondary-container dark:bg-secondary-container/20 text-on-secondary-container dark:text-secondary-fixed-dim font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                        Ready for Pickup
+                                    </span>
+</td>
+</tr>
+<!-- Row 2: Waiting -->
+<tr class="transition-colors duration-150">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-15 shrink-0 border border-outline-variant/50 shadow-sm bg-surface-container-highest dark:bg-inverse-surface">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A minimalist, abstract graphic representing a psychology textbook cover, set against a pristine white studio background. Soft, diffused lighting emphasizes the premium, quiet academic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYLpnwoK-JFutphskUUCiWFXAo2-2v53z8ta8JilBkW3KIbWeOTBhupYBAi4jSsL6spvioOsAC8OcGlZMSIV7iCIXdivUjH9jV3NXuvU9K0gOF6_sSQY4SM-yziH7crGNSnJ5XWH4AUDKd4PmHQ5YnjVX14CKayx0c5f4Uc1Dfaagt1c1hnC-yjegMMMTH07fkhPSzTPmehtm7oB1yYgBd7TmAydoBF9TJ0VaZdTOGH8uEL898r9CV">
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-primary dark:text-primary-fixed mb-0.5">Thinking, Fast and Slow</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline">Daniel Kahneman</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">Oct 15, 2023</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-surface-container-high dark:bg-inverse-surface text-on-surface dark:text-surface-variant font-bold">4</span>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">Est. Oct 22</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] bg-surface-variant dark:bg-inverse-surface text-on-surface-variant dark:text-outline font-label-caps text-label-caps border border-outline-variant/30 dark:border-outline-variant/10">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                        Waiting
+                                    </span>
+</td>
+</tr>
+<!-- Row 3: Waiting (Far down queue) -->
+<tr class="transition-colors duration-150">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-15 shrink-0 border border-outline-variant/50 shadow-sm bg-surface-container-highest dark:bg-inverse-surface flex items-center justify-center text-outline dark:text-outline-variant">
+<span class="material-symbols-outlined text-[20px]">book</span>
+</div>
+<div>
+<p class="font-title-sm text-title-sm text-primary dark:text-primary-fixed mb-0.5">Sapiens: A Brief History</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline">Yuval Noah Harari</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">Oct 18, 2023</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant">
+<span class="inline-flex items-center justify-center min-w-[24px] h-6 px-1 rounded-full bg-surface-container-high dark:bg-inverse-surface text-on-surface dark:text-surface-variant font-bold">12</span>
+</td>
+<td class="px-6 py-4 font-body-sm text-body-sm text-on-surface dark:text-surface-variant text-outline dark:text-outline-variant italic">Calculating...</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] bg-surface-variant dark:bg-inverse-surface text-on-surface-variant dark:text-outline font-label-caps text-label-caps border border-outline-variant/30 dark:border-outline-variant/10">
+<span class="material-symbols-outlined text-[14px]">hourglass_empty</span>
+                                        Waiting
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer/Pagination space -->
+<div class="px-6 py-3 border-t border-outline-variant dark:border-outline-variant/30 bg-surface-bright dark:bg-[#1b1b1e] flex justify-between items-center text-on-surface-variant dark:text-outline transition-colors duration-200">
+<span class="font-body-sm text-body-sm">Showing 1 to 3 of 3 entries</span>
+</div>
+</div>
+<!-- Contextual Info Card (Minimalist) -->
+<div class="mt-8 p-6 bg-surface-container-lowest dark:bg-[#1b1b1e] border border-outline-variant dark:border-outline-variant/30 rounded-lg flex items-start gap-4 transition-colors duration-200">
+<div class="p-2 rounded-full bg-primary-fixed/20 dark:bg-primary-container/20 text-primary dark:text-primary-fixed mt-1 shrink-0">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm text-primary dark:text-primary-fixed mb-1">Reservation Policy Reminders</h4>
+<p class="font-body-sm text-body-sm text-on-surface dark:text-surface-variant max-w-3xl leading-relaxed">
+                        Items marked as <strong class="font-semibold text-secondary-container dark:text-secondary-fixed-dim">Ready for Pickup</strong> will be held at the main circulation desk for exactly 3 business days. If not retrieved within this window, the reservation will be automatically cancelled and the item passed to the next student in the queue.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

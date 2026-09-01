@@ -131,10 +131,10 @@ const PurchaseRequestsPage = () => {
       {/* Top Banner / Action Header */}
       <div className="card flex flex-col md:flex-row items-center justify-between gap-4 mb-6 p-6">
         <div>
-          <h2 className="text-xl font-bold text-white font-display">
+          <h2 className="text-xl font-bold font-display" style={{ color: 'var(--color-on-surface)' }}>
             {isLibrarian ? "Review Library Acquisition Proposals" : "Can't find a book in our catalog?"}
           </h2>
-          <p className="text-sm text-slate-300 mt-1">
+          <p className="text-sm mt-1" style={{ color: 'var(--color-on-surface)' }}>
             {isLibrarian
               ? "Approve or decline book procurement requests submitted by students and faculty."
               : "Suggest textbooks, research journals, or reference guides for library procurement."}
@@ -145,7 +145,7 @@ const PurchaseRequestsPage = () => {
           <Button
             onClick={() => setShowSubmitModal(true)}
             icon={BookPlus}
-            className="shadow-glow-primary"
+            className="shadow-glow"
           >
             Submit Book Request
           </Button>
@@ -155,7 +155,7 @@ const PurchaseRequestsPage = () => {
       {/* Filter and Search Bar */}
       <div className="card flex flex-col sm:flex-row gap-4 mb-6">
         <div className="relative flex-1">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-on-surface-muted)' }} />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -181,10 +181,10 @@ const PurchaseRequestsPage = () => {
         <SkeletonLoader variant="table-row" count={5} />
       ) : filtered.length === 0 ? (
         <Card>
-          <div className="text-center py-16 text-slate-400 flex flex-col items-center gap-3">
-            <PackagePlus size={48} className="text-slate-600" />
-            <p className="text-base font-semibold text-white">No purchase requests found</p>
-            <p className="text-sm text-slate-500">
+          <div className="text-center py-16 flex flex-col items-center gap-3" style={{ color: 'var(--color-on-surface-variant)' }}>
+            <PackagePlus size={48} style={{ color: 'var(--color-on-surface-muted)' }} />
+            <p className="text-base font-semibold" style={{ color: 'var(--color-on-surface)' }}>No purchase requests found</p>
+            <p className="text-sm" style={{ color: 'var(--color-on-surface-muted)' }}>
               {isStudent ? "Click 'Submit Book Request' above to request an addition to the library." : "No student requests awaiting review."}
             </p>
           </div>
@@ -201,32 +201,32 @@ const PurchaseRequestsPage = () => {
             >
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 flex-wrap mb-1">
-                  <h4 className="font-bold text-white text-base truncate">{req.title}</h4>
+                  <h4 className="font-bold text-base truncate" style={{ color: 'var(--color-on-surface)' }}>{req.title}</h4>
                   {getStatusBadge(req.status)}
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400 mb-2">
-                  <span>Author: <strong className="text-slate-300">{req.author || 'Not specified'}</strong></span>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs mb-2" style={{ color: 'var(--color-on-surface-variant)' }}>
+                  <span>Author: <strong style={{ color: 'var(--color-on-surface)' }}>{req.author || 'Not specified'}</strong></span>
                   {req.isbn && <span className="font-mono">ISBN: {req.isbn}</span>}
                   {isLibrarian && (
-                    <span className="text-primary-300 flex items-center gap-1">
+                    <span className="flex items-center gap-1" style={{ color: 'var(--color-primary)' }}>
                       <User size={12} /> {req.student_name} ({req.enrollment_no})
                     </span>
                   )}
-                  <span className="text-slate-500">
+                  <span style={{ color: 'var(--color-on-surface-muted)' }}>
                     Requested: {format(new Date(req.created_at), 'dd MMM yyyy')}
                   </span>
                 </div>
 
                 {req.reason && (
-                  <div className="p-2.5 rounded-lg bg-bg-600/40 border border-white/5 text-xs text-slate-300">
-                    <span className="text-slate-500 font-semibold mr-1">Justification:</span>
+                  <div className="p-2.5 rounded-lg text-xs" style={{ background: 'color-mix(in srgb, var(--color-surface-container-low) 40%, transparent)', border: '1px solid var(--color-outline-variant)', color: 'var(--color-on-surface)' }}>
+                    <span className="font-semibold mr-1" style={{ color: 'var(--color-on-surface-muted)' }}>Justification:</span>
                     {req.reason}
                   </div>
                 )}
 
                 {req.librarian_notes && (
-                  <div className="mt-2 text-xs text-accent-cyan flex items-center gap-1.5 font-medium">
+                  <div className="mt-2 text-xs flex items-center gap-1.5 font-medium" style={{ color: 'var(--color-tertiary)' }}>
                     <MessageSquare size={13} />
                     <span>Librarian Note: {req.librarian_notes}</span>
                   </div>
@@ -263,7 +263,7 @@ const PurchaseRequestsPage = () => {
       >
         <form onSubmit={handleSubmitRequest} className="space-y-4">
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Book Title *</label>
+            <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Book Title *</label>
             <input
               value={requestForm.title}
               onChange={e => setRequestForm({ ...requestForm, title: e.target.value })}
@@ -275,7 +275,7 @@ const PurchaseRequestsPage = () => {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs text-slate-400 mb-1 block">Author / Editor</label>
+              <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Author / Editor</label>
               <input
                 value={requestForm.author}
                 onChange={e => setRequestForm({ ...requestForm, author: e.target.value })}
@@ -284,7 +284,7 @@ const PurchaseRequestsPage = () => {
               />
             </div>
             <div>
-              <label className="text-xs text-slate-400 mb-1 block">ISBN (Optional)</label>
+              <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>ISBN (Optional)</label>
               <input
                 value={requestForm.isbn}
                 onChange={e => setRequestForm({ ...requestForm, isbn: e.target.value })}
@@ -295,7 +295,7 @@ const PurchaseRequestsPage = () => {
           </div>
 
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Academic Reason / Syllabus Need *</label>
+            <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Academic Reason / Syllabus Need *</label>
             <textarea
               value={requestForm.reason}
               onChange={e => setRequestForm({ ...requestForm, reason: e.target.value })}
@@ -335,19 +335,19 @@ const PurchaseRequestsPage = () => {
       >
         {reviewingRequest && (
           <div className="space-y-4">
-            <div className="card bg-bg-700/50 p-4 space-y-1">
-              <h3 className="font-bold text-white text-base">{reviewingRequest.title}</h3>
-              <p className="text-xs text-slate-400">Author: {reviewingRequest.author || 'N/A'}</p>
-              <p className="text-xs text-slate-400">
-                Requested by: <strong className="text-primary-300">{reviewingRequest.student_name}</strong> ({reviewingRequest.enrollment_no})
+            <div className="card p-4 space-y-1" style={{ background: 'color-mix(in srgb, var(--color-surface-container) 50%, transparent)' }}>
+              <h3 className="font-bold text-base" style={{ color: 'var(--color-on-surface)' }}>{reviewingRequest.title}</h3>
+              <p className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>Author: {reviewingRequest.author || 'N/A'}</p>
+              <p className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
+                Requested by: <strong style={{ color: 'var(--color-primary)' }}>{reviewingRequest.student_name}</strong> ({reviewingRequest.enrollment_no})
               </p>
-              <p className="text-xs text-slate-300 pt-2 border-t border-white/5 italic">
+              <p className="text-xs pt-2 italic" style={{ color: 'var(--color-on-surface)', borderTop: '1px solid var(--color-outline-variant)' }}>
                 "{reviewingRequest.reason}"
               </p>
             </div>
 
             <div>
-              <label className="text-xs text-slate-400 mb-1 block">Reviewer Feedback Notes (Optional)</label>
+              <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Reviewer Feedback Notes (Optional)</label>
               <textarea
                 value={decisionNotes}
                 onChange={e => setDecisionNotes(e.target.value)}

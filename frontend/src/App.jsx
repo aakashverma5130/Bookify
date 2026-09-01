@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from
 import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './hooks/useAuth';
+import { ThemeProvider } from './hooks/useTheme';
 import { UNAUTHORIZED_EVENT } from './services/api';
 
 // Pages
@@ -112,27 +113,29 @@ const AppRoutes = () => (
 );
 
 const App = () => (
-  <AuthProvider>
-    <BrowserRouter>
-      <UnauthorizedListener />
-      <AppRoutes />
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 3500,
-          style: {
-            background: '#13132d',
-            color: '#f8fafc',
-            border: '1px solid rgba(99,102,241,0.3)',
-            borderRadius: '12px',
-            fontSize: '13px',
-          },
-          success: { iconTheme: { primary: '#22c55e', secondary: '#13132d' } },
-          error:   { iconTheme: { primary: '#ef4444', secondary: '#13132d' } },
-        }}
-      />
-    </BrowserRouter>
-  </AuthProvider>
+  <ThemeProvider>
+    <AuthProvider>
+      <BrowserRouter>
+        <UnauthorizedListener />
+        <AppRoutes />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3500,
+            style: {
+              background: 'var(--color-surface-container)',
+              color: 'var(--color-on-surface)',
+              border: '1px solid var(--color-outline-variant)',
+              borderRadius: '8px',
+              fontSize: '13px',
+            },
+            success: { iconTheme: { primary: 'var(--color-success)', secondary: 'var(--color-surface-container)' } },
+            error:   { iconTheme: { primary: 'var(--color-danger)', secondary: 'var(--color-surface-container)' } },
+          }}
+        />
+      </BrowserRouter>
+    </AuthProvider>
+  </ThemeProvider>
 );
 
 export default App;

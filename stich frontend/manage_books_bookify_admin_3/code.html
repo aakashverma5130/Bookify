@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Books - Bookify Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "tertiary-container": "#3e2700",
+                            "primary-fixed": "#d8e2ff",
+                            "surface-bright": "#fbf8fc",
+                            "surface-container-lowest": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface-tint": "#4e5e81",
+                            "secondary": "#4950c7",
+                            "surface-container-high": "#e9e7eb",
+                            "on-secondary-fixed-variant": "#3035af",
+                            "on-tertiary-fixed-variant": "#5d4217",
+                            "secondary-fixed-dim": "#bfc2ff",
+                            "secondary-container": "#7d84fe",
+                            "secondary-fixed": "#e0e0ff",
+                            "surface": "#fbf8fc",
+                            "surface-dim": "#dbd9dc",
+                            "surface-container-highest": "#e4e2e5",
+                            "on-primary": "#ffffff",
+                            "on-primary-fixed-variant": "#364768",
+                            "on-surface-variant": "#44474e",
+                            "inverse-surface": "#303033",
+                            "error": "#ba1a1a",
+                            "on-tertiary-container": "#b08d5b",
+                            "on-secondary-fixed": "#02006d",
+                            "on-secondary": "#ffffff",
+                            "surface-container-low": "#f5f3f6",
+                            "inverse-primary": "#b6c6ef",
+                            "on-primary-container": "#8293b8",
+                            "surface-container": "#efedf0",
+                            "outline-variant": "#c5c6cf",
+                            "inverse-on-surface": "#f2f0f3",
+                            "surface-variant": "#e4e2e5",
+                            "on-surface": "#1b1b1e",
+                            "tertiary-fixed-dim": "#e8c08a",
+                            "primary-container": "#1a2b4b",
+                            "outline": "#75777f",
+                            "on-primary-fixed": "#081b3a",
+                            "primary": "#031635",
+                            "error-container": "#ffdad6",
+                            "on-secondary-container": "#070494",
+                            "tertiary-fixed": "#ffddb1",
+                            "on-tertiary-fixed": "#291800",
+                            "on-tertiary": "#ffffff",
+                            "primary-fixed-dim": "#b6c6ef",
+                            "on-error": "#ffffff",
+                            "on-background": "#1b1b1e",
+                            "background": "#fbf8fc",
+                            "tertiary": "#231400"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "margin-desktop": "40px",
+                            "margin-mobile": "16px",
+                            "container-max": "1280px",
+                            "unit": "8px",
+                            "gutter": "24px"
+                    },
+                    "fontFamily": {
+                            "display-lg": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "label-caps": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "title-sm": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "body-lg": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "headline-md": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "body-sm": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "display-lg-mobile": [
+                                    "Plus Jakarta Sans"
+                            ]
+                    },
+                    "fontSize": {
+                            "display-lg": [
+                                    "48px",
+                                    {
+                                            "lineHeight": "56px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "label-caps": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.05em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "title-sm": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "26px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "letterSpacing": "-0.01em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "body-sm": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "display-lg-mobile": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.01em",
+                                            "fontWeight": "700"
+                                    }
+                            ]
+                    }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F9F8F6; /* Academic Minimalism Base */
+        }
+        /* Hide scrollbar for clean look in data tables */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased flex">
+<!-- SideNavBar (from JSON) -->
+<nav class="bg-surface dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col py-margin-desktop z-40 hidden md:flex">
+<div class="px-6 mb-12 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify Admin</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Management Portal</p>
+</div>
+</div>
+<div class="flex flex-col flex-grow gap-2 px-4">
+<!-- Active: Inventory -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed font-bold border-r-2 border-primary dark:border-primary-fixed bg-surface-container-low dark:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-title-sm text-title-sm">Inventory</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span class="font-title-sm text-title-sm">Circulation</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-title-sm text-title-sm">Members</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-title-sm text-title-sm">Reports</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-2 px-4 border-t border-outline-variant dark:border-outline pt-6">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-title-sm text-title-sm">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 rounded-l-lg" href="#" id="theme-toggle">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+<span class="font-title-sm text-title-sm">Dark Mode</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 min-h-screen">
+<!-- Header Section -->
+<header class="px-margin-mobile md:px-margin-desktop py-8 md:py-12 max-w-container-max mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">Inventory Management</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Manage the library's catalog, track stock levels, and update book metadata. Academic rigor meets operational efficiency.</p>
+</div>
+<div class="flex items-center gap-4 shrink-0">
+<button class="h-12 px-6 flex items-center justify-center gap-2 rounded-DEFAULT bg-transparent border border-primary text-primary font-title-sm text-title-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">download</span>
+                    Export CSV
+                </button>
+<button class="h-12 px-6 flex items-center justify-center gap-2 rounded-DEFAULT bg-primary border border-primary text-on-primary font-title-sm text-title-sm hover:opacity-90 transition-opacity shadow-[0_4px_20px_rgba(26,43,75,0.04)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                    Add New Book
+                </button>
+</div>
+</header>
+<!-- Filters & Search Toolbar -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-8">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col lg:flex-row gap-4 items-center shadow-[0_4px_20px_rgba(26,43,75,0.04)]">
+<!-- Search Input -->
+<div class="relative w-full lg:w-96">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<label class="sr-only" for="search-inventory">Search inventory</label>
+<input class="w-full pl-12 pr-4 h-12 rounded-DEFAULT border border-outline-variant bg-transparent text-on-surface font-body-lg text-body-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-secondary-fixed transition-shadow placeholder:text-outline" id="search-inventory" placeholder="Search by title, author, or ISBN..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="flex items-center gap-4 w-full lg:w-auto overflow-x-auto no-scrollbar pb-2 lg:pb-0">
+<div class="relative shrink-0">
+<select class="appearance-none h-12 pl-4 pr-10 rounded-DEFAULT border border-outline-variant bg-transparent text-on-surface font-body-sm text-body-sm focus:outline-none focus:border-primary cursor-pointer">
+<option>All Categories</option>
+<option>Architecture</option>
+<option>Computer Science</option>
+<option>Philosophy</option>
+<option>Design</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<div class="relative shrink-0">
+<select class="appearance-none h-12 pl-4 pr-10 rounded-DEFAULT border border-outline-variant bg-transparent text-on-surface font-body-sm text-body-sm focus:outline-none focus:border-primary cursor-pointer">
+<option>Any Status</option>
+<option>In Stock</option>
+<option>Low Stock</option>
+<option>Out of Stock</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+<button class="h-12 px-4 flex items-center justify-center gap-2 rounded-DEFAULT bg-transparent text-primary font-title-sm text-title-sm hover:bg-surface-container-low transition-colors shrink-0">
+<span class="material-symbols-outlined">filter_list</span>
+                        More Filters
+                    </button>
+</div>
+</div>
+</section>
+<!-- Data Grid / Table -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-16 overflow-x-auto">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-[0_4px_20px_rgba(26,43,75,0.04)] min-w-[800px]">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F3F4F6] border-b border-outline-variant">
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Book Info</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">ISBN</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Category</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Acquired</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 flex items-center gap-4">
+<div class="w-12 h-18 shrink-0 border border-outline-variant rounded-sm overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A minimalist book cover design featuring stark typography and abstract geometric shapes in deep navy and off-white. The aesthetic is clean, academic, and highly professional, reflecting a premium university press publication on modern architecture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRRWfMzGYxBGmKtnRJR3xPTZKG0flr9_klV3YJMMTpql2SqDtlh0keyi86IW2mIVRx2i_q9D1-4HpUvDJUD-1nl8sAaUGtkCs3LAroLvLxE79otv2s8I7FnHExV8qgeZT1Bqkbh23QVaZNeZR8cHPBVZF7G79PJQ4ZMrxACtYyS8cn5_CPTiUy8kwaEk8V0ZSDTUjuaaS0QaHzZsfAXeAxypNLiesuGeIraSG2f5pmRWoX1Qo15Nvl"/>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary group-hover:text-secondary transition-colors">The Architecture of City...</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Aldo Rossi</p>
+</div>
+</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">978-0262181013</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Architecture</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Oct 12, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm text-xs font-semibold bg-[#E6F4EA] text-[#137333]">
+                                    In Stock (24)
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 flex items-center gap-4">
+<div class="w-12 h-18 shrink-0 border border-outline-variant rounded-sm overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A high-contrast book cover design for a computer science textbook. Minimalist black background with crisp, white monospace typography and a subtle neon blue accent line. The look is authoritative, technical, and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLnOJ4i3l7TLgarnK-Qf9EnDIPBVOgn7LuyErlYxTPwUJBnMj6hXC9Gkm9UTkucuKVIF_yrXehBUUlkPBcpVLUrV1DGhqHLaEp6qNpynlLzEuIpHgdi1p05S5t00DDjfIPXMEk9RypRFqq9Oq23z-q86P4jo5PVHQTuPzAcDX09dKAE6hVoFtlRHgltY7te64JniwVhpQOyD7E7jdUY2rKRJstCibXjdJE0RPjMkApZh0gOB4oB1Lu"/>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary group-hover:text-secondary transition-colors">Design Patterns</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Erich Gamma, et al.</p>
+</div>
+</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">978-0201633610</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Computer Science</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Sep 05, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm text-xs font-semibold bg-[#FEF7E0] text-[#B06000]">
+                                    Low Stock (2)
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 flex items-center gap-4">
+<div class="w-12 h-18 shrink-0 border border-outline-variant rounded-sm overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A sophisticated book cover featuring a classic, elegant serif font centered on a textured, warm off-white background. A single, delicate botanical illustration sits below the title. Evokes a sense of historical significance and academic philosophy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOTRaVSLaIv8s5Kvz6S4dB4NPqzkXPdU8NMxzN0TxJp25AXnPduU6RMtA1q7bmAnjdgG77mBTEOz3xqKhLGPimyPpQRy3Jxv5GsdMXxC7mnRnHQBQmeGQx4528po3z24Gkt98SfdAwes1jMomTmWqh8vkKZ8JNP76VbE7Kwj4ikc7EGOYpGOyr14gnxSow8sX3GfiUpePiWmZSnk4oJDUaofICSEE1Z1QjZGxxA79GrYySYWF_Ngtu"/>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary group-hover:text-secondary transition-colors">Critique of Pure Reason</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Immanuel Kant</p>
+</div>
+</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">978-0140447477</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Philosophy</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Nov 20, 2022</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm text-xs font-semibold bg-[#FCE8E6] text-[#C5221F]">
+                                    Out of Stock
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 flex items-center gap-4">
+<div class="w-12 h-18 shrink-0 border border-outline-variant rounded-sm overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A modern graphic design book cover. Vibrant, high-contrast intersecting color blocks in primary colors (red, blue, yellow) against a stark white background. Bold, sans-serif typography. Communicates visual tension and creative energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFDrYnomUCxF5Eyfi0Gyc5y-mQpw8AbbOGmr3_aDy_vZWyifntvLDcaUWGznqolgaOoCIZ1Z5iZv77D2Rc2zwXPXODoHVP6EyGZ0wX4o5MPdA1fa01ISV3Mv5ilAn8xOoDAgQBJpGFdadAFrhp-uUPwNV2Li4PixTSRn65Mv66qxtfMna-nB3xr8hS3UZtwu_0VPZPggJ_9pzVmnkyxpVM8p0iLQYPxoZyiNEouTP6zT9fvCjafDzD"/>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-primary group-hover:text-secondary transition-colors">Interaction of Color</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Josef Albers</p>
+</div>
+</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">978-0300179354</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Design</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Jan 15, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm text-xs font-semibold bg-[#E6F4EA] text-[#137333]">
+                                    In Stock (12)
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="bg-surface-container-lowest border-t border-outline-variant px-6 py-4 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 4 of 248 entries</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-sm border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-sm bg-primary text-on-primary font-body-sm text-body-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-sm border border-outline-variant text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-sm border border-outline-variant text-on-surface font-body-sm text-body-sm hover:border-primary hover:text-primary transition-colors">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-sm border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Simple theme toggle script for demonstration -->
+<script>
+        document.getElementById('theme-toggle').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+</body></html>

@@ -1,11 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        sans:    ['Inter', 'Outfit', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        sans:    ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       colors: {
         primary: {
@@ -14,12 +16,12 @@ export default {
           200: '#c7d2fe',
           300: '#a5b4fc',
           400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
+          500: '#031635',
+          600: '#031635',
+          700: '#031635',
+          800: '#031635',
+          900: '#031635',
+          950: '#031635',
         },
         bg: {
           900: '#0a0a1a',
@@ -36,20 +38,73 @@ export default {
           purple: '#a855f7',
           cyan:   '#06b6d4',
           pink:   '#ec4899',
+          violet: '#7d84fe',
         },
+        /* ── Surface tokens from CSS variables ───────────────────── */
+        surface: {
+          DEFAULT: 'var(--color-surface)',
+          dim:     'var(--color-surface-dim)',
+          bright:  'var(--color-surface-bright)',
+          dark:    'var(--color-surface-dark)',
+          light:   'var(--color-surface)',
+          container: {
+            lowest:   'var(--color-surface-container-lowest)',
+            low:      'var(--color-surface-container-low)',
+            DEFAULT:  'var(--color-surface-container)',
+            high:     'var(--color-surface-container-high)',
+            highest:  'var(--color-surface-container-highest)',
+          },
+        },
+        outline: {
+          DEFAULT: 'var(--color-outline)',
+          variant:  'var(--color-outline-variant)',
+        },
+        /* ── Stitch semantic color aliases ─────────────────────────── */
+        'primary':              'var(--color-primary)',
+        'on-primary':           'var(--color-on-primary)',
+        'primary-container':    'var(--color-primary-container)',
+        'on-primary-container': 'var(--color-on-primary-container)',
+        'primary-fixed':        'var(--color-primary-fixed)',
+        'primary-fixed-dim':    'var(--color-primary-fixed-dim)',
+        'inverse-primary':      'var(--color-inverse-primary)',
+        'secondary':            'var(--color-secondary)',
+        'on-secondary':         'var(--color-on-secondary)',
+        'secondary-container':  'var(--color-secondary-container)',
+        'on-secondary-container': 'var(--color-on-secondary-container)',
+        'secondary-fixed':      'var(--color-secondary-fixed)',
+        'secondary-fixed-dim':  'var(--color-secondary-fixed-dim)',
+        'background':           'var(--color-background)',
+        'on-background':        'var(--color-on-background)',
+        'on-surface':           'var(--color-on-surface)',
+        'on-surface-variant':   'var(--color-on-surface-variant)',
+        'on-surface-dark':      'var(--color-on-surface-dark)',
+        'on-surface-light':     'var(--color-on-surface)',
+        'surface-tint':         '#4e5e81',
+        'surface-variant':      'var(--color-surface-container-high)',
+        'outline-variant':      'var(--color-outline-variant)',
+        'inverse-surface':      '#303033',
+        'inverse-on-surface':   '#f3f0f4',
+        'error':                'var(--color-danger)',
+        'error-container':      'var(--color-danger-container)',
+        'on-error':             'var(--color-on-danger)',
+        'on-error-container':   'var(--color-on-danger-container)',
+        'warm-gray':            '#e4e2e5',
+        'accent-violet':        '#7d84fe',
       },
       boxShadow: {
-        'glow-primary': '0 0 24px rgba(99, 102, 241, 0.3)',
+        'glow-primary': '0 0 24px rgba(3, 22, 53, 0.2)',
         'glow-success': '0 0 16px rgba(34, 197, 94, 0.25)',
         'glow-danger':  '0 0 16px rgba(239, 68, 68, 0.25)',
-        'card':         '0 4px 24px rgba(0,0,0,0.4)',
-        'card-hover':   '0 8px 40px rgba(0,0,0,0.6)',
+        'card':         'var(--shadow-card)',
+        'card-hover':   'var(--shadow-card-hover)',
+        'glow':         'var(--shadow-glow)',
+        'sidebar':      'var(--shadow-sidebar)',
       },
       backgroundImage: {
         'gradient-radial':   'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-brand':    'linear-gradient(135deg, #6366f1, #a855f7)',
-        'gradient-hero':     'linear-gradient(135deg, #1e1b4b 0%, #0a0a1a 50%, #1e1b4b 100%)',
-        'gradient-card':     'linear-gradient(135deg, rgba(19,19,45,0.8), rgba(26,26,62,0.8))',
+        'gradient-brand':    'linear-gradient(135deg, #031635, #1a2b4b)',
+        'gradient-hero':     'linear-gradient(135deg, #031635 0%, #0b1326 50%, #1a2b4b 100%)',
+        'gradient-card':     'linear-gradient(135deg, rgba(3,22,53,0.04), rgba(26,43,75,0.06))',
       },
       borderRadius: {
         'xl':  '0.75rem',
@@ -63,6 +118,7 @@ export default {
         'count-up':     'countUp 1s ease-out forwards',
         'slide-up':     'slideUp 0.4s ease-out forwards',
         'fade-in':      'fadeIn 0.3s ease-out forwards',
+        'fade-up':      'fadeUp 0.4s ease-out forwards',
       },
       keyframes: {
         float: {
@@ -70,8 +126,8 @@ export default {
           '50%':      { transform: 'translateY(-10px)' },
         },
         glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(99,102,241,0.2)' },
-          '50%':      { boxShadow: '0 0 40px rgba(99,102,241,0.5)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(3,22,53,0.1)' },
+          '50%':      { boxShadow: '0 0 40px rgba(3,22,53,0.25)' },
         },
         shimmer: {
           '0%':   { backgroundPosition: '-200% 0' },
@@ -84,6 +140,14 @@ export default {
         fadeIn: {
           from: { opacity: '0' },
           to:   { opacity: '1' },
+        },
+        fadeUp: {
+          from: { opacity: '0', transform: 'translateY(12px)' },
+          to:   { opacity: '1', transform: 'translateY(0)' },
+        },
+        countUp: {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to:   { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },

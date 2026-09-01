@@ -11,10 +11,10 @@ const ProgressRing = ({ daysRemaining, totalDays = 15, size = 64, strokeWidth = 
   const dashOffset = circumference * (1 - progress);
 
   const color =
-    daysRemaining <= 0 ? '#ef4444' :
-    daysRemaining <= 3 ? '#ef4444' :
-    daysRemaining <= 7 ? '#eab308' :
-    '#22c55e';
+    daysRemaining <= 0 ? 'var(--color-danger)' :
+    daysRemaining <= 3 ? 'var(--color-danger)' :
+    daysRemaining <= 7 ? 'var(--color-warning)' :
+    'var(--color-success)';
 
   return (
     <div className="relative" style={{ width: size, height: size }}>
@@ -25,7 +25,7 @@ const ProgressRing = ({ daysRemaining, totalDays = 15, size = 64, strokeWidth = 
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="rgba(255,255,255,0.05)"
+          stroke="var(--color-outline-variant)"
           strokeWidth={strokeWidth}
         />
         {/* Progress arc */}
@@ -49,7 +49,7 @@ const ProgressRing = ({ daysRemaining, totalDays = 15, size = 64, strokeWidth = 
           {daysRemaining <= 0 ? 'DUE' : daysRemaining}
         </span>
         {daysRemaining > 0 && (
-          <span className="text-[9px] text-slate-500">days</span>
+          <span className="text-[9px]" style={{ color: 'var(--color-on-surface-muted)' }}>days</span>
         )}
       </div>
     </div>

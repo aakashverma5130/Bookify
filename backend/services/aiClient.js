@@ -1,11 +1,31 @@
 const axios = require('axios');
+const log = require('../logger');
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000';
 const TIMEOUT_MS = parseInt(process.env.AI_SERVICE_TIMEOUT_MS) || 5000;
 
+// M-8: service-to-service auth. The backend sends a shared secret in
+// the `X-Bookify-Auth` header on every request. The AI service verifies
+// the secret in its auth dependency (see ai-service/middleware/auth.py).
+const AI_AUTH_TOKEN = process.env.AI_SERVICE_AUTH_TOKEN;
+
+if (!AI_AUTH_TOKEN) {
+  log.warn('ai_service_auth_token_missing', {
+    remediation: 'Set AI_SERVICE_AUTH_TOKEN to a shared secret matching the AI service',
+  });
+}
+
 const aiClient = axios.create({
   baseURL: AI_SERVICE_URL,
   timeout: TIMEOUT_MS,
+});
+
+// Attach the auth header to every request.
+aiClient.interceptors.request.use((config) => {
+  if (AI_AUTH_TOKEN) {
+    config.headers['X-Bookify-Auth'] = AI_AUTH_TOKEN;
+  }
+  return config;
 });
 
 /**
@@ -21,7 +41,7 @@ const rerankSearch = async (query, candidates) => {
     const response = await aiClient.post('/ai/search', { query, candidates });
     return response.data.ranked_ids;
   } catch (err) {
-    console.warn(`[AI] Search re-rank unavailable (${err.message}). Using keyword order.`);
+    log.warn('ai_search_rerank_unavailable', { message: err.message, fallback: 'keyword_order' });
     return candidates.map(c => c.book_id);
   }
 };
@@ -38,7 +58,7 @@ const getRecommendations = async (studentId) => {
     const response = await aiClient.get(`/ai/recommendations/${studentId}`);
     return response.data.recommendations;
   } catch (err) {
-    console.warn(`[AI] Recommendations unavailable (${err.message}). Returning empty.`);
+    log.warn('ai_recommendations_unavailable', { message: err.message, fallback: 'empty' });
     return [];
   }
 };
@@ -52,7 +72,7 @@ const triggerDemandForecast = async () => {
     const response = await aiClient.get('/ai/demand-forecast');
     return response.data;
   } catch (err) {
-    console.warn(`[AI] Demand forecast unavailable (${err.message}).`);
+    log.warn('ai_demand_forecast_unavailable', { message: err.message });
     return null;
   }
 };

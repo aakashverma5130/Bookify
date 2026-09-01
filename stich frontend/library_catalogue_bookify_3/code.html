@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#3e2700",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-bright": "#fbf8fc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4e5e81",
+                        "secondary": "#4950c7",
+                        "surface-container-high": "#e9e7eb",
+                        "on-secondary-fixed-variant": "#3035af",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "secondary-container": "#7d84fe",
+                        "secondary-fixed": "#e0e0ff",
+                        "surface": "#fbf8fc",
+                        "surface-dim": "#dbd9dc",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-surface-variant": "#44474e",
+                        "inverse-surface": "#303033",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#b08d5b",
+                        "on-secondary-fixed": "#02006d",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f5f3f6",
+                        "inverse-primary": "#b6c6ef",
+                        "on-primary-container": "#8293b8",
+                        "surface-container": "#efedf0",
+                        "outline-variant": "#c5c6cf",
+                        "inverse-on-surface": "#f2f0f3",
+                        "surface-variant": "#e4e2e5",
+                        "on-surface": "#1b1b1e",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "primary-container": "#1a2b4b",
+                        "outline": "#75777f",
+                        "on-primary-fixed": "#081b3a",
+                        "primary": "#031635",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#070494",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-tertiary-fixed": "#291800",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "on-error": "#ffffff",
+                        "on-background": "#1b1b1e",
+                        "background": "#fbf8fc",
+                        "tertiary": "#231400"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "title-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "display-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased">
+<!-- TopNavBar (Predicted Shared Component) -->
+<nav class="bg-surface dark:bg-surface-container-lowest fixed top-0 w-full z-50 border-b border-outline-variant dark:border-outline flat no shadows">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-2 cursor-pointer transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">local_library</span>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify</span>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-8 font-title-sm text-title-sm font-label-caps text-label-caps">
+<!-- Active Item (Catalog) -->
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 hover:opacity-80 transition-opacity cursor-pointer transition-all duration-200 active:scale-95" href="#">
+                    Catalog
+                </a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity cursor-pointer transition-all duration-200 active:scale-95" href="#">
+                    My Borrowing
+                </a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:opacity-80 transition-opacity cursor-pointer transition-all duration-200 active:scale-95" href="#">
+                    Reservations
+                </a>
+</div>
+<!-- Actions & Profile -->
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-full bg-transparent focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-sm text-body-sm w-64 transition-all focus:w-80" placeholder="Search catalog..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="Student Avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover ml-2 cursor-pointer transition-all duration-200 active:scale-95" data-alt="A small circular avatar of a student looking directly at the camera with a friendly expression. Soft, even lighting, professional yet approachable vibe. The background is a muted solid color to ensure focus on the face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoltL6PAsG17lypVuNw234DwIe1F-yctzwt4Ko_Xf_MxgBJ9lggSGqb0jONmpz7n9uJRSN3YxGUZJTt0SKUdtbyR8-tckbnB5F9DHV4Jtlf9pQM0is__N_2DM2_6to-4et4zOtHIfBOyac3sCLYlS5ZSpbpWiMAlypb4pT_6RaYxMoHqXtRkQu7INw6hMuuGJifUW9oD-aWTWhNDlHHKoHs6NkQWDPgxPsD-UHMVN4OYxaNrLqlUWR"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
+<!-- Hero Search Section -->
+<section class="mb-16 text-center pt-8 pb-12 border-b border-outline-variant">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">Explore the Collection</h1>
+<div class="max-w-2xl mx-auto relative mb-6">
+<span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-outline text-2xl">search</span>
+<input class="w-full pl-16 pr-6 py-4 text-lg border border-outline-variant rounded-full bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-secondary-fixed-dim outline-none transition-all shadow-[0_4px_20px_rgba(26,43,75,0.04)]" placeholder="Search titles, authors, or subjects..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-on-primary px-6 py-2 rounded-full font-label-caps text-label-caps hover:bg-opacity-90 transition-opacity">
+                    Search
+                </button>
+</div>
+<div class="flex flex-wrap justify-center gap-2 items-center text-on-surface-variant">
+<span class="font-label-caps text-label-caps mr-2">Trending Now:</span>
+<span class="px-3 py-1 bg-surface-container-low rounded border border-outline-variant font-body-sm text-body-sm cursor-pointer hover:bg-surface-container transition-colors">Computer Science</span>
+<span class="px-3 py-1 bg-surface-container-low rounded border border-outline-variant font-body-sm text-body-sm cursor-pointer hover:bg-surface-container transition-colors">Philosophy</span>
+<span class="px-3 py-1 bg-surface-container-low rounded border border-outline-variant font-body-sm text-body-sm cursor-pointer hover:bg-surface-container transition-colors">Modern Art</span>
+</div>
+</section>
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-24 space-y-8">
+<!-- Filter Section: Genre -->
+<div>
+<h3 class="font-label-caps text-label-caps text-primary mb-4 pb-2 border-b border-outline-variant">SUBJECT / GENRE</h3>
+<ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center gap-3">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+<label class="cursor-pointer">Architecture</label>
+</li>
+<li class="flex items-center gap-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+<label class="cursor-pointer">Computer Science</label>
+</li>
+<li class="flex items-center gap-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+<label class="cursor-pointer">History</label>
+</li>
+<li class="flex items-center gap-3">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+<label class="cursor-pointer">Philosophy</label>
+</li>
+<li class="flex items-center gap-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+<label class="cursor-pointer">Sciences</label>
+</li>
+</ul>
+</div>
+<!-- Filter Section: Availability -->
+<div>
+<h3 class="font-label-caps text-label-caps text-primary mb-4 pb-2 border-b border-outline-variant">AVAILABILITY</h3>
+<ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center gap-3">
+<input checked="" class="border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer" name="availability" type="radio"/>
+<label class="cursor-pointer">All Books</label>
+</li>
+<li class="flex items-center gap-3">
+<input class="border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer" name="availability" type="radio"/>
+<label class="cursor-pointer">Available Now</label>
+</li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Results Grid -->
+<div class="flex-1">
+<div class="flex justify-between items-center mb-6">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 24 of 1,248 results</span>
+<select class="border-none bg-transparent font-title-sm text-title-sm text-primary cursor-pointer outline-none focus:ring-0">
+<option>Sort by: Popularity</option>
+<option>Sort by: Newest</option>
+<option>Sort by: Title A-Z</option>
+</select>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+<!-- Book Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] mb-4 relative rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A minimalist book cover design featuring abstract architectural elements in stark black and white. The title 'The Structure of Space' is displayed in clean, modernist typography. Professional academic feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcYtXnJPu7Q5Vcv7GdbblbocvrPZGQfpzyrO0Fms52u9ndXnAkT0sSeTJq3MoVoQ1_qo8o8G6EpiKuidO2fLS8RtpaUtTkLHsYCI8pYgVCF3NdJKmQgGIxrliFJVyJmwvfNrh_A3NW8AgxjYn5PwdPaL273swnE9wp11pjfzwWL-bXZR29u25xUH7nRfUqHbXRzH_Ec9b88Rhk557r7bCjIo7jTOtJdzzd-GAoT22TLWo7c9LT2XjR"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1 border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Available
+                            </div>
+</div>
+<h4 class="font-title-sm text-title-sm text-primary leading-tight mb-1 group-hover:text-secondary transition-colors">The Structure of Space</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Dr. E. Harrison</p>
+<div class="flex items-center gap-1 text-tertiary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]">star_half</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(4.5)</span>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] mb-4 relative rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A dark, moody book cover with a deep blue background and subtle gold foil accents forming a constellation pattern. The title 'Modern Cosmology' is in elegant serif type." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpgn5Sew-Vq0W_N3BnaIGuEt28qDtcpZBIP69IxNdSE2rG72dU0ZZ1OQ3ToY2OTC-Ld9g1Noqf-LB7KTsSZ4MV20yaYgRVPqgYpwLt6X9gfr-YYUHYjRdPUauJFsUXZuMXKz43byYnSay5z2DQBx9haUO3_Tcz5Mz67f59-davZQcROAwgprPZXifrKMQkQTOrq7n7CnHU-utiSFos7kGEWU4Y9YT7ydB_yFkGq0W9yLlFoFiNjj4x"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-on-surface-variant flex items-center gap-1 border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                                Due Out 12th
+                            </div>
+</div>
+<h4 class="font-title-sm text-title-sm text-primary leading-tight mb-1 group-hover:text-secondary transition-colors">Modern Cosmology</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">S. Jenkins</p>
+<div class="flex items-center gap-1 text-tertiary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(5.0)</span>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] mb-4 relative rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A clean, typographic book cover. A stark white background with bold, deep red sans-serif text reading 'Ethics in Tech'. Minimalist, academic, and striking." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY_mDS2uFKNJCStLTG6fn8pSQrboPDtXmKC5O3bnemeQvH7xjBG1sY0jkn4thbF_Hqs3cgRcQfWmLVNxAuGYxemhentvf-Uxh4_8eSqrRDIABFEf_Nc93RWTAGjkzJxgLWuS1jzIlqPq0CO6FpI6o5EGa0f0pD9rcX1HlmFR-edr_kZfrBGtj4irweVoJJ7qBMYxy6ux36tPs232hNzjtx34CnJuBt1QPzx1sj1_mfBQOIJz17uu-y"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1 border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Available
+                            </div>
+</div>
+<h4 class="font-title-sm text-title-sm text-primary leading-tight mb-1 group-hover:text-secondary transition-colors">Ethics in Tech</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">A. Patel</p>
+<div class="flex items-center gap-1 text-tertiary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(3.2)</span>
+</div>
+</div>
+<!-- Book Card 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] mb-4 relative rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A book cover showing a macro photography shot of an intricate leaf vein structure. Organic, scientific. Title 'Botany: A New Approach' in a sophisticated serif font. Academic green hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtTn26GRuyh0V_vzwTqbvQDrRzaHwyL3F0np3eklRf0H4XXYoFgFN_g-OxTHiVfYBGecSU5fmGqpCbQrsktAFySqUBhZtKE7Nd4Q4C3U1RcSOl5Rv2FfaLCwPcZXRD6_uFoHsHZy9bjYQiVWvU1CP-7EXK1SmCK_eipUDAnttAlxqpztTmRgeyhLOLW0nznmFVFZPM3F1XUODXejliP2ron64znCj9EBKOFhnTFrKZI93El20Old1h"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-primary flex items-center gap-1 border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Available
+                            </div>
+</div>
+<h4 class="font-title-sm text-title-sm text-primary leading-tight mb-1 group-hover:text-secondary transition-colors">Botany: A New Approach</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Prof. M. Lin</p>
+<div class="flex items-center gap-1 text-tertiary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(4.0)</span>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-primary bg-primary text-on-primary font-title-sm text-title-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors font-title-sm text-title-sm">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors font-title-sm text-title-sm">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors font-title-sm text-title-sm">52</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

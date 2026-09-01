@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const webpush = require('web-push');
 const db = require('../config/db');
+const log = require('../logger');
 
 // ── Nodemailer transporter ────────────────────────────────────────────────────
 let transporter;
@@ -19,7 +20,7 @@ const getTransporter = async () => {
         pass: process.env.SMTP_PASS,
       },
     });
-    console.log('[EMAIL] Using configured SMTP server');
+    log.info('email_smtp_configured', { host: process.env.SMTP_HOST });
   } else {
     // Ethereal (local dev) — captures emails in a browser UI
     const testAccount = await nodemailer.createTestAccount();
@@ -28,19 +29,51 @@ const getTransporter = async () => {
       port: 587,
       auth: { user: testAccount.user, pass: testAccount.pass },
     });
-    console.log('[EMAIL] Using Ethereal SMTP — preview emails at https://ethereal.email');
+    log.info('email_ethereal_configured', { host: 'smtp.ethereal.email' });
   }
 
   return transporter;
 };
 
 // ── Web Push setup ────────────────────────────────────────────────────────────
-if (process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
-  webpush.setVapidDetails(
-    process.env.VAPID_SUBJECT || 'mailto:admin@bookify.edu',
-    process.env.VAPID_PUBLIC_KEY,
-    process.env.VAPID_PRIVATE_KEY
-  );
+// M-9: validate the VAPID configuration at startup. If `notify_web_push`
+// is enabled for any user, the push subscription flow expects the VAPID
+// keys to be present. We catch this early so a missing key surfaces
+// at boot time, not at the first push attempt.
+if (process.env.VAPID_PUBLIC_KEY || process.env.VAPID_PRIVATE_KEY) {
+  // If one key is set, the other must be too.
+  if (!process.env.VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+    log.error('push_vapid_keys_partial', { remediation: 'npx web-push generate-vapid-keys' });
+    if (process.env.NODE_ENV === 'production') {
+      process.exit(1);
+    }
+  } else if (
+    process.env.VAPID_PUBLIC_KEY.length < 20 ||
+    process.env.VAPID_PRIVATE_KEY.length < 20
+  ) {
+    log.error('push_vapid_keys_too_short', { remediation: 'npx web-push generate-vapid-keys' });
+    if (process.env.NODE_ENV === 'production') {
+      process.exit(1);
+    }
+  } else {
+    try {
+      webpush.setVapidDetails(
+        process.env.VAPID_SUBJECT || 'mailto:admin@bookify.edu',
+        process.env.VAPID_PUBLIC_KEY,
+        process.env.VAPID_PRIVATE_KEY
+      );
+      log.info('push_vapid_configured');
+    } catch (err) {
+      log.error('push_vapid_configure_failed', { message: err.message });
+      if (process.env.NODE_ENV === 'production') {
+        process.exit(1);
+      }
+    }
+  }
+} else if (process.env.NODE_ENV === 'production') {
+  // M-9: in production, VAPID keys are required for web-push to work.
+  // Log a warning but don't fail — operators may not use web push yet.
+  log.warn('push_vapid_not_configured');
 }
 
 /**
@@ -78,15 +111,21 @@ const createNotification = async ({ userId, type, title, message, metadata, clie
   // 3. Send email if opted in
   if (notify_email && email) {
     sendEmail({ to: email, subject: title, text: message }).catch(err =>
-      console.error('[EMAIL] Failed to send notification email:', err.message)
+      log.error('email_send_failed', { message: err.message, to: email })
     );
   }
 
   // 4. Send web push if opted in (subscription stored separately — simplified here)
   if (notify_web_push) {
-    // In a full implementation, fetch the push subscription from a subscriptions table.
-    // For now, log that push would be sent.
-    console.log(`[PUSH] Would send push notification to user ${userId}: ${title}`);
+    // M-9: VAPID must be configured before we can push. Otherwise we
+    // silently log instead of crashing the notification flow.
+    if (!process.env.VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+      log.warn('push_skipped_no_vapid', { userId, title });
+    } else {
+      // In a full implementation, fetch the push subscription from a
+      // subscriptions table and call `webpush.sendNotification(...)`.
+      log.info('push_simulated', { userId, title });
+    }
   }
 
   return notifResult.rows[0];
@@ -107,7 +146,7 @@ const sendEmail = async ({ to, subject, text, html }) => {
   // In dev with Ethereal, log the preview URL
   const previewUrl = nodemailer.getTestMessageUrl(info);
   if (previewUrl) {
-    console.log(`[EMAIL] Preview: ${previewUrl}`);
+    log.info('email_ethereal_preview', { url: previewUrl });
   }
   return info;
 };

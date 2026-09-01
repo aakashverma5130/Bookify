@@ -121,25 +121,25 @@ const InventoryAuditPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {/* Left 2 Cols: Scanner Terminal */}
         <Card className="lg:col-span-2 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-white/5">
+          <div className="flex items-center justify-between pb-3 border-b" style={{ borderColor: 'var(--color-outline-variant)' }}>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-success-400 animate-ping" />
-              <h3 className="font-bold text-white text-base flex items-center gap-2">
-                <Scan size={18} className="text-primary-400" />
+              <div className="w-3 h-3 rounded-full animate-ping" style={{ background: 'var(--color-success)' }} />
+              <h3 className="font-bold text-base flex items-center gap-2" style={{ color: 'var(--color-on-surface)' }}>
+                <Scan size={18} style={{ color: 'var(--color-primary)' }} />
                 Live Barcode & QR Shelf Scanner
               </h3>
             </div>
-            <span className="text-xs text-slate-400 font-mono">
-              Hardware Scanner: <span className="text-success-400 font-semibold">Active & Listening</span>
+            <span className="text-xs font-mono" style={{ color: 'var(--color-on-surface-variant)' }}>
+              Hardware Scanner: <span className="font-semibold" style={{ color: 'var(--color-success)' }}>Active & Listening</span>
             </span>
           </div>
 
           <form onSubmit={(e) => { e.preventDefault(); handleScanSubmit(); }} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Current Auditing Shelf *</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Current Auditing Shelf *</label>
                 <div className="relative">
-                  <MapPin size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400" />
+                  <MapPin size={15} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-primary)' }} />
                   <input
                     value={currentShelf}
                     onChange={e => setCurrentShelf(e.target.value)}
@@ -151,9 +151,9 @@ const InventoryAuditPage = () => {
               </div>
 
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Scan Barcode / Accession No *</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Scan Barcode / Accession No *</label>
                 <div className="relative">
-                  <Scan size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                  <Scan size={15} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-on-surface-muted)' }} />
                   <input
                     value={scanCode}
                     onChange={e => setScanCode(e.target.value)}
@@ -186,26 +186,26 @@ const InventoryAuditPage = () => {
 
         {/* Right Col: Audit Summary Cards */}
         <div className="space-y-3">
-          <div className="card p-4 flex items-center justify-between border-success-500/30 bg-success-950/10">
+          <div className="card p-4 flex items-center justify-between" style={{ borderColor: 'color-mix(in srgb, var(--color-success) 30%, transparent)', background: 'color-mix(in srgb, var(--color-success) 10%, transparent)' }}>
             <div>
-              <p className="text-xs text-slate-400 font-medium">Verified Correctly</p>
-              <p className="text-2xl font-bold text-success-400 font-display mt-0.5">
+              <p className="text-xs font-medium" style={{ color: 'var(--color-on-surface-variant)' }}>Verified Correctly</p>
+              <p className="text-2xl font-bold font-display mt-0.5" style={{ color: 'var(--color-success)' }}>
                 {auditReport.summary?.verified || 0}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-xl bg-success-500/20 text-success-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'color-mix(in srgb, var(--color-success) 20%, transparent)', color: 'var(--color-success)' }}>
               <CheckCircle2 size={20} />
             </div>
           </div>
 
-          <div className="card p-4 flex items-center justify-between border-danger-500/30 bg-danger-950/10">
+          <div className="card p-4 flex items-center justify-between" style={{ borderColor: 'color-mix(in srgb, var(--color-danger) 30%, transparent)', background: 'color-mix(in srgb, var(--color-danger) 10%, transparent)' }}>
             <div>
-              <p className="text-xs text-slate-400 font-medium">Misplaced on Shelf</p>
-              <p className="text-2xl font-bold text-danger-400 font-display mt-0.5">
+              <p className="text-xs font-medium" style={{ color: 'var(--color-on-surface-variant)' }}>Misplaced on Shelf</p>
+              <p className="text-2xl font-bold font-display mt-0.5" style={{ color: 'var(--color-danger)' }}>
                 {auditReport.summary?.misplaced || 0}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-xl bg-danger-500/20 text-danger-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'color-mix(in srgb, var(--color-danger) 20%, transparent)', color: 'var(--color-danger)' }}>
               <AlertTriangle size={20} />
             </div>
           </div>
@@ -235,20 +235,20 @@ const InventoryAuditPage = () => {
       {/* Live Scan Results & Audit Log Table */}
       <Card>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-white text-base">Recent Audit Log & Shelf Verifications</h3>
-          <span className="text-xs text-slate-400">Total Scans: {auditReport.entries?.length || 0}</span>
+          <h3 className="font-bold text-base" style={{ color: 'var(--color-on-surface)' }}>Recent Audit Log & Shelf Verifications</h3>
+          <span className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>Total Scans: {auditReport.entries?.length || 0}</span>
         </div>
 
         {loadingReport ? (
           <SkeletonLoader variant="table-row" count={5} />
         ) : auditReport.entries.length === 0 ? (
-          <div className="text-center py-12 text-slate-500 text-sm">
+          <div className="text-center py-12 text-sm" style={{ color: 'var(--color-on-surface-muted)' }}>
             No copies scanned yet in this audit session. Start scanning items on the current shelf.
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="text-xs uppercase text-slate-400 border-b border-white/5 bg-bg-700/40">
+              <thead className="text-xs uppercase border-b" style={{ color: 'var(--color-on-surface-variant)', borderColor: 'var(--color-outline-variant)', background: 'color-mix(in srgb, var(--color-surface-container) 40%, transparent)' }}>
                 <tr>
                   <th className="py-3 px-4">Result</th>
                   <th className="py-3 px-4">Book Title</th>
@@ -259,35 +259,34 @@ const InventoryAuditPage = () => {
                   <th className="py-3 px-4">Time</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y" style={{ borderColor: 'var(--color-outline-variant)' }}>
                 {auditReport.entries.slice(0, 25).map((entry) => (
                   <tr
                     key={entry.audit_id}
-                    className={`hover:bg-bg-600/30 transition-colors
-                      ${entry.result === 'MISPLACED' ? 'bg-danger-950/15' : ''}
-                    `}
+                    className="transition-colors"
+                    style={entry.result === 'MISPLACED' ? { background: 'color-mix(in srgb, var(--color-danger) 15%, transparent)' } : undefined}
                   >
                     <td className="py-3 px-4">
                       <Badge variant={entry.result === 'VERIFIED' ? 'available' : entry.result === 'MISPLACED' ? 'overdue' : 'neutral'}>
                         {entry.result}
                       </Badge>
                     </td>
-                    <td className="py-3 px-4 font-semibold text-white max-w-xs truncate">
+                    <td className="py-3 px-4 font-semibold max-w-xs truncate" style={{ color: 'var(--color-on-surface)' }}>
                       {entry.book_title}
                     </td>
-                    <td className="py-3 px-4 font-mono text-primary-300 text-xs">
+                    <td className="py-3 px-4 font-mono text-xs" style={{ color: 'var(--color-primary)' }}>
                       {entry.accession_number}
                     </td>
-                    <td className="py-3 px-4 text-xs text-slate-300">
+                    <td className="py-3 px-4 text-xs" style={{ color: 'var(--color-on-surface)' }}>
                       {entry.expected_shelf || '—'}
                     </td>
-                    <td className="py-3 px-4 text-xs text-slate-400">
+                    <td className="py-3 px-4 text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
                       {entry.suggested_shelf || '—'}
                     </td>
-                    <td className="py-3 px-4 text-xs text-slate-400">
+                    <td className="py-3 px-4 text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
                       {entry.scanned_by_name || 'Librarian'}
                     </td>
-                    <td className="py-3 px-4 text-xs text-slate-500">
+                    <td className="py-3 px-4 text-xs" style={{ color: 'var(--color-on-surface-muted)' }}>
                       {format(new Date(entry.scan_date), 'dd MMM, HH:mm')}
                     </td>
                   </tr>

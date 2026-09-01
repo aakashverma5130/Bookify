@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Sign Up</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f0edf1",
+                        "on-error-container": "#93000a",
+                        "background": "#fbf8fc",
+                        "on-surface-light": "#1b1b1e",
+                        "accent-violet": "#7d84fe",
+                        "inverse-on-surface": "#f3f0f4",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-primary-fixed": "#081b3a",
+                        "on-secondary-container": "#060693",
+                        "surface-container-high": "#eae7eb",
+                        "inverse-surface": "#303033",
+                        "inverse-primary": "#b6c6ef",
+                        "tertiary-container": "#3e2700",
+                        "secondary-fixed": "#e0e0ff",
+                        "primary-container": "#1a2b4b",
+                        "secondary": "#4950c7",
+                        "on-surface-dark": "#f2f0f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "on-primary-container": "#8293b8",
+                        "surface-light": "#fbf8fc",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface-bright": "#fbf8fc",
+                        "surface-variant": "#e4e1e5",
+                        "on-surface": "#1b1b1e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#291800",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dcd9dd",
+                        "primary-fixed": "#d8e2ff",
+                        "primary": "#031635",
+                        "secondary-container": "#7d85fe",
+                        "warm-gray": "#e4e2e5",
+                        "surface-container-low": "#f5f3f7",
+                        "tertiary": "#231400",
+                        "outline": "#75777f",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#01006e",
+                        "surface": "#fbf8fc",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c5c6cf",
+                        "surface-dark": "#1a2b4b",
+                        "on-secondary-fixed-variant": "#2f35ae",
+                        "surface-container-highest": "#e4e1e5",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "on-surface-variant": "#44474e",
+                        "on-tertiary-container": "#b08d5b",
+                        "on-background": "#1b1b1e",
+                        "surface-tint": "#4e5e81"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-card {
+            background: rgba(26, 43, 75, 0.6); /* surface-dark */
+            border: 1px solid rgba(197, 198, 207, 0.2); /* outline-variant */
+        }
+        
+        .input-glow:focus {
+            box-shadow: 0 0 0 2px rgba(125, 132, 254, 0.3); /* accent-violet */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface-light min-h-screen h-screen relative overflow-hidden font-body-lg">
+<!-- Background Image -->
+<div class="fixed inset-0 w-full h-full z-0">
+<img alt="" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Pp7l8FA5VUcKNUGWbzl6iiWo4AI6gJFMDmvH1g9xMA-tnPVyM_Lgr860CF9jkP1pC_4Tu2f8v_x6u0XJeL1bRTIyqkfBNG3D85DJ0j8Fne4CR9CBRJ37ZccA5R-CAe8ehqprmcJu6YLdiXzVZKRZeQUTzga4xMsL18nTTtTrTeQJbQupiEYskyrad5RfvyX6Sl-Tza3L5sPqXhQq61ycQes8K91Uxdj4Sgxbh2HhbJvcs0h8KzMVaxHpPJl-Xu6Aog"/>
+</div>
+<!-- WebGL Shader Overlay -->
+<div class="fixed inset-0 w-full h-full z-10 pointer-events-none mix-blend-screen opacity-60">
+
+</div>
+<!-- Dark Gradient Overlay for readability -->
+<div class="fixed inset-0 w-full h-full z-10 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none"></div>
+<!-- Content Layer -->
+<div class="relative z-20 h-full flex items-center justify-center p-margin-mobile md:p-margin-desktop">
+<main class="w-full max-w-[480px] glass-card rounded-xl p-6 md:p-8 shadow-2xl animate-fade-in-up">
+<div class="text-center mb-6">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-3xl text-white mb-2 tracking-tight">Join Bookify</h1>
+<p class="font-body-sm text-body-sm text-gray-300">Create your account to explore the research archives.</p>
+</div>
+<form class="space-y-4" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div>
+<label class="block font-label-caps text-label-caps text-gray-300 mb-1 uppercase" for="fullName">Full Name</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</span>
+<input class="w-full bg-white/10 border border-white/20 rounded text-white placeholder-gray-400 pl-10 py-2 focus:outline-none focus:border-accent-violet input-glow transition-all duration-300 font-body-sm text-body-sm" id="fullName" placeholder="Jane Doe" required="" type="text"/>
+</div>
+</div>
+<!-- University Email -->
+<div>
+<label class="block font-label-caps text-label-caps text-gray-300 mb-1 uppercase" for="email">University Email</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</span>
+<input class="w-full bg-white/10 border border-white/20 rounded text-white placeholder-gray-400 pl-10 py-2 focus:outline-none focus:border-accent-violet input-glow transition-all duration-300 font-body-sm text-body-sm" id="email" placeholder="jane@university.edu" required="" type="email"/>
+</div>
+</div>
+<!-- Student ID -->
+<div>
+<label class="block font-label-caps text-label-caps text-gray-300 mb-1 uppercase" for="studentId">Student ID</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+</span>
+<input class="w-full bg-white/10 border border-white/20 rounded text-white placeholder-gray-400 pl-10 py-2 focus:outline-none focus:border-accent-violet input-glow transition-all duration-300 font-body-sm text-body-sm" id="studentId" placeholder="ID Number" required="" type="text"/>
+</div>
+</div>
+<!-- Password -->
+<div>
+<label class="block font-label-caps text-label-caps text-gray-300 mb-1 uppercase" for="password">Password</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</span>
+<input class="w-full bg-white/10 border border-white/20 rounded text-white placeholder-gray-400 pl-10 py-2 focus:outline-none focus:border-accent-violet input-glow transition-all duration-300 font-body-sm text-body-sm" id="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary border border-primary text-white font-title-sm text-title-sm py-2.5 rounded hover:bg-opacity-90 hover:opacity-90 transition-all duration-300 shadow-lg mt-5 flex justify-center items-center gap-2" type="submit">
+                    Create Account
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<div class="mt-6 text-center">
+<p class="font-body-sm text-body-sm text-gray-300">
+                    Already have an account? 
+                    <a class="text-accent-violet hover:text-white transition-colors duration-300 font-semibold underline-offset-4 hover:underline" href="#">Log In</a>
+</p>
+</div>
+</main>
+</div>
+</body></html>

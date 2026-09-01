@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LibraX Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1b1b1e",
+                      "status-issued": "#BA1A1A",
+                      "error": "#ba1a1a",
+                      "primary-container": "#081b3a",
+                      "on-tertiary-fixed": "#291800",
+                      "surface-bright": "#fbf8fc",
+                      "tertiary": "#000000",
+                      "primary-fixed": "#d8e2ff",
+                      "secondary-container": "#7d85fe",
+                      "on-primary-fixed-variant": "#364768",
+                      "on-secondary-fixed": "#01006e",
+                      "tertiary-fixed-dim": "#e8c08a",
+                      "on-error-container": "#93000a",
+                      "surface-container-high": "#eae7eb",
+                      "tertiary-container": "#291800",
+                      "map-grid-line": "#C5C6CF",
+                      "surface-dim": "#dcd9dd",
+                      "primary-fixed-dim": "#b6c6ee",
+                      "surface": "#fbf8fc",
+                      "inverse-primary": "#b6c6ee",
+                      "on-background": "#1b1b1e",
+                      "surface-tint": "#4e5e81",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#44474e",
+                      "outline-variant": "#c5c6cf",
+                      "secondary-fixed-dim": "#bfc2ff",
+                      "status-reserved": "#E36414",
+                      "outline": "#75777f",
+                      "surface-variant": "#e4e1e5",
+                      "secondary": "#4950c7",
+                      "surface-container": "#f0edf1",
+                      "on-tertiary-container": "#a07e4e",
+                      "surface-container-low": "#f5f3f7",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#2f35ae",
+                      "status-available": "#2D6A4F",
+                      "tertiary-fixed": "#ffddb1",
+                      "on-tertiary-fixed-variant": "#5d4217",
+                      "surface-container-highest": "#e4e1e5",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#303033",
+                      "admin-table-header": "#EFEDF0",
+                      "on-secondary-container": "#060693",
+                      "on-primary-container": "#7384a8",
+                      "inverse-on-surface": "#f3f0f4",
+                      "on-error": "#ffffff",
+                      "background": "#fbf8fc",
+                      "secondary-fixed": "#e0e0ff",
+                      "primary": "#000000",
+                      "on-primary-fixed": "#081b3a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "table-cell-px": "16px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "table-cell-py": "12px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-mono": [
+                              "monospace"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-lg antialiased min-h-screen flex flex-col md:flex-row">
+<!-- Mobile TopNavBar -->
+<nav class="md:hidden flex justify-between items-center w-full px-margin-mobile h-16 fixed top-0 z-50 bg-surface dark:bg-surface-container border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">LibraX</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 transition-transform hover:bg-surface-container-high p-1 rounded-full">search</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 transition-transform hover:bg-surface-container-high p-1 rounded-full">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 transition-transform hover:bg-surface-container-high p-1 rounded-full">qr_code_scanner</span>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small, circular avatar portrait of a university student looking studious in a well-lit library, shot with a shallow depth of field. Soft, modern corporate lighting with neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATg2mQhbfaQd2_PNJ3EYClKHlN1clhl6cJbTTmE2_24VjneI0wyNfxvor61ak6XdwMOpIjSB9WmZBUE7gljPf4nrMffniPxO_r_gDAdIlAJ-Kt19r7KkSoTUiusanRenTqfIyjEdM5h-QumkWT7lKk1W1a99MrBwo67jGUTbB8PoVN35PaD_T2fxy6pnP4BIY1BFwCAHYYUpWMQnKPP0wf3BQhIAE-jRgsoFCtoqgsYPwGS8v35g39"/>
+</div>
+</nav>
+<!-- Desktop SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 pt-20 pb-8 px-4 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant z-40">
+<div class="flex flex-col items-start mb-8 px-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">LibraX</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Intellectual Precision</span>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-xl transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-caps text-label-caps">Catalog</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-xl transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-label-caps text-label-caps">My Books</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-xl transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-caps text-label-caps">Reservations</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-xl transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">hourglass_empty</span>
+<span class="font-label-caps text-label-caps">Queue</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-label-caps text-label-caps flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                Quick Scan
+             </button>
+<ul class="flex flex-col gap-2">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span class="font-label-caps text-label-caps">Help</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 md:mt-0 md:ml-64 p-margin-mobile md:p-margin-desktop max-w-[1280px] mx-auto w-full">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Welcome back, Eleanor!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Here is your daily intellectual digest.</p>
+</div>
+<div class="relative w-full md:w-96 hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded-xl focus:border-primary focus:ring-0 font-body-sm text-body-sm transition-colors text-on-surface placeholder-outline" placeholder="Global Smart Search..." type="text"/>
+</div>
+</header>
+<!-- Stats Grid & Smart Card -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-unit mb-8">
+<!-- Stats -->
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-unit">
+<div class="bg-surface-container-low border border-outline-variant p-4 rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-2 h-2 rounded-full bg-status-issued"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Currently Borrowed</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary font-mono">03</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-4 rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Overdue</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary font-mono">00</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-4 rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-2 h-2 rounded-full bg-status-reserved"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Active Reservations</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary font-mono">01</span>
+</div>
+</div>
+<!-- Smart Card -->
+<div class="md:col-span-4 bg-inverse-surface text-on-secondary p-4 rounded-xl shadow-lg border border-outline-variant relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 right-0 p-2 opacity-20">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-sm">notifications_active</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed">Action Required</span>
+</div>
+<h3 class="font-title-sm text-title-sm mb-1">Database Systems</h3>
+<p class="font-body-sm text-body-sm text-surface-variant">Your reserved book is now available.</p>
+</div>
+<div class="mt-4 pt-4 border-t border-outline/30 flex justify-between items-center">
+<span class="font-data-mono text-data-mono">Desk 04</span>
+<span class="font-data-mono text-data-mono text-error-container">By Aug 30</span>
+</div>
+</div>
+</div>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-unit">
+<!-- Recommended Column -->
+<section class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-gutter flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-title-sm text-title-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">explore</span>
+                        Recommended for You
+                    </h2>
+<button class="font-label-caps text-label-caps text-secondary hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit flex-grow">
+<!-- Book Item -->
+<div class="flex gap-4 p-4 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="w-16 h-24 bg-surface-dim rounded flex-shrink-0 relative overflow-hidden">
+<img alt="Book cover" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="A clean, minimalist book cover featuring geometric shapes in muted navy and violet tones, titled 'Advanced Data Structures'. Clean modern typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK6FlZkcdtvtrQjeQLOGjuYnMlwKempyX5paW8LieoXEq_RElXrTpg-CMspJxLPdYZkzTTtUxatgKE2TG8cmCoh5fzhvwh3VHiUZ1I74v7cROUbNVB7INaBohQ2Z4P1zfUIKBoiUHnbdlpTOLYCw_ri8gKiZy6aoY0xF9GUS_4v6nGFliJEmONlJNtjTr0wOoiCgm7UuShy63M-FOTeuIpreiRi14HZWrxc1jZP7f_ZJCDWLaUsGmS"/>
+</div>
+<div class="flex flex-col justify-between">
+<div>
+<h4 class="font-title-sm text-title-sm text-primary mb-1 line-clamp-1">Advanced Data Structures</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">Dr. S. K. Singh</p>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="px-2 py-1 bg-surface-variant rounded text-xs font-data-mono text-on-surface-variant">CS-401</span>
+<div class="flex items-center gap-1 text-status-available">
+<div class="w-1.5 h-1.5 rounded-full bg-status-available"></div>
+<span class="font-label-caps text-label-caps text-[10px]">Available</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Book Item -->
+<div class="flex gap-4 p-4 border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="w-16 h-24 bg-surface-dim rounded flex-shrink-0 relative overflow-hidden">
+<img alt="Book cover" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="A striking minimalist book cover with a deep black background and a single glowing red geometric line, titled 'Machine Learning Principles'. High contrast, technical style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaL056BHqPak3iy0JEKcdAwQFaxiTiwazDHqsboFWa-T5W45rTBqS6bWFgk-8jO_53ZXZuIkop0OaweUKRIP4HbWPaa80dbbeqP6tThd-8F3MX-D1Eqysj-Xy7Zhc11-FlHVpdL8BIhLny2mICwNBEwCW5K_8KQRcqBPy30ef8JmWKHUGkTWW95oOIA-jcxExRFCZR4NFz9jML_RaKK_f-iopHOvxyjMBvL0z4uKqi25UW3BlNKCSS"/>
+</div>
+<div class="flex flex-col justify-between">
+<div>
+<h4 class="font-title-sm text-title-sm text-primary mb-1 line-clamp-1">Machine Learning</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1">A. Ng &amp; M. Jordan</p>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="px-2 py-1 bg-surface-variant rounded text-xs font-data-mono text-on-surface-variant">AI-302</span>
+<div class="flex items-center gap-1 text-status-issued">
+<div class="w-1.5 h-1.5 rounded-full bg-status-issued"></div>
+<span class="font-label-caps text-label-caps text-[10px]">Issued (Waitlist)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Queue & Recent Column -->
+<section class="lg:col-span-4 flex flex-col gap-unit">
+<!-- My Queue -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4">
+<h2 class="font-title-sm text-title-sm text-primary mb-4 flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline">hourglass_empty</span>
+                        My Queue
+                    </h2>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<div>
+<h4 class="font-body-sm text-body-sm font-medium text-primary">Intro to Algorithms</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Cormen et al.</p>
+</div>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-primary bg-secondary-fixed px-2 py-0.5 rounded">Pos: #4</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">~Sep 12</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recently Added -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex-grow">
+<h2 class="font-title-sm text-title-sm text-primary mb-4 flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-outline">new_releases</span>
+                        Recently Added
+                    </h2>
+<ul class="flex flex-col gap-3">
+<li class="flex items-center gap-3 group cursor-pointer">
+<span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">book</span>
+<div>
+<h5 class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">The Pragmatic Programmer</h5>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Added Today</p>
+</div>
+</li>
+<li class="flex items-center gap-3 group cursor-pointer">
+<span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">book</span>
+<div>
+<h5 class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Designing Data-Intensive Apps</h5>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Added 2 days ago</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+</div>
+<!-- Mobile BottomNavBar (Hidden on MD) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center h-16 px-4 z-50 shadow-[0_-4px_16px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-caps text-label-caps text-[10px]">Catalog</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="font-label-caps text-label-caps text-[10px]">Scan</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps text-[10px]">Profile</span>
+</a>
+</nav>
+<!-- Bottom padding for mobile nav -->
+<div class="h-20 md:h-0"></div>
+</main>
+</body></html>

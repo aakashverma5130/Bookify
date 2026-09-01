@@ -13,7 +13,7 @@ const AppShell = ({ children, title }) => {
   const sidebarWidth = collapsed ? COLLAPSED_WIDTH : EXPANDED_WIDTH;
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--color-bg-800)' }}>
+    <div className="min-h-screen" style={{ background: 'var(--color-background)' }}>
       <Sidebar collapsed={collapsed} onToggle={() => setCollapsed(c => !c)} />
       <TopBar
         sidebarWidth={sidebarWidth}

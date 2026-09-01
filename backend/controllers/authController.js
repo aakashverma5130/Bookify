@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const db = require('../config/db');
 const otpService = require('../services/otpService');
+const { invalidateTokenCache } = require('../middleware/authMiddleware');
+const log = require('../logger');
 
 const BCRYPT_ROUNDS = 12;
 
@@ -20,15 +22,35 @@ const resetPasswordValidation = [
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-const signToken = (userId, role) =>
-  jwt.sign({ userId, role }, process.env.JWT_SECRET, {
+const signToken = (userId, role, tokenVersion = 0) =>
+  jwt.sign({ userId, role, tv: tokenVersion }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   });
 
+/**
+ * Bump the user's `token_version` so every previously-issued JWT is
+ * considered stale. H-3 — used by logout and password reset.
+ */
+const bumpTokenVersion = async (userId, client) => {
+  const q = client ? client.query.bind(client) : db.query;
+  await q(
+    `UPDATE users SET token_version = token_version + 1, updated_at = NOW() WHERE user_id = $1`,
+    [userId]
+  );
+};
+
+/**
+ * Validation error handler. Returns a response that matches the shape
+ * used by `middleware/validation.js` so the frontend sees a consistent
+ * error contract across all routes.
+ */
 const handleValidationErrors = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res.status(400).json({ errors: errors.array() });
+    res.status(400).json({
+      error: 'Validation failed',
+      details: errors.array().map(e => ({ field: e.path || e.param, message: e.msg })),
+    });
     return true;
   }
   return false;
@@ -46,7 +68,7 @@ const login = async (req, res) => {
 
   try {
     const result = await db.query(
-      `SELECT u.user_id, u.name, u.email, u.password_hash, u.role, u.is_active,
+      `SELECT u.user_id, u.name, u.email, u.password_hash, u.role, u.is_active, u.token_version,
               s.student_id, l.librarian_id
        FROM users u
        LEFT JOIN students s ON s.user_id = u.user_id
@@ -70,7 +92,7 @@ const login = async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    const token = signToken(user.user_id, user.role);
+    const token = signToken(user.user_id, user.role, user.token_version || 0);
 
     return res.json({
       token,
@@ -84,17 +106,25 @@ const login = async (req, res) => {
       },
     });
   } catch (err) {
-    console.error('[AUTH] Login error:', err.message);
+    log.error('auth_login_failed', { message: err.message });
     return res.status(500).json({ error: 'Login failed. Please try again.' });
   }
 };
 
 /**
  * POST /api/auth/logout
- * JWT is stateless; logout is handled client-side.
- * This endpoint is a convention — can be used to log the event or blacklist tokens in future.
+ * Bump the user's `token_version` so the issued JWT can no longer be used
+ * (H-3). Stateless JWT is now effectively invalidated server-side.
  */
-const logout = (_req, res) => {
+const logout = async (req, res) => {
+  try {
+    await bumpTokenVersion(req.user.userId);
+    // Invalidate the in-memory cache so the next request can't reuse the
+    // old `tv` value during the cache TTL window.
+    invalidateTokenCache(req.user.userId);
+  } catch (err) {
+    log.error('auth_logout_failed', { message: err.message, userId: req.user.userId });
+  }
   res.json({ message: 'Logged out successfully' });
 };
 
@@ -122,7 +152,7 @@ const forgotPassword = async (req, res) => {
       message: 'If an account with that email exists, an OTP has been sent.',
     });
   } catch (err) {
-    console.error('[AUTH] Forgot password error:', err.message);
+    log.error('auth_forgot_password_failed', { message: err.message });
     return res.status(500).json({ error: 'Failed to process request' });
   }
 };
@@ -190,9 +220,10 @@ const resetPassword = async (req, res) => {
   const hash = await bcrypt.hash(password, BCRYPT_ROUNDS);
 
   await db.query(
-    `UPDATE users SET password_hash = $1, updated_at = NOW() WHERE user_id = $2`,
+    `UPDATE users SET password_hash = $1, token_version = token_version + 1, updated_at = NOW() WHERE user_id = $2`,
     [hash, payload.userId]
   );
+  invalidateTokenCache(payload.userId);
 
   return res.json({ message: 'Password reset successfully. Please log in again.' });
 };
@@ -232,7 +263,7 @@ const getMe = async (req, res) => {
       librarian: u.librarian_id ? { librarianId: u.librarian_id, staffId: u.staff_id, designation: u.designation } : null,
     });
   } catch (err) {
-    console.error('[AUTH] getMe error:', err.message);
+    log.error('auth_getMe_failed', { message: err.message, userId: req.user.userId });
     res.status(500).json({ error: 'Failed to fetch user' });
   }
 };

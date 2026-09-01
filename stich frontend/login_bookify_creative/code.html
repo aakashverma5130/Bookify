@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-ink": "#1b1b1e",
+                        "primary-fixed": "#d8e2ff",
+                        "inverse-primary": "#b6c6ef",
+                        "surface-dim": "#dcd9dd",
+                        "surface-tint": "#4e5e81",
+                        "on-primary-fixed": "#081b3a",
+                        "surface-container": "#f0edf1",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#b08d5b",
+                        "tertiary-fixed": "#ffddb1",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e4e1e5",
+                        "surface-bright": "#fbf8fc",
+                        "primary": "#031635",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e4e1e5",
+                        "secondary": "#4950c7",
+                        "primary-container": "#1a2b4b",
+                        "outline-variant": "#c5c6cf",
+                        "error": "#ba1a1a",
+                        "surface-paper": "#f5f3f6",
+                        "surface-container-high": "#eae7eb",
+                        "on-tertiary-fixed": "#291800",
+                        "on-surface": "#1b1b1e",
+                        "on-secondary-container": "#060693",
+                        "secondary-fixed": "#e0e0ff",
+                        "inverse-on-surface": "#f3f0f4",
+                        "inverse-surface": "#303033",
+                        "surface": "#fbf8fc",
+                        "accent-warm": "#ffddb1",
+                        "on-primary-fixed-variant": "#364768",
+                        "surface-container-low": "#f5f3f7",
+                        "tertiary-container": "#3e2700",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "tertiary": "#231400",
+                        "on-secondary-fixed": "#01006e",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "outline": "#75777f",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#44474e",
+                        "secondary-container": "#7d85fe",
+                        "on-secondary-fixed-variant": "#2f35ae",
+                        "on-background": "#1b1b1e",
+                        "on-primary-container": "#8293b8",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fbf8fc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px",
+                        "gutter": "32px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "title-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "800" }],
+                        "display-xl": ["72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Left Hemisphere: Immersive Editorial Imagery -->
+<div class="hidden md:flex md:w-1/2 relative bg-surface-ink overflow-hidden group">
+<!-- Parallax Container -->
+<div class="absolute inset-0 w-full h-full transform transition-transform duration-1000 ease-out group-hover:scale-105" data-alt="A breathtaking photograph of a modern university library interior. Soft, warm morning sunlight streams through towering architectural windows, casting long elegant shadows across meticulously arranged rows of academic texts. The scene embodies a refined 'Minimalist-Editorial' aesthetic, utilizing a sophisticated palette of deep navy shadows and bright, pristine whites. The mood is intellectually rigorous, serene, and deeply inspiring." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLXjFl93fmJL32K_HV8rzaKYT6jbKrn7LCNSnXxgmrQuKd343bChmvzJ7SWTRGc18eaveWLkEsvVxg_FmdFfoQ_KNsDUVCoTC_EtfkeaM-ZPubHXqf0iQ_jIr8wCejkvFI-k67PS3m3FGLCjlwUn6dS2WwRiLqbaL3CHghXkXsbrnuHv8wUo0bhoQjItx9kyT20hKAEEsbMoi7lfyFm2qKedXvh4MrwdkmjeQchvDmJQPvKm36uXGF')">
+</div>
+<!-- Subtle Gradient Overlay for Text Contrast & Depth -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-ink/80 via-transparent to-transparent"></div>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+<!-- Editorial Caption -->
+<div class="absolute bottom-margin-desktop left-margin-desktop pr-margin-desktop z-10">
+<h2 class="font-headline-md text-headline-md text-surface-container-lowest mb-2 opacity-90 leading-tight">The intersection of <br/>knowledge and design.</h2>
+<p class="font-body-sm text-body-sm text-surface-variant/80 tracking-wide">University College Library, Circa 2024</p>
+</div>
+</div>
+<!-- Right Hemisphere: Minimalist Form Canvas -->
+<div class="w-full md:w-1/2 flex flex-col justify-center px-margin-mobile md:px-[10%] lg:px-[15%] py-section-gap min-h-screen bg-surface relative z-10">
+<div class="max-w-md w-full mx-auto">
+<!-- Brand Anchor -->
+<div class="mb-16">
+<h1 class="font-display-lg text-display-lg md:font-display-lg md:text-display-lg text-primary tracking-tighter">Bookify.</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Welcome back. Please enter your credentials to access the academic archive.</p>
+</div>
+<!-- Login Form -->
+<form action="#" class="space-y-8" method="POST">
+<!-- Input: Student ID -->
+<div class="relative group">
+<input class="peer w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md text-on-surface focus:ring-0 focus:border-primary transition-colors duration-300 placeholder-transparent" id="student_id" name="student_id" placeholder="Student ID" required="" type="text"/>
+<label class="absolute left-0 top-3 font-body-md text-body-md text-outline cursor-text transition-all duration-300 peer-focus:-top-4 peer-focus:text-xs peer-focus:font-label-caps peer-focus:text-primary peer-valid:-top-4 peer-valid:text-xs peer-valid:font-label-caps" for="student_id">
+                        Student ID
+                    </label>
+</div>
+<!-- Input: Password -->
+<div class="relative group">
+<input class="peer w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md text-on-surface focus:ring-0 focus:border-primary transition-colors duration-300 placeholder-transparent" id="password" name="password" placeholder="Password" required="" type="password"/>
+<label class="absolute left-0 top-3 font-body-md text-body-md text-outline cursor-text transition-all duration-300 peer-focus:-top-4 peer-focus:text-xs peer-focus:font-label-caps peer-focus:text-primary peer-valid:-top-4 peer-valid:text-xs peer-valid:font-label-caps" for="password">
+                        Password
+                    </label>
+<button aria-label="Toggle password visibility" class="absolute right-0 top-3 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+<!-- Action Area -->
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+<button class="w-full sm:w-auto bg-primary text-on-primary font-label-caps text-label-caps px-8 py-4 rounded hover:bg-secondary transition-all duration-300 shadow-sm hover:shadow-md hover:tracking-widest flex items-center justify-center gap-2 group" type="submit">
+                        Sign In
+                        <span class="material-symbols-outlined text-[16px] transform group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors border-b-2 border-transparent hover:border-tertiary-fixed-dim pb-1" href="#">
+                        Forgot credentials?
+                    </a>
+</div>
+</form>
+<!-- Registration Prompt -->
+<div class="mt-16 pt-8 border-t border-outline-variant/30 text-center sm:text-left">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    New to the institution? 
+                    <a class="font-title-sm text-title-sm text-primary hover:text-secondary transition-colors underline underline-offset-4 decoration-2 decoration-accent-warm hover:decoration-secondary" href="#">
+                        Create an account
+                    </a>
+</p>
+</div>
+</div>
+</div>
+</body></html>

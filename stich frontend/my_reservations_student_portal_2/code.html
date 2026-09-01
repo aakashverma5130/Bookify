@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Reservations - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#684000",
+                        "primary-fixed": "#ffddb8",
+                        "tertiary": "#474647",
+                        "on-tertiary-fixed": "#1c1b1c",
+                        "surface": "#fdf9e9",
+                        "on-primary-fixed-variant": "#653e00",
+                        "inverse-surface": "#323126",
+                        "inverse-primary": "#fdb965",
+                        "tertiary-fixed-dim": "#c8c6c6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#fdb965",
+                        "outline-variant": "#d5c4b2",
+                        "background": "#fdf9e9",
+                        "on-primary": "#ffffff",
+                        "ink-secondary": "#474747",
+                        "error": "#ba1a1a",
+                        "surface-container": "#f2eede",
+                        "primary": "#653e00",
+                        "on-background": "#1C1C13",
+                        "surface-container-high": "#ece8d9",
+                        "surface-variant": "#e6e3d3",
+                        "surface-container-highest": "#e6e3d3",
+                        "on-primary-container": "#ffd09a",
+                        "secondary-fixed": "#ffddb8",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#514538",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container-low": "#f8f4e4",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "accent-warm": "#F59E0B",
+                        "surface-base": "#FFFBEB",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#5f5e5e",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#dbd8d7",
+                        "accent-deep": "#D97706",
+                        "primary-container": "#855300",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-bright": "#fdf9e9",
+                        "secondary-container": "#fea619",
+                        "secondary": "#855300",
+                        "inverse-on-surface": "#f5f1e1",
+                        "surface-dim": "#dedacb",
+                        "outline": "#837566",
+                        "on-primary-fixed": "#2a1700",
+                        "on-tertiary-fixed-variant": "#474647",
+                        "on-surface": "#1c1c13",
+                        "surface-tint": "#855300",
+                        "ink-primary": "#1B1B1B",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#2a1700"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "content-max-width": "1280px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "data-mono": ["monospace"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fdf9e9; /* surface */
+            color: #1c1c13; /* on-surface */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg antialiased flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-outline-variant/40 bg-surface flex-col py-8 px-4 z-40">
+<div class="mb-10 px-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Academic Portal</p>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm text-body-sm font-medium">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-body-sm text-body-sm font-medium">Catalog</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+<span class="font-body-sm text-body-sm font-medium">My Books</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-2 border-accent-warm bg-surface-container-high/50" href="#">
+<span class="material-symbols-outlined" data-icon="event_seat">event_seat</span>
+<span class="font-body-sm text-body-sm font-bold">My Reservations</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person_outline">person_outline</span>
+<span class="font-body-sm text-body-sm font-medium">My Profile</span>
+</a>
+</li>
+</ul>
+<button class="mt-4 mb-8 bg-accent-warm text-white px-4 py-3 rounded text-sm font-medium w-full text-center hover:bg-accent-deep transition-colors">
+            Browse New Arrivals
+        </button>
+<ul class="flex flex-col gap-2 pt-4 border-t border-outline-variant/40">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-sm text-body-sm font-medium">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-sm text-body-sm font-medium">Support</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:pl-64 flex flex-col min-h-screen">
+<!-- TopNavBar (Mobile Only for Navigation Shell rules, but keeping header elements) -->
+<header class="md:hidden flex justify-between items-center h-16 w-full px-4 border-b border-outline-variant/40 bg-surface/80 backdrop-blur-md sticky top-0 z-50">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Bookify</h1>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">search</span></button>
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</header>
+<!-- Desktop Header Content -->
+<div class="hidden md:flex justify-between items-center h-16 w-full px-10 border-b border-outline-variant/40 bg-surface/80 backdrop-blur-md sticky top-0 z-30">
+<div class="flex-1"></div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-accent-warm transition-colors focus-within:ring-1 focus-within:ring-accent-warm rounded p-1"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="text-on-surface-variant hover:text-accent-warm transition-colors focus-within:ring-1 focus-within:ring-accent-warm rounded p-1"><span class="material-symbols-outlined" data-icon="history">history</span></button>
+<button class="bg-surface-container-high text-primary px-4 py-2 rounded border border-accent-warm font-title-sm text-title-sm hover:bg-surface-container transition-colors">Check In</button>
+<img alt="Academic profile avatar" class="w-8 h-8 rounded-full border border-outline-variant/40 object-cover" data-alt="A small circular profile avatar of an academic student in a light beige library setting. Soft, warm lighting, professional yet approachable mood. Corporate editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr8duhvw4NfgfT7p2CQAAcfalL6FbDPVIE0NJP9cP-sjP2LWHaO0cZfmzUmY1OtIp3yBRiVkdCtI6OQD37ZiV_vx9xR_3tmT3DhCYP6Ya-jUi3Tv9G6fyoOzLWzamgTfXk2cecW6CBNlNMnBUYc0OCzxcKFnSoFB8smqRT43hMw6hmN5jbdA1bYajmt-VqHH_Q85XPSczcRtRFGCQPPPYiZW3qrB-UIQBi-2iUsXxgvr1xNdzeeuNs"/>
+</div>
+</div>
+<div class="p-margin-mobile md:p-margin-desktop max-w-content-max-width mx-auto w-full">
+<div class="mb-12">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">My Reservations</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl">Track the status of your requested volumes. Your position in the queue determines the estimated availability date.</p>
+</div>
+<!-- Bento Grid Layout for Reservations -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Primary Active Reservation (Spans more columns) -->
+<div class="lg:col-span-8 bg-surface-container-high rounded-xl border border-outline-variant/40 p-6 shadow-sm flex flex-col sm:flex-row gap-6 relative overflow-hidden group">
+<div class="w-full sm:w-48 h-64 sm:h-auto shrink-0 rounded bg-surface-container flex items-center justify-center border border-outline-variant/40 relative">
+<!-- Abstract placeholder instead of direct book image to fit editorial style -->
+<div class="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-multiply" data-alt="Abstract geometric editorial illustration representing structural engineering concepts. Clean lines, parchment and gold tones, minimalist academic aesthetic. A stylized arch or blueprint motif." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAKQcV4ww6TXyUtjn5tobgrYLLwkxxNdAmGBDiqewxkocf21SEkA432x1UwKKZ5QdeZM_4U-yPxy27fYqD1h0XxQKtgOm3amyzBtV-ljjt5KkUxXQYHNVmBxKy8PmlN6Q2XboJzTmisV7PWJfGqsTpUgTYw65ktfq_DFlnil_MWnCh7JfpNvHGmY9fWf0SeCb7QBfb5bbpvQSI1qrY2Zb0fE0ExoYnB4sn7Yg_w6O5O3eQebFh1xv-u')"></div>
+<span class="material-symbols-outlined text-4xl text-outline relative z-10">architecture</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-accent-warm bg-surface-base px-2 py-1 rounded border border-accent-warm/20">Next Available</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant">REQ-8942-A</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Advanced Structural Mechanics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Dr. H. Rossi • 4th Edition</p>
+<div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/30 mb-4">
+<div class="flex justify-between items-center mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Queue Position</span>
+<span class="font-title-sm text-title-sm text-primary">1 of 4</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-1.5 mb-2">
+<div class="bg-accent-warm h-1.5 rounded-full w-3/4"></div>
+</div>
+<p class="font-body-sm text-body-sm text-ink-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">event_available</span>
+                                    Est. Available: <strong class="text-primary">Oct 12 - Oct 14</strong>
+</p>
+</div>
+</div>
+<div class="flex gap-3 mt-4">
+<button class="bg-surface text-error border border-error/30 px-4 py-2 rounded text-body-sm font-medium hover:bg-error-container/50 transition-colors flex-1 sm:flex-none text-center">
+                                Cancel Reservation
+                            </button>
+</div>
+</div>
+</div>
+<!-- Secondary Reservation -->
+<div class="lg:col-span-4 bg-surface-container-high rounded-xl border border-outline-variant/40 p-6 shadow-sm flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-title-sm text-title-sm text-primary leading-tight">The Principles of Quantum Computing</h3>
+<span class="font-label-caps text-label-caps text-ink-secondary bg-surface-variant px-2 py-1 rounded">Waitlisted</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-grow">J.D. Patterson • 2022 Edition</p>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Queue Position</span>
+<span class="font-title-sm text-title-sm text-primary">7 of 12</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Est. Available</span>
+<span class="font-body-sm text-body-sm text-primary font-medium">Late Nov</span>
+</div>
+<button class="w-full bg-surface-container-lowest text-ink-secondary border border-outline-variant/50 px-4 py-2 rounded text-body-sm font-medium hover:bg-surface-variant transition-colors mt-2">
+                            Cancel
+                        </button>
+</div>
+</div>
+<!-- Tertiary Reservation -->
+<div class="lg:col-span-4 bg-surface-container-high rounded-xl border border-outline-variant/40 p-6 shadow-sm flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-title-sm text-title-sm text-primary leading-tight">Modern Compiler Implementation</h3>
+<span class="font-label-caps text-label-caps text-ink-secondary bg-surface-variant px-2 py-1 rounded">Waitlisted</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-grow">A.W. Appel • In C</p>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Queue Position</span>
+<span class="font-title-sm text-title-sm text-primary">3 of 5</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Est. Available</span>
+<span class="font-body-sm text-body-sm text-primary font-medium">Oct 28</span>
+</div>
+<button class="w-full bg-surface-container-lowest text-ink-secondary border border-outline-variant/50 px-4 py-2 rounded text-body-sm font-medium hover:bg-surface-variant transition-colors mt-2">
+                            Cancel
+                        </button>
+</div>
+</div>
+<!-- Information Card -->
+<div class="lg:col-span-8 bg-surface-container-low rounded-xl border border-outline-variant/20 p-8 flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm text-primary mb-1">Reservation Policy</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Books are held for 48 hours once they become available. If not checked out within this window, they will pass to the next student in the queue. You will receive an email notification when your reserved item is ready for pickup at the main desk.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

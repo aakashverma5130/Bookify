@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-base": "#FFFBEB",
+                      "secondary-fixed": "#ffdcc3",
+                      "on-secondary-fixed-variant": "#6e3900",
+                      "surface-container-low": "#f8f4e4",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "surface-container-high": "#ece8d9",
+                      "on-tertiary-container": "#444343",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#fdf9e9",
+                      "outline-variant": "#d8c3ad",
+                      "surface-container-highest": "#e6e3d3",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#ffb77d",
+                      "on-secondary-container": "#663500",
+                      "surface-dim": "#dedacb",
+                      "ink-secondary": "#474747",
+                      "primary-fixed": "#ffddb8",
+                      "background": "#fdf9e9",
+                      "tertiary-fixed": "#e5e2e1",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "surface": "#fdf9e9",
+                      "primary": "#855300",
+                      "secondary": "#904d00",
+                      "inverse-on-surface": "#f5f1e1",
+                      "primary-fixed-dim": "#ffb95f",
+                      "ink-primary": "#1B1B1B",
+                      "inverse-primary": "#ffb95f",
+                      "accent-deep": "#D97706",
+                      "on-surface-variant": "#534434",
+                      "outline": "#867461",
+                      "on-background": "#1c1c13",
+                      "on-primary-container": "#613b00",
+                      "accent-warm": "#F59E0B",
+                      "on-primary-fixed-variant": "#653e00",
+                      "on-primary-fixed": "#2a1700",
+                      "on-tertiary-fixed": "#1b1b1b",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#b2b0b0",
+                      "primary-container": "#f59e0b",
+                      "tertiary": "#5f5e5e",
+                      "surface-container": "#F9F4E1",
+                      "secondary-container": "#fe932c",
+                      "inverse-surface": "#323126",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#1c1c13",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#855300",
+                      "surface-variant": "#e6e3d3",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#2f1500"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "margin-desktop": "40px",
+                      "content-max-width": "1280px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "label-caps": ["Plus Jakarta Sans"],
+                      "title-sm": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "data-mono": ["monospace"],
+                      "display-lg-mobile": ["Plus Jakarta Sans"],
+                      "body-sm": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                      "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                      "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                      "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                      "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                      "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                      "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-content-max-width mx-auto">
+<div class="flex items-center gap-gutter">
+<a class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim" href="#">Bookify</a>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="font-title-sm text-title-sm text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 px-2 py-1 rounded" href="#">Home</a>
+<a class="font-title-sm text-title-sm text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 px-2 py-1 rounded" href="#">Library</a>
+<a class="font-title-sm text-title-sm text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 px-2 py-1 rounded" href="#">About</a>
+<a class="font-title-sm text-title-sm text-primary dark:text-primary-fixed-dim border-b-2 border-primary font-bold hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 px-2 py-1" href="#">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-unit">
+<button class="hidden md:block font-label-caps text-label-caps text-ink-primary hover:bg-surface-container-high px-4 py-2 rounded transition-colors">Login</button>
+<button class="bg-accent-warm text-ink-primary font-label-caps text-label-caps px-4 py-2 rounded hover:bg-accent-deep transition-colors">Sign Up</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-content-max-width mx-auto px-margin-mobile md:px-margin-desktop py-gutter md:py-12 flex flex-col md:flex-row gap-gutter">
+<!-- Left Column: Contact Form -->
+<div class="w-full md:w-2/3 flex flex-col gap-gutter">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-ink-primary mb-unit">Contact the Archives</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Submit inquiries regarding institutional access, archival standards, or general assistance.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-lg">
+<form class="flex flex-col gap-unit">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="name">Full Name</label>
+<input class="bg-surface-bright border border-outline-variant rounded p-3 font-body-sm text-body-sm focus:border-accent-deep focus:ring-1 focus:ring-accent-deep outline-none transition-colors" id="name" placeholder="e.g. Jane Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="email">Institutional Email</label>
+<input class="bg-surface-bright border border-outline-variant rounded p-3 font-body-sm text-body-sm focus:border-accent-deep focus:ring-1 focus:ring-accent-deep outline-none transition-colors" id="email" placeholder="jane@university.edu" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="subject">Subject of Inquiry</label>
+<select class="bg-surface-bright border border-outline-variant rounded p-3 font-body-sm text-body-sm focus:border-accent-deep focus:ring-1 focus:ring-accent-deep outline-none transition-colors" id="subject">
+<option>General Support</option>
+<option>Archival Access Request</option>
+<option>Research Consultation</option>
+<option>Technical Issue</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="message">Message</label>
+<textarea class="bg-surface-bright border border-outline-variant rounded p-3 font-body-sm text-body-sm focus:border-accent-deep focus:ring-1 focus:ring-accent-deep outline-none transition-colors resize-y" id="message" placeholder="Detail your request here..." rows="6"></textarea>
+</div>
+<div class="mt-4 flex justify-end">
+<button class="bg-accent-warm text-ink-primary font-label-caps text-label-caps px-8 py-3 rounded hover:bg-accent-deep transition-colors flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">send</span>
+                            Submit Inquiry
+                        </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Right Column: Institutional Details & Map -->
+<div class="w-full md:w-1/3 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-lg flex flex-col gap-unit">
+<h2 class="font-title-sm text-title-sm text-ink-primary border-b border-outline-variant pb-2 mb-2">Institutional Details</h2>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent-deep mt-1" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Primary Archive</span>
+<p class="font-body-sm text-body-sm text-ink-secondary">Bookify Central Library<br/>1400 Scholar's Way<br/>Cambridge, MA 02138</p>
+</div>
+</div>
+<div class="flex items-start gap-3 mt-2">
+<span class="material-symbols-outlined text-accent-deep mt-1" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Reading Room Hours</span>
+<p class="font-body-sm text-body-sm text-ink-secondary">Mon - Fri: 08:00 - 20:00<br/>Sat - Sun: 10:00 - 18:00</p>
+</div>
+</div>
+<div class="flex items-start gap-3 mt-2">
+<span class="material-symbols-outlined text-accent-deep mt-1" style="font-variation-settings: 'FILL' 1;">call</span>
+<div>
+<span class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Help Desk</span>
+<p class="font-data-mono text-data-mono text-ink-secondary">+1 (800) 555-0199</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden h-64 relative group">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-105" data-alt="A detailed map view of Cambridge, Massachusetts, designed with a warm, minimalist aesthetic. The map features soft cream and beige tones for landmasses, with subtle orange accents highlighting major roads and the location of a central academic library. The style is reminiscent of high-quality, vintage academic atlases, maintaining a clean, professional, and sophisticated look appropriate for a scholarly web interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDz5VB1rAllYa4AkRVrDh3eczfk5CP9bu8AcyY4G4Y0UQTf5IkPaJ5fptWTm83PwY5c540ChH63MY-2bOuQ5gBPIGyHQ_k-2rL2YLG9fbdnETxh6zeRbFkrcULbtghY7qSIi9PSzbOf0aS_zYECT7uZyRrD2gB7pSwy2wwDf1ZRysUBJkuhHdvWfmLrs8vNQpQBmuB4nArvZKYuO1uUZj9scPD18cNXvazplpPon8LvFjIkVYpnM7FT')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-surface-container-lowest border border-outline-variant px-3 py-1 rounded font-label-caps text-label-caps text-ink-primary shadow-sm">View Floor Plan</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline flat no shadows mt-auto">
+<div class="w-full py-12 px-margin-desktop grid grid-cols-1 md:grid-cols-2 items-center gap-gutter max-w-content-max-width mx-auto">
+<div class="flex flex-col gap-unit">
+<span class="font-display-lg text-display-lg text-ink-primary">Bookify</span>
+<p class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed-dim">© 2024 Bookify Library Systems. All intellectual property reserved.</p>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
+<a class="font-body-sm text-body-sm text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Institutional Access</a>
+<a class="font-body-sm text-body-sm text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Archival Standards</a>
+</div>
+</div>
+</footer>
+</body></html>

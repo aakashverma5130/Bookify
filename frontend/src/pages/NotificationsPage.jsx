@@ -49,8 +49,8 @@ const NotificationsPage = () => {
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <Bell size={20} className="text-primary-400" />
-            <span className="text-slate-400 text-sm">{unreadCount} unread</span>
+            <Bell size={20} style={{ color: 'var(--color-primary)' }} />
+            <span className="text-sm" style={{ color: 'var(--color-on-surface-variant)' }}>{unreadCount} unread</span>
           </div>
           {unreadCount > 0 && (
             <Button variant="secondary" size="sm" icon={CheckCheck} onClick={markAllRead}>
@@ -60,11 +60,11 @@ const NotificationsPage = () => {
         </div>
 
         {loading ? (
-          <p className="text-slate-400 text-sm">Loading…</p>
+          <p className="text-sm" style={{ color: 'var(--color-on-surface-variant)' }}>Loading…</p>
         ) : notifs.length === 0 ? (
           <Card>
-            <div className="flex flex-col items-center py-12 gap-3 text-slate-400">
-              <Bell size={48} className="text-slate-600" />
+            <div className="flex flex-col items-center py-12 gap-3" style={{ color: 'var(--color-on-surface-variant)' }}>
+              <Bell size={48} style={{ color: 'var(--color-on-surface-muted)' }} />
               <p className="text-sm">No notifications yet</p>
             </div>
           </Card>
@@ -81,21 +81,25 @@ const NotificationsPage = () => {
               >
                 <div className="flex items-start gap-3">
                   {!n.is_read && (
-                    <div className="w-2 h-2 rounded-full bg-primary-400 mt-1.5 flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: 'var(--color-primary)' }} />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="text-sm font-semibold text-white">{n.title}</p>
+                      <p className="text-sm font-semibold" style={{ color: 'var(--color-on-surface)' }}>{n.title}</p>
                       <Badge variant={TYPE_BADGE[n.type] || 'neutral'}>{n.type}</Badge>
                     </div>
-                    <p className="text-xs text-slate-400">{n.message}</p>
-                    <p className="text-[10px] text-slate-600 mt-1">
+                    <p className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>{n.message}</p>
+                    <p className="text-[10px] mt-1" style={{ color: 'var(--color-on-surface-muted)' }}>
                       {formatDistanceToNow(new Date(n.created_at), { addSuffix: true })}
                     </p>
                   </div>
                   {!n.is_read && (
                     <button onClick={(e) => { e.stopPropagation(); markRead(n.notification_id); }}
-                      className="p-1.5 rounded-lg text-slate-500 hover:text-success-400 hover:bg-success-500/10 transition-colors">
+                      className="p-1.5 rounded-lg transition-colors"
+                      style={{ color: 'var(--color-on-surface-muted)' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--color-success)'; e.currentTarget.style.background = 'color-mix(in srgb, var(--color-success) 10%, transparent)'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--color-on-surface-muted)'; e.currentTarget.style.background = 'transparent'; }}
+                    >
                       <Check size={14} />
                     </button>
                   )}

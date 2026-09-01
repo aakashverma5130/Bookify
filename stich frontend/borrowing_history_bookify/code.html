@@ -1,0 +1,281 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Borrowing History - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "outline-variant": "#c5c6cf",
+                        "surface": "#fbf8fc",
+                        "on-surface": "#1b1b1e",
+                        "secondary": "#4950c7",
+                        "on-surface-variant": "#44474e",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#8293b8",
+                        "primary-container": "#1a2b4b",
+                        "secondary-container": "#7d84fe",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3f6",
+                        "surface-container": "#efedf0",
+                        "on-secondary-container": "#070494",
+                        "on-secondary-fixed": "#02006d",
+                        "secondary-fixed": "#e0e0ff",
+                        "on-tertiary-container": "#b08d5b",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fbf8fc",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-secondary-fixed-variant": "#3035af",
+                        "inverse-primary": "#b6c6ef",
+                        "tertiary": "#231400",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface-container-highest": "#e4e2e5",
+                        "surface-container-high": "#e9e7eb",
+                        "surface-tint": "#4e5e81",
+                        "background": "#fbf8fc",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#303033",
+                        "tertiary-fixed": "#ffddb1",
+                        "surface-variant": "#e4e2e5",
+                        "surface-dim": "#dbd9dc",
+                        "on-primary-fixed": "#081b3a",
+                        "on-background": "#1b1b1e",
+                        "primary": "#031635",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "on-tertiary-fixed": "#291800",
+                        "outline": "#75777f",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#3e2700",
+                        "inverse-on-surface": "#f2f0f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Staggered entrance animation */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .stagger-item {
+            opacity: 0;
+            animation: fadeUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-lg">
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-surface-container-lowest dark:bg-surface-container-low h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col h-full py-8 hidden md:flex z-50">
+<div class="px-6 mb-12">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded object-cover" data-alt="A minimalist and elegant institutional logo for an academic library, featuring abstract geometric representations of books in deep navy blue on a pure white background. The style is clean, modern, and suitable for a high-end university setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEv3wxWsz3z1lk8TYYMOZ3fh-nW0bGCJbnw07b_emnrAxq3LbDSRJ-J4rNjbesCCy1PF9xlKNJcS21yCgdupzoz-7j0YAtqwDbiJ04LBmXs4DIks-iECJe0d4TaufbIyHBqpncQbYmYeFwnDoxGEu2IZRcsm9HTqnkbxaXDeL-aMz4VuJiYGYY8tk4OXdpQF2yG04RkVLwxPZKPXb1E5U_fCF0q1DPwh4MM4CuQ_LMT6SbN5hXwdA1">
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Academic Library</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-4 px-6 py-4 hover:bg-surface-container dark:hover:bg-surface-container-high transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-4 px-6 py-4 hover:bg-surface-container dark:hover:bg-surface-container-high transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-caps text-label-caps">Catalog</span>
+</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-l-4 border-secondary bg-surface-container-low flex items-center gap-4 px-6 py-4 hover:bg-surface-container dark:hover:bg-surface-container-high transition-opacity duration-200 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined filled" data-icon="history">history</span>
+<span class="font-label-caps text-label-caps">My Books</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-4 px-6 py-4 hover:bg-surface-container dark:hover:bg-surface-container-high transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-3 rounded border border-primary hover:opacity-90 transition-opacity">Reserve a Seat</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col">
+<!-- TopNavBar for Mobile (Simplified) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile py-4 bg-surface border-b border-outline-variant sticky top-0 z-40">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">My Books</h1>
+<div class="flex gap-4">
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</header>
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full flex flex-col gap-12">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 stagger-item" style="animation-delay: 0.1s;">
+<div class="max-w-2xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">My Books</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your active loans and review your academic reading journey.</p>
+</div>
+<div class="flex gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors" id="themeToggle">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+</header>
+<!-- Stats Overview Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-item" style="animation-delay: 0.2s;">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary text-3xl mb-2">menu_book</span>
+<h3 class="font-headline-md text-headline-md text-primary">3</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Active Loans</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-error-container rounded-bl-full opacity-20"></div>
+<span class="material-symbols-outlined text-error text-3xl mb-2">warning</span>
+<h3 class="font-headline-md text-headline-md text-error">1</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Overdue Items</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary text-3xl mb-2">library_books</span>
+<h3 class="font-headline-md text-headline-md text-primary">24</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Books Read This Year</p>
+</div>
+</section>
+<!-- Outstanding Fines Alert -->
+<div class="bg-error-container text-on-error-container border border-error rounded-lg p-4 flex items-center justify-between stagger-item" style="animation-delay: 0.3s;">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">payments</span>
+<p class="font-body-sm text-body-sm"><strong class="font-title-sm text-title-sm">Outstanding Fines: $2.50</strong> Please settle your account to continue borrowing physical items.</p>
+</div>
+<button class="bg-on-error-container text-white px-4 py-2 rounded font-label-caps text-label-caps hover:opacity-90">Pay Now</button>
+</div>
+<!-- List Section -->
+<section class="flex flex-col gap-6 stagger-item" style="animation-delay: 0.4s;">
+<!-- Filters -->
+<div class="flex gap-4 border-b border-outline-variant pb-2 overflow-x-auto no-scrollbar">
+<button class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-2 px-2 whitespace-nowrap">Active Loans</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary pb-2 px-2 whitespace-nowrap transition-colors">Returned</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary pb-2 px-2 whitespace-nowrap transition-colors">Overdue</button>
+</div>
+<!-- Data List -->
+<div class="flex flex-col gap-4">
+<!-- Book Item 1 (Overdue) -->
+<article class="bg-surface-container-lowest border border-error rounded-lg p-4 flex flex-col md:flex-row gap-6 items-start md:items-center relative">
+<div class="w-16 md:w-24 shrink-0 aspect-[2/3] border border-outline-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-quality academic book cover titled 'The Architecture of Modernity'. The cover is minimalist, featuring a black and white photograph of a brutalist building with bold, sans-serif typography. Deep navy and crisp white tones dominate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC34E7u1G9BfIVAouwXdZhRCLZfqwlYu5qROzVxWWrZU7qQYIvKdh7eOTOpmLo--yeW_QR7AUomJVzIvuxm1HUUtx-AMzsQn_LAgifag3SpTe7yOLJN-aiLN7XMwr5OCIO2qvo5viAZo4e_N--WrF-HdvwjvKD1uFgYgpfYGh3HgEwTNSN-DDqAf4yoDachgApL_pbFZs8Pog3sp3XDNbIgSAboh7akyk_XMmSBI7cZJkrDZ_OWthxL">
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<h4 class="font-title-sm text-title-sm text-primary">The Architecture of Modernity</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">by Kenneth Frampton</p>
+<div class="mt-2 flex items-center gap-4">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded font-label-caps text-label-caps text-[10px]">Overdue</span>
+<span class="font-body-sm text-body-sm text-error flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">event</span> Due: Oct 12, 2023</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex md:flex-col gap-3 mt-4 md:mt-0">
+<button class="flex-1 md:flex-none border border-primary text-primary font-label-caps text-label-caps py-2 px-4 rounded hover:bg-surface-container-low transition-colors">Renew</button>
+<button class="flex-1 md:flex-none text-secondary font-label-caps text-label-caps py-2 px-4 hover:bg-surface-container-low rounded transition-colors">Details</button>
+</div>
+</article>
+<!-- Book Item 2 (Active) -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col md:flex-row gap-6 items-start md:items-center">
+<div class="w-16 md:w-24 shrink-0 aspect-[2/3] border border-outline-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist book cover for a university physics textbook. The cover features abstract geometric wave patterns in subtle shades of violet and navy blue against a pure white background. The typography is modern and highly legible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBqSq9GP_FZO5COz4_tYkENJgBS_9zSzKHFUifwZJi7dQgl1TmugALq7--m9VkeMIkANrOo1iD176ed3yD8xgi6WLT2m6Rd9U9oJC4c0-05XS6dWaxfGLMGJKuUlza3zQpj6jGiXWhn1aiet1J9b-D9GmwDTZdgUAP1Lw5EYwsvwew8ed93Ajjvz-Sji4HKnKCGbMPIGVAEZ8OK55colSAs6eHPJ_jNZjUpMlR-CVFxePbt7NpTEla">
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<h4 class="font-title-sm text-title-sm text-primary">Quantum Mechanics: Concepts and Applications</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">by Nouredine Zettili</p>
+<div class="mt-2 flex items-center gap-4">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-2 py-1 rounded font-label-caps text-label-caps text-[10px]">Active</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">event</span> Due: Nov 05, 2023</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex md:flex-col gap-3 mt-4 md:mt-0">
+<button class="flex-1 md:flex-none border border-primary text-primary font-label-caps text-label-caps py-2 px-4 rounded hover:bg-surface-container-low transition-colors">Renew</button>
+<button class="flex-1 md:flex-none text-secondary font-label-caps text-label-caps py-2 px-4 hover:bg-surface-container-low rounded transition-colors">Details</button>
+</div>
+</article>
+<!-- Book Item 3 (Active) -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col md:flex-row gap-6 items-start md:items-center">
+<div class="w-16 md:w-24 shrink-0 aspect-[2/3] border border-outline-variant rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated academic text cover design. The background is a pale, warm off-white. The central graphic is a minimalist line-drawing of a human brain in deep navy blue. The title typography is set in an elegant serif font." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgOr2twH6Qu17j6Azea1Bvc9g5qygj4q8XfM8cjwV6Vyd6OkOHS1ZyqT6bEOlFVX3IPJMgq-fc3se8vUTSWB-UXfpC3Y_5XDe4g-ffguQXtjfOGhG8mXUzvsL9z44YoPYCJUNTDAEHLCEw7xKBRCpACHUWl-7vgBgbKxFw7N6GfKph7MTa9CI7VHf-7DsyTCT2ZIKzqAoXwgTyJr4vMxJzJ4lMzA42VsSumfKgwP4E-5NEZKoRMNVL">
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<h4 class="font-title-sm text-title-sm text-primary">Cognitive Psychology and Its Implications</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">by John R. Anderson</p>
+<div class="mt-2 flex items-center gap-4">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-2 py-1 rounded font-label-caps text-label-caps text-[10px]">Active</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">event</span> Due: Nov 12, 2023</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex md:flex-col gap-3 mt-4 md:mt-0">
+<button class="flex-1 md:flex-none border border-primary text-primary font-label-caps text-label-caps py-2 px-4 rounded hover:bg-surface-container-low transition-colors">Renew</button>
+<button class="flex-1 md:flex-none text-secondary font-label-caps text-label-caps py-2 px-4 hover:bg-surface-container-low rounded transition-colors">Details</button>
+</div>
+</article>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Simple Theme Toggle (Simulation for static HTML)
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            const icon = this.querySelector('.material-symbols-outlined');
+            if (document.documentElement.classList.contains('dark')) {
+                icon.textContent = 'light_mode';
+            } else {
+                icon.textContent = 'dark_mode';
+            }
+        });
+    </script>
+
+
+</body></html>

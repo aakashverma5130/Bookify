@@ -1,0 +1,453 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Student Profile - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-dim": "#dbd9dc",
+                "surface": "#fbf8fc",
+                "on-error-container": "#93000a",
+                "secondary": "#4950c7",
+                "on-primary": "#ffffff",
+                "on-secondary-container": "#070494",
+                "on-secondary-fixed-variant": "#3035af",
+                "on-tertiary-fixed": "#291800",
+                "error": "#ba1a1a",
+                "on-tertiary": "#ffffff",
+                "surface-container-highest": "#e4e2e5",
+                "inverse-primary": "#b6c6ef",
+                "primary": "#031635",
+                "on-tertiary-fixed-variant": "#5d4217",
+                "on-tertiary-container": "#b08d5b",
+                "inverse-on-surface": "#f2f0f3",
+                "inverse-surface": "#303033",
+                "surface-container-low": "#f5f3f6",
+                "secondary-fixed-dim": "#bfc2ff",
+                "surface-variant": "#e4e2e5",
+                "on-secondary": "#ffffff",
+                "outline": "#75777f",
+                "secondary-container": "#7d84fe",
+                "background": "#fbf8fc",
+                "tertiary-fixed-dim": "#e8c08a",
+                "primary-container": "#1a2b4b",
+                "primary-fixed": "#d8e2ff",
+                "surface-container-high": "#e9e7eb",
+                "on-secondary-fixed": "#02006d",
+                "on-primary-container": "#8293b8",
+                "tertiary": "#231400",
+                "tertiary-fixed": "#ffddb1",
+                "on-primary-fixed-variant": "#364768",
+                "surface-bright": "#fbf8fc",
+                "on-primary-fixed": "#081b3a",
+                "on-surface": "#1b1b1e",
+                "primary-fixed-dim": "#b6c6ef",
+                "on-surface-variant": "#44474e",
+                "surface-tint": "#4e5e81",
+                "on-error": "#ffffff",
+                "tertiary-container": "#3e2700",
+                "surface-container-lowest": "#ffffff",
+                "on-background": "#1b1b1e",
+                "surface-container": "#efedf0",
+                "secondary-fixed": "#e0e0ff",
+                "outline-variant": "#c5c6cf",
+                "error-container": "#ffdad6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "margin-desktop": "40px",
+                "margin-mobile": "16px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-caps": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "26px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: var(--theme-background, #fbf8fc);
+            color: var(--theme-on-background, #1b1b1e);
+        }
+        .dark body {
+            --theme-background: #111318;
+            --theme-on-background: #e2e2e9;
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e4e2e5;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #44474e;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5c6cf;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #75777f;
+        }
+        
+        .bento-card {
+            background-color: #ffffff;
+            border: 1px solid #e4e2e5;
+            transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, background-color 0.2s;
+        }
+        .dark .bento-card {
+            background-color: #111318;
+            border-color: #44474e;
+        }
+        .bento-card:hover {
+            box-shadow: 0px 4px 20px rgba(3, 22, 53, 0.04);
+            transform: translateY(-2px);
+        }
+        .dark .bento-card:hover {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+<script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            const icon = document.getElementById('theme-icon');
+            if (isDark) {
+                icon.textContent = 'light_mode';
+            } else {
+                icon.textContent = 'dark_mode';
+            }
+        }
+    </script>
+</head>
+<body class="h-full flex antialiased font-body-sm text-body-sm bg-background dark:bg-[#111318] text-on-background dark:text-[#e2e2e9]">
+<!-- TopAppBar (Mobile) -->
+<header class="flex justify-between items-center w-full px-margin-mobile py-4 sticky top-0 z-50 bg-surface/80 dark:bg-[#111318]/80 backdrop-blur-md border-b border-outline-variant dark:border-[#44474e] md:hidden">
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-[#b6c6ef] font-bold">
+            Bookify
+        </div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-[#c4c6d0]">
+<button class="hover:text-secondary dark:hover:text-[#bfc2ff] transition-colors" onclick="toggleTheme()">
+<span class="material-symbols-outlined" id="theme-icon-mobile" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+<button class="hover:text-secondary dark:hover:text-[#bfc2ff] transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="hover:text-secondary dark:hover:text-[#bfc2ff] transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full py-unit h-screen w-64 border-r border-outline-variant dark:border-[#44474e] bg-surface dark:bg-[#111318] flex-shrink-0 sticky top-0">
+<div class="px-6 py-8 flex flex-col gap-2">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-[#b6c6ef] font-extrabold tracking-tight">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-[#c4c6d0]">Student Portal</p>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full py-2.5 px-4 bg-primary dark:bg-[#b6c6ef] text-on-primary dark:text-[#031635] rounded border border-primary dark:border-[#b6c6ef] hover:opacity-90 transition-opacity font-title-sm text-title-sm flex items-center justify-center gap-2">
+                Renew Books
+            </button>
+</div>
+<ul class="flex-1 px-3 space-y-1 overflow-y-auto">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-on-surface-variant dark:text-[#c4c6d0]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-title-sm text-title-sm">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-on-surface-variant dark:text-[#c4c6d0]" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-title-sm text-title-sm">Catalog</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-on-surface-variant dark:text-[#c4c6d0]" href="#">
+<span class="material-symbols-outlined">collections_bookmark</span>
+<span class="font-title-sm text-title-sm">My Loans</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-on-surface-variant dark:text-[#c4c6d0]" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-title-sm text-title-sm">Reservations</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-on-surface-variant dark:text-[#c4c6d0]" href="#">
+<span class="material-symbols-outlined">meeting_room</span>
+<span class="font-title-sm text-title-sm">Study Rooms</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-on-surface-variant dark:text-[#c4c6d0]" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-title-sm text-title-sm">History</span>
+</a>
+</li>
+</ul>
+<div class="p-3 border-t border-outline-variant/30 dark:border-[#44474e]/30 mt-auto">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-primary dark:text-[#b6c6ef] font-bold border-r-2 border-primary dark:border-[#b6c6ef] bg-surface-container-low/50 dark:bg-[#1b1b1e]/50" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-title-sm text-title-sm">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low dark:hover:bg-[#1b1b1e] transition-colors duration-200 text-on-surface-variant dark:text-[#c4c6d0]" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-title-sm text-title-sm">Support</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- TopAppBar (Desktop) -> Used as a soft header for the canvas -->
+<header class="hidden md:flex justify-between items-center w-full px-margin-desktop py-6 bg-transparent">
+<div class="invisible font-display-lg text-display-lg text-primary dark:text-[#b6c6ef] font-bold">
+                 Bookify
+             </div>
+<div class="flex items-center gap-6 text-on-surface-variant dark:text-[#c4c6d0]">
+<button class="hover:text-secondary dark:hover:text-[#bfc2ff] transition-colors" onclick="toggleTheme()">
+<span class="material-symbols-outlined text-[24px]" id="theme-icon" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+<button class="hover:text-secondary dark:hover:text-[#bfc2ff] transition-colors">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="hover:text-secondary dark:hover:text-[#bfc2ff] transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<div class="px-margin-mobile md:px-margin-desktop py-8 md:py-12 max-w-container-max mx-auto w-full flex-1">
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md text-on-background dark:text-[#e2e2e9]">Student Profile</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant dark:text-[#c4c6d0] mt-2 max-w-2xl">Manage your personal information and view your library engagement statistics.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Personal Details (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-gutter">
+<!-- Identity Card -->
+<div class="bento-card rounded-xl p-8 flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+<div class="w-32 h-32 rounded-full bg-surface-container-high dark:bg-[#1b1b1e] border-4 border-white dark:border-[#111318] shadow-sm overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="A professional, well-lit studio portrait photograph of a young university student. They are smiling warmly, looking directly at the camera. The background is a soft, muted academic gray. The lighting is soft and flattering, creating a premium, modern academic aesthetic. The image is cropped in a tight circle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUtZ-OUF6D5c_GPtzMajodOKk0yUmGEAHrpaPMIeC6dU5HousufjxTWCKw8vzm4VRlWYb8hgtT6PiIO60RZBOyWffP4f_PiGiHo_46dUYGIWfbJUlVgaLSCG6BcuMMthxglrjAP-NnTIXlPB44Y8ZmKkGCrPEIVnwyakXJ76BBextu5SOBsMS0bLvmfxC-nnQsrl9EOCVRWw8lee40F2uQbVsgnbctNxFWCZtwzB0XlcU9EiNiSxyk">
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-background dark:text-[#e2e2e9] mb-1">Eleanor Vance</h3>
+<p class="font-title-sm text-title-sm text-primary dark:text-[#b6c6ef] mb-4">Undergraduate Student</p>
+<div class="flex flex-wrap gap-3">
+<span class="px-3 py-1 bg-secondary/10 dark:bg-[#bfc2ff]/10 text-secondary dark:text-[#bfc2ff] font-label-caps text-label-caps rounded flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">badge</span>
+                                    ID: 20239481
+                                </span>
+<span class="px-3 py-1 bg-surface-container-highest dark:bg-[#1b1b1e] text-on-surface-variant dark:text-[#c4c6d0] font-label-caps text-label-caps rounded flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">school</span>
+                                    Senior
+                                </span>
+</div>
+</div>
+</div>
+<!-- Detailed Info Card -->
+<div class="bento-card rounded-xl p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-sm text-title-sm text-on-background dark:text-[#e2e2e9]">Academic Information</h3>
+<button class="font-label-caps text-label-caps text-secondary dark:text-[#bfc2ff] hover:text-primary dark:hover:text-[#b6c6ef] transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+                                EDIT DETAILS
+                            </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+<div>
+<p class="font-label-caps text-label-caps text-outline dark:text-[#8e9099] mb-1">Department</p>
+<p class="font-body-lg text-body-lg text-on-background dark:text-[#e2e2e9]">College of Arts &amp; Sciences</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline dark:text-[#8e9099] mb-1">Major Course</p>
+<p class="font-body-lg text-body-lg text-on-background dark:text-[#e2e2e9]">Comparative Literature</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline dark:text-[#8e9099] mb-1">University Email</p>
+<p class="font-body-lg text-body-lg text-on-background dark:text-[#e2e2e9]">e.vance@university.edu</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline dark:text-[#8e9099] mb-1">Expected Graduation</p>
+<p class="font-body-lg text-body-lg text-on-background dark:text-[#e2e2e9]">Spring 2025</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/50 dark:border-[#44474e]/50">
+<h3 class="font-title-sm text-title-sm text-on-background dark:text-[#e2e2e9] mb-4">Security</h3>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-[#c4c6d0]">Last password change: 3 months ago</p>
+</div>
+<button class="px-4 py-2 bg-transparent border border-primary dark:border-[#b6c6ef] text-primary dark:text-[#b6c6ef] font-title-sm text-title-sm rounded hover:bg-primary/5 dark:hover:bg-[#b6c6ef]/5 transition-colors">
+                                    Change Password
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Stats (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-gutter h-full">
+<!-- Stat Block 1 -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto">
+<div class="w-10 h-10 rounded-full bg-primary/10 dark:bg-[#b6c6ef]/10 flex items-center justify-center text-primary dark:text-[#b6c6ef] mb-4">
+<span class="material-symbols-outlined">library_books</span>
+</div>
+<div>
+<p class="font-display-lg-mobile text-display-lg-mobile text-on-background dark:text-[#e2e2e9] mb-1">142</p>
+<p class="font-label-caps text-label-caps text-outline dark:text-[#8e9099]">Total Books Borrowed</p>
+</div>
+</div>
+<!-- Stat Block 2 -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto bg-primary dark:bg-[#b6c6ef] text-on-primary dark:text-[#031635] border-none shadow-sm relative overflow-hidden">
+<!-- Subtle decorative element -->
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 dark:bg-black/10 rounded-full blur-xl"></div>
+<div class="w-10 h-10 rounded-full bg-white/20 dark:bg-black/20 flex items-center justify-center text-white dark:text-[#031635] mb-4 relative z-10">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<div class="relative z-10">
+<p class="font-display-lg-mobile text-display-lg-mobile mb-1">3</p>
+<p class="font-label-caps text-label-caps opacity-80">Current Active Loans</p>
+</div>
+</div>
+<!-- Stat Block 3 -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto">
+<div class="w-10 h-10 rounded-full bg-secondary/10 dark:bg-[#bfc2ff]/10 flex items-center justify-center text-secondary dark:text-[#bfc2ff] mb-4">
+<span class="material-symbols-outlined">event_seat</span>
+</div>
+<div>
+<p class="font-display-lg-mobile text-display-lg-mobile text-on-background dark:text-[#e2e2e9] mb-1">2</p>
+<p class="font-label-caps text-label-caps text-outline dark:text-[#8e9099]">Active Reservations</p>
+</div>
+</div>
+<!-- Stat Block 4 (Fines) -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest dark:bg-[#1b1b1e] flex items-center justify-center text-on-surface-variant dark:text-[#c4c6d0] mb-4">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="font-display-lg-mobile text-display-lg-mobile text-on-background dark:text-[#e2e2e9] mb-1">$0.00</p>
+<p class="font-label-caps text-label-caps text-outline dark:text-[#8e9099]">Outstanding Fines</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+    // Initialize theme based on user preference or local storage
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').textContent = 'light_mode';
+        if(document.getElementById('theme-icon-mobile')) {
+            document.getElementById('theme-icon-mobile').textContent = 'light_mode';
+        }
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+</script>
+</body></html>

@@ -1,10 +1,11 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import logoSrc from '../assets/logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, BookOpen, BookMarked, RotateCcw,
   BarChart2, Users, Scan, Package, Settings,
-  ArrowLeftRight, LogOut, Library, BrainCircuit,
-  Calendar,
+  ArrowLeftRight, LogOut, BrainCircuit,
+  Calendar, ChevronLeft, ChevronRight, Library,
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 
@@ -47,49 +48,89 @@ const Sidebar = ({ collapsed = false, onToggle }) => {
       className="fixed left-0 top-0 bottom-0 z-50 flex flex-col"
       style={{
         width: collapsed ? 72 : 240,
-        background: 'linear-gradient(180deg, #0a0a1a 0%, #0f0f27 100%)',
-        borderRight: '1px solid rgba(99,102,241,0.1)',
+        background: 'var(--color-surface-dark)',
+        boxShadow: 'var(--shadow-sidebar)',
       }}
       animate={{ width: collapsed ? 72 : 240 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
     >
-      {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-6 overflow-hidden">
-        <div className="w-9 h-9 rounded-xl flex-shrink-0 flex items-center justify-center"
-          style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}>
-          <Library size={18} className="text-white" />
+      {/* Logo + collapse toggle */}
+      <div
+        className="flex items-center px-4 py-6 overflow-hidden"
+        style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+      >
+        <div
+          className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden"
+          style={{ background: 'rgba(255,255,255,0.15)' }}
+        >
+          <img src={logoSrc} alt="Bookify" className="w-8 h-8 object-contain" />
         </div>
         <AnimatePresence>
           {!collapsed && (
             <motion.div
+              className="ml-3 flex-1 min-w-0"
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}
               transition={{ duration: 0.2 }}
             >
-              <h1 className="text-base font-bold text-white font-display tracking-tight">Bookify</h1>
-              <p className="text-xs text-slate-500 capitalize">{user?.role?.replace('_', ' ').toLowerCase()}</p>
+              <h1 className="text-sm font-bold tracking-tight" style={{ color: '#ffffff' }}>Bookify</h1>
+              <p className="text-[11px] capitalize truncate" style={{ color: 'rgba(242,240,243,0.55)' }}>
+                {user?.role?.replace(/_/g, ' ').toLowerCase()}
+              </p>
             </motion.div>
           )}
         </AnimatePresence>
+        <button
+          onClick={onToggle}
+          className="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center ml-auto transition-colors"
+          style={{ color: 'rgba(242,240,243,0.5)' }}
+          onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; }}
+          onMouseLeave={e => { e.currentTarget.style.color = 'rgba(242,240,243,0.5)'; e.currentTarget.style.background = ''; }}
+          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
+        </button>
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 px-3 space-y-1 overflow-y-auto overflow-x-hidden">
+      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto overflow-x-hidden">
         {navItems.map(({ label, to, icon: Icon }) => (
           <NavLink
             key={to}
             to={to}
             className={({ isActive }) =>
-              `sidebar-link ${isActive ? 'active' : ''} relative group`
+              `flex items-center gap-4 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 cursor-pointer relative group
+               ${isActive
+                 ? 'text-white font-semibold'
+                 : ''}`
             }
+            style={({ isActive }) => isActive ? {
+              background: 'rgba(255,255,255,0.10)',
+              color: '#ffffff',
+              borderLeft: '2px solid rgba(255,255,255,0.6)',
+            } : {
+              color: 'rgba(242,240,243,0.65)',
+            }}
+            onMouseEnter={e => {
+              if (!e.currentTarget.classList.contains('active') && !e.currentTarget.getAttribute('aria-current')) {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                e.currentTarget.style.color = 'rgba(242,240,243,0.9)';
+              }
+            }}
+            onMouseLeave={e => {
+              if (!e.currentTarget.getAttribute('aria-current')) {
+                e.currentTarget.style.background = '';
+                e.currentTarget.style.color = 'rgba(242,240,243,0.65)';
+              }
+            }}
             title={collapsed ? label : undefined}
           >
-            <Icon size={18} className="flex-shrink-0" />
+            <Icon size={17} className="flex-shrink-0" />
             <AnimatePresence>
               {!collapsed && (
                 <motion.span
-                  className="text-sm whitespace-nowrap"
+                  className="whitespace-nowrap text-sm"
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -8 }}
@@ -102,9 +143,15 @@ const Sidebar = ({ collapsed = false, onToggle }) => {
 
             {/* Tooltip when collapsed */}
             {collapsed && (
-              <div className="absolute left-full ml-2 px-2 py-1 rounded-md bg-bg-600 text-white text-xs whitespace-nowrap
-                opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150 z-50
-                border border-white/10">
+              <div
+                className="absolute left-full ml-2 px-2.5 py-1.5 rounded-lg text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150 z-50"
+                style={{
+                  background: 'var(--color-surface-container-high)',
+                  color: 'var(--color-on-surface)',
+                  border: '1px solid var(--color-outline-variant)',
+                  boxShadow: 'var(--shadow-card)',
+                }}
+              >
                 {label}
               </div>
             )}
@@ -112,27 +159,33 @@ const Sidebar = ({ collapsed = false, onToggle }) => {
         ))}
       </nav>
 
-      {/* User + logout */}
-      <div className="p-3 border-t border-white/5">
+      {/* User info + logout */}
+      <div className="p-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
         {!collapsed && (
-          <div className="flex items-center gap-2 px-2 py-2 mb-2">
-            <div className="w-8 h-8 rounded-full bg-primary-800 flex items-center justify-center text-xs font-bold text-primary-300">
+          <div className="flex items-center gap-2.5 px-2 py-2 mb-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.06)' }}>
+            <div
+              className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold"
+              style={{ background: 'rgba(255,255,255,0.15)', color: '#ffffff' }}
+            >
               {user?.name?.charAt(0) || 'U'}
             </div>
-            <div className="min-w-0">
-              <p className="text-xs font-medium text-white truncate">{user?.name}</p>
-              <p className="text-[10px] text-slate-500 truncate">{user?.email}</p>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-semibold truncate" style={{ color: '#ffffff' }}>{user?.name}</p>
+              <p className="text-[10px] truncate" style={{ color: 'rgba(242,240,243,0.5)' }}>{user?.email}</p>
             </div>
           </div>
         )}
 
         <button
           onClick={handleLogout}
-          className="sidebar-link w-full text-danger-400 hover:text-danger-300 hover:bg-danger-500/10"
+          className="flex items-center gap-4 rounded-lg px-3 py-2.5 w-full text-sm font-medium transition-all duration-200 cursor-pointer"
+          style={{ color: 'rgba(255,180,171,0.85)' }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(186,26,26,0.15)'; e.currentTarget.style.color = '#ffb4ab'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = ''; e.currentTarget.style.color = 'rgba(255,180,171,0.85)'; }}
           title={collapsed ? 'Logout' : undefined}
         >
           <LogOut size={16} className="flex-shrink-0" />
-          {!collapsed && <span className="text-sm">Logout</span>}
+          {!collapsed && <span>Logout</span>}
         </button>
       </div>
     </motion.aside>

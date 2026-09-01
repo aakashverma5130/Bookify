@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LibraX - Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-secondary-fixed": "#01006e",
+                        "on-tertiary-fixed": "#01006e",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#cfc4c5",
+                        "tertiary": "#000000",
+                        "on-primary-container": "#848484",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary-container": "#7d85fe",
+                        "secondary-fixed": "#e0e0ff",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#2f35ae",
+                        "status-available": "#2D6A4F",
+                        "tertiary-container": "#01006e",
+                        "status-reserved": "#E36414",
+                        "on-surface": "#1b1b1b",
+                        "on-surface-variant": "#44474e",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#bfc2ff",
+                        "on-background": "#1b1b1b",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f0edf1",
+                        "status-issued": "#BA1A1A",
+                        "on-primary-fixed-variant": "#474747",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary": "#4950c7",
+                        "on-tertiary-container": "#6f77ef",
+                        "outline": "#7e7576",
+                        "on-secondary-fixed-variant": "#2f35ae",
+                        "primary-fixed": "#e2e2e2",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "surface-bright": "#f9f9f9",
+                        "surface-tint": "#5e5e5e",
+                        "tertiary-fixed": "#e0e0ff",
+                        "inverse-primary": "#c6c6c6",
+                        "surface-dim": "#dadada",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "background": "#f9f9f9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "primary-container": "#1b1b1b",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "on-secondary-container": "#060693"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "table-cell-px": "16px",
+                        "gutter": "24px",
+                        "table-cell-py": "12px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "unit": "8px"
+                    },
+                    fontFamily: {
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "data-mono": ["monospace"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "display-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "data-mono": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "title-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-surface-dim font-body-sm text-body-sm fixed left-0 top-0 h-full w-64 border-r border-outline-variant dark:border-outline flex flex-col p-4 gap-unit transition-all duration-200 ease-in-out hidden md:flex z-40">
+<div class="flex items-center gap-4 mb-8">
+<img class="w-10 h-10 object-contain" data-alt="A minimalist logo for LibraX featuring a stylized, academic crest in solid black and white. It sits against a stark white background. The design is geometric, clean, and highly precise, suitable for an intellectual and professional academic tool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj4Uc0UCqeryTLEdnU4VjUMG6YbW6lb7dJhJ1ndp9f9DK75YvrCUMQ2DhVuoKE855ilQ-Z1Hjyc-uSJyrurcz3_YXts8hAST3drM4XzlXVUL-CP5g8axpCRwUPVetCNAf6ThucDyeT-OrY_jXj2RrmvD4fA6ok7LUSCV0AU8dQ9KnmFjXq6sXu17zJaSqAX6pU4wm7_qrzbIUT1GgwL2rNtxtZnde01uu1jDBTdf7xl9KWP6Eny-OC"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-primary-fixed">LibraX</h1>
+<p class="text-on-surface-variant text-xs tracking-wider uppercase">Intellectual Precision</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary w-full py-2 px-4 rounded font-label-caps text-label-caps uppercase tracking-wider mb-6 hover:bg-surface-tint transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">search</span> Quick Search
+        </button>
+<div class="flex flex-col gap-2 flex-grow">
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 p-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">dashboard</span>
+                Dashboard
+            </a>
+<a class="bg-secondary-container text-on-secondary-container rounded-lg flex items-center gap-3 p-3 font-semibold" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+                Catalog
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 p-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">library_books</span>
+                My Books
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 p-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">event_seat</span>
+                Reservations
+            </a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-2">
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 p-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+                Settings
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 p-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">help</span>
+                Help
+            </a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-low font-label-caps text-label-caps fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-mobile md:px-margin-desktop md:ml-64 z-30 transition-all duration-200 ease-in-out focus-within:ring-1 focus-within:ring-outline">
+<div class="flex items-center gap-4 flex-grow max-w-2xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-12 pr-4 text-body-sm font-body-sm focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search catalog, authors, ISBN..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="md:ml-64 pt-16 min-h-screen">
+<div class="max-w-[1280px] mx-auto p-margin-mobile md:p-margin-desktop">
+<!-- Breadcrumbs & Header -->
+<div class="mb-gutter">
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps mb-4">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Catalog</span>
+</nav>
+<div class="flex items-end justify-between flex-wrap gap-4">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Library Catalog</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Browse highly curated academic materials across disciplines.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-data-mono text-data-mono text-on-surface-variant">Showing 1-12 of 3,421 results</span>
+</div>
+</div>
+</div>
+<!-- Bento Layout Container -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-gutter">
+<!-- Advanced Sidebar Filters (Left Column) -->
+<aside class="lg:col-span-1 space-y-6">
+<!-- Departments Filter -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-lg">
+<h3 class="font-title-sm text-title-sm mb-4 pb-2 border-b border-outline-variant flex justify-between items-center">
+                            Departments
+                            <span class="material-symbols-outlined text-[20px] text-on-surface-variant">filter_list</span>
+</h3>
+<div class="space-y-3 font-body-sm text-body-sm">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 bg-transparent cursor-pointer" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Computer Science</span>
+<span class="ml-auto font-data-mono text-data-mono text-on-surface-variant text-[11px]">842</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 bg-transparent cursor-pointer" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Humanities</span>
+<span class="ml-auto font-data-mono text-data-mono text-on-surface-variant text-[11px]">1,204</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 bg-transparent cursor-pointer" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Mathematics</span>
+<span class="ml-auto font-data-mono text-data-mono text-on-surface-variant text-[11px]">450</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 bg-transparent cursor-pointer" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Physics</span>
+<span class="ml-auto font-data-mono text-data-mono text-on-surface-variant text-[11px]">315</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 bg-transparent cursor-pointer" type="checkbox"/>
+<span class="group-hover:text-primary transition-colors">Engineering</span>
+<span class="ml-auto font-data-mono text-data-mono text-on-surface-variant text-[11px]">610</span>
+</label>
+</div>
+</div>
+<!-- Availability Filter -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-lg">
+<h3 class="font-title-sm text-title-sm mb-4 pb-2 border-b border-outline-variant">Availability</h3>
+<div class="space-y-3 font-body-sm text-body-sm">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="border-outline-variant text-primary focus:ring-primary bg-transparent cursor-pointer" name="availability" type="radio"/>
+<span>All Statuses</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="border-outline-variant text-primary focus:ring-primary bg-transparent cursor-pointer" name="availability" type="radio"/>
+<span class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-status-available"></div> Available Now</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Book Grid (Main Content Area) -->
+<div class="lg:col-span-3">
+<!-- Sorting Controls -->
+<div class="flex justify-between items-center mb-6 bg-surface-container-low p-2 rounded border border-outline-variant">
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-container-lowest border border-outline-variant rounded font-label-caps text-label-caps hover:bg-surface-container-high transition-colors text-primary shadow-sm">Grid</button>
+<button class="px-3 py-1 text-on-surface-variant hover:bg-surface-container-high rounded font-label-caps text-label-caps transition-colors">List</button>
+</div>
+<select class="bg-surface-container-lowest border border-outline-variant rounded py-1 px-3 font-body-sm text-body-sm text-on-surface focus:ring-1 focus:ring-primary">
+<option>Relevance</option>
+<option>Date Added (Newest)</option>
+<option>Publication Year</option>
+<option>Title (A-Z)</option>
+</select>
+</div>
+<!-- The Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-unit">
+<!-- Book Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden group hover:shadow-md transition-all hover:bg-surface-container-low">
+<div class="p-4 flex gap-4 h-full">
+<div class="w-24 shrink-0">
+<div class="aspect-[2/3] bg-surface-container-high border border-outline-variant relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A clinical, minimalist book cover showcasing geometric algorithm patterns in black and white with a stark sans-serif title 'Introduction to Algorithms'. The design is extremely clean, matching the corporate academic aesthetic of a high-end digital library." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh4RRVT9t-6GHCtB6ha0QpEnu3eJY8GhkoQ6FYx7pUSKURKrzT4kCVpLq2E81vgRGh8pbfRo7BKQVv9nApICMWmhjc_pHwXEimxZBOjIQazZG2jZbbiDdjhliK2WD2jX26K9PK0rVEaevz4DLeBKTxPWf3W0NxsaTVbg6_vXIjqrHLgArl8Auj9bgzBZI2WOWB9ZqUFk-AgBnRrKRY_uz8wzve3TBo-pH_eaMeBoo5GXdpH8r2Zxum"/>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex items-start justify-between mb-1">
+<div class="font-data-mono text-data-mono text-on-surface-variant text-[10px]">CS-101</div>
+<div class="flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-status-available"></div>
+</div>
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface leading-tight mb-1 group-hover:text-primary transition-colors">Introduction to Algorithms</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs mb-3">Cormen, Leiserson, Rivest</p>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-1.5 rounded uppercase tracking-wider hover:bg-surface-tint transition-colors">Reserve</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden group hover:shadow-md transition-all hover:bg-surface-container-low">
+<div class="p-4 flex gap-4 h-full">
+<div class="w-24 shrink-0">
+<div class="aspect-[2/3] bg-surface-container-high border border-outline-variant relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A stark, minimalist textbook cover with abstract architectural lines conveying computational theory. The palette is muted grays and deep black, reflecting a rigorous, intellectual academic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcBYJBCvIg3q9F0ZMUuQC0n4FjMmo8YXBbi2xbh3mpUuhluxZfXJwqsRjYbzbh5UIYsUBvov9zd9XymvEIV0za0YZuSYe0JJEkQ2Uc7E0ySRBa0RTZb261rV9N-OfIZet0UOm2Vv8V7LHUtyyJy99AN9VoTLZZzZtY8IJs7W2EBj11uORYToLK0dSuPS26v8k-uhkLlFgGP2X0UWqsXR5XK37TCivXClX6mtSxbie66r4oaahNfk-1"/>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex items-start justify-between mb-1">
+<div class="font-data-mono text-data-mono text-on-surface-variant text-[10px]">MATH-402</div>
+<div class="flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-status-issued"></div>
+</div>
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface leading-tight mb-1 group-hover:text-primary transition-colors">Computational Complexity</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs mb-3">Christos H. Papadimitriou</p>
+<div class="mt-auto">
+<button class="w-full border border-outline-variant text-on-surface font-label-caps text-label-caps py-1.5 rounded uppercase tracking-wider hover:bg-surface-container-high transition-colors">Waitlist</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden group hover:shadow-md transition-all hover:bg-surface-container-low">
+<div class="p-4 flex gap-4 h-full">
+<div class="w-24 shrink-0">
+<div class="aspect-[2/3] bg-surface-container-high border border-outline-variant relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A highly structured, academic book cover showing layered topographical maps in monochrome. It conveys deep research in the humanities, fitting seamlessly into a clean, modern digital catalog interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFHwAnARfkOCCXKYoE_t-1tzqUH2sVvHyQVNkV_-3UjKxDE6TjEw4Va8_Sqf6w7YVN5iim-VY9YtUktc2GJeJulYXMUza790knE2j-ebvpKgP14QCEbBflWWTDe2CbWN3pB4ULIRBNdFhTGsAIWKXMq-1FHaSEXYVDpJN0vYBTODrM2JuOWapIkP6SnJAa8AMD5ABgUkB3t8-pDFC1MyQY1bLirgg4lcHZub0kGbzFmrPlPrfCbIrg"/>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex items-start justify-between mb-1">
+<div class="font-data-mono text-data-mono text-on-surface-variant text-[10px]">HUM-210</div>
+<div class="flex items-center gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-status-available"></div>
+</div>
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface leading-tight mb-1 group-hover:text-primary transition-colors">The Structure of Scientific Revolutions</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs mb-3">Thomas S. Kuhn</p>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-1.5 rounded uppercase tracking-wider hover:bg-surface-tint transition-colors">Reserve</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-8 flex justify-center items-center gap-2">
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container-high transition-colors disabled:opacity-50 text-on-surface">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center border border-primary bg-primary text-on-primary rounded font-data-mono text-data-mono text-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-surface-container-high text-on-surface rounded font-data-mono text-data-mono text-sm transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-surface-container-high text-on-surface rounded font-data-mono text-data-mono text-sm transition-colors">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant hover:bg-surface-container-high text-on-surface rounded font-data-mono text-data-mono text-sm transition-colors">285</button>
+<button class="p-2 border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-on-surface">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

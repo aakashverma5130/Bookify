@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Profile - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#684000",
+                    "primary-fixed": "#ffddb8",
+                    "tertiary": "#474647",
+                    "on-tertiary-fixed": "#1c1b1c",
+                    "surface": "#fdf9e9",
+                    "on-primary-fixed-variant": "#653e00",
+                    "inverse-surface": "#323126",
+                    "inverse-primary": "#fdb965",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#fdb965",
+                    "outline-variant": "#d5c4b2",
+                    "background": "#fdf9e9",
+                    "on-primary": "#ffffff",
+                    "ink-secondary": "#474747",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f2eede",
+                    "primary": "#653e00",
+                    "on-background": "#1C1C13",
+                    "surface-container-high": "#ece8d9",
+                    "surface-variant": "#e6e3d3",
+                    "surface-container-highest": "#e6e3d3",
+                    "on-primary-container": "#ffd09a",
+                    "secondary-fixed": "#ffddb8",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#514538",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#e5e2e1",
+                    "surface-container-low": "#f8f4e4",
+                    "secondary-fixed-dim": "#ffb95f",
+                    "accent-warm": "#F59E0B",
+                    "surface-base": "#FFFBEB",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#5f5e5e",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#dbd8d7",
+                    "accent-deep": "#D97706",
+                    "primary-container": "#855300",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "surface-bright": "#fdf9e9",
+                    "secondary-container": "#fea619",
+                    "secondary": "#855300",
+                    "inverse-on-surface": "#f5f1e1",
+                    "surface-dim": "#dedacb",
+                    "outline": "#837566",
+                    "on-primary-fixed": "#2a1700",
+                    "on-tertiary-fixed-variant": "#474647",
+                    "on-surface": "#1c1c13",
+                    "surface-tint": "#855300",
+                    "ink-primary": "#1B1B1B",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#2a1700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "content-max-width": "1280px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "data-mono": [
+                            "monospace"
+                    ],
+                    "display-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "data-mono": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "title-sm": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "26px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex w-full">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 flex-col py-8 px-4 border-r border-outline-variant/40 bg-surface dark:bg-surface-container z-40">
+<div class="mb-8 px-4 flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1">Academic Portal</span>
+</div>
+<ul class="flex-1 space-y-2">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-body-sm text-body-sm font-medium text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-body-sm text-body-sm font-medium text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+                    Catalog
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-body-sm text-body-sm font-medium text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">library_books</span>
+                    My Books
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-body-sm text-body-sm font-medium text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">event_seat</span>
+                    My Reservations
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT font-body-sm text-body-sm text-primary font-bold border-r-2 border-accent-warm bg-surface-container-high/50 transition-colors duration-200 opacity-80 scale-95 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">person_outline</span>
+                    My Profile
+                </a>
+</li>
+</ul>
+<div class="mt-auto">
+<button class="w-full mb-6 bg-accent-warm hover:bg-accent-deep text-on-primary font-title-sm text-title-sm py-3 px-4 rounded-lg transition-colors shadow-sm">
+                Browse New Arrivals
+            </button>
+<ul class="space-y-2 border-t border-outline-variant/40 pt-4">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:pl-64 w-full">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 w-full px-4 md:px-10 max-w-content-max-width mx-auto bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-outline-variant/40 docked full-width top-0 sticky z-50">
+<div class="flex items-center gap-4">
+<span class="md:hidden font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-ink-secondary">
+<button class="hover:text-accent-warm transition-colors duration-200 p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:text-accent-warm transition-colors duration-200 p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+<button class="hidden md:block bg-accent-warm hover:bg-accent-deep text-on-primary font-title-sm text-title-sm py-2 px-6 rounded-lg transition-colors shadow-sm">
+                    Check In
+                </button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/40 overflow-hidden shadow-sm">
+<img alt="Academic profile avatar" class="w-full h-full object-cover" data-alt="A close up, professional headshot of a diverse university student in natural lighting, sharp focus, academic setting background blurred, warm color grading, 8k resolution, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACNx7Aw1d_2boNXJBjrlqXgKx9ZbEWIbAwl86P6IL1bbgkRkUtUTmMKwB1s7feSwF0nvlwSDpVhr9aEAJmWIYTuouMvXTNtjiKP8Mrq2qGS4dE0EAEdgwiXnRffWuetwhAHstZ1qFevm4yTphYaCyl9Lq6FHIcqGn5lxA7pqutHjYF9Kp0kXAvzXRro2cgObCuQbkaIfhSZ64QhT4tf-998YQN0jYuNZSGHugeNzn8yla-pk1WHd8g"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 w-full max-w-content-max-width mx-auto px-4 md:px-10 py-8 md:py-12 space-y-8 md:space-y-12">
+<!-- Page Header -->
+<div class="flex flex-col gap-2">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Student Profile</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Manage your academic identity, reading preferences, and review your recent scholarly activity within the Bookify portal.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Identity Card (Col Span 4) -->
+<div class="md:col-span-4 flex flex-col bg-surface-container-high rounded-xl border border-outline-variant/40 shadow-sm overflow-hidden relative">
+<div class="h-32 w-full bg-surface-container-highest relative">
+<div class="bg-cover bg-center w-full h-full opacity-60" data-alt="An abstract, warm geometric pattern resembling stacked books or architectural layers, using amber, cream, and deep brown tones, minimalist, clean lines, high-end editorial graphic design style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQFM189GOyNi3bLOAiSQrHM_K-tR_AgvA9a3c-VIyO38Ht_g106NYfyYlEY5a4ETrQg4ss92NM6UmYDQWincTq_DBs7ivcN9RGALhMD10bk7C52I9kAenlWJcWr8D7zSJwgDEMc67e7psC-p_yxBEvWcG9X75Qgn6kWHKfhOvW9Stsl5YB4d5Fl6xrrgvrN2SbXcz8jh99IYcNu0E6GcvYUA0yUNYoFAwBxBpo4UsTHCqhRYFqRwvB')"></div>
+</div>
+<div class="px-6 pb-6 relative flex-1 flex flex-col">
+<div class="w-24 h-24 rounded-full border-4 border-surface-container-high bg-surface overflow-hidden shadow-sm -mt-12 mb-4 mx-auto md:mx-0 relative z-10">
+<img alt="Profile Avatar" class="w-full h-full object-cover" data-alt="A close up, professional headshot of a diverse university student in natural lighting, sharp focus, academic setting background blurred, warm color grading, 8k resolution, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCakwLd8ivI2DUVB_ZMwi1ChuPG15S7QNT6LTLRF_GW4RZImGtFgsdKgz1BWnadVLa6nZymBEFxFBi_3CXKbYhprtzXjf17Rpuf4uYAepLEm6s9Z0izqZIZQLXidPQJCj5j22NHvV9ueh3iinekP84G7OE0PhTLaRt8mrMmuCbUUrgnNq83MS36pT40Dd6iZQpusjv4hKMA3kTfXjtBKYnTQg0s6p-N5wPAFrk4xf2kO8mbYZusjvgb"/>
+</div>
+<div class="text-center md:text-left mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Eleanor Vance</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">evance@university.edu</p>
+</div>
+<div class="space-y-4 mt-auto">
+<div class="flex flex-col border-t border-outline-variant/40 pt-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">Student ID</span>
+<span class="font-data-mono text-data-mono text-ink-primary">STD-8472-99</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">Department</span>
+<span class="font-body-lg text-body-lg text-ink-primary">Comparative Literature</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">Status</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container text-on-secondary-container w-max">Active Scholar</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Settings & Preferences (Col Span 8) -->
+<div class="md:col-span-8 flex flex-col gap-6">
+<!-- Reading Preferences -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/40 p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+<h3 class="font-title-sm text-title-sm text-primary">Reading Preferences</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Primary Formats</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full border border-accent-warm text-accent-warm font-body-sm text-body-sm bg-surface">Physical</span>
+<span class="px-3 py-1 rounded-full border border-outline-variant text-ink-secondary font-body-sm text-body-sm bg-surface">Digital</span>
+<span class="px-3 py-1 rounded-full border border-outline-variant text-ink-secondary font-body-sm text-body-sm bg-surface">Audio</span>
+</div>
+</div>
+<div class="space-y-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Topics of Interest</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-body-sm text-body-sm border border-outline-variant/40">Modernism</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-body-sm text-body-sm border border-outline-variant/40">Poetry</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-body-sm text-body-sm border border-outline-variant/40">Literary Theory</span>
+<button class="px-3 py-1 rounded-full border border-dashed border-outline text-ink-secondary font-body-sm text-body-sm hover:text-primary hover:border-primary transition-colors">
+                                        + Add Topic
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Account Settings -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/40 p-6 shadow-sm flex-1">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">settings</span>
+<h3 class="font-title-sm text-title-sm text-primary">Account Security</h3>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/40">
+<div>
+<p class="font-body-lg text-body-lg text-ink-primary">Change Password</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Last updated 3 months ago</p>
+</div>
+<button class="px-4 py-2 rounded-lg border border-outline-variant text-primary font-title-sm text-title-sm hover:bg-surface-container-high transition-colors">Update</button>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-outline-variant/40">
+<div>
+<p class="font-body-lg text-body-lg text-ink-primary">Two-Factor Authentication</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Currently active via Authenticator App</p>
+</div>
+<button class="px-4 py-2 rounded-lg border border-outline-variant text-primary font-title-sm text-title-sm hover:bg-surface-container-high transition-colors">Manage</button>
+</div>
+<div class="flex items-center justify-between py-3">
+<div>
+<p class="font-body-lg text-body-lg text-ink-primary">Notification Preferences</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage email and SMS alerts</p>
+</div>
+<button class="px-4 py-2 rounded-lg border border-outline-variant text-primary font-title-sm text-title-sm hover:bg-surface-container-high transition-colors">Configure</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity (Full Width) -->
+<div class="md:col-span-12 mt-4">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">history</span>
+<h3 class="font-headline-md text-headline-md text-primary">Recent Activity</h3>
+</div>
+<div class="bg-surface-container-high rounded-xl border border-outline-variant/40 shadow-sm overflow-hidden">
+<ul class="divide-y divide-outline-variant/40">
+<li class="p-4 md:p-6 flex items-start gap-4 hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-12 h-16 bg-surface shrink-0 rounded border border-outline-variant/40 overflow-hidden">
+<div class="bg-cover bg-center w-full h-full" data-alt="A vintage, minimalist book cover design with a stylized sun and geometric mountains, warm earthy tones, elegant typography layout." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYZhtWaU80X2EoPDjzZdbpkrzNXeKfCmZ3V-Vo7RyC7Qm071l6yOdx88nQ7FubbPcc8XHp_IegHW_1a9QCju5ooeDLOGVkKZz35lHCgYFelR_ayb7z7r4Dep9ALxeo707p4W2NnoO_Fsumz0O1tyKBHBl6rrVMlXbbvTsng7NBqa0DKkdek_2g-wAGxS2GKpgQwGxtQGINdHmQ5ueVOvKAtp-1FisMGcoPLTK_AePy9E4Dvaz9f4f3')"></div>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Returned</p>
+<p class="font-title-sm text-title-sm text-ink-primary">The Waste Land and Other Poems</p>
+<p class="font-body-sm text-body-sm text-ink-secondary">T.S. Eliot</p>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">Oct 24, 2023</span>
+</li>
+<li class="p-4 md:p-6 flex items-start gap-4 hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 shrink-0 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">event_seat</span>
+</div>
+<div class="flex-1 pt-1">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Reservation Completed</p>
+<p class="font-title-sm text-title-sm text-ink-primary">Main Library Reading Room</p>
+<p class="font-body-sm text-body-sm text-ink-secondary">Seat 4B</p>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">Oct 22, 2023</span>
+</li>
+<li class="p-4 md:p-6 flex items-start gap-4 hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-12 h-16 bg-surface shrink-0 rounded border border-outline-variant/40 overflow-hidden">
+<div class="bg-cover bg-center w-full h-full" data-alt="A modern academic journal cover design, clean typography, minimalist grid layout, abstract shapes in cream and amber." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtGQBYZPVS0sjECCHd7vdEqUjz6jM9cc9Fq0IEbY4iDwmgFqcPhnlDn3QRLIFfWSdXCuix3RlwX916_02RfX6_WEH50vVuJMMnAOzTAxa5z6W_ZYuEibmiqjHCUNbem9q_zoKvycTfknZwwaIOtBcPZRD6V-73Z3Y7i-HxkeDSK0O0Vu5e6PIecyz_KYxKhjsuc3Ja07JJkv2HH999r31Iseus75E9nMcYCtilvfFCIb0LZXdsm3oh')"></div>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Checked Out</p>
+<p class="font-title-sm text-title-sm text-ink-primary">Journal of Modern Literature, Vol 45</p>
+<p class="font-body-sm text-body-sm text-ink-secondary">Indiana University Press</p>
+</div>
+<span class="font-data-mono text-data-mono text-on-surface-variant whitespace-nowrap">Oct 18, 2023</span>
+</li>
+</ul>
+<div class="p-4 border-t border-outline-variant/40 bg-surface-container flex justify-center">
+<button class="text-primary font-title-sm text-title-sm hover:text-accent-warm transition-colors">View All History</button>
+</div>
+</div>
+</div>
+</div>
+<footer class="mt-16 pt-8 border-t border-outline-variant/40 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant font-body-sm text-body-sm">
+<p>© 2023 Bookify Academic Portal. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

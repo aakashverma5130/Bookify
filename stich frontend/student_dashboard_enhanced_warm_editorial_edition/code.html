@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Student Dashboard</title>
+<!-- Tailwind CSS (Include correct URL in prod, using script tag per instructions) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config injected verbatim -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#ffb95f",
+                      "surface": "#fdf9e9",
+                      "on-background": "#1c1c13",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-low": "#f8f4e4",
+                      "surface-tint": "#855300",
+                      "tertiary": "#474647",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed": "#1c1b1c",
+                      "ink-secondary": "#474747",
+                      "surface-bright": "#fdf9e9",
+                      "inverse-surface": "#323126",
+                      "surface-variant": "#e6e3d3",
+                      "inverse-primary": "#fdb965",
+                      "tertiary-fixed-dim": "#c8c6c6",
+                      "on-primary-container": "#ffd09a",
+                      "primary": "#653e00",
+                      "on-secondary-fixed": "#2a1700",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#855300",
+                      "on-primary-fixed-variant": "#653e00",
+                      "surface-container-highest": "#e6e3d3",
+                      "ink-primary": "#1B1B1B",
+                      "surface-container-high": "#ece8d9",
+                      "on-surface": "#1c1c13",
+                      "tertiary-container": "#5f5e5e",
+                      "on-tertiary-container": "#dbd8d7",
+                      "secondary-container": "#fea619",
+                      "secondary-fixed": "#ffddb8",
+                      "surface-dim": "#dedacb",
+                      "on-surface-variant": "#514538",
+                      "inverse-on-surface": "#f5f1e1",
+                      "primary-fixed": "#ffddb8",
+                      "outline": "#837566",
+                      "error": "#ba1a1a",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed-dim": "#fdb965",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#2a1700",
+                      "outline-variant": "#d5c4b2",
+                      "on-secondary-container": "#684000",
+                      "on-secondary": "#ffffff",
+                      "surface-base": "#FFFBEB",
+                      "on-tertiary-fixed-variant": "#474647",
+                      "on-secondary-fixed-variant": "#653e00",
+                      "secondary": "#855300",
+                      "tertiary-fixed": "#e5e2e1",
+                      "surface-container": "#f2eede",
+                      "accent-warm": "#F59E0B",
+                      "accent-deep": "#D97706",
+                      "background": "#fdf9e9",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "margin-mobile": "16px",
+                      "content-max-width": "1280px",
+                      "gutter": "24px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-mono": [
+                              "monospace"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-sm min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-surface-container-low dark:bg-surface-dim font-headline-md text-headline-md font-body-sm text-body-sm h-screen w-64 fixed left-0 top-0 border-r border-outline-variant/40 flex flex-col h-full p-6 transition-all duration-200 ease-in-out z-40 hidden md:flex">
+<!-- Brand -->
+<div class="mb-10">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Bookify</h1>
+<p class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed-dim">Academic Library</p>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 space-y-2">
+<!-- Active Nav Item -->
+<a class="flex items-center space-x-3 px-4 py-3 bg-secondary-container dark:bg-secondary-fixed text-on-secondary-container dark:text-on-secondary-fixed font-bold rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined fill" data-icon="home" data-weight="fill">home</span>
+<span class="font-body-sm text-body-sm">Home</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-colors rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-body-sm text-body-sm">Explore Books</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-colors rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-body-sm text-body-sm">My Books</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-colors rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-sm text-body-sm">Calendar</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-colors rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="shelves">shelves</span>
+<span class="font-body-sm text-body-sm">Digital Shelf</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-colors rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-sm text-body-sm">Fines</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-ink-secondary dark:text-tertiary-fixed-dim hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-colors rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="font-body-sm text-body-sm">Request a Book</span>
+</a>
+</nav>
+<!-- CTA -->
+<button class="mt-8 mb-6 w-full py-3 bg-secondary-container/20 border border-secondary-container text-primary font-body-sm text-body-sm font-semibold rounded-lg hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-in-out">
+            New Research
+        </button>
+<!-- User Profile (Bottom) -->
+<div class="mt-auto pt-6 border-t border-outline-variant/40 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A bright, professional headshot of an academic student against a clean, warm library background. The lighting is soft and flattering, creating a premium, modern feel. The student is casually yet smartly dressed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRXYf2G0Nix3uvjfu_HgV0HY45U86IqE_l0XTLFRnJkvunr5dGeF5cyDiO3sMqqUSfLuw2r6hL2wbNetQfyZl50slkgS8iPmVkC-d_DfF2nl2pBVQcn94qA5fdLHChgz5ED6HlY5e-8IHMnIXNaQwfExFTVmeBCrF6Rr8MhdWSFhxqg5wUsfAXKpMbHRqBTXIUYRXBaemYgQsF2v_b1DczOq_uFd82m5a5VHAu8Ur4FMlDAuy1oZV3"/>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-semibold text-on-background">Himanshu Gupta</p>
+<p class="font-body-sm text-body-sm text-ink-secondary text-xs">Student</p>
+</div>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar (Shared Component) -->
+<header class="bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-md border-b border-outline-variant/40 fixed top-0 right-0 left-0 md:left-64 z-30 h-16 flex justify-between items-center px-margin-mobile md:px-margin-desktop transition-all">
+<!-- Mobile Menu Toggle (Hidden on desktop) -->
+<button class="md:hidden text-ink-secondary scale-95 active:scale-90 transition-transform p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Title / Left side (Empty on desktop as it's just 'My Dashboard' which fits better in main content header, but following shared component rules) -->
+<div class="flex items-center">
+<h2 class="font-title-sm text-title-sm font-bold text-primary dark:text-primary-fixed-dim md:hidden">Bookify</h2>
+</div>
+<!-- Actions (Right Side) -->
+<div class="flex items-center space-x-4">
+<button class="text-ink-secondary dark:text-tertiary-fixed-dim hover:text-accent-deep transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-ink-secondary dark:text-tertiary-fixed-dim hover:text-accent-deep transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-ink-secondary dark:text-tertiary-fixed-dim hover:text-accent-deep transition-colors scale-95 active:scale-90 transition-transform md:hidden">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 pt-24 pb-12 px-margin-mobile md:px-margin-desktop max-w-content-max-width mx-auto w-full">
+<!-- Page Header & Welcome -->
+<div class="mb-12">
+<h2 class="font-title-sm text-title-sm text-ink-secondary mb-2 uppercase tracking-widest font-label-caps">My Dashboard</h2>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">Good morning, Himanshu. <br/>Ready to discover something new?</h1>
+<!-- Large Search Bar -->
+<div class="relative max-w-2xl mt-8">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-accent-warm text-2xl">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 bg-surface-container-low border border-accent-warm/30 rounded-full font-body-lg text-body-lg text-on-background focus:ring-accent-warm focus:border-accent-warm placeholder-ink-secondary/50 shadow-sm transition-all focus:shadow-md" placeholder="Search books, authors, ISBN..." type="text"/>
+</div><div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+<div class="bg-surface-container-lowest border border-outline-variant/40 p-6 rounded-xl shadow-sm">
+<p class="font-label-caps text-ink-secondary uppercase tracking-widest mb-2">Books Borrowed</p>
+<p class="font-display-lg-mobile text-primary">12</p>
+</div>
+<div class="bg-surface-container-lowest border border-accent-warm/30 p-6 rounded-xl shadow-sm">
+<p class="font-label-caps text-ink-secondary uppercase tracking-widest mb-2">Due Soon</p>
+<p class="font-display-lg-mobile text-accent-warm">2</p>
+</div>
+<div class="bg-surface-container-lowest border border-error/20 p-6 rounded-xl shadow-sm">
+<p class="font-label-caps text-ink-secondary uppercase tracking-widest mb-2">Overdue</p>
+<p class="font-display-lg-mobile text-error">1</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/40 p-6 rounded-xl shadow-sm">
+<p class="font-label-caps text-ink-secondary uppercase tracking-widest mb-2">Unpaid Fines</p>
+<p class="font-display-lg-mobile text-ink-secondary">₹0</p>
+</div>
+</div>
+</div>
+<section class="mt-16">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">My Current Books</h2>
+<a class="text-accent-warm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-col items-center justify-center py-12 bg-surface-container-low/50 rounded-xl border border-dashed border-outline-variant/60">
+<span class="material-symbols-outlined text-6xl text-outline-variant/60 mb-4">library_books</span>
+<p class="font-title-sm text-ink-secondary">No books checked out</p>
+<p class="text-body-sm text-ink-secondary/70 mb-6">Your borrowed books will appear here.</p>
+<button class="px-6 py-2 bg-secondary-container text-on-secondary-container font-semibold rounded-lg hover:bg-accent-warm transition-colors">Explore Books</button>
+</div>
+</section>
+<section class="mt-16">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Recommended For You</h2>
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl overflow-hidden flex flex-col md:flex-row">
+<div class="md:w-1/3 h-64 md:h-auto">
+<img alt="The Architecture of Tomorrow" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkOsvK_lpV2FdD3tA2fxYezmM_O3jppgz_Nk4GxoNMiCxB4d74doRUdyjNS8rPLpU3z5Hnw9FeU7ME9gQazpcCyoNEX9Q6SSOPCt60XZ4zZg5YWv4JPo465TDPQhY3Em4OJaqaiN53ELlD3f7rBwT8qT_vUGAjSfa3rM532xZnffnOdm_7PDg4_En43OxOkKoE-VAc2C3_Tl4yIhu83R-0miHlS1RtUfuZo9d7iaJjXPPvUBLWxZQQXBb1KZmanZO2KQ"/>
+</div>
+<div class="p-8 flex-1 flex flex-col justify-center">
+<div class="flex items-center space-x-2 mb-2">
+<span class="px-2 py-1 bg-secondary-container/20 text-secondary text-xs font-bold rounded uppercase tracking-wider">Architecture</span>
+<span class="text-accent-warm font-bold text-xs">Available</span>
+</div>
+<h3 class="font-display-lg-mobile text-primary mb-2">The Architecture of Tomorrow</h3>
+<p class="text-ink-secondary mb-6">By Wyn Kelley • March 7, 2019</p>
+<p class="text-body-lg text-ink-secondary/80 mb-8 line-clamp-3">A comprehensive examination of modern architectural principles and their evolution into the twenty-first century. This featured recommendation explores the intersection of form, function, and sustainability.</p>
+<div class="flex space-x-4">
+<button class="px-8 py-3 bg-primary text-on-primary font-semibold rounded-lg hover:bg-accent-deep transition-colors">Borrow Now</button>
+<button class="px-8 py-3 border border-outline text-primary font-semibold rounded-lg hover:bg-surface-container-highest transition-colors">Save to Shelf</button>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-16 mb-12">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">New in Library</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex space-x-4 p-4 bg-surface-container-lowest border border-outline-variant/40 rounded-lg hover:shadow-md transition-shadow">
+<div class="w-16 h-24 bg-surface-container-high rounded flex-shrink-0"></div>
+<div>
+<p class="font-title-sm text-primary line-clamp-1">The Path of Thorns</p>
+<p class="text-xs text-ink-secondary">A. G. Slatter</p>
+<p class="text-xs text-accent-warm mt-2">Just Added</p>
+</div>
+</div>
+<div class="flex space-x-4 p-4 bg-surface-container-lowest border border-outline-variant/40 rounded-lg hover:shadow-md transition-shadow">
+<div class="w-16 h-24 bg-surface-container-high rounded flex-shrink-0"></div>
+<div>
+<p class="font-title-sm text-primary line-clamp-1">Everything Everything</p>
+<p class="text-xs text-ink-secondary">Nicola Yoon</p>
+<p class="text-xs text-accent-warm mt-2">Just Added</p>
+</div>
+</div>
+<div class="flex space-x-4 p-4 bg-surface-container-lowest border border-outline-variant/40 rounded-lg hover:shadow-md transition-shadow">
+<div class="w-16 h-24 bg-surface-container-high rounded flex-shrink-0"></div>
+<div>
+<p class="font-title-sm text-primary line-clamp-1">Tales from the Cafe</p>
+<p class="text-xs text-ink-secondary">Toshikazu Kawaguchi</p>
+<p class="text-xs text-accent-warm mt-2">Just Added</p>
+</div>
+</div>
+</div>
+</section></main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-low w-full py-8 mt-auto border-t border-outline-variant/40 flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-content-max-width mx-auto">
+<p class="font-body-sm text-body-sm text-ink-secondary dark:text-tertiary-fixed-dim mb-4 md:mb-0">
+                © 2024 Bookify Academic Editorial System. All rights reserved.
+            </p>
+<div class="flex space-x-6">
+<a class="font-body-sm text-body-sm text-ink-secondary opacity-70 hover:opacity-100 hover:underline underline-offset-4 transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-ink-secondary opacity-70 hover:opacity-100 hover:underline underline-offset-4 transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-ink-secondary opacity-70 hover:opacity-100 hover:underline underline-offset-4 transition-opacity duration-200" href="#">Library Support</a>
+</div>
+</footer>
+</div>
+</body></html>

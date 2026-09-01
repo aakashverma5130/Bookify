@@ -1,15 +1,26 @@
 const db = require('../config/db');
 const notificationService = require('../services/notificationService');
+const log = require('../logger');
 
 /**
  * Daily reminder job — runs at 08:00 every day via node-cron.
  * Queries issues due in 7/3/1/0 days + all overdue, creates notifications.
  */
 const dailyReminderJob = async () => {
-  console.log('[REMINDER] Starting daily reminder job...');
+  log.info('reminder_job_started');
   let notifCount = 0;
 
   try {
+    // L-9: pull the configured fine rate from library_settings so the
+    // email body matches the actual rate used by fineService.
+    const settingsResult = await db.query(
+      `SELECT fine_per_day FROM library_settings LIMIT 1`
+    );
+    const finePerDay = settingsResult.rows.length
+      ? parseFloat(settingsResult.rows[0].fine_per_day)
+      : 2.00;
+    const finePerDayLabel = `Rs. ${finePerDay.toFixed(2)}/day`;
+
     // Issues due in 7, 3, 1 day or today
     const upcomingResult = await db.query(
       `SELECT i.issue_id, i.student_id, i.due_date,
@@ -34,7 +45,7 @@ const dailyReminderJob = async () => {
         userId:  row.user_id,
         type:    'DUE_REMINDER',
         title:   `Book Due ${row.days_remaining === 0 ? 'Today' : `in ${row.days_remaining} Day${row.days_remaining === 1 ? '' : 's'}`}`,
-        message: `"${row.book_title}" is due ${daysText} (${row.due_date}). Please return it on time to avoid fines.`,
+        message: `"${row.book_title}" is due ${daysText} (${row.due_date}). Please return it on time to avoid fines (${finePerDayLabel}).`,
         metadata: { issueId: row.issue_id, daysRemaining: row.days_remaining },
       });
       notifCount++;
@@ -65,15 +76,15 @@ const dailyReminderJob = async () => {
         userId:  row.user_id,
         type:    'OVERDUE',
         title:   `Book Overdue — ${row.overdue_days} Day${row.overdue_days === 1 ? '' : 's'} Late`,
-        message: `"${row.book_title}" is ${row.overdue_days} day${row.overdue_days === 1 ? '' : 's'} overdue. Fine accumulating at Rs. 2/day. Please return immediately.`,
+        message: `"${row.book_title}" is ${row.overdue_days} day${row.overdue_days === 1 ? '' : 's'} overdue. Fine accumulating at ${finePerDayLabel}. Please return immediately.`,
         metadata: { issueId: row.issue_id, overdueDays: row.overdue_days },
       });
       notifCount++;
     }
 
-    console.log(`[REMINDER] Done — ${notifCount} notifications sent.`);
+    log.info('reminder_job_complete', { notificationsSent: notifCount });
   } catch (err) {
-    console.error('[REMINDER] Job error:', err.message);
+    log.error('reminder_job_failed', { message: err.message });
     throw err;
   }
 };

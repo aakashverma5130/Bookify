@@ -1,0 +1,287 @@
+<!DOCTYPE html><html class="h-full" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Student Dashboard - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1b1b1e",
+                        "on-tertiary-fixed": "#291800",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-primary-fixed": "#081b3a",
+                        "on-surface": "#1b1b1e",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "primary": "#031635",
+                        "tertiary-fixed": "#ffddb1",
+                        "surface-variant": "#e4e2e5",
+                        "secondary": "#4950c7",
+                        "surface-bright": "#fbf8fc",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "secondary-container": "#7d84fe",
+                        "inverse-on-surface": "#f2f0f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e7eb",
+                        "outline-variant": "#c5c6cf",
+                        "background": "#fbf8fc",
+                        "on-surface-variant": "#44474e",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface": "#fbf8fc",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#070494",
+                        "inverse-primary": "#b6c6ef",
+                        "on-secondary-fixed": "#02006d",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b08d5b",
+                        "primary-container": "#1a2b4b",
+                        "secondary-fixed": "#e0e0ff",
+                        "on-secondary-fixed-variant": "#3035af",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4e5e81",
+                        "on-primary-fixed-variant": "#364768",
+                        "inverse-surface": "#303033",
+                        "primary-fixed": "#d8e2ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f5f3f6",
+                        "error": "#ba1a1a",
+                        "surface-container": "#efedf0",
+                        "on-primary-container": "#8293b8",
+                        "outline": "#75777f",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#3e2700",
+                        "tertiary": "#231400",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbd9dc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full font-sans antialiased overflow-hidden flex flex-col md:hidden">
+<!-- Mobile Top App Bar -->
+<header class="bg-surface-bright text-primary flex justify-between items-center w-full px-margin-mobile h-16 shrink-0 border-b border-outline-variant z-10 sticky top-0">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">Bookify</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full p-2 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a young university student in a bright, modern academic setting. The student looks focused and professional. Soft, natural lighting highlights the face, with a shallow depth of field blurring the background slightly." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrovrjpW-s9tST9EhafADT6Yc0m5X2Y8VDV4C-1ANgR1CQsId6SQKpCe3bB6p0G8tWjVx6gnk-ZqBj0hdi6W3niR80negoJkFqUdoVaQ2N4HJ1PbkgDhJbblQ4p6hiSrIQIt_k8Pw1rHd5XNywvpw9dAL1jk4sXvyMES6QpZfIIxrHR_GYGGjGTNgrqZuLwuucf60H9a4TEeldKa6ACj7gTZVq_0gfD13krddpQ1s8mZo-DyLnJseF">
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-margin-mobile py-6 bg-surface-container-low pb-24 space-y-8">
+<!-- Welcome Section -->
+<section class="space-y-1">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary">Student Portal</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Academic Year 2023-24</p>
+</section>
+<!-- Account Overview (Bento Grid) -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Currently Borrowed Metric -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col justify-between h-32 shadow-[0px_4px_20px_rgba(26,43,75,0.04)]">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-2 py-1 rounded">Active</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary">3</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Borrowed</p>
+</div>
+</div>
+<!-- Overdue Metric -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col justify-between h-32 shadow-[0px_4px_20px_rgba(26,43,75,0.04)]">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-error">0</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Overdue</p>
+</div>
+</div>
+<!-- Reservations Metric -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col justify-between h-32 shadow-[0px_4px_20px_rgba(26,43,75,0.04)] col-span-2">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<p class="font-title-sm text-title-sm text-primary">Active Reservations</p>
+</div>
+<div class="flex justify-between items-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">1 item waiting for pickup</p>
+<button class="font-label-caps text-label-caps text-secondary border border-secondary px-3 py-1.5 rounded bg-transparent">View</button>
+</div>
+</div>
+</section>
+<!-- Currently Borrowed Cards -->
+<section class="space-y-4">
+<h2 class="font-title-sm text-title-sm text-primary flex items-center justify-between">
+                Currently Borrowed
+                <span class="font-body-sm text-body-sm text-secondary cursor-pointer">See All</span>
+</h2>
+<div class="flex flex-col gap-4">
+<!-- Borrowed Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex gap-4 shadow-[0px_4px_20px_rgba(26,43,75,0.04)]">
+<div class="w-16 h-24 shrink-0 rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist, modern book cover design for 'Introduction to Algorithms'. The cover features abstract geometric shapes in shades of navy and violet against a clean white background. Typography is crisp and academic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvBc-8Sk4gAUr_AlRpDzngaZvSnB_V8ubN4B2urqTbULl3SeoARPZm2kyC6e3VoCXq14cxIP7RLInk662vt1pIPfgAnASKyaPBKimv0l_XZUGudBCxNyLLpkPOUu-UPplqUSAn-Sg-p5bEElePNplr4FCc4OnBP0rsJsGBEONVQm2GCCxZlseaXCV_wybsiuscMXFYuXPRusqmzELPgL97mkM4OQbawqgdgG2Zye2TC6nAfydzJYNM">
+</div>
+<div class="flex flex-col justify-between flex-1">
+<div>
+<h3 class="font-title-sm text-title-sm text-primary leading-tight line-clamp-2">Introduction to Algorithms</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Thomas H. Cormen</p>
+</div>
+<div class="flex justify-between items-end mt-2">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Due</p>
+<p class="font-body-sm text-body-sm text-primary font-semibold">Oct 24, 2023</p>
+</div>
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1.5 rounded bg-transparent">Renew</button>
+</div>
+</div>
+</div>
+<!-- Borrowed Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex gap-4 shadow-[0px_4px_20px_rgba(26,43,75,0.04)]">
+<div class="w-16 h-24 shrink-0 rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A modern academic textbook cover for 'Design Patterns'. Clean, minimalist layout with subtle architectural line drawings in muted blues and grays. The overall look is professional, structured, and high-end." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFQcrZYGvSSxKZDCQqZqVj5cA_yQsxeFugLaIEH_Xpe-rgylWcox2FmwvdLmr2bydgCpEUEVogqsmkzxSwRtHmaAeChiImymQ8U3dZrYz5YL8SK4yt8j8ACc3tQrezgYr9osW65uRdR9Y25xpRrNeNIPeYsdaJd-rHpyQpdkyCXtMbmh6qJcvUjBj2LUf38uj79L4ANjWHzZ-B3ghlT1SnV0wFglJou_gzFt3a8HQk116bTE1LKyyf">
+</div>
+<div class="flex flex-col justify-between flex-1">
+<div>
+<h3 class="font-title-sm text-title-sm text-primary leading-tight line-clamp-2">Design Patterns</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Erich Gamma</p>
+</div>
+<div class="flex justify-between items-end mt-2">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Due</p>
+<p class="font-body-sm text-body-sm text-primary font-semibold">Oct 28, 2023</p>
+</div>
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1.5 rounded bg-transparent">Renew</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommended (Horizontal Scroll) -->
+<section class="space-y-4">
+<h2 class="font-title-sm text-title-sm text-primary">Recommended for you</h2>
+<div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar -mx-margin-mobile px-margin-mobile">
+<div class="w-28 shrink-0 flex flex-col gap-2 cursor-pointer group">
+<div class="w-full aspect-[2/3] rounded border border-outline-variant overflow-hidden group-hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist book cover for 'Clean Code'. Features subtle typography on a plain, textured off-white background with a single deep navy geometric accent. Academic and premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8TmjpqTQJI0cpgkxLjMfl7fs9eEgKpKEV9QQZRQW7Sijpsl4V5BVI6cIJWDYS80esq0we3e8pg889pRBDQJKo3Fv9m3AcdyxvrTMajfKLssKGSfIiSVHKVZQwRvH_CHw71F3wcTcHwZzlkKxRcQF9kzGqUlUwppTUwQhCXFL13N_Vy1kexum5WG2ZeF4I6lKPdfQ6iSE7WPReJEYvLW51t84_8bGt3LlWnjvqXHtsC2wGRpMA8xBn">
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-primary font-semibold truncate">Clean Code</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant truncate text-[10px]">Robert C. Martin</p>
+</div>
+</div>
+<div class="w-28 shrink-0 flex flex-col gap-2 cursor-pointer group">
+<div class="w-full aspect-[2/3] rounded border border-outline-variant overflow-hidden group-hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A minimalist book cover for 'The Pragmatic Programmer'. Soft, muted colors with a focus on elegant typography and ample whitespace. Looks like a high-end university press publication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2okZGfiHz6BvuHIGkcrRZpP7ocaLqW1Al7wg0QytkMMQfXm4f5iKEhYzxl6IiHc1yioSfmcjS2_Ts8vJ9bVvx44K0X-3QwehxrT7_5bCicqDafYVduXigxBrZamJCF8OLUmBpNn7UQ3E05lrH_UQRiazcn8W2UkPynkkyq1TYdAd8tiP8vqaWeJ-33eB3cLKbPong0n-yOyYiIgpXkpOdP6ofxz4UQ58mHHWUcPfuSRmG0yI4fkgD">
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-primary font-semibold truncate">Pragmatic Prog...</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant truncate text-[10px]">David Thomas</p>
+</div>
+</div>
+<div class="w-28 shrink-0 flex flex-col gap-2 cursor-pointer group">
+<div class="w-full aspect-[2/3] rounded border border-outline-variant overflow-hidden group-hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A sophisticated book cover for 'Refactoring'. Features abstract structural diagrams in soft violet and navy against a pristine white background. High contrast, clean lines, academic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADpJjGAx5-AUqxcLKFaCqRzWksjIWw4Ezu-JQgG46XLyKM3iCDRRGJmLqJHh-Nw-8Cmgew_wLlHwNx__n3N4R9BcW5pS6jScqcycLcQPf8sRIZD7iq_-IM-kHRMUpEp_PWkTP7AX8l4ClqrNyeUa1CN4Vdd_27SDyszfcteKBxSIyob5h5svM54do1jlfj4LdvLdSGQzYHeqHqTIVjr6_38m_TeTLRuuGV7fYexfGT5q1Gu9BRsdWO">
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-primary font-semibold truncate">Refactoring</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant truncate text-[10px]">Martin Fowler</p>
+</div>
+</div>
+<div class="w-28 shrink-0 flex flex-col gap-2 cursor-pointer group">
+<div class="w-full aspect-[2/3] rounded border border-outline-variant overflow-hidden group-hover:opacity-90 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A modern academic book cover with a deep blue background and silver geometric patterns. Clean, sans-serif typography for the title and author. Professional and serious aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdXwv8DSDfGK1ksLiI6SdMBspjpq372pxFQs5Uj0ERr7aQpi-kxbkQnO3QyicI-5ojJoGY0Ga6q6p7eryQEaXn8xX0EEuuJsZIG0j_omFcwPm9ejTtAoRlgOJ-Io8R5x18DTsENuB5fb7rL1YBi9ncUm4kGpFqFEM_4O3_Sxy0bxG7WHIWYzusBR8SaOaxsZWWnHY4ItnY6q_DJssMaflc3GA74ra3GKFNw8kOMc-I6UFL5595aoNv">
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-primary font-semibold truncate">Code Complete</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant truncate text-[10px]">Steve McConnell</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="bg-surface-container-low border-t border-outline-variant fixed bottom-0 left-0 w-full z-20 pb-[env(safe-area-inset-bottom)]">
+<ul class="flex justify-around items-center h-16">
+<!-- Active Tab -->
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center h-full w-full gap-1 text-primary dark:text-primary-fixed font-bold opacity-90 transition-opacity" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps text-[10px]">Dashboard</span>
+</a>
+</li>
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center h-full w-full gap-1 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+<span class="font-label-caps text-label-caps text-[10px]">Catalog</span>
+</a>
+</li>
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center h-full w-full gap-1 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history_edu</span>
+<span class="font-label-caps text-label-caps text-[10px]">My Borrowing</span>
+</a>
+</li>
+<li class="flex-1">
+<a class="flex flex-col items-center justify-center h-full w-full gap-1 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-caps text-label-caps text-[10px]">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+
+
+</body></html>

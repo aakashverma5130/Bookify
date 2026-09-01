@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LibraX Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1b1b1e",
+                        "status-issued": "#BA1A1A",
+                        "error": "#ba1a1a",
+                        "primary-container": "#081b3a",
+                        "on-tertiary-fixed": "#291800",
+                        "surface-bright": "#fbf8fc",
+                        "tertiary": "#000000",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-container": "#7d85fe",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-secondary-fixed": "#01006e",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#eae7eb",
+                        "tertiary-container": "#291800",
+                        "map-grid-line": "#C5C6CF",
+                        "surface-dim": "#dcd9dd",
+                        "primary-fixed-dim": "#b6c6ee",
+                        "surface": "#fbf8fc",
+                        "inverse-primary": "#b6c6ee",
+                        "on-background": "#1b1b1e",
+                        "surface-tint": "#4e5e81",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#44474e",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "status-reserved": "#E36414",
+                        "outline": "#75777f",
+                        "surface-variant": "#e4e1e5",
+                        "secondary": "#4950c7",
+                        "surface-container": "#f0edf1",
+                        "on-tertiary-container": "#a07e4e",
+                        "surface-container-low": "#f5f3f7",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#2f35ae",
+                        "status-available": "#2D6A4F",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "surface-container-highest": "#e4e1e5",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#303033",
+                        "admin-table-header": "#EFEDF0",
+                        "on-secondary-container": "#060693",
+                        "on-primary-container": "#7384a8",
+                        "inverse-on-surface": "#f3f0f4",
+                        "on-error": "#ffffff",
+                        "background": "#fbf8fc",
+                        "secondary-fixed": "#e0e0ff",
+                        "primary": "#000000",
+                        "on-primary-fixed": "#081b3a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-cell-px": "16px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "table-cell-py": "12px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "data-mono": ["monospace"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-lg min-h-screen flex">
+<!-- Admin SideNavBar -->
+<nav class="hidden md:flex bg-admin-table-header dark:bg-surface-container-high text-primary dark:text-primary-fixed-dim font-label-caps text-label-caps fixed left-0 top-0 h-full flex-col pt-16 border-r border-outline-variant w-72 z-40">
+<div class="px-6 pb-8">
+<h1 class="font-headline-md text-headline-md font-black text-primary">Admin Console</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">System Control</p>
+</div>
+<ul class="flex-grow space-y-2">
+<li>
+<a class="bg-primary text-on-primary rounded-none border-l-4 border-secondary flex items-center px-6 py-3 transition-none" href="#">
+<span class="material-symbols-outlined mr-4" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Overview
+                </a>
+</li>
+<li>
+<a class="text-on-surface-variant font-medium hover:bg-surface-variant dark:hover:bg-surface-container-highest flex items-center px-6 py-3 transition-none" href="#">
+<span class="material-symbols-outlined mr-4">inventory_2</span>
+                    Inventory
+                </a>
+</li>
+<li>
+<a class="text-on-surface-variant font-medium hover:bg-surface-variant dark:hover:bg-surface-container-highest flex items-center px-6 py-3 transition-none" href="#">
+<span class="material-symbols-outlined mr-4">sync_alt</span>
+                    Circulation
+                </a>
+</li>
+<li>
+<a class="text-on-surface-variant font-medium hover:bg-surface-variant dark:hover:bg-surface-container-highest flex items-center px-6 py-3 transition-none" href="#">
+<span class="material-symbols-outlined mr-4">group</span>
+                    Students
+                </a>
+</li>
+<li>
+<a class="text-on-surface-variant font-medium hover:bg-surface-variant dark:hover:bg-surface-container-highest flex items-center px-6 py-3 transition-none" href="#">
+<span class="material-symbols-outlined mr-4">assessment</span>
+                    Reports
+                </a>
+</li>
+</ul>
+<div class="mt-auto pb-6">
+<ul class="space-y-2">
+<li>
+<a class="text-on-surface-variant font-medium hover:bg-surface-variant dark:hover:bg-surface-container-highest flex items-center px-6 py-3 transition-none" href="#">
+<span class="material-symbols-outlined mr-4">terminal</span>
+                        System Logs
+                    </a>
+</li>
+<li>
+<a class="text-on-surface-variant font-medium hover:bg-surface-variant dark:hover:bg-surface-container-highest flex items-center px-6 py-3 transition-none" href="#">
+<span class="material-symbols-outlined mr-4">database</span>
+                        Database
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 flex flex-col min-h-screen">
+<!-- TopAppBar (Modified for Admin View) -->
+<header class="bg-surface dark:bg-surface-container text-primary dark:text-primary-fixed border-b border-outline-variant flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50">
+<div class="flex items-center">
+<span class="font-headline-md text-headline-md font-bold md:hidden mr-4">LibraX Admin</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small circular avatar placeholder image for a library administrator. It should look like a simple, professional headshot in a modern, light-themed digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iwBYJAmUOT2926vYagm43xfD1dOIKbTx0PZeodlO9ClFEx9wNSXFP-TFATav76wyAxGhl_KhOgW7Fow--4pwextVpGJptOUlQrQaFX2G6iH_pp3x-avsjFSxgODPyZdzZqjHUSe2LkIy2Kmi_uXko5aNwsdmZAquz_RyOR7xZU8qCY3p3ySg_KbQNnzAmW5-XgSuzzuSTG3b4LBeyJl7TZldym3Fuc3KdRVlGl9uYfRHU6GB5lZZ"/>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-margin-mobile md:p-margin-desktop flex-1 space-y-gutter overflow-y-auto">
+<div class="flex flex-col md:flex-row gap-gutter">
+<!-- Left Column (Metrics & Table) -->
+<div class="flex-1 space-y-gutter">
+<!-- Top Metrics (Bento Grid Style) -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-unit">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Total Books</span>
+<span class="font-headline-md text-headline-md text-primary">124,592</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col relative overflow-hidden">
+<div class="absolute right-0 top-0 w-16 h-16 bg-status-available opacity-10 rounded-bl-full"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Available</span>
+<span class="font-headline-md text-headline-md text-status-available">89,204</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col relative overflow-hidden">
+<div class="absolute right-0 top-0 w-16 h-16 bg-status-issued opacity-10 rounded-bl-full"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Issued</span>
+<span class="font-headline-md text-headline-md text-status-issued">34,180</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Overdue</span>
+<span class="font-headline-md text-headline-md text-error">1,208</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Active Students</span>
+<span class="font-headline-md text-headline-md text-primary">15,400</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Total Fines</span>
+<span class="font-headline-md text-headline-md text-secondary">$4,250</span>
+</div>
+</section>
+<!-- Chart Area -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 h-64 flex flex-col justify-center items-center relative">
+<span class="font-label-caps text-label-caps text-on-surface-variant absolute top-4 left-4">Borrowing Trends (30 Days)</span>
+<div class="w-full h-40 border-b border-l border-map-grid-line flex items-end justify-between px-2 pb-2 relative">
+<!-- Placeholder for a real chart -->
+<div class="w-8 h-[60%] bg-secondary opacity-80 rounded-t-sm"></div>
+<div class="w-8 h-[40%] bg-status-available opacity-80 rounded-t-sm"></div>
+<div class="w-8 h-[75%] bg-secondary opacity-80 rounded-t-sm"></div>
+<div class="w-8 h-[50%] bg-status-available opacity-80 rounded-t-sm"></div>
+<div class="w-8 h-[90%] bg-secondary opacity-80 rounded-t-sm"></div>
+<div class="w-8 h-[70%] bg-status-available opacity-80 rounded-t-sm"></div>
+<div class="w-8 h-[85%] bg-secondary opacity-80 rounded-t-sm"></div>
+<div class="w-8 h-[65%] bg-status-available opacity-80 rounded-t-sm"></div>
+</div>
+</section>
+<!-- Recent Activity Table -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="bg-admin-table-header px-6 py-3 border-b border-outline-variant">
+<h2 class="font-title-sm text-title-sm text-primary">Recent Activity</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-table-cell-px py-table-cell-py font-label-caps text-label-caps text-on-surface-variant">Student</th>
+<th class="px-table-cell-px py-table-cell-py font-label-caps text-label-caps text-on-surface-variant">Book Title</th>
+<th class="px-table-cell-px py-table-cell-py font-label-caps text-label-caps text-on-surface-variant">Action</th>
+<th class="px-table-cell-px py-table-cell-py font-label-caps text-label-caps text-on-surface-variant">Date</th>
+<th class="px-table-cell-px py-table-cell-py font-label-caps text-label-caps text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low">
+<td class="px-table-cell-px py-table-cell-py font-data-mono text-data-mono">ST-8492</td>
+<td class="px-table-cell-px py-table-cell-py">Advanced Calculus</td>
+<td class="px-table-cell-px py-table-cell-py">Checkout</td>
+<td class="px-table-cell-px py-table-cell-py font-data-mono text-data-mono">Oct 24, 09:15</td>
+<td class="px-table-cell-px py-table-cell-py">
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-status-issued mr-2"></div>
+<span class="font-label-caps text-label-caps text-status-issued">Issued</span>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant bg-surface hover:bg-surface-container-low">
+<td class="px-table-cell-px py-table-cell-py font-data-mono text-data-mono">ST-1104</td>
+<td class="px-table-cell-px py-table-cell-py">Modern Physics</td>
+<td class="px-table-cell-px py-table-cell-py">Return</td>
+<td class="px-table-cell-px py-table-cell-py font-data-mono text-data-mono">Oct 24, 08:42</td>
+<td class="px-table-cell-px py-table-cell-py">
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-status-available mr-2"></div>
+<span class="font-label-caps text-label-caps text-status-available">Available</span>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low">
+<td class="px-table-cell-px py-table-cell-py font-data-mono text-data-mono">ST-3921</td>
+<td class="px-table-cell-px py-table-cell-py">The Art of Computer Programming</td>
+<td class="px-table-cell-px py-table-cell-py">Reserve</td>
+<td class="px-table-cell-px py-table-cell-py font-data-mono text-data-mono">Oct 23, 16:30</td>
+<td class="px-table-cell-px py-table-cell-py">
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-status-reserved mr-2"></div>
+<span class="font-label-caps text-label-caps text-status-reserved">Reserved</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column (Sidebar Content) -->
+<aside class="w-full md:w-80 space-y-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="bg-admin-table-header px-6 py-3 border-b border-outline-variant">
+<h3 class="font-title-sm text-title-sm text-primary">Most Borrowed</h3>
+</div>
+<ul class="p-4 space-y-4">
+<li class="flex items-start">
+<img alt="Book Cover" class="w-12 h-16 object-cover rounded shadow-sm border border-outline-variant mr-4" data-alt="A clean, minimalist book cover graphic for a computer science textbook, featuring abstract geometric nodes and lines on a dark blue background. High resolution, bright light-mode studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxSWpYipWWlv2qKpyiI7MhYFS9Bispqq2QCJVksgP7RWsNIOPtkOMDXyD6xj65X3S6akRs06UyAMkQ5x-8XqdFF0U7hFoQRZ_Whs75mHx7j1w4RoYRFylwJRHWR5YdY1GJ4gaQdEKYoMNBRn087mgSScHTk3dmchvYsJtjnQa2F3JV-3n2XZoHuCbrw8mIWRaVDXdGt8f-9WWy3p0-eI8MkJFZhIJkGSddggEB4gHUm7M4TuwTF9Gu"/>
+<div>
+<p class="font-title-sm text-title-sm text-primary leading-tight mb-1">Introduction to Algorithms</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cormen, Leiserson</p>
+<p class="font-data-mono text-data-mono text-secondary mt-1">420 Checkouts</p>
+</div>
+</li>
+<li class="flex items-start">
+<img alt="Book Cover" class="w-12 h-16 object-cover rounded shadow-sm border border-outline-variant mr-4" data-alt="A modern, crisp textbook cover for a biology book, featuring a simplified, stylized double helix structure in vibrant green against a white background. High resolution, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-QomTwQowHO2s2M4uFC2U3wC4RfFqOgA4fsQuCUeUCcr1zmWxzxU5r4gte-b4iG1Nv9_aE6xwEy1UnnsJpISeTQBfWfjA2XaEz-YbqD0LWG2lJLndqhQQFs3L-08GXlZQKknqb9GSn2Roik8uXDlnlhAFwxCC-mUub_q8RAAoBF-sZiSBtZg3yQmWdJjnK27HzqxTF-pw-9EygwAq7MPV0LaTN4uJgEdpKZn3bDag4h1IwxerseAV"/>
+<div>
+<p class="font-title-sm text-title-sm text-primary leading-tight mb-1">Campbell Biology</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Urry, Cain</p>
+<p class="font-data-mono text-data-mono text-secondary mt-1">385 Checkouts</p>
+</div>
+</li>
+<li class="flex items-start">
+<img alt="Book Cover" class="w-12 h-16 object-cover rounded shadow-sm border border-outline-variant mr-4" data-alt="An elegant, understated book cover for a literature classic, perhaps '1984', using strong typography and a single graphic element like an eye or a stark building silhouette, rendered in monochromatic tones with a pop of red." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv97kQWoUauwnRDkCuWPXM32BmyTZuhVQ8Ym6AW-1_YGI8djLJ6f6wYghb-OWLwgXEK_wc0cY3amnydMnlPxJqqcwyRGDrTRUrUBkxwwlGpUUjbX8k8BZe4XmAbQQqu_V5D8GfswFofk6WkaV0wkcDA3qd06lFTYN9TFh4m1XPCtV6E1UeLam80Vv-tWNNWLUKIJocH_f47rkdPj6vTgWJ8c78y-fEIeDMAAyfQDmo7Gac3JBZq6F3"/>
+<div>
+<p class="font-title-sm text-title-sm text-primary leading-tight mb-1">1984</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">George Orwell</p>
+<p class="font-data-mono text-data-mono text-secondary mt-1">312 Checkouts</p>
+</div>
+</li>
+</ul>
+</div>
+</aside>
+</div>
+</div>
+</main>
+</body></html>

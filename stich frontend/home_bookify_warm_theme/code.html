@@ -1,0 +1,232 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Bookify - Your College Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#1c1c13",
+                "background": "#fdf9e9",
+                "on-error-container": "#93000a",
+                "on-secondary": "#ffffff",
+                "tertiary": "#5f5e5e",
+                "surface-container": "#F9F4E1",
+                "tertiary-fixed": "#e5e2e1",
+                "on-secondary-container": "#663500",
+                "primary": "#855300",
+                "on-surface": "#1c1c13",
+                "surface-container-highest": "#e6e3d3",
+                "on-primary-fixed": "#2a1700",
+                "inverse-on-surface": "#f5f1e1",
+                "surface-bright": "#fdf9e9",
+                "error": "#ba1a1a",
+                "on-tertiary-container": "#444343",
+                "surface": "#fdf9e9",
+                "surface-dim": "#dedacb",
+                "outline-variant": "#d8c3ad",
+                "on-secondary-fixed": "#2f1500",
+                "secondary-fixed": "#ffdcc3",
+                "inverse-primary": "#ffb95f",
+                "on-primary": "#ffffff",
+                "ink-primary": "#1B1B1B",
+                "on-surface-variant": "#534434",
+                "surface-variant": "#e6e3d3",
+                "secondary-fixed-dim": "#ffb77d",
+                "tertiary-container": "#b2b0b0",
+                "tertiary-fixed-dim": "#c8c6c5",
+                "outline": "#867461",
+                "on-secondary-fixed-variant": "#6e3900",
+                "on-tertiary-fixed": "#1b1b1b",
+                "on-tertiary": "#ffffff",
+                "inverse-surface": "#323126",
+                "primary-fixed": "#ffddb8",
+                "surface-container-low": "#f8f4e4",
+                "surface-container-high": "#ece8d9",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-container": "#613b00",
+                "primary-container": "#f59e0b",
+                "secondary": "#904d00",
+                "surface-base": "#FFFBEB",
+                "ink-secondary": "#474747",
+                "on-tertiary-fixed-variant": "#474746",
+                "secondary-container": "#fe932c",
+                "accent-warm": "#F59E0B",
+                "on-primary-fixed-variant": "#653e00",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "accent-deep": "#D97706",
+                "surface-tint": "#855300",
+                "primary-fixed-dim": "#ffb95f"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-desktop": "40px",
+                "gutter": "24px",
+                "unit": "8px",
+                "content-max-width": "1280px",
+                "margin-mobile": "16px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "data-mono": [
+                        "monospace"
+                ],
+                "display-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-caps": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "data-mono": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "title-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "26px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-base text-on-surface font-body-lg min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<nav class="bg-surface-base/80 backdrop-blur-md docked full-width top-0 sticky border-b border-outline-variant/50 flat no shadows z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 max-w-content-max mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-display-lg text-title-sm md:text-headline-md font-bold text-on-background" href="#">Bookify</a>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-accent-warm font-bold border-b-2 border-accent-warm h-16 flex items-center px-2 hover:bg-surface-container-high transition-colors font-label-caps text-label-caps opacity-90 transition-opacity" href="#">Home</a>
+<a class="text-on-surface-variant h-16 flex items-center px-2 hover:bg-surface-container-high transition-colors font-label-caps text-label-caps" href="#">Library</a>
+<a class="text-on-surface-variant h-16 flex items-center px-2 hover:bg-surface-container-high transition-colors font-label-caps text-label-caps" href="#">About</a>
+<a class="text-on-surface-variant h-16 flex items-center px-2 hover:bg-surface-container-high transition-colors font-label-caps text-label-caps" href="#">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block font-label-caps text-label-caps text-on-background border border-transparent hover:bg-surface-container-high transition-colors px-4 py-2 rounded">Login</button>
+<button class="bg-accent-warm text-white font-label-caps text-label-caps px-6 py-2 rounded hover:opacity-90 transition-opacity flex items-center gap-2">Sign Up</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="w-full max-w-content-max mx-auto px-margin-mobile md:px-margin-desktop pt-16 md:pt-32 pb-16 md:pb-24 flex flex-col md:flex-row items-center gap-12 md:gap-24">
+<div class="flex-1 flex flex-col items-start gap-8 z-10">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background max-w-2xl leading-tight">
+                    Your college library, without the waiting.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Search books, check availability, track your borrowings, and never miss a due date. Experience a modern academic workflow designed for focus and efficiency.
+                </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="bg-accent-warm text-white font-label-caps text-label-caps px-8 py-3 rounded border border-accent-warm hover:opacity-90 transition-opacity">
+                        Explore Library
+                    </button>
+<button class="bg-white/50 backdrop-blur-sm text-accent-warm font-label-caps text-label-caps px-8 py-3 rounded border border-accent-warm hover:bg-white/80 transition-colors">Sign Up</button>
+</div>
+</div>
+<div class="flex-1 w-full relative min-h-[400px] md:min-h-[500px] bg-white/30 backdrop-blur-md border border-white/60 rounded-2xl overflow-hidden flex items-center justify-center p-2 shadow-[0_8px_32px_rgba(245,158,11,0.05)]">
+<!-- Placeholder for academic illustration -->
+<div class="absolute inset-2 bg-cover bg-center rounded-xl overflow-hidden opacity-90" data-alt="A minimalist, sophisticated digital illustration of a modern academic library space. The scene features tall, elegant wooden bookshelves filled with neatly arranged books, softly illuminated by natural light streaming through large architectural windows. A sleek, modern study desk with a single open book and a minimalist lamp sits in the foreground. The color palette is composed of warm off-whites, deep navy blues, and subtle touches of wood tones, reflecting a clean, light-mode, premium editorial style. The mood is calm, focused, and intellectual." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWzGRYyzFRzi2dby67vdv4fDgrjlZ8BB4HQcwzbwIniXjmP7b4p5OyRRjN-SDCwbgwOCbmMb4draOgeAVsVVtDjI53ReJHSaWnivsuhAkMeR-TugEPKX0F5GjzOXIID7xM4ckjreuo9DunK5PoTIhx_1iXlaSwT6kPjEbyjmqnjMx4bhCwNNte0k62hFgi2IG7YV5xO2zJnD6axU8OurufyOLVfiyKiJJJ_TRltF8B9kFyHH0C6ymb')">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-base/40 to-transparent"></div>
+</div>
+</div>
+</section>
+</main>
+
+
+</body></html>

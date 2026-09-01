@@ -69,12 +69,12 @@ const LibrarySettingsPage = () => {
           {/* Header Card */}
           <div className="card flex items-center justify-between p-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-primary-900/60 border border-primary-500/30 flex items-center justify-center text-primary-400">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: 'color-mix(in srgb, var(--color-primary-container) 60%, transparent)', border: '1px solid color-mix(in srgb, var(--color-primary) 30%, transparent)', color: 'var(--color-primary)' }}>
                 <Settings size={22} />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white font-display">System Circulation Configuration</h2>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <h2 className="text-xl font-bold font-display" style={{ color: 'var(--color-on-surface)' }}>System Circulation Configuration</h2>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--color-on-surface-variant)' }}>
                   Rules and thresholds automatically applied by backend circulation controllers and cron jobs.
                 </p>
               </div>
@@ -84,15 +84,15 @@ const LibrarySettingsPage = () => {
 
           {/* Circulation Policies */}
           <Card className="space-y-5">
-            <h3 className="text-base font-bold text-white flex items-center gap-2 pb-3 border-b border-white/5">
-              <BookOpen size={16} className="text-primary-400" />
+            <h3 className="text-base font-bold flex items-center gap-2 pb-3 border-b" style={{ color: 'var(--color-on-surface)', borderColor: 'var(--color-outline-variant)' }}>
+              <BookOpen size={16} style={{ color: 'var(--color-primary)' }} />
               Book Loan & Renewal Rules
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                  <Calendar size={13} className="text-primary-400" />
+                <label className="text-xs font-semibold mb-1.5 flex items-center gap-1.5" style={{ color: 'var(--color-on-surface)' }}>
+                  <Calendar size={13} style={{ color: 'var(--color-primary)' }} />
                   Default Loan Period (Days)
                 </label>
                 <input
@@ -104,12 +104,12 @@ const LibrarySettingsPage = () => {
                   required
                   className="input font-semibold"
                 />
-                <p className="text-[11px] text-slate-500 mt-1">Standard duration before a borrowed book is considered overdue.</p>
+                <p className="text-[11px] mt-1" style={{ color: 'var(--color-on-surface-muted)' }}>Standard duration before a borrowed book is considered overdue.</p>
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                  <BookOpen size={13} className="text-primary-400" />
+                <label className="text-xs font-semibold mb-1.5 flex items-center gap-1.5" style={{ color: 'var(--color-on-surface)' }}>
+                  <BookOpen size={13} style={{ color: 'var(--color-primary)' }} />
                   Max Books Allowed Per Student
                 </label>
                 <input
@@ -121,12 +121,12 @@ const LibrarySettingsPage = () => {
                   required
                   className="input font-semibold"
                 />
-                <p className="text-[11px] text-slate-500 mt-1">Maximum simultaneous active physical issues allowed per student account.</p>
+                <p className="text-[11px] mt-1" style={{ color: 'var(--color-on-surface-muted)' }}>Maximum simultaneous active physical issues allowed per student account.</p>
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                  <RotateCcw size={13} className="text-primary-400" />
+                <label className="text-xs font-semibold mb-1.5 flex items-center gap-1.5" style={{ color: 'var(--color-on-surface)' }}>
+                  <RotateCcw size={13} style={{ color: 'var(--color-primary)' }} />
                   Maximum Renewals Allowed
                 </label>
                 <input
@@ -138,12 +138,12 @@ const LibrarySettingsPage = () => {
                   required
                   className="input font-semibold"
                 />
-                <p className="text-[11px] text-slate-500 mt-1">Number of times a student can extend a loan without returning to counter.</p>
+                <p className="text-[11px] mt-1" style={{ color: 'var(--color-on-surface-muted)' }}>Number of times a student can extend a loan without returning to counter.</p>
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                  <IndianRupee size={13} className="text-danger-400" />
+                <label className="text-xs font-semibold mb-1.5 flex items-center gap-1.5" style={{ color: 'var(--color-on-surface)' }}>
+                  <IndianRupee size={13} style={{ color: 'var(--color-danger)' }} />
                   Overdue Fine Rate (Rs. / Day)
                 </label>
                 <input
@@ -153,23 +153,24 @@ const LibrarySettingsPage = () => {
                   value={settings.fine_per_day}
                   onChange={e => setSettings({ ...settings, fine_per_day: e.target.value })}
                   required
-                  className="input font-semibold text-danger-400 font-mono"
+                  className="input font-semibold font-mono"
+                  style={{ color: 'var(--color-danger)' }}
                 />
-                <p className="text-[11px] text-slate-500 mt-1">Daily penalty charged automatically for each day past due date.</p>
+                <p className="text-[11px] mt-1" style={{ color: 'var(--color-on-surface-muted)' }}>Daily penalty charged automatically for each day past due date.</p>
               </div>
             </div>
           </Card>
 
           {/* Seat Booking Policies */}
           <Card className="space-y-5">
-            <h3 className="text-base font-bold text-white flex items-center gap-2 pb-3 border-b border-white/5">
-              <Clock size={16} className="text-accent-purple" />
+            <h3 className="text-base font-bold flex items-center gap-2 pb-3 border-b" style={{ color: 'var(--color-on-surface)', borderColor: 'var(--color-outline-variant)' }}>
+              <Clock size={16} style={{ color: 'var(--color-tertiary)' }} />
               Seat Reservation & QR Pass Settings
             </h3>
 
             <div>
-              <label className="text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Clock size={13} className="text-accent-purple" />
+              <label className="text-xs font-semibold mb-1.5 flex items-center gap-1.5" style={{ color: 'var(--color-on-surface)' }}>
+                <Clock size={13} style={{ color: 'var(--color-tertiary)' }} />
                 Check-In Grace Window (Minutes)
               </label>
               <input
@@ -181,7 +182,7 @@ const LibrarySettingsPage = () => {
                 required
                 className="input font-semibold max-w-xs"
               />
-              <p className="text-[11px] text-slate-500 mt-1">Grace time before unattended reserved seats are auto-released.</p>
+              <p className="text-[11px] mt-1" style={{ color: 'var(--color-on-surface-muted)' }}>Grace time before unattended reserved seats are auto-released.</p>
             </div>
           </Card>
 

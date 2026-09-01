@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LibraX - Borrowing History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#1b1b1b",
+                    "on-secondary-fixed": "#01006e",
+                    "on-tertiary-fixed": "#01006e",
+                    "surface-container-highest": "#e2e2e2",
+                    "outline-variant": "#cfc4c5",
+                    "tertiary": "#000000",
+                    "on-primary-container": "#848484",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary-container": "#7d85fe",
+                    "secondary-fixed": "#e0e0ff",
+                    "surface": "#f9f9f9",
+                    "on-tertiary-fixed-variant": "#2f35ae",
+                    "status-available": "#2D6A4F",
+                    "tertiary-container": "#01006e",
+                    "status-reserved": "#E36414",
+                    "on-surface": "#1b1b1b",
+                    "on-surface-variant": "#44474e",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#bfc2ff",
+                    "on-background": "#1b1b1b",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0edf1",
+                    "status-issued": "#BA1A1A",
+                    "on-primary-fixed-variant": "#474747",
+                    "surface-container-low": "#f3f3f3",
+                    "secondary": "#4950c7",
+                    "on-tertiary-container": "#6f77ef",
+                    "outline": "#7e7576",
+                    "on-secondary-fixed-variant": "#2f35ae",
+                    "primary-fixed": "#e2e2e2",
+                    "primary": "#000000",
+                    "secondary-fixed-dim": "#bfc2ff",
+                    "surface-bright": "#f9f9f9",
+                    "surface-tint": "#5e5e5e",
+                    "tertiary-fixed": "#e0e0ff",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-dim": "#dadada",
+                    "surface-container-high": "#e8e8e8",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "background": "#f9f9f9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e2e2e2",
+                    "primary-container": "#1b1b1b",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#303030",
+                    "on-secondary-container": "#060693"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "table-cell-px": "16px",
+                    "gutter": "24px",
+                    "table-cell-py": "12px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "data-mono": [
+                            "monospace"
+                    ],
+                    "body-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-sm": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-mono": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "26px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "title-sm": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    }
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .data-mono { font-family: monospace; }
+        
+        /* Custom scrollbar for bento cards */
+        .bento-scroll::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .bento-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .bento-scroll::-webkit-scrollbar-thumb {
+            background-color: #cfc4c5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- SideNavBar (Shared Component Blueprint) -->
+<nav class="hidden md:flex flex-col h-screen p-4 gap-unit fixed left-0 top-0 w-64 bg-surface dark:bg-surface-dim border-r border-outline-variant z-20">
+<div class="mb-8 px-2 flex flex-col gap-1">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">LibraX</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Intellectual Precision</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded flex items-center justify-center gap-2 font-label-caps text-label-caps uppercase hover:bg-surface-tint transition-colors mb-6 shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">search</span>
+            Quick Search
+        </button>
+<div class="flex flex-col gap-1 flex-1 font-body-sm text-body-sm">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Catalog</span>
+</a>
+<!-- Active State: My Books corresponds closest to Borrowing History -->
+<a class="flex items-center gap-3 px-4 py-3 rounded bg-secondary-container text-on-secondary-container font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">library_books</span>
+<span>My Books</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">event_seat</span>
+<span>Reservations</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-1 font-body-sm text-body-sm pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar (Shared Component Blueprint) -->
+<header class="hidden md:flex items-center justify-end px-margin-desktop w-[calc(100%-16rem)] h-16 fixed top-0 right-0 bg-surface-container-lowest/90 backdrop-blur-sm z-10 border-b border-outline-variant">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="p-2 rounded hover:bg-surface-container-high transition-colors hover:text-primary relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-status-issued rounded-full ring-2 ring-surface-container-lowest"></span>
+</button>
+<div class="h-6 w-px bg-outline-variant"></div>
+<button class="flex items-center gap-2 p-1 pl-3 rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="font-data-mono text-data-mono text-xs">ID: 4892</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 28px;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 px-margin-mobile md:px-margin-desktop pt-24 md:pt-32 pb-margin-desktop max-w-[1280px] w-full mx-auto">
+<!-- Page Header -->
+<div class="mb-gutter">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-2">Borrowing History</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Track your intellectual journey, active loans, and account standing.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Stats & Fines (4 cols on md) -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Reading Journey Summary -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col gap-6">
+<h2 class="font-title-sm text-title-sm text-on-surface border-b border-outline-variant pb-2">Reading Analytics</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<span class="font-data-mono text-data-mono text-3xl text-primary font-bold">42</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Total Books</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-data-mono text-data-mono text-3xl text-primary font-bold">12k</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Pages Read</span>
+</div>
+<div class="flex flex-col gap-1 mt-2">
+<span class="font-data-mono text-data-mono text-xl text-on-surface">Philosophy</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Top Subject</span>
+</div>
+<div class="flex flex-col gap-1 mt-2">
+<span class="font-data-mono text-data-mono text-xl text-on-surface">98%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">On-Time Rate</span>
+</div>
+</div>
+</div>
+<!-- Fines Section (Urgent Smart Card styling) -->
+<div class="bg-inverse-surface border border-outline-variant rounded-lg p-6 shadow-lg flex flex-col gap-4 text-inverse-on-surface relative overflow-hidden group">
+<!-- Decorative mesh pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 8px 8px;"></div>
+<div class="flex items-center justify-between relative z-10">
+<h2 class="font-title-sm text-title-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-status-issued">error</span>
+                                Outstanding Balance
+                            </h2>
+</div>
+<div class="flex items-end gap-2 relative z-10">
+<span class="font-data-mono text-data-mono text-4xl font-bold tracking-tight">$4.50</span>
+<span class="font-body-sm text-body-sm text-surface-variant mb-1">USD</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-variant relative z-10 text-sm">Late fee for "The Critique of Pure Reason".</p>
+<button class="mt-2 w-full bg-on-primary text-primary py-2 px-4 rounded font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors relative z-10 font-bold">
+                            Settle Balance
+                        </button>
+</div>
+</div>
+<!-- Right Column: Active & Past Loans (8 cols on md) -->
+<div class="md:col-span-8 flex flex-col gap-gutter">
+<!-- Active Loans -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 flex flex-col h-full">
+<div class="flex items-center justify-between mb-6 pb-2 border-b border-outline-variant">
+<h2 class="font-title-sm text-title-sm text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-reserved inline-block"></span>
+                                Active Loans
+                            </h2>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-sm border border-outline-variant px-2 py-1 rounded">2 Items</span>
+</div>
+<div class="flex flex-col gap-4 flex-1">
+<!-- Active Loan Item 1 -->
+<div class="flex flex-col sm:flex-row gap-4 p-4 border border-outline-variant rounded bg-surface group hover:bg-surface-container-low transition-colors">
+<div class="w-20 h-28 bg-surface-dim rounded border border-outline-variant flex-shrink-0 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="Minimalist monochromatic book cover design featuring strong geometric typography reading 'Structure of Scientific Revolutions' by Thomas Kuhn on a textured gray background, clinical and academic aesthetic, high contrast." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiSg3lN4TjBT_7EnXPxrOnJwKewoy4pTuihVSk9cHD9xi8xZg1hOmahifpmvtavV7lFdCjzjEk3cI6zKM1R944-_jt5XSQhBbJVysung1KdbRUAL2EO_gNz17N04ssjRU2kpD-pX0wN1OnS2hIKoghxaMZZMFSzdvXsvaAA5CwwMRF_ofTPNHYlumtcZ_P7pFhA9EwTAP76Te3zR3wRnhB6ViyEy91bMe_VlzfvDX4GSfSgRRxLF0L')"></div>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface leading-tight">The Structure of Scientific Revolutions</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Thomas S. Kuhn</p>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-issued" style="font-size: 16px;">calendar_today</span>
+<span class="font-data-mono text-data-mono text-sm text-status-issued font-bold">Due in 2 days (Oct 24)</span>
+</div>
+<button class="bg-surface-container-highest text-on-surface px-4 py-1.5 rounded font-label-caps text-label-caps uppercase hover:bg-primary hover:text-on-primary border border-outline-variant hover:border-primary transition-colors text-xs whitespace-nowrap">
+                                            Renew
+                                        </button>
+</div>
+</div>
+</div>
+<!-- Active Loan Item 2 -->
+<div class="flex flex-col sm:flex-row gap-4 p-4 border border-outline-variant rounded bg-surface group hover:bg-surface-container-low transition-colors">
+<div class="w-20 h-28 bg-surface-dim rounded border border-outline-variant flex-shrink-0 overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="Abstract academic book cover with intersecting thin white grid lines on a deep slate background, title 'Gödel, Escher, Bach' subtle in corner, evoking complexity and logic, modern minimalist library style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSeS28gBo_huz8za17u04t9SmEmeVKdIvOWpqyBSs-2i3vnX45uDH10TXpCV90QcBGRiJhjaMVSXqkCmPxJ9r4BRJCCfod4EVuqwzGOOb-1288Q9GnkoG0plvS1_DpcGe80vUm5aHJiOYIQubgXbCw2RUbnMYMBp4CWGy7s0PXrHp1OwBS8YDQF2bfKD8VpztAHURWQYOSwa8vOG0rOVxqebTaSgBANCqaf0IesG48aLZFy1n8kGfr')"></div>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface leading-tight">Gödel, Escher, Bach: An Eternal Golden Braid</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Douglas Hofstadter</p>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-t-0 border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-available" style="font-size: 16px;">calendar_today</span>
+<span class="font-data-mono text-data-mono text-sm text-on-surface-variant">Due Oct 30</span>
+</div>
+<button class="bg-surface-container-highest text-on-surface px-4 py-1.5 rounded font-label-caps text-label-caps uppercase hover:bg-primary hover:text-on-primary border border-outline-variant hover:border-primary transition-colors text-xs whitespace-nowrap">
+                                            Renew
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Past History Data Table -->
+<div class="mt-gutter bg-surface-container-lowest border border-outline-variant rounded-lg p-6 overflow-hidden">
+<div class="flex items-center justify-between mb-6 pb-2 border-b border-outline-variant">
+<h2 class="font-title-sm text-title-sm text-on-surface">Return History</h2>
+<div class="flex gap-2">
+<button class="p-1 rounded border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">filter_list</span>
+</button>
+<button class="p-1 rounded border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto bento-scroll">
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead>
+<tr class="border-b-2 border-outline-variant">
+<th class="py-table-cell-py px-table-cell-px font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Ref ID</th>
+<th class="py-table-cell-py px-table-cell-px font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Title</th>
+<th class="py-table-cell-py px-table-cell-px font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Returned Date</th>
+<th class="py-table-cell-py px-table-cell-px font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-data-mono text-data-mono text-sm text-on-surface-variant">TX-8832</td>
+<td class="py-3 px-4 font-medium">Being and Time</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-sm">2023-10-15</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-status-available text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-available"></span> On Time
+                                    </span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-data-mono text-data-mono text-sm text-on-surface-variant">TX-8791</td>
+<td class="py-3 px-4 font-medium">Principia Mathematica</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-sm">2023-09-28</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-status-issued text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-issued"></span> Late
+                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-4 font-data-mono text-data-mono text-sm text-on-surface-variant">TX-8504</td>
+<td class="py-3 px-4 font-medium">Simulacra and Simulation</td>
+<td class="py-3 px-4 font-data-mono text-data-mono text-sm">2023-08-11</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-status-available text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-available"></span> On Time
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Eye, EyeOff, Library, Lock, Mail, AlertCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Eye, EyeOff, Mail, Lock, AlertCircle, Sun, Moon } from 'lucide-react';
+import logoSrc from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { useTheme } from '../hooks/useTheme';
 import { authApi } from '../services/apiServices';
 import toast from 'react-hot-toast';
 import gsap from 'gsap';
 
 const LoginPage = () => {
   const { login, isAuthenticated, isLibrarian } = useAuth();
+  const { isDark, toggle } = useTheme();
   const navigate = useNavigate();
   const [email, setEmail]         = useState('');
   const [password, setPassword]   = useState('');
@@ -16,15 +19,13 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError]         = useState('');
 
-  // Password reset flow
+  // Password reset flow — all 4 modes preserved exactly
   const [mode, setMode]           = useState('login'); // login | forgot | otp | reset
   const [otp, setOtp]             = useState('');
   const [resetToken, setResetToken] = useState('');
   const [newPassword, setNewPassword] = useState('');
 
-  const orb1Ref = useRef(null);
-  const orb2Ref = useRef(null);
-  const orb3Ref = useRef(null);
+  const orbRef = useRef(null);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -33,15 +34,15 @@ const LoginPage = () => {
     }
   }, [isAuthenticated, isLibrarian, navigate]);
 
-  // Animated background orbs
+  // Subtle background animation
   useEffect(() => {
+    if (!orbRef.current) return;
     const tl = gsap.timeline({ repeat: -1, yoyo: true });
-    tl.to(orb1Ref.current, { x: 60, y: -40, duration: 8, ease: 'sine.inOut' })
-      .to(orb2Ref.current, { x: -50, y: 60, duration: 10, ease: 'sine.inOut' }, 0)
-      .to(orb3Ref.current, { x: 30, y: 30, duration: 12, ease: 'sine.inOut' }, 0);
+    tl.to(orbRef.current, { x: 40, y: -30, duration: 10, ease: 'sine.inOut' });
     return () => tl.kill();
   }, []);
 
+  // Auth handlers — all logic preserved
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
@@ -106,148 +107,287 @@ const LoginPage = () => {
     }
   };
 
+  const modeTitle = {
+    login:  'Welcome back.',
+    forgot: 'Reset your password.',
+    otp:    'Check your email.',
+    reset:  'Create new password.',
+  };
+  const modeSubtitle = {
+    login:  'Sign in to continue to your library account.',
+    forgot: 'Enter your email to receive a one-time password.',
+    otp:    `We sent a 6-digit code to ${email}`,
+    reset:  'Choose a strong password for your account.',
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{ background: 'radial-gradient(ellipse at 30% 50%, #13132d 0%, #0a0a1a 100%)' }}>
+    <div
+      className="min-h-screen relative overflow-hidden flex flex-col justify-center"
+      style={{ background: isDark ? '#0b1326' : 'var(--color-background)' }}
+    >
+      {/* Subtle background orb */}
+      <div
+        ref={orbRef}
+        className="absolute pointer-events-none"
+        style={{
+          top: '-10%', right: '-5%',
+          width: '600px', height: '600px',
+          borderRadius: '50%',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(26,43,75,0.8) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(3,22,53,0.04) 0%, transparent 70%)',
+        }}
+      />
 
-      {/* Animated orbs */}
-      <div ref={orb1Ref} className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)' }} />
-      <div ref={orb2Ref} className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)' }} />
-      <div ref={orb3Ref} className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%)' }} />
-
-      <motion.div
-        className="relative z-10 w-full max-w-md mx-4"
-        initial={{ opacity: 0, y: 32 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0, 0, 0.2, 1] }}
+      {/* Theme toggle */}
+      <button
+        onClick={toggle}
+        className="absolute top-6 right-6 p-2.5 rounded-lg transition-colors z-20"
+        style={{ color: 'var(--color-on-surface-variant)', background: 'var(--color-surface-container-low)' }}
+        title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       >
-        {/* Logo */}
-        <div className="flex flex-col items-center mb-8">
-          <motion.div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
-            style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
-            animate={{ boxShadow: ['0 0 20px rgba(99,102,241,0.2)', '0 0 40px rgba(99,102,241,0.5)', '0 0 20px rgba(99,102,241,0.2)'] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <Library size={28} className="text-white" />
-          </motion.div>
-          <h1 className="text-3xl font-bold font-display text-gradient">Bookify</h1>
-          <p className="text-slate-400 text-sm mt-1">Library Management System</p>
-        </div>
+        {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      </button>
 
-        {/* Card */}
-        <div className="card">
-          <h2 className="text-xl font-bold text-white mb-6">
-            {mode === 'login'   ? 'Sign In'          :
-             mode === 'forgot'  ? 'Reset Password'   :
-             mode === 'otp'     ? 'Enter OTP'        :
-                                  'Set New Password'}
-          </h2>
+      {/* Main content */}
+      <div className="relative z-10 w-full max-w-md mx-auto px-6 py-12 md:px-0">
 
-          {/* Error */}
-          {error && (
-            <motion.div
-              className="flex items-center gap-2 p-3 rounded-xl mb-4 text-sm text-danger-400"
-              style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)' }}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
+        {/* Brand */}
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0, 0, 0.2, 1] }}
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <img
+              src={logoSrc}
+              alt="Bookify"
+              className="w-9 h-9 object-contain rounded-full"
+            />
+            <span
+              className="text-lg font-bold tracking-tight"
+              style={{ color: 'var(--color-primary)' }}
             >
-              <AlertCircle size={16} /> {error}
-            </motion.div>
-          )}
+              Bookify
+            </span>
+          </div>
 
-          {/* Login form */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={mode}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+            >
+              <h1
+                className="text-4xl font-bold tracking-tight mb-3"
+                style={{ color: 'var(--color-on-background)', letterSpacing: '-0.02em', lineHeight: '1.1' }}
+              >
+                {modeTitle[mode]}
+              </h1>
+              <p className="text-base" style={{ color: 'var(--color-on-surface-variant)' }}>
+                {modeSubtitle[mode]}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Form card */}
+        <motion.div
+          className="rounded-xl p-8 md:p-10"
+          style={{
+            background: 'var(--color-surface-container-lowest)',
+            border: '1px solid var(--color-outline-variant)',
+            boxShadow: '0 4px 20px rgba(26,43,75,0.06)',
+          }}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0, 0, 0.2, 1] }}
+        >
+          {/* Error banner */}
+          <AnimatePresence>
+            {error && (
+              <motion.div
+                className="flex items-center gap-2 p-3 rounded-lg mb-5 text-sm"
+                style={{ background: 'var(--color-danger-container)', color: 'var(--color-danger)', border: '1px solid color-mix(in srgb, var(--color-danger) 30%, transparent)' }}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+              >
+                <AlertCircle size={15} className="flex-shrink-0" />
+                <span>{error}</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* ── Login form ─────────────────────────────────────────── */}
           {mode === 'login' && (
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-5">
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Email</label>
+                <label
+                  className="block text-xs font-bold uppercase tracking-wider mb-2"
+                  style={{ color: 'var(--color-on-surface)' }}
+                  htmlFor="login-email"
+                >
+                  Email / Student ID
+                </label>
                 <div className="relative">
-                  <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                  <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: 'var(--color-on-surface-muted)' }} />
                   <input
-                    value={email} onChange={e => setEmail(e.target.value)}
-                    type="email" required placeholder="student1@university.edu"
-                    className="input pl-9" autoComplete="email"
+                    id="login-email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    type="email"
+                    required
+                    placeholder="student@university.edu"
+                    className="input pl-10 h-12"
+                    autoComplete="email"
                   />
                 </div>
               </div>
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Password</label>
+                <label
+                  className="block text-xs font-bold uppercase tracking-wider mb-2"
+                  style={{ color: 'var(--color-on-surface)' }}
+                  htmlFor="login-password"
+                >
+                  Password
+                </label>
                 <div className="relative">
-                  <Lock size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                  <Lock size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: 'var(--color-on-surface-muted)' }} />
                   <input
-                    value={password} onChange={e => setPassword(e.target.value)}
-                    type={showPass ? 'text' : 'password'} required placeholder="••••••••"
-                    className="input pl-9 pr-10" autoComplete="current-password"
+                    id="login-password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    type={showPass ? 'text' : 'password'}
+                    required
+                    placeholder="••••••••"
+                    className="input pl-10 pr-11 h-12"
+                    autoComplete="current-password"
                   />
-                  <button type="button" onClick={() => setShowPass(v => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors">
-                    {showPass ? <EyeOff size={14} /> : <Eye size={14} />}
+                  <button
+                    type="button"
+                    onClick={() => setShowPass(v => !v)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 transition-colors"
+                    style={{ color: 'var(--color-on-surface-muted)' }}
+                  >
+                    {showPass ? <EyeOff size={15} /> : <Eye size={15} />}
                   </button>
                 </div>
               </div>
-              <button type="button" onClick={() => { setMode('forgot'); setError(''); }}
-                className="text-xs text-primary-400 hover:text-primary-300 transition-colors">
-                Forgot password?
-              </button>
-              <motion.button
-                type="submit" disabled={isLoading}
-                className="btn-primary btn w-full justify-center"
-                whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-              >
-                {isLoading
-                  ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  : 'Sign In'}
-              </motion.button>
-            </form>
-          )}
-
-          {/* Forgot password */}
-          {mode === 'forgot' && (
-            <form onSubmit={handleForgotPassword} className="space-y-4">
-              <div>
-                <label className="text-xs text-slate-400 mb-1 block">Email</label>
-                <input value={email} onChange={e => setEmail(e.target.value)}
-                  type="email" required placeholder="student1@university.edu" className="input" />
+              <div className="pt-2 space-y-3">
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full h-12 flex justify-center items-center rounded-lg text-sm font-semibold transition-opacity"
+                  style={{ background: 'var(--color-primary)', color: '#ffffff', border: '1px solid var(--color-primary)' }}
+                  whileHover={{ opacity: 0.92 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {isLoading
+                    ? <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                    : 'Sign In'}
+                </motion.button>
+                <button
+                  type="button"
+                  onClick={() => { setMode('forgot'); setError(''); }}
+                  className="w-full h-12 flex justify-center items-center rounded-lg text-sm font-semibold transition-colors"
+                  style={{ color: 'var(--color-primary)', background: 'transparent' }}
+                  onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-primary-container)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-primary)'; }}
+                >
+                  Forgot password?
+                </button>
               </div>
-              <button type="submit" disabled={isLoading} className="btn-primary btn w-full justify-center">
-                {isLoading ? '...' : 'Send OTP'}
-              </button>
-              <button type="button" onClick={() => setMode('login')}
-                className="btn-ghost btn w-full justify-center text-xs">Back to Login</button>
             </form>
           )}
 
-          {/* OTP */}
+          {/* ── Forgot password ────────────────────────────────────── */}
+          {mode === 'forgot' && (
+            <form onSubmit={handleForgotPassword} className="space-y-5">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-on-surface)' }} htmlFor="forgot-email">
+                  Email
+                </label>
+                <input
+                  id="forgot-email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  type="email"
+                  required
+                  placeholder="student@university.edu"
+                  className="input h-12"
+                />
+              </div>
+              <div className="pt-2 space-y-3">
+                <button type="submit" disabled={isLoading} className="w-full h-12 flex justify-center items-center rounded-lg text-sm font-semibold" style={{ background: 'var(--color-primary)', color: '#ffffff' }}>
+                  {isLoading ? '...' : 'Send OTP'}
+                </button>
+                <button type="button" onClick={() => { setMode('login'); setError(''); }} className="btn-ghost btn w-full justify-center text-sm">
+                  ← Back to Login
+                </button>
+              </div>
+            </form>
+          )}
+
+          {/* ── OTP verification ───────────────────────────────────── */}
           {mode === 'otp' && (
-            <form onSubmit={handleVerifyOtp} className="space-y-4">
-              <p className="text-sm text-slate-400">Enter the 6-digit OTP sent to {email}</p>
-              <input value={otp} onChange={e => setOtp(e.target.value)}
-                type="text" required maxLength={6} placeholder="123456" className="input text-center text-xl tracking-widest" />
-              <button type="submit" disabled={isLoading} className="btn-primary btn w-full justify-center">
+            <form onSubmit={handleVerifyOtp} className="space-y-5">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-on-surface)' }} htmlFor="otp-input">
+                  One-Time Password
+                </label>
+                <input
+                  id="otp-input"
+                  value={otp}
+                  onChange={e => setOtp(e.target.value)}
+                  type="text"
+                  required
+                  maxLength={6}
+                  placeholder="123456"
+                  className="input h-12 text-center text-2xl tracking-widest font-mono"
+                />
+              </div>
+              <button type="submit" disabled={isLoading} className="w-full h-12 flex justify-center items-center rounded-lg text-sm font-semibold" style={{ background: 'var(--color-primary)', color: '#ffffff' }}>
                 {isLoading ? '...' : 'Verify OTP'}
               </button>
             </form>
           )}
 
-          {/* New password */}
+          {/* ── New password ───────────────────────────────────────── */}
           {mode === 'reset' && (
-            <form onSubmit={handleResetPassword} className="space-y-4">
-              <input value={newPassword} onChange={e => setNewPassword(e.target.value)}
-                type="password" required minLength={8} placeholder="New password (min 8 chars)" className="input" />
-              <button type="submit" disabled={isLoading} className="btn-primary btn w-full justify-center">
+            <form onSubmit={handleResetPassword} className="space-y-5">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--color-on-surface)' }} htmlFor="new-password">
+                  New Password
+                </label>
+                <div className="relative">
+                  <Lock size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: 'var(--color-on-surface-muted)' }} />
+                  <input
+                    id="new-password"
+                    value={newPassword}
+                    onChange={e => setNewPassword(e.target.value)}
+                    type="password"
+                    required
+                    minLength={8}
+                    placeholder="Minimum 8 characters"
+                    className="input pl-10 h-12"
+                  />
+                </div>
+              </div>
+              <button type="submit" disabled={isLoading} className="w-full h-12 flex justify-center items-center rounded-lg text-sm font-semibold" style={{ background: 'var(--color-primary)', color: '#ffffff' }}>
                 {isLoading ? '...' : 'Set New Password'}
               </button>
             </form>
           )}
-        </div>
+        </motion.div>
 
-        <p className="text-center text-xs text-slate-600 mt-6">
-          Bookify LMS v1.0 · Built for your university library
+        <p className="text-center text-xs mt-6" style={{ color: 'var(--color-on-surface-muted)' }}>
+          Bookify LMS · Built for your university library
         </p>
-      </motion.div>
+      </div>
     </div>
   );
 };

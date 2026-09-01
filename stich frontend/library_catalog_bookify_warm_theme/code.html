@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Library Catalog - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-base": "#FFFBEB",
+                        "secondary-fixed": "#ffdcc3",
+                        "on-secondary-fixed-variant": "#6e3900",
+                        "surface-container-low": "#f8f4e4",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-high": "#ece8d9",
+                        "on-tertiary-container": "#444343",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fdf9e9",
+                        "outline-variant": "#d8c3ad",
+                        "surface-container-highest": "#e6e3d3",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb77d",
+                        "on-secondary-container": "#663500",
+                        "surface-dim": "#dedacb",
+                        "ink-secondary": "#474747",
+                        "primary-fixed": "#ffddb8",
+                        "background": "#fdf9e9",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fdf9e9",
+                        "primary": "#855300",
+                        "secondary": "#904d00",
+                        "inverse-on-surface": "#f5f1e1",
+                        "primary-fixed-dim": "#ffb95f",
+                        "ink-primary": "#1B1B1B",
+                        "inverse-primary": "#ffb95f",
+                        "accent-deep": "#D97706",
+                        "on-surface-variant": "#534434",
+                        "outline": "#867461",
+                        "on-background": "#1c1c13",
+                        "on-primary-container": "#613b00",
+                        "accent-warm": "#F59E0B",
+                        "on-primary-fixed-variant": "#653e00",
+                        "on-primary-fixed": "#2a1700",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#b2b0b0",
+                        "primary-container": "#f59e0b",
+                        "tertiary": "#5f5e5e",
+                        "surface-container": "#F9F4E1",
+                        "secondary-container": "#fe932c",
+                        "inverse-surface": "#323126",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1c1c13",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#855300",
+                        "surface-variant": "#e6e3d3",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#2f1500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "content-max-width": "1280px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "data-mono": ["monospace"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface-base'); color: theme('colors.on-surface'); }
+    </style>
+</head>
+<body class="bg-surface-base text-on-surface font-body-lg min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-content-max-width mx-auto">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim">Bookify</span>
+</div>
+<nav class="hidden md:flex gap-6 items-center font-title-sm text-title-sm">
+<a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors px-2 py-1 cursor-pointer active:opacity-80 rounded" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary font-bold px-2 py-1 cursor-pointer active:opacity-80" href="#">Library</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors px-2 py-1 cursor-pointer active:opacity-80 rounded" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors px-2 py-1 cursor-pointer active:opacity-80 rounded" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Login</button>
+<button class="bg-accent-warm text-ink-primary font-label-caps text-label-caps px-4 py-2 rounded hover:bg-accent-deep transition-colors">Sign Up</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col md:flex-row w-full max-w-content-max-width mx-auto px-margin-mobile md:px-margin-desktop py-gutter gap-gutter">
+<!-- Sidebar Filter -->
+<aside class="w-full md:w-64 flex-shrink-0 flex flex-col gap-6">
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-lg">
+<h2 class="font-title-sm text-title-sm text-ink-primary mb-4 border-b border-outline-variant pb-2">Search Catalog</h2>
+<div class="relative mb-6">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-bright border border-outline-variant focus:border-accent-deep rounded text-body-sm font-body-sm focus:outline-none transition-colors" placeholder="Title, Author, ISBN..." type="text"/>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Department -->
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-3">DEPARTMENT</h3>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-checkbox text-accent-warm border-outline-variant rounded-sm focus:ring-accent-warm" type="checkbox"/>
+<span class="text-body-sm font-body-sm">Computer Science</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="form-checkbox text-accent-warm border-outline-variant rounded-sm focus:ring-accent-warm" type="checkbox"/>
+<span class="text-body-sm font-body-sm">Philosophy</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-checkbox text-accent-warm border-outline-variant rounded-sm focus:ring-accent-warm" type="checkbox"/>
+<span class="text-body-sm font-body-sm">Humanities</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-checkbox text-accent-warm border-outline-variant rounded-sm focus:ring-accent-warm" type="checkbox"/>
+<span class="text-body-sm font-body-sm">Applied Mathematics</span>
+</label>
+</div>
+</div>
+<!-- Format -->
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-3">FORMAT</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-accent-deep text-on-primary font-label-caps text-label-caps rounded-full cursor-pointer hover:bg-accent-warm transition-colors">Physical</span>
+<span class="px-3 py-1 bg-surface-container-high border border-outline-variant text-on-surface-variant font-label-caps text-label-caps rounded-full cursor-pointer hover:bg-surface-container-highest transition-colors">Digital PDF</span>
+<span class="px-3 py-1 bg-surface-container-high border border-outline-variant text-on-surface-variant font-label-caps text-label-caps rounded-full cursor-pointer hover:bg-surface-container-highest transition-colors">Audiobook</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Catalog Grid -->
+<section class="flex-grow flex flex-col gap-6">
+<div class="flex justify-between items-end border-b border-outline-variant pb-4">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-ink-primary">Library Catalog</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Showing 42 results for Philosophy</p>
+</div>
+<div class="hidden sm:flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SORT BY</span>
+<select class="bg-surface-bright border border-outline-variant rounded px-3 py-1 text-body-sm font-body-sm focus:outline-none focus:border-accent-deep cursor-pointer">
+<option>Relevance</option>
+<option>Newest Arrivals</option>
+<option>Author A-Z</option>
+</select>
+</div>
+</div>
+<!-- Bento Grid Books -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-unit">
+<!-- Book Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-4 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="aspect-[3/4] w-full relative bg-surface-dim rounded overflow-hidden">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="A meticulously designed book cover for 'Meditations on First Philosophy'. The cover is minimalist, featuring deep, rich academic orange geometric patterns on a creamy parchment background. Elegant serif typography forms the title. The lighting is soft and warm, typical of a quiet library study corner, giving the physical book a sense of weight and importance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaYPZHAI5x96uIBS7QZoAnPWx4Y0VGXyO66O8dpvvhBRrlCJAN3r0libephOUOrnwNu-PsyyjftgOdHVtr7QymSVW4SrYYOyBZoIbsVB79qLUtOYrlLqWKxNUHn2hKZZ2JatSiqABwH1adrqVKCO4X8DQzP39ZkhDVt8SEpMUWZH96Vn4O_8B7bEpvSFr6XBmvj5emwMHTnxaEod3FmyuyxSLl7pRgvCDnDjGl5wSqKGavaahCo3pS"/>
+<div class="absolute top-2 right-2 flex gap-1">
+<span class="w-2 h-2 rounded-full bg-accent-deep"></span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-accent-deep uppercase">Philosophy</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-ink-primary leading-tight line-clamp-2">Meditations on First Philosophy</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">René Descartes</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant flex justify-between items-center">
+<span class="font-data-mono text-data-mono text-ink-secondary">AVAILABLE</span>
+<button class="text-accent-deep hover:text-accent-warm font-label-caps text-label-caps transition-colors flex items-center gap-1">
+                            REQUEST <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Book Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-4 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="aspect-[3/4] w-full relative bg-surface-dim rounded overflow-hidden">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="A vintage, slightly worn book cover for 'The Republic'. The design is austere and classical, with faded dark ink text on a textured, light yellowish-cream background. A subtle, intricate border frames the title. The lighting implies a sunny afternoon in a university archive, highlighting the paper's texture and the scholarly nature of the text." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8bTE5-_dysStePuIJY3tmPfRmAmYd0johc7CTJqtkBYTv1M4FlufhUsO11tL-ieAmsktf0kYPxnn2qftK38mzuAgM9fPjtqBWujaROocs6B6r8bliRo9Iupa4zXhuGhU5fYlQWCH_LVAX_D-DANU551MUXHa4Xyos956pv6Tzy681rd1C-VBUOOaR5i_Cr8bfnNvogDIRhCB-T5r9Qe5fN-EJg4SWIA8UUqCgKqseBU8XtSy87bqt"/>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-accent-deep uppercase">Philosophy</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-ink-primary leading-tight line-clamp-2">The Republic</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Plato</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant flex justify-between items-center">
+<span class="font-data-mono text-data-mono text-on-surface-variant">CHECKED OUT</span>
+<button class="text-on-surface-variant hover:text-ink-primary font-label-caps text-label-caps transition-colors flex items-center gap-1">
+                            WAITLIST
+                        </button>
+</div>
+</article>
+<!-- Book Card 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-4 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="aspect-[3/4] w-full relative bg-surface-dim rounded overflow-hidden">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="A modern, academic book cover for 'Ethics'. The cover combines a warm ivory background with bold, structured typography in dark ink and sharp, contrasting orange accents. It looks like a high-end, contemporary scholarly edition. Soft, diffuse lighting enhances the professional and clean light-mode aesthetic, making the cover look crisp and inviting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt0arToM64t-06HyJ4ao_rhLNAoSIIBqumFDehCTkdZbJI0xkmxaSelm7ZS0bumj-c66ooToh4APVAti_zRFEtKs3su-7LHMyQvxZuYZwrmCNJComu8opWst10qIRAPSllPrGg3pLfaiCT72P1aR8JghbLycbBM05xH9UCzj7QMkcdZKrrGXKKq1N_u40W3r0a21yr9B2koGw7MhaDP_SWX5BU8FdIlvRp4jptMi9spb6Cstq8htpy"/>
+<div class="absolute top-2 right-2 flex gap-1">
+<span class="w-2 h-2 rounded-full bg-accent-deep"></span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-accent-deep uppercase">Philosophy</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-ink-primary leading-tight line-clamp-2">Ethics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Baruch Spinoza</p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant flex justify-between items-center">
+<span class="font-data-mono text-data-mono text-ink-secondary">AVAILABLE</span>
+<button class="text-accent-deep hover:text-accent-warm font-label-caps text-label-caps transition-colors flex items-center gap-1">
+                            REQUEST <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline mt-auto w-full">
+<div class="w-full py-12 px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 items-center gap-gutter max-w-content-max-width mx-auto">
+<div>
+<span class="font-display-lg text-display-lg text-ink-primary mb-2 block">Bookify</span>
+<p class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed-dim">
+                    © 2024 Bookify Library Systems. All intellectual property reserved.
+                </p>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end font-body-sm text-body-sm">
+<a class="text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Institutional Access</a>
+<a class="text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Privacy Policy</a>
+<a class="text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Terms of Service</a>
+<a class="text-on-tertiary-container dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed underline transition-all duration-200" href="#">Archival Standards</a>
+</div>
+</div>
+</footer>
+</body></html>

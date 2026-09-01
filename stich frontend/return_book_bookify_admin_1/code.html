@@ -1,0 +1,369 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Return Book - Bookify Admin</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-dim": "#dbd9dc",
+                "surface": "#fbf8fc",
+                "on-error-container": "#93000a",
+                "secondary": "#4950c7",
+                "on-primary": "#ffffff",
+                "on-secondary-container": "#070494",
+                "on-secondary-fixed-variant": "#3035af",
+                "on-tertiary-fixed": "#291800",
+                "error": "#ba1a1a",
+                "on-tertiary": "#ffffff",
+                "surface-container-highest": "#e4e2e5",
+                "inverse-primary": "#b6c6ef",
+                "primary": "#031635",
+                "on-tertiary-fixed-variant": "#5d4217",
+                "on-tertiary-container": "#b08d5b",
+                "inverse-on-surface": "#f2f0f3",
+                "inverse-surface": "#303033",
+                "surface-container-low": "#f5f3f6",
+                "secondary-fixed-dim": "#bfc2ff",
+                "surface-variant": "#e4e2e5",
+                "on-secondary": "#ffffff",
+                "outline": "#75777f",
+                "secondary-container": "#7d84fe",
+                "background": "#fbf8fc",
+                "tertiary-fixed-dim": "#e8c08a",
+                "primary-container": "#1a2b4b",
+                "primary-fixed": "#d8e2ff",
+                "surface-container-high": "#e9e7eb",
+                "on-secondary-fixed": "#02006d",
+                "on-primary-container": "#8293b8",
+                "tertiary": "#231400",
+                "tertiary-fixed": "#ffddb1",
+                "on-primary-fixed-variant": "#364768",
+                "surface-bright": "#fbf8fc",
+                "on-primary-fixed": "#081b3a",
+                "on-surface": "#1b1b1e",
+                "primary-fixed-dim": "#b6c6ef",
+                "on-surface-variant": "#44474e",
+                "surface-tint": "#4e5e81",
+                "on-error": "#ffffff",
+                "tertiary-container": "#3e2700",
+                "surface-container-lowest": "#ffffff",
+                "on-background": "#1b1b1e",
+                "surface-container": "#efedf0",
+                "secondary-fixed": "#e0e0ff",
+                "outline-variant": "#c5c6cf",
+                "error-container": "#ffdad6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "margin-desktop": "40px",
+                "margin-mobile": "16px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-caps": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "26px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-lg flex h-screen overflow-hidden antialiased selection:bg-primary-fixed selection:text-primary transition-colors duration-300">
+<!-- JSON: Admin SideNavBar -->
+<nav class="hidden lg:flex flex-col h-screen w-72 bg-primary p-4 shadow-sm z-20 flex-shrink-0 transition-colors duration-300">
+<!-- Header -->
+<div class="flex items-center gap-3 px-2 py-4 mb-6">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden shrink-0 border border-on-primary-fixed-variant">
+<img class="w-full h-full object-cover" data-alt="A minimalist vector illustration of a librarian avatar in light mode, featuring soft geometric shapes and subtle navy blue and warm off-white tones, conveying professionalism and approachability in an academic setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJlJGCLlMpZHCpefU-LYt6AAdNm4aAEFkYRvnk3yX3QN4_xhp3XpVJAIQ7pwV79-8ZX4L3Wy2y92m4O_znPGjpS2bK_ciBTtOrewlvEvZ_t61TBwsE5vkfPM8jhUY4JL3tL-GKatnh-aisLO4KgkaYN0mfwmjer0D93j2VPengdz8sT8t1dvG6xIK9V6AZYWIX_06o5MRhNUzhvlXBQLMlOL-bMxSdIq6aJZYP4phqvWozQBBGjIYO">
+</div>
+<div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-on-primary tracking-tight leading-none">Bookify Admin</h1>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim opacity-80 mt-1">Management Suite</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="mb-8 w-full py-2.5 px-4 rounded-lg bg-surface text-primary font-title-sm text-title-sm flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors duration-200 shadow-sm border border-outline-variant dark:border-none">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            Add New Book
+        </button>
+<!-- Main Nav -->
+<div class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Overview
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<!-- Active Tab: Circulation -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all translate-x-1 font-body-sm text-body-sm shadow-sm" href="#">
+<span class="material-symbols-outlined icon-fill">sync_alt</span>
+                Circulation
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">group</span>
+                Members
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                Reports
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">terminal</span>
+                System Logs
+            </a>
+</div>
+<!-- Footer Nav -->
+<div class="mt-auto pt-6 flex flex-col gap-1 border-t border-on-primary-fixed-variant border-opacity-30">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                Admin Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed-dim opacity-80 hover:bg-primary-fixed-variant transition-all font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative transition-colors duration-300">
+<!-- Header -->
+<header class="flex items-center justify-between p-margin-mobile md:px-margin-desktop md:py-6 bg-surface/80 backdrop-blur-md border-b border-outline-variant sticky top-0 z-30 transition-colors duration-300">
+<div class="flex items-center gap-2">
+<button class="lg:hidden p-2 -ml-2 text-on-surface hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md text-on-surface">Process Return</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors hidden md:flex" onclick="toggleTheme()">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden border border-outline-variant lg:hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist vector illustration of a librarian avatar in light mode, featuring soft geometric shapes and subtle navy blue and warm off-white tones, conveying professionalism and approachability in an academic setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkzMFwELUpyU2Dx36QZZ21BzgjX8yqyA55nFs73FwMyrknZUs8yCG-3tX0w5NWtSg9ZDTbfDqNBzwarX8zWq-hLWc4-5g5yptk1aXVGthzjh4amGrxI9GsoPLv8Fa6DcLEXH7VqBe3v7NqDPedUvbCVt3Dpu9fn3CJ-xsn5i3c93RgKQdpWyL1xDDPs2P8Ndw-UXf9xgZbR1fA_X8h-qafxA1W1nS8XJu98Hf6Ceh0zvi1_7yNAFth">
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop w-full bg-background transition-colors duration-300">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Page Intro -->
+<div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Scan a book barcode or search by student ID to initiate the return process and clear the active loan.</p>
+</div>
+<!-- Search Section (Architectural/Minimalist) -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 md:p-8 shadow-sm transition-colors duration-300">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase tracking-wider">Scan or Search</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant">barcode_scanner</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-4 pl-12 pr-28 font-body-lg text-body-lg text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm dark:bg-surface-container" placeholder="Enter Book ISBN or Student ID..." type="text" value="ISBN-9780143128540">
+<button class="absolute right-2 px-6 py-2.5 bg-primary text-on-primary font-title-sm text-title-sm rounded-md hover:bg-primary/90 transition-colors shadow-sm dark:border dark:border-outline-variant">
+                            Locate
+                        </button>
+</div>
+</div>
+<!-- Active Loan Details (Bento Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Book Details Card -->
+<div class="md:col-span-5 bg-surface rounded-xl border border-outline-variant p-6 shadow-sm flex flex-col transition-colors duration-300">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-[24px]">menu_book</span>
+<h3 class="font-title-sm text-title-sm text-on-surface font-semibold">Book Details</h3>
+</div>
+<div class="flex gap-6 items-start flex-1">
+<div class="w-32 h-44 shrink-0 bg-surface-container border border-outline-variant rounded-lg overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist book cover design for 'The Design of Everyday Things' by Don Norman. The cover features a simple, elegant typography layout on a pristine white background with subtle geometric accents in deep navy blue. High key lighting, academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwA3viaGL1S5VIvsG3ujmtvZd0KEGwxHZltmsjk6FKKUqvN_2oF_Hmr6H6eS-sr1Z13J-I5IZlgKPOo7MK1Y3_cNJrvGGZ-dkcowTjFqHLNkJB7EWNPu6a2odXLFctd5d2wPKNSIhNtWRrIX7ZpiY5EBMi0fBLgYmhtWeTobK6PWukBaK0oyY1g19--zInG4pRZpYpe4JbhYd_RsUTWae_xuDLtAK1HWC9UYfD_QLTL9l_XfgfXIZt">
+</div>
+<div class="flex flex-col h-full">
+<h4 class="font-title-sm text-title-sm text-on-surface mb-2 font-bold leading-tight">The Design of Everyday Things</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Don Norman</p>
+<div class="mt-auto">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">ISBN / Barcode</p>
+<p class="font-body-sm text-body-sm text-on-surface font-mono bg-surface-container inline-block px-3 py-1.5 rounded-md border border-outline-variant/50">978-0143128540</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Details Card -->
+<div class="md:col-span-3 bg-surface rounded-xl border border-outline-variant p-6 shadow-sm flex flex-col transition-colors duration-300">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-[24px]">person</span>
+<h3 class="font-title-sm text-title-sm text-on-surface font-semibold">Borrower</h3>
+</div>
+<div class="flex flex-col items-center text-center mt-2 flex-1">
+<div class="w-20 h-20 rounded-full bg-surface-container border border-outline-variant mb-4 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a university student looking forward, well-lit in a studio setting with a clean, warm off-white background. The lighting is soft and flat, adhering to an academic minimal aesthetic. Natural skin tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiCZR_D38X_evw20s8Xp2Bx0kcTVeo3N-tAFnCtaXaPwORedDYZCPsqX_WjGHTBRSmUf0MWK5vI9tPEQN95KHgB3J6UHN2m5ZOYIkpfMqFVYZOnmjh2hgtDTQwx4oWV--lYFu-4_XmR4dtqNoKcsNPq3A0kfCIUfj_4MxZE4jvj0ehDHGJvlqBke7-rVVZXl_eDYlziIhiPEgzX4a0a_y6XAmKGPqhX9vHY_qNbauTxWt6FLc5Eqtr">
+</div>
+<h4 class="font-title-sm text-title-sm text-on-surface font-bold">Elena Rostova</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Design Dept. (Grad)</p>
+<div class="mt-auto w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 text-center dark:bg-surface-container">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Student ID</p>
+<p class="font-body-sm text-body-sm text-on-surface font-mono">STU-8849-2A</p>
+</div>
+</div>
+</div>
+<!-- Status & Metrics Card -->
+<div class="md:col-span-4 bg-surface rounded-xl border border-outline-variant p-6 shadow-sm flex flex-col transition-colors duration-300">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-outline-variant/50">
+<span class="material-symbols-outlined text-primary text-[24px]">schedule</span>
+<h3 class="font-title-sm text-title-sm text-on-surface font-semibold">Loan Status</h3>
+</div>
+<div class="space-y-6 flex-1 flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Issue Date</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Oct 12, 2023</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Due Date</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Nov 02, 2023</span>
+</div>
+<!-- Overdue Indicator -->
+<div class="bg-error-container/30 border border-error-container/50 rounded-lg p-4 flex items-center justify-between">
+<div class="flex items-center gap-2 text-on-error-container">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span class="font-title-sm text-title-sm font-bold">Overdue</span>
+</div>
+<span class="font-title-sm text-title-sm text-on-error-container font-bold">14 Days</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-4 border-t border-outline-variant/50 mt-auto">
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-1">Current Fine</span>
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface">$14.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm transition-colors duration-300">
+<!-- Damage Toggle -->
+<div class="flex items-center gap-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value="">
+<div class="w-12 h-7 bg-surface-container-highest border border-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary transition-colors"></div>
+</label>
+<span class="font-body-sm text-body-sm text-on-surface">Mark item as damaged upon return</span>
+</div>
+<!-- Buttons -->
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-3 rounded-lg border border-outline text-on-surface bg-transparent hover:bg-surface-container-low font-title-sm text-title-sm transition-colors duration-200">
+                            Clear
+                        </button>
+<button class="flex-1 md:flex-none px-8 py-3 rounded-lg bg-primary text-on-primary border border-primary hover:bg-primary/90 font-title-sm text-title-sm shadow-sm transition-all duration-200 flex items-center justify-center gap-2 dark:border-outline-variant">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                            Confirm Return
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -2,6 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
+const log = require('../logger');
 
 let dbInstance = null;
 
@@ -19,6 +20,14 @@ const getSqliteDb = async () => {
         db.run('PRAGMA foreign_keys = ON;');
         db.run('PRAGMA journal_mode = WAL;');
 
+        // H-3: in-place migration — add token_version to an existing users table
+        db.run('ALTER TABLE users ADD COLUMN token_version INTEGER NOT NULL DEFAULT 0', (err) => {
+          // Ignore "duplicate column name" errors — that's the happy path on a fresh DB.
+          if (err && !/duplicate column name/i.test(err.message)) {
+            log.warn('sqlite_token_version_migration', { message: err.message });
+          }
+        });
+
         // Create Tables
         db.run(`
           CREATE TABLE IF NOT EXISTS users (
@@ -32,6 +41,7 @@ const getSqliteDb = async () => {
             is_active INTEGER NOT NULL DEFAULT 1,
             notify_email INTEGER NOT NULL DEFAULT 1,
             notify_web_push INTEGER NOT NULL DEFAULT 1,
+            token_version INTEGER NOT NULL DEFAULT 0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
           );
@@ -319,7 +329,7 @@ const getSqliteDb = async () => {
         // Check if seed needed
         db.get('SELECT COUNT(*) as count FROM users', async (err, row) => {
           if (!row || row.count === 0) {
-            console.log('[LOCAL DB] Seeding initial mock data into SQLite...');
+            log.info('sqlite_seeding_mock_data');
             await seedLocalDb(db);
           }
           resolve();
@@ -480,7 +490,7 @@ async function seedLocalDb(db) {
       ('notif-3', 'u-std2', 'Welcome to Bookify', 'Explore our physical catalog and digital shelf.', 'GENERAL', 1)
     `);
 
-    console.log('[LOCAL DB] SQLite seed completed successfully!');
+    log.info('sqlite_seed_complete');
   });
 }
 

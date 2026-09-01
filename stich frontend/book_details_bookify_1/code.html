@@ -1,0 +1,302 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Clean Code - Book Details - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1b1b1e",
+                      "on-tertiary-fixed": "#291800",
+                      "surface-container-highest": "#e4e2e5",
+                      "on-primary-fixed": "#081b3a",
+                      "on-surface": "#1b1b1e",
+                      "on-tertiary-fixed-variant": "#5d4217",
+                      "tertiary-fixed-dim": "#e8c08a",
+                      "primary": "#031635",
+                      "tertiary-fixed": "#ffddb1",
+                      "surface-variant": "#e4e2e5",
+                      "secondary": "#4950c7",
+                      "surface-bright": "#fbf8fc",
+                      "secondary-fixed-dim": "#bfc2ff",
+                      "secondary-container": "#7d84fe",
+                      "inverse-on-surface": "#f2f0f3",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#e9e7eb",
+                      "outline-variant": "#c5c6cf",
+                      "background": "#fbf8fc",
+                      "on-surface-variant": "#44474e",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "surface": "#fbf8fc",
+                      "on-error-container": "#93000a",
+                      "on-secondary-container": "#070494",
+                      "inverse-primary": "#b6c6ef",
+                      "on-secondary-fixed": "#02006d",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#b08d5b",
+                      "primary-container": "#1a2b4b",
+                      "secondary-fixed": "#e0e0ff",
+                      "on-secondary-fixed-variant": "#3035af",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#4e5e81",
+                      "on-primary-fixed-variant": "#364768",
+                      "inverse-surface": "#303033",
+                      "primary-fixed": "#d8e2ff",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f5f3f6",
+                      "error": "#ba1a1a",
+                      "surface-container": "#efedf0",
+                      "on-primary-container": "#8293b8",
+                      "outline": "#75777f",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#3e2700",
+                      "tertiary": "#231400",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#dbd9dc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "display-lg-mobile": ["Plus Jakarta Sans"],
+                      "title-sm": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "body-sm": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row antialiased">
+<!-- SideNavBar (Hidden on Mobile) -->
+<nav class="hidden md:flex flex-col h-full py-unit w-64 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest fixed left-0 top-0 z-50">
+<div class="px-gutter mb-8 mt-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed mb-1">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Academic Year 2023-24</p>
+</div>
+<ul class="flex-1 px-unit space-y-1">
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-95 transition-transform" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary dark:text-primary-fixed font-bold bg-surface-container-high dark:bg-surface-container-highest scale-95 transition-transform font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu_book" data-weight="fill" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+                    Catalog
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-95 transition-transform" data-icon="history_edu">history_edu</span>
+                    My Borrowing
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-95 transition-transform" data-icon="bookmark">bookmark</span>
+                    Reservations
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-95 transition-transform" data-icon="map">map</span>
+                    Library Map
+                </a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-95 transition-transform" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<div class="px-unit mt-auto mb-4 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-95 transition-transform" data-icon="logout">logout</span>
+                    Log Out
+                </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 w-full">
+<!-- TopNavBar (Mobile Only & Search/Actions on Desktop) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile h-16 bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-40 flat no shadows">
+<div class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Bookify</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC09uD4HSbwZ--W0PFrjOfdd_N-cpTtYK4y7Cq8__uxZseDpPq5BtuSlsZagpPQT_eqn0tIWXML-GL7cGSV2bEtx1LoqyntbDL-tplSh-me1h64UDpHNl8TnkTU8bKuhIdxxOuSCIKkAVKsnxRiN5Jv7PDplTnRfthOadxAeh4P6031Z7oQzUc_1FMbGqXXxD2leSoupXJIyTAwMzv0S3QxjHGzJ4-UwqBQXa6i-q4XFT4luXauGOPP">
+</div>
+</header>
+<div class="hidden md:flex justify-between items-center w-full px-margin-desktop h-16 max-w-container-max mx-auto bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline sticky top-0 z-40">
+<div class="flex-1 max-w-md">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed-dim transition-all" placeholder="Search catalog..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-2 ml-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high rounded-full p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant ml-2 cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5uH515kChb32-VKkKKTgTz5apnfVoIU739LpBcbAgCj6TnBMxGv8q_XZePyhJ7_tmmfPvXrkDtJG3rJ5A-nECkHoyxbn2eLQuUAff2i8lcBNPwjZZh3cBf71MVvXFohmLjrwySBia2KGrOjDMnpoMaWykP8ZfHDye3ZKFRGlkric0DpAzBDg4FdrlKOxrPtDWB2oR-FN4Lv245Ld5GA3LHYmSUoL1W6TtC2yr9D0h9SDIjM3r2GU9">
+</div>
+</div>
+<!-- Book Details Canvas -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-16">
+<!-- Breadcrumbs -->
+<nav class="mb-8 flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps">
+<a class="hover:text-primary transition-colors" href="#">Catalog</a>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Programming</a>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface">Clean Code</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+<!-- Left Column: Cover & Quick Actions -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="aspect-[2/3] w-full bg-surface-container-lowest rounded-lg border border-outline-variant shadow-[0px_4px_20px_rgba(26,43,75,0.04)] overflow-hidden relative group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" data-alt="A pristine, minimalist book cover design for a programming manual, featuring stark white background with bold, deep navy blue typography reading 'Clean Code'. The aesthetic is highly organized, premium, and intellectual, resembling a high-end academic textbook placed in a well-lit, contemporary library setting. Subtle geometric line art hints at structure and order. High-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOyLJLcg1IjBa-jIyI3q0NYp6oiwpV-HgsK7DzypTM7N1zF35oC6vmg8KiXXMNBmdL7Z5T5NWSIyrDmh1GNGfX7Rg-2y6I1yex9zmXn9nBnqlpPtP_KIICwG9Q0xN-S7AoxVDy9hBHGTHcDZWto6Wn1BtxeYCAjAxv2lnPgMyXeT0SlHW_dF2vQXe3HD7Ay5Uu8cnarV0unZzAFuM9cGNietY_yT3uUajAIzSElbtrPRPW5AEopoop">
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full py-3 px-6 bg-primary text-on-primary border border-primary rounded-lg font-title-sm text-title-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="bookmark_add">bookmark_add</span>
+                            Reserve Book
+                        </button>
+<button class="w-full py-3 px-6 bg-transparent text-primary border border-primary rounded-lg font-title-sm text-title-sm hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+                            Add to Wishlist
+                        </button>
+</div>
+</div>
+<!-- Right Column: Metadata & Details -->
+<div class="lg:col-span-8 flex flex-col">
+<!-- Title & Core Info -->
+<div class="mb-8 border-b border-outline-variant pb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-[rgba(73,80,199,0.1)] text-secondary rounded-[4px] font-label-caps text-label-caps mb-4">
+<span class="material-symbols-outlined text-[14px]" data-icon="code">code</span>
+                            Programming
+                        </div>
+<h1 class="font-display-lg text-display-lg md:font-display-lg text-primary mb-2">Clean Code</h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant font-normal">A Handbook of Agile Software Craftsmanship</p>
+<div class="mt-6 flex flex-wrap gap-x-8 gap-y-4">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Author</span>
+<span class="font-title-sm text-title-sm text-on-surface">Robert C. Martin</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Published</span>
+<span class="font-title-sm text-title-sm text-on-surface">2008</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Publisher</span>
+<span class="font-title-sm text-title-sm text-on-surface">Prentice Hall</span>
+</div>
+</div>
+</div>
+<!-- Availability Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 mb-8 shadow-[0px_4px_20px_rgba(26,43,75,0.04)]">
+<h3 class="font-title-sm text-title-sm text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+                             Availability Status
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-1">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary">3 <span class="font-headline-md text-headline-md text-on-surface-variant font-normal">/ 8</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Copies Currently Available</span>
+</div>
+<div class="flex flex-col justify-center border-l-0 md:border-l border-outline-variant md:pl-6 pt-4 md:pt-0 border-t md:border-t-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Physical Location</span>
+<div class="flex items-center gap-2 text-on-surface font-title-sm text-title-sm">
+<span class="material-symbols-outlined text-outline" data-icon="location_on">location_on</span>
+                                    Library Block B · Rack 12 · Shelf 3
+                                </div>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="prose prose-slate max-w-none">
+<h3 class="font-title-sm text-title-sm text-primary mb-4">About this Edition</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-6">
+                            Even bad code can function. But if code isn't clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.
+                        </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-6">
+                            Noted software expert Robert C. Martin presents a revolutionary paradigm with Clean Code: A Handbook of Agile Software Craftsmanship. Martin has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code "on the fly" into a book that will instill within you the values of a software craftsman and make you a better programmer—but only if you work at it.
+                        </p>
+</div>
+<!-- Technical Specs Table -->
+<div class="mt-8 pt-8 border-t border-outline-variant">
+<h3 class="font-title-sm text-title-sm text-primary mb-4">Bibliographic Data</h3>
+<div class="w-full border-t border-outline-variant">
+<div class="flex py-4 border-b border-outline-variant">
+<div class="w-1/3 font-label-caps text-label-caps text-on-surface-variant">ISBN-13</div>
+<div class="w-2/3 font-body-sm text-body-sm text-on-surface">9780132350884</div>
+</div>
+<div class="flex py-4 border-b border-outline-variant bg-[#F9F8F6]">
+<div class="w-1/3 font-label-caps text-label-caps text-on-surface-variant pl-2">Pages</div>
+<div class="w-2/3 font-body-sm text-body-sm text-on-surface">464</div>
+</div>
+<div class="flex py-4 border-b border-outline-variant">
+<div class="w-1/3 font-label-caps text-label-caps text-on-surface-variant">Format</div>
+<div class="w-2/3 font-body-sm text-body-sm text-on-surface">Paperback</div>
+</div>
+<div class="flex py-4 border-b border-outline-variant bg-[#F9F8F6]">
+<div class="w-1/3 font-label-caps text-label-caps text-on-surface-variant pl-2">Language</div>
+<div class="w-2/3 font-body-sm text-body-sm text-on-surface">English</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -90,15 +90,19 @@ const CirculationPage = () => {
       <div className="max-w-2xl mx-auto">
 
         {/* Scanner status banner */}
-        <div className="card mb-6 flex items-center gap-3 py-3">
-          <div className="w-2 h-2 rounded-full bg-success-400 animate-pulse" />
-          <Scan size={16} className="text-success-400" />
-          <span className="text-xs text-slate-300">
+        <div
+          className="flex items-center gap-3 rounded-xl px-4 py-3 mb-6 text-sm"
+          style={{ background: 'var(--color-surface-container-lowest)', border: '1px solid var(--color-outline-variant)' }}
+        >
+          <div className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: 'var(--color-success)' }} />
+          <Scan size={15} style={{ color: 'var(--color-success)' }} className="flex-shrink-0" />
+          <span className="text-xs" style={{ color: 'var(--color-on-surface)' }}>
             Barcode scanner active — scan a copy QR/barcode to auto-fill
             {activeTab === 'issue' && (
               <button
                 onClick={() => setScanTarget(t => t === 'copyId' ? 'studentId' : 'copyId')}
-                className="ml-2 text-primary-400 hover:text-primary-300 underline underline-offset-2"
+                className="ml-2 underline underline-offset-2 font-medium"
+                style={{ color: 'var(--color-primary)' }}
               >
                 (now filling: {scanTarget === 'copyId' ? 'Copy ID' : 'Student ID'})
               </button>
@@ -107,13 +111,23 @@ const CirculationPage = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-6 p-1 rounded-2xl bg-bg-700">
+        <div
+          className="flex gap-1 mb-6 p-1 rounded-xl"
+          style={{ background: 'var(--color-surface-container-low)' }}
+        >
           {tabs.map(({ key, label, icon: Icon }) => (
             <button
               key={key}
               onClick={() => { setActiveTab(key); setLastResult(null); }}
-              className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-200
-                ${activeTab === key ? 'bg-primary-700 text-white shadow-glow-primary' : 'text-slate-400 hover:text-white'}`}
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200"
+              style={activeTab === key
+                ? {
+                    background: 'var(--color-surface-container-lowest)',
+                    color: 'var(--color-primary)',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+                  }
+                : { color: 'var(--color-on-surface-variant)' }
+              }
             >
               <Icon size={15} />
               {label}
@@ -126,14 +140,14 @@ const CirculationPage = () => {
           <Card>
             <form onSubmit={handleIssue} className="space-y-4">
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Student ID</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Student ID</label>
                 <input value={issueForm.studentId}
                   onChange={e => setIssueForm(f => ({ ...f, studentId: e.target.value }))}
                   placeholder="Scan or type student ID…"
                   required className="input" />
               </div>
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Book Copy ID / Accession No.</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Book Copy ID / Accession No.</label>
                 <input value={issueForm.copyId}
                   onChange={e => setIssueForm(f => ({ ...f, copyId: e.target.value }))}
                   placeholder="Scan barcode or enter copy ID…"
@@ -151,14 +165,14 @@ const CirculationPage = () => {
           <Card>
             <form onSubmit={handleReturn} className="space-y-4">
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Issue ID (scan copy barcode)</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Issue ID (scan copy barcode)</label>
                 <input value={returnForm.issueId}
                   onChange={e => setReturnForm(f => ({ ...f, issueId: e.target.value }))}
                   placeholder="Scan barcode or enter issue ID…"
                   required className="input" />
               </div>
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Book Condition</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Book Condition</label>
                 <select value={returnForm.condition}
                   onChange={e => setReturnForm(f => ({ ...f, condition: e.target.value }))}
                   className="input">
@@ -168,7 +182,7 @@ const CirculationPage = () => {
               </div>
               {returnForm.condition === 'DAMAGED' && (
                 <div>
-                  <label className="text-xs text-slate-400 mb-1 block">Damage Notes</label>
+                  <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Damage Notes</label>
                   <textarea value={returnForm.notes}
                     onChange={e => setReturnForm(f => ({ ...f, notes: e.target.value }))}
                     placeholder="Describe the damage…" rows={3}
@@ -187,7 +201,7 @@ const CirculationPage = () => {
           <Card>
             <form onSubmit={handleRenew} className="space-y-4">
               <div>
-                <label className="text-xs text-slate-400 mb-1 block">Issue ID</label>
+                <label className="text-xs mb-1 block" style={{ color: 'var(--color-on-surface-variant)' }}>Issue ID</label>
                 <input value={renewForm.issueId}
                   onChange={e => setRenewForm(f => ({ ...f, issueId: e.target.value }))}
                   placeholder="Enter issue ID…"
@@ -209,29 +223,29 @@ const CirculationPage = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle size={18} className="text-success-400" />
-              <p className="font-bold text-white">
+              <CheckCircle size={18} style={{ color: 'var(--color-success)' }} />
+              <p className="font-bold" style={{ color: 'var(--color-on-surface)' }}>
                 {lastResult.type === 'issue'  ? 'Book Issued'   :
                  lastResult.type === 'return' ? 'Book Returned' : 'Book Renewed'}
               </p>
             </div>
             {lastResult.type === 'issue' && (
-              <div className="text-sm space-y-1 text-slate-300">
-                <p>Issue ID: <code className="text-primary-300">{lastResult.issueId}</code></p>
-                <p>Book: <strong className="text-white">{lastResult.bookTitle}</strong></p>
-                <p>Due: <strong className="text-warning-400">{lastResult.dueDate}</strong></p>
+              <div className="text-sm space-y-1" style={{ color: 'var(--color-on-surface)' }}>
+                <p>Issue ID: <code style={{ color: 'var(--color-primary)' }}>{lastResult.issueId}</code></p>
+                <p>Book: <strong style={{ color: 'var(--color-on-surface)' }}>{lastResult.bookTitle}</strong></p>
+                <p>Due: <strong style={{ color: 'var(--color-warning)' }}>{lastResult.dueDate}</strong></p>
               </div>
             )}
             {lastResult.type === 'return' && (
-              <div className="text-sm space-y-1 text-slate-300">
-                <p>Overdue days: <strong className={lastResult.overdueDays > 0 ? 'text-danger-400' : 'text-success-400'}>{lastResult.overdueDays}</strong></p>
-                <p>Fine: <strong className={lastResult.fineAmount > 0 ? 'text-danger-400' : 'text-success-400'}>Rs. {lastResult.fineAmount}</strong></p>
+              <div className="text-sm space-y-1" style={{ color: 'var(--color-on-surface)' }}>
+                <p>Overdue days: <strong style={{ color: lastResult.overdueDays > 0 ? 'var(--color-danger)' : 'var(--color-success)' }}>{lastResult.overdueDays}</strong></p>
+                <p>Fine: <strong style={{ color: lastResult.fineAmount > 0 ? 'var(--color-danger)' : 'var(--color-success)' }}>Rs. {lastResult.fineAmount}</strong></p>
                 {lastResult.nextInQueue && <p>Next student in queue notified ✅</p>}
               </div>
             )}
             {lastResult.type === 'renew' && (
-              <p className="text-sm text-slate-300">
-                New due date: <strong className="text-warning-400">{lastResult.newDueDate}</strong>
+              <p className="text-sm" style={{ color: 'var(--color-on-surface)' }}>
+                New due date: <strong style={{ color: 'var(--color-warning)' }}>{lastResult.newDueDate}</strong>
                 {' '}(Renewal #{lastResult.renewalCount})
               </p>
             )}

@@ -4,11 +4,12 @@ from pathlib import Path
 # Ensure parent directory is in python module path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from typing import List, Dict, Any
 from services.db import get_cursor
+from middleware.auth import require_service_auth
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_service_auth)])
 
 @router.get("/recommendations/{student_id}")
 def get_recommendations(student_id: str) -> Dict[str, Any]:

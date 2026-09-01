@@ -1,0 +1,406 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Student Profile - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#ffddb1",
+                      "on-secondary": "#ffffff",
+                      "background": "#fbf8fc",
+                      "secondary": "#4950c7",
+                      "surface-container-low": "#f5f3f6",
+                      "surface-bright": "#fbf8fc",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#3035af",
+                      "inverse-surface": "#303033",
+                      "on-background": "#1b1b1e",
+                      "surface-container": "#efedf0",
+                      "tertiary": "#231400",
+                      "on-primary-container": "#8293b8",
+                      "outline-variant": "#c5c6cf",
+                      "inverse-primary": "#b6c6ef",
+                      "surface-dim": "#dbd9dc",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#7d84fe",
+                      "on-secondary-fixed": "#02006d",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#f2f0f3",
+                      "on-surface-variant": "#44474e",
+                      "outline": "#75777f",
+                      "on-tertiary-container": "#b08d5b",
+                      "on-surface": "#1b1b1e",
+                      "secondary-fixed-dim": "#bfc2ff",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "surface": "#fbf8fc",
+                      "on-secondary-container": "#070494",
+                      "on-primary-fixed": "#081b3a",
+                      "surface-container-highest": "#e4e2e5",
+                      "on-tertiary-fixed-variant": "#5d4217",
+                      "surface-tint": "#4e5e81",
+                      "tertiary-container": "#3e2700",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#1a2b4b",
+                      "on-primary-fixed-variant": "#364768",
+                      "surface-container-high": "#e9e7eb",
+                      "primary": "#031635",
+                      "secondary-fixed": "#e0e0ff",
+                      "tertiary-fixed-dim": "#e8c08a",
+                      "surface-variant": "#e4e2e5",
+                      "on-tertiary-fixed": "#291800",
+                      "error-container": "#ffdad6",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "margin-desktop": "40px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F9F8F6; /* Level 0 Base */
+            color: #1b1b1e;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F8F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e4e2e5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5c6cf;
+        }
+        
+        .bento-card {
+            background-color: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            box-shadow: 0px 4px 20px rgba(26, 43, 75, 0.04);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="h-full flex antialiased font-body-sm text-body-sm bg-background">
+<!-- TopAppBar (Mobile) -->
+<header class="flex justify-between items-center w-full px-margin-mobile py-4 sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant bg-surface md:hidden">
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold">
+            Bookify
+        </div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full py-unit h-screen w-64 border-r border-outline-variant bg-surface flex-shrink-0 sticky top-0">
+<div class="px-6 py-8 flex flex-col gap-2">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary font-extrabold tracking-tight">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Student Portal</p>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full py-2.5 px-4 bg-primary text-on-primary rounded border border-primary hover:opacity-90 transition-opacity font-title-sm text-title-sm flex items-center justify-center gap-2">
+                Renew Books
+            </button>
+</div>
+<ul class="flex-1 px-3 space-y-1 overflow-y-auto">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-title-sm text-title-sm">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-title-sm text-title-sm">Catalog</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">collections_bookmark</span>
+<span class="font-title-sm text-title-sm">My Loans</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-title-sm text-title-sm">Reservations</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">meeting_room</span>
+<span class="font-title-sm text-title-sm">Study Rooms</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-title-sm text-title-sm">History</span>
+</a>
+</li>
+</ul>
+<div class="p-3 border-t border-outline-variant/30 mt-auto">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-primary font-bold border-r-2 border-primary bg-surface-container-low/50" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-title-sm text-title-sm">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-title-sm text-title-sm">Support</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- TopAppBar (Desktop) -> Used as a soft header for the canvas -->
+<header class="hidden md:flex justify-between items-center w-full px-margin-desktop py-6 bg-transparent">
+<div class="invisible font-display-lg text-display-lg text-primary font-bold">
+                 Bookify
+             </div>
+<div class="flex items-center gap-6 text-on-surface-variant">
+<button class="hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<div class="px-margin-mobile md:px-margin-desktop py-8 md:py-12 max-w-container-max mx-auto w-full flex-1">
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md text-on-background">Student Profile</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">Manage your personal information and view your library engagement statistics.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Personal Details (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-gutter">
+<!-- Identity Card -->
+<div class="bento-card rounded-xl p-8 flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+<div class="w-32 h-32 rounded-full bg-surface-container-high border-4 border-white shadow-sm overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="A professional, well-lit studio portrait photograph of a young university student. They are smiling warmly, looking directly at the camera. The background is a soft, muted academic gray. The lighting is soft and flattering, creating a premium, modern academic aesthetic. The image is cropped in a tight circle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUtZ-OUF6D5c_GPtzMajodOKk0yUmGEAHrpaPMIeC6dU5HousufjxTWCKw8vzm4VRlWYb8hgtT6PiIO60RZBOyWffP4f_PiGiHo_46dUYGIWfbJUlVgaLSCG6BcuMMthxglrjAP-NnTIXlPB44Y8ZmKkGCrPEIVnwyakXJ76BBextu5SOBsMS0bLvmfxC-nnQsrl9EOCVRWw8lee40F2uQbVsgnbctNxFWCZtwzB0XlcU9EiNiSxyk">
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Eleanor Vance</h3>
+<p class="font-title-sm text-title-sm text-primary mb-4">Undergraduate Student</p>
+<div class="flex flex-wrap gap-3">
+<span class="px-3 py-1 bg-secondary/10 text-secondary font-label-caps text-label-caps rounded flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">badge</span>
+                                    ID: 20239481
+                                </span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-label-caps rounded flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">school</span>
+                                    Senior
+                                </span>
+</div>
+</div>
+</div>
+<!-- Detailed Info Card -->
+<div class="bento-card rounded-xl p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-sm text-title-sm text-on-background">Academic Information</h3>
+<button class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+                                EDIT DETAILS
+                            </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-1">Department</p>
+<p class="font-body-lg text-body-lg text-on-background">College of Arts &amp; Sciences</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-1">Major Course</p>
+<p class="font-body-lg text-body-lg text-on-background">Comparative Literature</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-1">University Email</p>
+<p class="font-body-lg text-body-lg text-on-background">e.vance@university.edu</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-outline mb-1">Expected Graduation</p>
+<p class="font-body-lg text-body-lg text-on-background">Spring 2025</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/50">
+<h3 class="font-title-sm text-title-sm text-on-background mb-4">Security</h3>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Last password change: 3 months ago</p>
+</div>
+<button class="px-4 py-2 bg-transparent border border-primary text-primary font-title-sm text-title-sm rounded hover:bg-primary/5 transition-colors">
+                                    Change Password
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Stats (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-gutter h-full">
+<!-- Stat Block 1 -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined">library_books</span>
+</div>
+<div>
+<p class="font-display-lg-mobile text-display-lg-mobile text-on-background mb-1">142</p>
+<p class="font-label-caps text-label-caps text-outline">Total Books Borrowed</p>
+</div>
+</div>
+<!-- Stat Block 2 -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto bg-primary text-on-primary border-none shadow-sm relative overflow-hidden">
+<!-- Subtle decorative element -->
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white mb-4 relative z-10">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<div class="relative z-10">
+<p class="font-display-lg-mobile text-display-lg-mobile mb-1">3</p>
+<p class="font-label-caps text-label-caps opacity-80">Current Active Loans</p>
+</div>
+</div>
+<!-- Stat Block 3 -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4">
+<span class="material-symbols-outlined">event_seat</span>
+</div>
+<div>
+<p class="font-display-lg-mobile text-display-lg-mobile text-on-background mb-1">2</p>
+<p class="font-label-caps text-label-caps text-outline">Active Reservations</p>
+</div>
+</div>
+<!-- Stat Block 4 (Fines) -->
+<div class="bento-card rounded-xl p-6 flex flex-col justify-between aspect-square lg:aspect-auto">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant mb-4">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="font-display-lg-mobile text-display-lg-mobile text-on-background mb-1">$0.00</p>
+<p class="font-label-caps text-label-caps text-outline">Outstanding Fines</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

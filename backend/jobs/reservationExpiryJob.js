@@ -1,5 +1,6 @@
 const db = require('../config/db');
 const notificationService = require('../services/notificationService');
+const log = require('../logger');
 
 /**
  * Reservation expiry job.
@@ -23,7 +24,7 @@ const RESERVATION_HOLD_HOURS = 24;
 const HOLD_MS = RESERVATION_HOLD_HOURS * 60 * 60 * 1000;
 
 const reservationExpiryJob = async () => {
-  console.log('[RESERVATION] Starting reservation expiry sweep...');
+  log.info('reservation_sweep_started');
   let expiredCount = 0;
   let promotedCount = 0;
   let releasedCount = 0;
@@ -45,7 +46,7 @@ const reservationExpiryJob = async () => {
     );
 
     if (!expired.rows.length) {
-      console.log('[RESERVATION] No expired holds to process.');
+      log.info('reservation_sweep_no_expiries');
       return { expiredCount: 0, promotedCount: 0, releasedCount: 0, errorCount: 0 };
     }
 
@@ -91,9 +92,9 @@ const reservationExpiryJob = async () => {
             title:   'Your Reserved Book Hold Has Expired',
             message: `Your hold for this book was not collected within ${RESERVATION_HOLD_HOURS} hours and has been released to the next student.`,
             metadata: { reservationId: row.reservation_id, bookId: row.book_id },
-          }).catch(err => {
-            console.error('[RESERVATION] Failed to notify expired holder:', err.message);
-          });
+            }).catch(err => {
+              log.error('reservation_notify_holder_failed', { message: err.message });
+            });
         }
 
         // 5. Promote the next WAITING reservation, if any, to NOTIFIED with
@@ -153,21 +154,20 @@ const reservationExpiryJob = async () => {
                 metadata: { reservationId: next.reservation_id, bookId: row.book_id },
               });
             }).catch(err => {
-              console.error('[RESERVATION] Failed to notify next holder:', err.message);
+              log.error('reservation_notify_next_failed', { message: err.message });
             });
           }
         }
       } catch (innerErr) {
         errorCount++;
-        console.error('[RESERVATION] Failed to process expired reservation',
-          row.reservation_id, ':', innerErr.message);
+        log.error('reservation_process_one_failed', { message: innerErr.message, reservationId: row.reservation_id });
       }
     }
 
-    console.log(`[RESERVATION] Sweep complete — expired: ${expiredCount}, promoted: ${promotedCount}, copies released: ${releasedCount}, errors: ${errorCount}`);
+    log.info('reservation_sweep_complete', { expiredCount, promotedCount, copiesReleased: releasedCount, errorCount });
     return { expiredCount, promotedCount, releasedCount, errorCount };
   } catch (err) {
-    console.error('[RESERVATION] Job error:', err.message);
+    log.error('reservation_sweep_failed', { message: err.message });
     throw err;
   }
 };
@@ -194,7 +194,7 @@ const lazyExpireOverdueReservations = async () => {
     );
   } catch (err) {
     // Non-fatal: log and continue serving the request.
-    console.error('[RESERVATION] Lazy expiry sweep error:', err.message);
+    log.error('reservation_lazy_sweep_failed', { message: err.message });
   }
 };
 

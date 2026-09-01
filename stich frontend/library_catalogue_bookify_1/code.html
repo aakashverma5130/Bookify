@@ -1,0 +1,356 @@
+<!DOCTYPE html><html class="h-full" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Search Books - Bookify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1b1b1e",
+                        "on-tertiary-fixed": "#291800",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-primary-fixed": "#081b3a",
+                        "on-surface": "#1b1b1e",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "primary": "#031635",
+                        "tertiary-fixed": "#ffddb1",
+                        "surface-variant": "#e4e2e5",
+                        "secondary": "#4950c7",
+                        "surface-bright": "#fbf8fc",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "secondary-container": "#7d84fe",
+                        "inverse-on-surface": "#f2f0f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e7eb",
+                        "outline-variant": "#c5c6cf",
+                        "background": "#fbf8fc",
+                        "on-surface-variant": "#44474e",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface": "#fbf8fc",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#070494",
+                        "inverse-primary": "#b6c6ef",
+                        "on-secondary-fixed": "#02006d",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b08d5b",
+                        "primary-container": "#1a2b4b",
+                        "secondary-fixed": "#e0e0ff",
+                        "on-secondary-fixed-variant": "#3035af",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4e5e81",
+                        "on-primary-fixed-variant": "#364768",
+                        "inverse-surface": "#303033",
+                        "primary-fixed": "#d8e2ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f5f3f6",
+                        "error": "#ba1a1a",
+                        "surface-container": "#efedf0",
+                        "on-primary-container": "#8293b8",
+                        "outline": "#75777f",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#3e2700",
+                        "tertiary": "#231400",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbd9dc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background h-full flex font-body-lg text-body-lg antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNav - Fixed Left -->
+<nav class="bg-surface-container-low dark:bg-surface-container-lowest flex flex-col h-full py-unit w-64 border-r border-outline-variant hidden md:flex fixed left-0 top-0 z-20">
+<div class="px-6 py-4 flex items-center gap-3 border-b border-outline-variant/30 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Bookify</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Academic Year 2023-24</p>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-2 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-primary-fixed font-bold bg-surface-container-high/50 transition-all scale-95 origin-left" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-caps text-label-caps">Catalog</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-label-caps text-label-caps">My Borrowing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-caps text-label-caps">Reservations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-caps text-label-caps">Library Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all group" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+<div class="px-4 mt-auto border-t border-outline-variant/30 pt-4 flex flex-col gap-2">
+<button class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all group w-full text-left" id="theme-toggle">
+<span class="material-symbols-outlined dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined hidden dark:block">light_mode</span>
+<span class="font-label-caps text-label-caps dark:hidden">Dark Mode</span>
+<span class="font-label-caps text-label-caps hidden dark:block">Light Mode</span>
+</button>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-error-container/20 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Log Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full relative">
+<!-- TopAppBar - Mobile Only (Replaces Nav Top Row on Desktop if needed, but keeping JSON spec) -->
+<header class="bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-10 hidden md:flex justify-between items-center w-full px-margin-desktop h-16 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<!-- Search Bar (on_left as per JSON) -->
+<div class="relative w-96 hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary/20 transition-all font-body-sm text-body-sm" placeholder="Quick search..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-2">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a university student looking slightly off-camera, warm academic lighting, neutral background, high resolution, minimalist academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDanBoTEqvpurE5ez7zvXQMK_44PpeV7-fbMe0IAqfhSe18cPsv0_vRf6b4yaL_AM-AlhBjd2gVa6tI1URxr4wS6SrTo77J5md5FrCCrYe20fV3ywejwrIRDPv8v40jIgIcG43UnDgaMTkvGzzcKBNuMNhqZXUuZP5q1zzllfTeyA9h8jNBiNb0QtNuaujDxWLu6v2IrVxiZPf_EJPnn0ZRP6X-JSJX4tlkN71qAh7C5S2o14PK4TGd">
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop py-8 max-w-container-max mx-auto w-full">
+<!-- Page Header & Large Search -->
+<div class="mb-12 text-center max-w-3xl mx-auto">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">Search the library</h2>
+<div class="relative shadow-[0_4px_20px_rgba(26,43,75,0.04)] rounded-xl bg-surface-container-lowest border border-outline-variant flex items-center p-2 focus-within:border-primary focus-within:ring-2 focus-within:ring-secondary/20 transition-all">
+<span class="material-symbols-outlined text-primary text-2xl ml-4">search</span>
+<input class="w-full border-none bg-transparent py-4 px-4 font-title-sm text-title-sm text-on-surface focus:outline-none focus:ring-0 placeholder-on-surface-variant/50" placeholder="Search by title, author, ISBN, or subject..." type="text" value="Clean Code">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-caps text-label-caps hover:opacity-90 transition-opacity whitespace-nowrap hidden sm:block">
+                        Find Books
+                    </button>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Filter Sidebar -->
+<aside class="w-full lg:w-64 flex-shrink-0 space-y-8">
+<div class="flex items-center justify-between lg:hidden mb-4 border-b border-outline-variant pb-4">
+<span class="font-title-sm text-title-sm text-primary">Filters</span>
+<button class="text-primary hover:bg-surface-container-low p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="hidden lg:block space-y-6">
+<!-- Availability -->
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-3 uppercase tracking-wider">Availability</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary/20" type="checkbox">
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">Available Now (142)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary/20" type="checkbox">
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">On Reserve (38)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary/20" type="checkbox">
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">In Processing (12)</span>
+</label>
+</div>
+</div>
+<hr class="border-outline-variant/30">
+<!-- Category -->
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-3 uppercase tracking-wider">Category</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary/20" type="checkbox">
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">Computer Science (89)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary/20" type="checkbox">
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">Engineering (45)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-outline-variant rounded focus:ring-primary/20" type="checkbox">
+<span class="font-body-sm text-body-sm group-hover:text-primary transition-colors">Mathematics (34)</span>
+</label>
+</div>
+</div>
+<hr class="border-outline-variant/30">
+<!-- Publication Year -->
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-3 uppercase tracking-wider">Publication Year</h3>
+<div class="flex items-center gap-2">
+<div class="relative w-full">
+<span class="absolute -top-2 left-2 bg-surface px-1 font-label-caps text-[10px] text-on-surface-variant">From</span>
+<input class="w-full bg-transparent border border-outline-variant rounded-lg p-2 pt-3 font-body-sm text-body-sm focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="2010" type="number">
+</div>
+<span class="text-on-surface-variant">-</span>
+<div class="relative w-full">
+<span class="absolute -top-2 left-2 bg-surface px-1 font-label-caps text-[10px] text-on-surface-variant">To</span>
+<input class="w-full bg-transparent border border-outline-variant rounded-lg p-2 pt-3 font-body-sm text-body-sm focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="2024" type="number">
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Results List -->
+<div class="flex-1 flex flex-col gap-6">
+<div class="flex justify-between items-end border-b border-outline-variant pb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 1-12 of 89 results for <strong class="text-primary font-bold">"Clean Code"</strong></span>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Sort by:</span>
+<select class="bg-transparent border-none font-body-sm text-body-sm text-primary font-semibold focus:ring-0 cursor-pointer pr-6 py-0">
+<option>Relevance</option>
+<option>Newest First</option>
+<option>Title (A-Z)</option>
+</select>
+</div>
+</div>
+<!-- Result Card 1 (Primary Example) -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row gap-6 shadow-[0_4px_20px_rgba(26,43,75,0.04)] hover:border-primary/50 transition-colors">
+<div class="w-24 sm:w-32 flex-shrink-0 relative group cursor-pointer aspect-[2/3] border border-outline-variant/50 rounded overflow-hidden">
+<img alt="Clean Code Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist, academic cover design of a computer science textbook titled 'Clean Code'. The cover is stark white with bold typography and a subtle geometric illustration in dark navy. High quality, crisp lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-qtrXAIBh-oPC27E1Z2vrBLcPNynHTntNNLw-wuxVF4tpBk1_QfcZVXtMMwYDKtbN_467BWVUryQcJxLn-_mhJWm-05bGuY0JAC0pLzJEc600bTnlEf-CslWHlxj_e-z2_olOdTIRLIpiZe7fsxf0tS3WaubEdLroW3F7kR118a0tTdp8FFCVg0scCiZCJh0ER95OShNiEhIZvm56LkNHHMqC_go4nCIlkCGq300zECOST_ewJXG8">
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start gap-4 mb-1">
+<h3 class="font-title-sm text-title-sm text-primary font-bold text-lg leading-tight">Clean Code: A Handbook of Agile Software Craftsmanship</h3>
+<span class="inline-flex items-center px-2 py-1 rounded bg-[#031635]/10 text-primary font-label-caps text-[10px] tracking-wider shrink-0 mt-1">AVAILABLE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">By <span class="text-primary font-medium">Robert C. Martin</span></p>
+<div class="flex flex-wrap gap-x-4 gap-y-2 mb-4 font-body-sm text-[13px] text-on-surface-variant/80">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">category</span> Computer Science</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">barcode_scanner</span> ISBN: 978-0132350884</span>
+<span class="flex items-center gap-1 text-primary"><span class="material-symbols-outlined text-[16px]">library_books</span> 3 of 8 copies available</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-t border-outline-variant/30 pt-4 mt-2">
+<div class="flex items-start gap-2 bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5">location_on</span>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider mb-0.5">Location</p>
+<p class="font-body-sm text-[13px] font-medium text-primary">Block B · Rack 12 · Shelf 3</p>
+</div>
+</div>
+<button class="w-full sm:w-auto bg-transparent border border-primary text-primary px-6 py-2 rounded-lg font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+                                    View Details
+                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Result Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row gap-6 shadow-[0_4px_20px_rgba(26,43,75,0.04)] hover:border-primary/50 transition-colors opacity-75">
+<div class="w-24 sm:w-32 flex-shrink-0 relative group cursor-pointer aspect-[2/3] border border-outline-variant/50 rounded overflow-hidden">
+<img alt="Clean Architecture Book Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist, academic cover design of a computer science textbook titled 'Clean Architecture'. The cover is stark white with bold typography and a subtle geometric illustration in dark navy. High quality, crisp lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnel17ZDW8nhmcuR_ntXtOpBWlPWr3GpmXkBOUBRHwN7kf03Vc5oCOasCxTaDORrRrRsm-i8y7yCoBGnc4x8OcvqM_esQoB8JdBDUQ99zfXuAe3ZrfLZjeS5NDzbf3puHAGaCDqxwEaQMRH66gE-ptSRvRtPpgwl2oCr1p6w2cizmiS6RPLx4SAsANSxDC1oDEwlcwF5DLMPyrle4r2QgyblEQt-h08kE3w9qICwnjKGmSJ8eUrTkK">
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start gap-4 mb-1">
+<h3 class="font-title-sm text-title-sm text-primary font-bold text-lg leading-tight">Clean Architecture: A Craftsman's Guide to Software Structure</h3>
+<span class="inline-flex items-center px-2 py-1 rounded bg-error/10 text-error font-label-caps text-[10px] tracking-wider shrink-0 mt-1">CHECKED OUT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">By <span class="text-primary font-medium">Robert C. Martin</span></p>
+<div class="flex flex-wrap gap-x-4 gap-y-2 mb-4 font-body-sm text-[13px] text-on-surface-variant/80">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">category</span> Computer Science</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">barcode_scanner</span> ISBN: 978-0134494166</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">library_books</span> 0 of 5 copies available</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-t border-outline-variant/30 pt-4 mt-2">
+<div class="flex items-start gap-2 bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-secondary text-lg mt-0.5">event</span>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider mb-0.5">Expected Return</p>
+<p class="font-body-sm text-[13px] font-medium text-primary">Oct 24, 2023</p>
+</div>
+</div>
+<div class="flex gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none bg-surface border border-outline-variant text-primary px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-surface-container-high transition-all">
+                                        Place Hold
+                                    </button>
+<button class="flex-1 sm:flex-none bg-transparent border border-primary text-primary px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all">
+                                        Details
+                                    </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 mt-8">
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border border-primary bg-primary text-on-primary rounded-lg font-title-sm text-title-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface-variant hover:bg-surface-container-low rounded-lg font-title-sm text-title-sm transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface-variant hover:bg-surface-container-low rounded-lg font-title-sm text-title-sm transition-colors">3</button>
+<span class="text-on-surface-variant px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface-variant hover:bg-surface-container-low rounded-lg font-title-sm text-title-sm transition-colors">8</button>
+<button class="p-2 border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        document.documentElement.classList.toggle('dark');
+    });
+</script>
+</body></html>

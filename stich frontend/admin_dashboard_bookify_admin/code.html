@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookify - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#3e2700",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-bright": "#fbf8fc",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#4e5e81",
+                    "secondary": "#4950c7",
+                    "surface-container-high": "#e9e7eb",
+                    "on-secondary-fixed-variant": "#3035af",
+                    "on-tertiary-fixed-variant": "#5d4217",
+                    "secondary-fixed-dim": "#bfc2ff",
+                    "secondary-container": "#7d84fe",
+                    "secondary-fixed": "#e0e0ff",
+                    "surface": "#fbf8fc",
+                    "surface-dim": "#dbd9dc",
+                    "surface-container-highest": "#e4e2e5",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#364768",
+                    "on-surface-variant": "#44474e",
+                    "inverse-surface": "#303033",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#b08d5b",
+                    "on-secondary-fixed": "#02006d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f5f3f6",
+                    "inverse-primary": "#b6c6ef",
+                    "on-primary-container": "#8293b8",
+                    "surface-container": "#efedf0",
+                    "outline-variant": "#c5c6cf",
+                    "inverse-on-surface": "#f2f0f3",
+                    "surface-variant": "#e4e2e5",
+                    "on-surface": "#1b1b1e",
+                    "tertiary-fixed-dim": "#e8c08a",
+                    "primary-container": "#1a2b4b",
+                    "outline": "#75777f",
+                    "on-primary-fixed": "#081b3a",
+                    "primary": "#031635",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#070494",
+                    "tertiary-fixed": "#ffddb1",
+                    "on-tertiary-fixed": "#291800",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#b6c6ef",
+                    "on-error": "#ffffff",
+                    "on-background": "#1b1b1e",
+                    "background": "#fbf8fc",
+                    "tertiary": "#231400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "title-sm": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "26px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F9F8F6;
+            color: #1b1b1e;
+        }
+        
+        .glass-fab {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .dark .glass-fab {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            box-shadow: 0px 4px 20px rgba(26, 43, 75, 0.04);
+            transform: translateY(-2px);
+        }
+        
+        /* Table styles from guidance */
+        .academic-table th {
+            background-color: #F3F4F6;
+            text-transform: uppercase;
+        }
+        
+        .academic-table tr {
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .academic-table td, .academic-table th {
+            padding-top: 16px;
+            padding-bottom: 16px;
+            border-left: none;
+            border-right: none;
+        }
+        
+        /* Scrollbar hiding for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="flex font-body-lg text-body-lg antialiased">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline flex flex-col py-margin-desktop z-40">
+<div class="px-6 mb-10 flex items-center gap-4 cursor-pointer transition-all duration-200 active:opacity-80">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg border border-outline-variant">
+                B
+            </div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Bookify Admin</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Management Portal</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Active State: Inventory (Intent mapping to Dashboard/Overview) -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary dark:text-primary-fixed font-bold border-r-2 border-primary dark:border-primary-fixed bg-surface-container-low dark:bg-surface-container-highest transition-colors cursor-pointer duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-title-sm text-title-sm font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined">sync_alt</span>
+<span class="font-title-sm text-title-sm font-label-caps text-label-caps">Circulation</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-title-sm text-title-sm font-label-caps text-label-caps">Members</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-title-sm text-title-sm font-label-caps text-label-caps">Reports</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer duration-200 active:opacity-80" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-title-sm text-title-sm font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer duration-200 active:opacity-80" href="#" id="sidebar-dark-mode">
+<span class="material-symbols-outlined">dark_mode</span>
+<span class="font-title-sm text-title-sm font-label-caps text-label-caps">Dark Mode</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 min-h-screen px-margin-desktop py-12 max-w-[1440px] mx-auto">
+<header class="mb-12 flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Dashboard Overview</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Real-time operational metrics for the academic library network.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2 border border-primary text-primary bg-transparent rounded hover:opacity-90 transition-opacity font-title-sm text-title-sm">Export Report</button>
+<button class="px-6 py-2 border border-primary bg-primary text-on-primary rounded hover:opacity-90 transition-opacity font-title-sm text-title-sm">Add New Book</button>
+</div>
+</header>
+<!-- Bento Grid Metrics -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-16">
+<div class="metric-card p-6 rounded-lg flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Total Collection</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+<div>
+<h3 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">142,854</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-[#10B981]">trending_up</span>
+<span class="text-[#10B981]">+1.2%</span> from last month
+                    </p>
+</div>
+</div>
+<div class="metric-card p-6 rounded-lg flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Active Circulations</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">sync_alt</span>
+</div>
+<div>
+<h3 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">18,240</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-[#10B981]">trending_up</span>
+<span class="text-[#10B981]">+5.4%</span> from last month
+                    </p>
+</div>
+</div>
+<div class="metric-card p-6 rounded-lg flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Overdue Items</span>
+<span class="material-symbols-outlined text-[#EF4444]" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h3 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">843</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-[#EF4444]">trending_up</span>
+<span class="text-[#EF4444]">+12.1%</span> from last month
+                    </p>
+</div>
+</div>
+<div class="metric-card p-6 rounded-lg flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Outstanding Fines</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<h3 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">$4,250</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-[#10B981]">trending_down</span>
+<span class="text-[#10B981]">-2.3%</span> from last month
+                    </p>
+</div>
+</div>
+</section>
+<!-- Main Content Area: Chart and Table -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-16">
+<!-- Chart Section -->
+<section class="lg:col-span-2 metric-card rounded-lg p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Borrowing Trends</h3>
+<select class="border-outline-variant rounded bg-transparent font-body-sm text-body-sm text-on-surface-variant py-1 pl-3 pr-8 focus:border-primary focus:ring-0">
+<option>Last 30 Days</option>
+<option>This Semester</option>
+<option>Year to Date</option>
+</select>
+</div>
+<div class="flex-1 w-full h-[300px] relative">
+<canvas id="borrowingChart"></canvas>
+</div>
+</section>
+<!-- Quick Actions / Alerts -->
+<section class="metric-card rounded-lg p-6 flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">System Alerts</h3>
+<div class="space-y-4 overflow-y-auto no-scrollbar flex-1">
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant flex gap-3">
+<span class="material-symbols-outlined text-[#EF4444] mt-0.5" style="font-variation-settings: 'FILL' 1;">error</span>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface">Server Maintenance</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Database backup scheduled for 02:00 AM tonight.</p>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-[#F5F3FF] border border-[#DDD6FE] flex gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5" style="font-variation-settings: 'FILL' 1;">info</span>
+<div>
+<h4 class="font-title-sm text-title-sm text-secondary">New Faculty Reserve</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Prof. Smith added 15 items to Fall History Reserve.</p>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant flex gap-3">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">book</span>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface">Inventory Audit</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Section 4A (Sciences) audit completed. 3 items missing.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Recent Activity Table -->
+<section class="metric-card rounded-lg p-6 overflow-x-auto">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Activity</h3>
+<a class="font-title-sm text-title-sm text-primary hover:underline" href="#">View All</a>
+</div>
+<table class="w-full text-left academic-table">
+<thead>
+<tr>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 rounded-tl">Patron</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4">Item</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4">Action</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4">Timestamp</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 rounded-tr">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr>
+<td class="px-4 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center font-bold text-xs">EK</div>
+<span class="font-title-sm text-title-sm">Eleanor Vance</span>
+</td>
+<td class="px-4">The Haunting of Hill House</td>
+<td class="px-4"><span class="flex items-center gap-1 text-primary"><span class="material-symbols-outlined text-[16px]">logout</span> Checkout</span></td>
+<td class="px-4 text-on-surface-variant">10:42 AM</td>
+<td class="px-4">
+<span class="bg-[#10B981] bg-opacity-10 text-[#059669] px-2 py-1 rounded font-label-caps text-label-caps">Active</span>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center font-bold text-xs">JH</div>
+<span class="font-title-sm text-title-sm">John Harper</span>
+</td>
+<td class="px-4">Introduction to Algorithms, 3rd Ed.</td>
+<td class="px-4"><span class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">login</span> Return</span></td>
+<td class="px-4 text-on-surface-variant">09:15 AM</td>
+<td class="px-4">
+<span class="bg-surface-variant px-2 py-1 rounded font-label-caps text-label-caps text-on-surface-variant">Complete</span>
+</td>
+</tr>
+<tr>
+<td class="px-4 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center font-bold text-xs">MC</div>
+<span class="font-title-sm text-title-sm">Maria Chen</span>
+</td>
+<td class="px-4">Design Systems: A Practical Guide</td>
+<td class="px-4"><span class="flex items-center gap-1 text-[#F59E0B]"><span class="material-symbols-outlined text-[16px]">autorenew</span> Renewal</span></td>
+<td class="px-4 text-on-surface-variant">Yesterday, 4:30 PM</td>
+<td class="px-4">
+<span class="bg-[#10B981] bg-opacity-10 text-[#059669] px-2 py-1 rounded font-label-caps text-label-caps">Active</span>
+</td>
+</tr>
+<tr class="border-b-0">
+<td class="px-4 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center font-bold text-xs">DT</div>
+<span class="font-title-sm text-title-sm">David Tennant</span>
+</td>
+<td class="px-4">A Brief History of Time</td>
+<td class="px-4"><span class="flex items-center gap-1 text-primary"><span class="material-symbols-outlined text-[16px]">logout</span> Checkout</span></td>
+<td class="px-4 text-on-surface-variant">Yesterday, 1:12 PM</td>
+<td class="px-4">
+<span class="bg-[#EF4444] bg-opacity-10 text-[#DC2626] px-2 py-1 rounded font-label-caps text-label-caps">Overdue</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</main>
+<!-- Floating Theme Toggle (Glassmorphic) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 rounded-full glass-fab flex items-center justify-center text-primary dark:text-primary-fixed z-50 transition-transform hover:scale-105 active:scale-95 group overflow-hidden" id="themeToggleFab">
+<span class="material-symbols-outlined relative z-10 transition-transform duration-500 group-hover:rotate-180" id="themeIcon">dark_mode</span>
+<div class="absolute inset-0 bg-primary opacity-0 group-active:opacity-10 transition-opacity duration-300 rounded-full"></div>
+<!-- Ripple container -->
+<span class="ripple-effect absolute rounded-full bg-primary opacity-20 scale-0 pointer-events-none"></span>
+</button>
+<script>
+        // Chart.js Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('borrowingChart').getContext('2d');
+            
+            // Gradient fill for line chart
+            let gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, 'rgba(3, 22, 53, 0.2)'); // Primary color with opacity
+            gradient.addColorStop(1, 'rgba(3, 22, 53, 0)');
+
+            const borrowingChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Checkouts',
+                        data: [150, 230, 180, 290, 310, 120, 80],
+                        borderColor: '#031635', // Primary navy
+                        backgroundColor: gradient,
+                        borderWidth: 2,
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderColor: '#031635',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        fill: true,
+                        tension: 0.4 // Smooth curves
+                    },
+                    {
+                        label: 'Returns',
+                        data: [120, 190, 210, 250, 280, 150, 90],
+                        borderColor: '#8293b8', // On-primary-container
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderColor: '#8293b8',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        fill: false,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 8,
+                                font: {
+                                    family: "'Plus Jakarta Sans', sans-serif",
+                                    size: 12
+                                },
+                                color: '#44474e'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#1b1b1e',
+                            bodyColor: '#44474e',
+                            borderColor: '#E5E7EB',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true,
+                            titleFont: {
+                                family: "'Plus Jakarta Sans', sans-serif",
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                family: "'Plus Jakarta Sans', sans-serif",
+                                size: 13
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Plus Jakarta Sans', sans-serif"
+                                },
+                                color: '#75777f'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: '#E5E7EB',
+                                drawBorder: false,
+                                borderDash: [4, 4]
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Plus Jakarta Sans', sans-serif"
+                                },
+                                color: '#75777f',
+                                stepSize: 100
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    }
+                }
+            });
+        });
+
+        // Theme Toggle Logic & Ripple Effect
+        const fab = document.getElementById('themeToggleFab');
+        const icon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        function createRipple(event) {
+            const button = event.currentTarget;
+            
+            // Remove existing ripples
+            const existingRipple = button.querySelector('.ripple-effect');
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+            circle.classList.add('ripple-effect', 'absolute', 'rounded-full', 'bg-primary', 'opacity-20', 'pointer-events-none');
+            
+            // Add custom animation styles via script to avoid cluttering CSS head if possible, or just use transition
+            circle.style.transition = 'transform 600ms linear, opacity 600ms linear';
+            circle.style.transform = 'scale(0)';
+            
+            button.appendChild(circle);
+
+            // Trigger reflow
+            void circle.offsetWidth;
+
+            circle.style.transform = 'scale(4)';
+            circle.style.opacity = '0';
+
+            setTimeout(() => {
+                circle.remove();
+            }, 600);
+        }
+
+        function toggleTheme(e) {
+            createRipple(e);
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.textContent = 'dark_mode';
+                // Trigger chart update here if needed for dark mode colors
+            } else {
+                html.classList.add('dark');
+                icon.textContent = 'light_mode';
+            }
+        }
+
+        fab.addEventListener('click', toggleTheme);
+    </script>
+</body></html>

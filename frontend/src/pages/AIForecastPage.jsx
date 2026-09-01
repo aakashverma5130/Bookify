@@ -10,9 +10,9 @@ import toast from 'react-hot-toast';
 import { format } from 'date-fns';
 
 const PRIORITY_ICON = {
-  HIGH:   <TrendingUp   size={16} className="text-danger-400" />,
-  MEDIUM: <TrendingUp   size={16} className="text-warning-400" />,
-  LOW:    <TrendingDown size={16} className="text-success-400" />,
+  HIGH:   <TrendingUp   size={16} style={{ color: 'var(--color-danger)' }} />,
+  MEDIUM: <TrendingUp   size={16} style={{ color: 'var(--color-warning)' }} />,
+  LOW:    <TrendingDown size={16} style={{ color: 'var(--color-success)' }} />,
 };
 
 const AIForecastPage = () => {
@@ -51,12 +51,12 @@ const AIForecastPage = () => {
   return (
     <AppShell title="AI Demand Forecast">
       <div className="flex items-center gap-3 mb-6">
-        <BrainCircuit size={24} className="text-primary-400" />
+        <BrainCircuit size={24} style={{ color: 'var(--color-primary)' }} />
         <div>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm" style={{ color: 'var(--color-on-surface-variant)' }}>
             Demand scores computed from issue frequency + waitlist queue.
             {forecasts[0]?.generated_at && (
-              <span className="ml-2 text-slate-500">Last updated: {format(new Date(forecasts[0].generated_at), 'dd MMM, HH:mm')}</span>
+              <span className="ml-2" style={{ color: 'var(--color-on-surface-muted)' }}>Last updated: {format(new Date(forecasts[0].generated_at), 'dd MMM, HH:mm')}</span>
             )}
           </p>
         </div>
@@ -70,14 +70,15 @@ const AIForecastPage = () => {
         {(['HIGH', 'MEDIUM', 'LOW']).map(p => (
           <motion.button
             key={p}
-            className={`card text-center cursor-pointer transition-all ${filter === p ? 'border-primary-500' : ''}`}
+            className="card text-center cursor-pointer transition-all"
+            style={filter === p ? { borderColor: 'var(--color-primary)' } : undefined}
             onClick={() => setFilter(f => f === p ? 'ALL' : p)}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <div className="flex items-center justify-center gap-2 mb-1">
               {PRIORITY_ICON[p]}
-              <span className="text-2xl font-bold font-display text-white">{counts[p]}</span>
+              <span className="text-2xl font-bold font-display" style={{ color: 'var(--color-on-surface)' }}>{counts[p]}</span>
             </div>
             <Badge variant={p === 'HIGH' ? 'high' : p === 'MEDIUM' ? 'medium' : 'low'}>{p}</Badge>
           </motion.button>
@@ -98,7 +99,7 @@ const AIForecastPage = () => {
               transition={{ duration: 0.3, delay: i * 0.04 }}
             >
               {/* Cover */}
-              <div className="w-12 h-16 rounded-lg bg-bg-600 flex-shrink-0 overflow-hidden">
+              <div className="w-12 h-16 rounded-lg flex-shrink-0 overflow-hidden" style={{ background: 'var(--color-surface-container-low)' }}>
                 {item.cover_image_url
                   ? <img src={item.cover_image_url} alt={item.title} className="w-full h-full object-cover" />
                   : <div className="w-full h-full flex items-center justify-center text-xl">📚</div>
@@ -107,13 +108,13 @@ const AIForecastPage = () => {
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <p className="font-semibold text-white text-sm truncate">{item.title}</p>
+                  <p className="font-semibold text-sm truncate" style={{ color: 'var(--color-on-surface)' }}>{item.title}</p>
                   <Badge variant={item.priority === 'HIGH' ? 'high' : item.priority === 'MEDIUM' ? 'medium' : 'low'}>
                     {item.priority}
                   </Badge>
                 </div>
-                <p className="text-xs text-slate-400 mb-1">{item.author_name} · {item.category_name}</p>
-                <p className="text-xs text-slate-500">{item.reasoning}</p>
+                <p className="text-xs mb-1" style={{ color: 'var(--color-on-surface-variant)' }}>{item.author_name} · {item.category_name}</p>
+                <p className="text-xs" style={{ color: 'var(--color-on-surface-muted)' }}>{item.reasoning}</p>
               </div>
 
               {/* Demand score bar */}
@@ -121,8 +122,8 @@ const AIForecastPage = () => {
                 <p className="text-lg font-bold font-display" style={{ color: item.priority === 'HIGH' ? '#ef4444' : item.priority === 'MEDIUM' ? '#eab308' : '#22c55e' }}>
                   {(item.predicted_demand_score * 100).toFixed(0)}
                 </p>
-                <p className="text-[10px] text-slate-500">demand score</p>
-                <div className="w-full h-1.5 rounded-full bg-bg-500 mt-1 overflow-hidden">
+                <p className="text-[10px]" style={{ color: 'var(--color-on-surface-muted)' }}>demand score</p>
+                <div className="w-full h-1.5 rounded-full mt-1 overflow-hidden" style={{ background: 'var(--color-surface-container-high)' }}>
                   <motion.div
                     className="h-full rounded-full"
                     style={{ background: item.priority === 'HIGH' ? '#ef4444' : item.priority === 'MEDIUM' ? '#eab308' : '#22c55e' }}
@@ -137,7 +138,7 @@ const AIForecastPage = () => {
 
           {filtered.length === 0 && !loading && (
             <Card>
-              <p className="text-slate-400 text-sm text-center py-8">No forecast data. Run a forecast first.</p>
+              <p className="text-sm text-center py-8" style={{ color: 'var(--color-on-surface-variant)' }}>No forecast data. Run a forecast first.</p>
             </Card>
           )}
         </div>

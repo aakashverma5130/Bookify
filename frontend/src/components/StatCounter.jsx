@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import useReducedMotion from '../hooks/useReducedMotion';
 
 /**
@@ -9,9 +9,9 @@ import useReducedMotion from '../hooks/useReducedMotion';
  * @param {node}    icon      - Lucide icon component
  * @param {string}  prefix    - e.g. "Rs. "
  * @param {string}  suffix    - e.g. " books"
- * @param {string}  color     - Tailwind text color class for the value
+ * @param {string}  color     - CSS variable name for the value color
  */
-const StatCounter = ({ value = 0, label, icon: Icon, prefix = '', suffix = '', color = 'text-primary-400', delay = 0 }) => {
+const StatCounter = ({ value = 0, label, icon: Icon, prefix = '', suffix = '', color = 'var(--color-primary)', delay = 0 }) => {
   const reduced = useReducedMotion();
   const [displayValue, setDisplayValue] = useState(0);
   const animationRef = useRef(null);
@@ -51,14 +51,17 @@ const StatCounter = ({ value = 0, label, icon: Icon, prefix = '', suffix = '', c
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm text-slate-400 font-medium mb-2">{label}</p>
-          <p className={`text-3xl font-bold font-display ${color}`}>
+          <p className="text-sm font-medium mb-2" style={{ color: 'var(--color-on-surface-variant)' }}>{label}</p>
+          <p className="text-3xl font-bold font-display" style={{ color }}>
             {prefix}{displayValue.toLocaleString()}{suffix}
           </p>
         </div>
         {Icon && (
-          <div className="p-3 rounded-xl bg-bg-600">
-            <Icon size={22} className={color} />
+          <div
+            className="p-3 rounded-md"
+            style={{ background: 'var(--color-surface-container-low)' }}
+          >
+            <Icon size={22} style={{ color }} />
           </div>
         )}
       </div>

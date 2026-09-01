@@ -7,12 +7,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import os
 from typing import List, Optional
 import numpy as np
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
 from services.embeddings import embedding_service
+from middleware.auth import require_service_auth
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_service_auth)])
 
 SEMANTIC_WEIGHT = float(os.getenv("SEMANTIC_WEIGHT", "0.6"))
 

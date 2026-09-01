@@ -1,5 +1,7 @@
 const db = require('../config/db');
 const aiClient = require('../services/aiClient');
+const { invalidateTokenCache } = require('../middleware/authMiddleware');
+const log = require('../logger');
 
 /**
  * GET /api/admin/dashboard
@@ -35,7 +37,7 @@ const getDashboard = async (req, res) => {
       damagedLostCopies: parseInt(damagedLostResult.rows[0].count),
     });
   } catch (err) {
-    console.error('[ANALYTICS] getDashboard error:', err.message);
+    log.error('analytics_dashboard_failed', { message: err.message });
     res.status(500).json({ error: 'Failed to fetch dashboard' });
   }
 };
@@ -161,11 +163,17 @@ const getStudents = async (req, res) => {
  */
 const suspendStudent = async (req, res) => {
   try {
-    await db.query(
+    const result = await db.query(
       `UPDATE users SET is_active = FALSE, updated_at = NOW()
-       WHERE user_id = (SELECT user_id FROM students WHERE student_id = $1)`,
+       WHERE user_id = (SELECT user_id FROM students WHERE student_id = $1)
+       RETURNING user_id`,
       [req.params.id]
     );
+    // L-3: invalidate the auth cache so the suspended user's existing
+    // token is rejected on the next request (within the cache TTL).
+    if (result.rows.length) {
+      invalidateTokenCache(result.rows[0].user_id);
+    }
     res.json({ message: 'Student suspended' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to suspend student' });
@@ -177,11 +185,15 @@ const suspendStudent = async (req, res) => {
  */
 const activateStudent = async (req, res) => {
   try {
-    await db.query(
+    const result = await db.query(
       `UPDATE users SET is_active = TRUE, updated_at = NOW()
-       WHERE user_id = (SELECT user_id FROM students WHERE student_id = $1)`,
+       WHERE user_id = (SELECT user_id FROM students WHERE student_id = $1)
+       RETURNING user_id`,
       [req.params.id]
     );
+    if (result.rows.length) {
+      invalidateTokenCache(result.rows[0].user_id);
+    }
     res.json({ message: 'Student activated' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to activate student' });

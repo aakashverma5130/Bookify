@@ -144,10 +144,10 @@ const BorrowingCalendarPage = () => {
                 <CalendarIcon size={20} />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-white font-display">
+                <h2 className="text-lg font-bold font-display" style={{ color: 'var(--color-primary)' }}>
                   {format(currentMonth, 'MMMM yyyy')}
                 </h2>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>
                   Track issue timelines, upcoming deadlines, and returned books
                 </p>
               </div>
@@ -155,7 +155,8 @@ const BorrowingCalendarPage = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-                className="p-2 rounded-xl bg-bg-600 hover:bg-bg-500 text-slate-300 transition-colors border border-white/5"
+                className="p-2 rounded-lg transition-colors"
+                style={{ background: 'var(--color-surface-container-low)', border: '1px solid var(--color-outline-variant)', color: 'var(--color-on-surface)' }}
               >
                 <ChevronLeft size={16} />
               </button>
@@ -164,13 +165,15 @@ const BorrowingCalendarPage = () => {
                   setCurrentMonth(new Date());
                   setSelectedDate(new Date());
                 }}
-                className="px-3 py-1.5 rounded-xl bg-bg-600 hover:bg-bg-500 text-xs font-semibold text-slate-200 border border-white/5"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+                style={{ background: 'var(--color-surface-container-low)', border: '1px solid var(--color-outline-variant)', color: 'var(--color-on-surface)' }}
               >
                 Today
               </button>
               <button
                 onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-                className="p-2 rounded-xl bg-bg-600 hover:bg-bg-500 text-slate-300 transition-colors border border-white/5"
+                className="p-2 rounded-lg transition-colors"
+                style={{ background: 'var(--color-surface-container-low)', border: '1px solid var(--color-outline-variant)', color: 'var(--color-on-surface)' }}
               >
                 <ChevronRight size={16} />
               </button>
@@ -180,7 +183,7 @@ const BorrowingCalendarPage = () => {
           {/* Calendar Grid */}
           <div className="card p-4">
             {/* Weekday headers */}
-            <div className="grid grid-cols-7 gap-2 mb-2 text-center text-xs font-semibold text-slate-400">
+            <div className="grid grid-cols-7 gap-2 mb-2 text-center text-xs font-semibold" style={{ color: 'var(--color-on-surface-muted)' }}>
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
                 <div key={d} className="py-1">{d}</div>
               ))}
@@ -204,18 +207,30 @@ const BorrowingCalendarPage = () => {
                   <motion.button
                     key={day.toISOString()}
                     onClick={() => setSelectedDate(day)}
-                    className={`min-h-[72px] sm:min-h-[84px] p-1.5 rounded-xl border flex flex-col items-start justify-between text-left transition-all relative overflow-hidden group
-                      ${!isCurrentMonth ? 'opacity-30 border-transparent bg-bg-800/40' : 'bg-bg-700/60 border-white/5'}
-                      ${isSelected ? 'ring-2 ring-primary-400 border-transparent bg-primary-950/40' : 'hover:border-primary-500/40 hover:bg-bg-600/80'}
-                    `}
+                    className={`min-h-[72px] sm:min-h-[84px] p-1.5 rounded-xl border flex flex-col items-start justify-between text-left transition-all relative overflow-hidden group`}
+                    style={{
+                      background: !isCurrentMonth
+                        ? 'var(--color-surface-container-low)'
+                        : isSelected
+                          ? 'color-mix(in srgb, var(--color-primary) 6%, var(--color-surface-container-lowest))'
+                          : 'var(--color-surface-container-lowest)',
+                      border: isSelected
+                        ? '1.5px solid var(--color-primary)'
+                        : '1px solid var(--color-outline-variant)',
+                      opacity: !isCurrentMonth ? 0.4 : 1,
+                    }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     {/* Top Row: Date Number & Today badge */}
                     <div className="w-full flex items-center justify-between">
-                      <span className={`text-xs font-semibold rounded-md w-6 h-6 flex items-center justify-center
-                        ${isTodayDate ? 'bg-primary-600 text-white font-bold' : isSelected ? 'text-primary-300 font-bold' : 'text-slate-300'}
-                      `}>
+                      <span className={`text-xs font-semibold rounded-md w-6 h-6 flex items-center justify-center`}
+                        style={{
+                          background: isTodayDate ? 'var(--color-primary)' : 'transparent',
+                          color: isTodayDate ? '#ffffff' : isSelected ? 'var(--color-primary)' : 'var(--color-on-surface)',
+                          fontWeight: isTodayDate || isSelected ? 700 : 400,
+                        }}
+                      >
                         {format(day, 'd')}
                       </span>
                       {dayEvents.length > 0 && (
@@ -250,7 +265,7 @@ const BorrowingCalendarPage = () => {
           </div>
 
           {/* Color Legend */}
-          <div className="card flex flex-wrap items-center gap-4 py-3 text-xs text-slate-400">
+          <div className="card flex flex-wrap items-center gap-4 py-3 text-xs" style={{ color: 'var(--color-on-surface-muted)' }}>
             <div className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full bg-danger-400" />
               <span>Overdue</span>
@@ -277,10 +292,10 @@ const BorrowingCalendarPage = () => {
         {/* Selected Date Details Panel */}
         <div className="w-full lg:w-96 space-y-4">
           <Card>
-            <div className="flex items-center justify-between pb-3 border-b border-white/5">
+            <div className="flex items-center justify-between pb-3" style={{ borderBottom: '1px solid var(--color-outline-variant)' }}>
               <div>
-                <p className="text-xs text-slate-400 font-medium">Selected Date</p>
-                <h3 className="text-base font-bold text-white">
+                <p className="text-xs font-medium" style={{ color: 'var(--color-on-surface-variant)' }}>Selected Date</p>
+                <h3 className="text-base font-bold" style={{ color: 'var(--color-primary)' }}>
                   {format(selectedDate, 'EEEE, dd MMMM yyyy')}
                 </h3>
               </div>
@@ -291,21 +306,26 @@ const BorrowingCalendarPage = () => {
 
             <div className="mt-4 space-y-3">
               {selectedDateEvents.length === 0 ? (
-                <div className="py-8 text-center text-slate-500 text-sm flex flex-col items-center gap-2">
-                  <Clock size={32} className="text-slate-600" />
+                <div className="py-8 text-center text-sm flex flex-col items-center gap-2" style={{ color: 'var(--color-on-surface-variant)' }}>
+                  <Clock size={32} style={{ color: 'var(--color-on-surface-muted)' }} />
                   <p>No borrowing events or deadlines on this day.</p>
                 </div>
               ) : (
                 selectedDateEvents.map((ev, idx) => (
                   <motion.div
                     key={idx}
-                    className={`p-3.5 rounded-xl border flex flex-col gap-2
-                      ${ev.type === 'OVERDUE' ? 'bg-danger-500/10 border-danger-500/30' :
-                        ev.type === 'DUE_SOON' ? 'bg-warning-500/10 border-warning-500/30' :
-                        ev.type === 'RETURNED' ? 'bg-success-500/10 border-success-500/30' :
-                        ev.type === 'ISSUE' ? 'bg-cyan-500/10 border-cyan-500/30' :
-                        'bg-primary-500/10 border-primary-500/30'}
-                    `}
+                    className={`p-3.5 rounded-xl border flex flex-col gap-2`}
+                    style={{
+                      background: ev.type === 'OVERDUE' ? 'color-mix(in srgb, var(--color-danger) 8%, transparent)'
+                        : ev.type === 'DUE_SOON' ? 'color-mix(in srgb, var(--color-warning) 8%, transparent)'
+                        : ev.type === 'RETURNED' ? 'color-mix(in srgb, var(--color-success) 8%, transparent)'
+                        : ev.type === 'ISSUE' ? 'rgba(73,80,199,0.08)'
+                        : 'color-mix(in srgb, var(--color-primary) 6%, transparent)',
+                      borderColor: ev.type === 'OVERDUE' ? 'color-mix(in srgb, var(--color-danger) 30%, transparent)'
+                        : ev.type === 'DUE_SOON' ? 'color-mix(in srgb, var(--color-warning) 30%, transparent)'
+                        : ev.type === 'RETURNED' ? 'color-mix(in srgb, var(--color-success) 30%, transparent)'
+                        : 'var(--color-outline-variant)',
+                    }}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                   >
@@ -316,7 +336,7 @@ const BorrowingCalendarPage = () => {
                         {ev.type === 'RETURNED' && <CheckCircle2 size={15} className="text-success-400" />}
                         {ev.type === 'ISSUE' && <BookOpen size={15} className="text-accent-cyan" />}
                         {ev.type === 'DUE' && <Clock size={15} className="text-primary-400" />}
-                        <span className="text-xs font-bold text-white tracking-wide">{ev.type}</span>
+                        <span className="text-xs font-bold tracking-wide" style={{ color: 'var(--color-on-surface)' }}>{ev.type}</span>
                       </div>
                       <Badge variant={ev.type === 'OVERDUE' ? 'overdue' : ev.type === 'DUE_SOON' ? 'due-soon' : ev.type === 'RETURNED' ? 'available' : 'issued'}>
                         {ev.type.replace('_', ' ')}
@@ -324,14 +344,14 @@ const BorrowingCalendarPage = () => {
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-semibold text-white line-clamp-1">{ev.book.book_title || ev.book.title}</h4>
-                      <p className="text-xs text-slate-400">{ev.book.author_name || 'Author'}</p>
-                      <p className="text-[11px] text-slate-500 mt-1 font-mono">Acc: {ev.book.accession_number || 'N/A'}</p>
+                      <h4 className="text-sm font-semibold line-clamp-1" style={{ color: 'var(--color-on-surface)' }}>{ev.book.book_title || ev.book.title}</h4>
+                      <p className="text-xs" style={{ color: 'var(--color-on-surface-variant)' }}>{ev.book.author_name || 'Author'}</p>
+                      <p className="text-[11px] mt-1 font-mono" style={{ color: 'var(--color-on-surface-muted)' }}>Acc: {ev.book.accession_number || 'N/A'}</p>
                     </div>
 
                     {(ev.type === 'DUE' || ev.type === 'DUE_SOON' || ev.type === 'OVERDUE') && (
-                      <div className="pt-2 mt-1 border-t border-white/5 flex items-center justify-between">
-                        <span className="text-xs text-slate-400">
+                      <div className="pt-2 mt-1 flex items-center justify-between" style={{ borderTop: '1px solid var(--color-outline-variant)' }}>
+                        <span className="text-xs" style={{ color: 'var(--color-on-surface-muted)' }}>
                           {ev.daysLeft < 0 ? `${Math.abs(ev.daysLeft)} days overdue` : `${ev.daysLeft} days left`}
                         </span>
                         <button
@@ -352,21 +372,21 @@ const BorrowingCalendarPage = () => {
 
           {/* Active Borrow Summary */}
           <Card>
-            <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-              <BookOpen size={16} className="text-primary-400" />
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--color-on-surface)' }}>
+              <BookOpen size={16} style={{ color: 'var(--color-primary)' }} />
               Active Borrow Countdown
             </h3>
             {books.length === 0 ? (
-              <p className="text-xs text-slate-500 text-center py-4">No active loans currently</p>
+              <p className="text-xs text-center py-4" style={{ color: 'var(--color-on-surface-muted)' }}>No active loans currently</p>
             ) : (
               <div className="space-y-3">
                 {books.map(b => {
                   const days = differenceInDays(parseISO(b.due_date), new Date());
                   return (
-                    <div key={b.issue_id} className="flex items-center justify-between p-2.5 rounded-xl bg-bg-600/40 border border-white/5">
+                    <div key={b.issue_id} className="flex items-center justify-between p-2.5 rounded-xl" style={{ background: 'var(--color-surface-container-low)', border: '1px solid var(--color-outline-variant)' }}>
                       <div className="min-w-0 flex-1 pr-2">
-                        <p className="text-xs font-semibold text-white truncate">{b.book_title || b.title}</p>
-                        <p className="text-[11px] text-slate-400">Due: {format(parseISO(b.due_date), 'dd MMM')}</p>
+                        <p className="text-xs font-semibold truncate" style={{ color: 'var(--color-on-surface)' }}>{b.book_title || b.title}</p>
+                        <p className="text-[11px]" style={{ color: 'var(--color-on-surface-muted)' }}>Due: {format(parseISO(b.due_date), 'dd MMM')}</p>
                       </div>
                       <ProgressRing daysRemaining={days} totalDays={15} size={42} strokeWidth={4} />
                     </div>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LibraX - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-secondary-fixed": "#01006e",
+                        "on-tertiary-fixed": "#01006e",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#cfc4c5",
+                        "tertiary": "#000000",
+                        "on-primary-container": "#848484",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary-container": "#7d85fe",
+                        "secondary-fixed": "#e0e0ff",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#2f35ae",
+                        "status-available": "#2D6A4F",
+                        "tertiary-container": "#01006e",
+                        "status-reserved": "#E36414",
+                        "on-surface": "#1b1b1b",
+                        "on-surface-variant": "#44474e",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#bfc2ff",
+                        "on-background": "#1b1b1b",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f0edf1",
+                        "status-issued": "#BA1A1A",
+                        "on-primary-fixed-variant": "#474747",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary": "#4950c7",
+                        "on-tertiary-container": "#6f77ef",
+                        "outline": "#7e7576",
+                        "on-secondary-fixed-variant": "#2f35ae",
+                        "primary-fixed": "#e2e2e2",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#bfc2ff",
+                        "surface-bright": "#f9f9f9",
+                        "surface-tint": "#5e5e5e",
+                        "tertiary-fixed": "#e0e0ff",
+                        "inverse-primary": "#c6c6c6",
+                        "surface-dim": "#dadada",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "background": "#f9f9f9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "primary-container": "#1b1b1b",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "on-secondary-container": "#060693"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-cell-px": "16px",
+                        "gutter": "24px",
+                        "table-cell-py": "12px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "data-mono": ["monospace"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-margin-desktop z-40 ml-64">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md font-black text-on-surface">LibraX</h1>
+<!-- Search on left -->
+<div class="relative ml-8 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant z-10 group-focus-within:text-primary pointer-events-none">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded text-body-sm font-body-sm w-64 transition-all duration-200 text-on-surface placeholder:text-on-surface-variant" placeholder="Search catalog..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-status-reserved rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 bg-surface border-r border-outline-variant flex flex-col p-4 gap-unit z-50">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-lg">LX</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface leading-tight text-xl">LibraX</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Intellectual Precision</div>
+</div>
+</div>
+<button class="mb-6 w-full bg-primary text-on-primary font-label-caps text-label-caps uppercase py-3 px-4 rounded hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search</span>
+            Quick Search
+        </button>
+<div class="flex-grow flex flex-col gap-2">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-body-sm text-body-sm font-semibold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+                Catalog
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">library_books</span>
+                My Books
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-body-sm text-body-sm transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">event_seat</span>
+                Reservations
+            </a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-body-sm text-body-sm transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg font-body-sm text-body-sm transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+                Help
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-margin-desktop h-[calc(100vh-4rem)] overflow-y-auto bg-surface-container-lowest">
+<div class="max-w-[1280px] mx-auto">
+<!-- Welcome Section -->
+<div class="mb-gutter flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Good morning, Eleanor.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here is the current state of your academic repository.</p>
+</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant bg-surface-container-low px-4 py-2 border border-outline-variant rounded">
+                    SYS.DATE: 2023.10.24
+                </div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-gutter">
+<!-- Smart Action Card (Urgent) -->
+<div class="col-span-1 md:col-span-3 bg-inverse-surface text-inverse-on-surface p-6 rounded-lg shadow-lg flex items-center justify-between border border-transparent">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-status-issued rounded flex items-center justify-center text-on-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm font-semibold mb-1">Overdue Material Detected</h3>
+<p class="font-body-sm text-body-sm text-inverse-primary">"The Structure of Scientific Revolutions" was due yesterday.</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded font-label-caps text-label-caps uppercase hover:bg-on-primary-fixed-variant transition-colors border border-on-primary/20">
+                        Renew Now
+                    </button>
+</div>
+<!-- Bento Metrics -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+<div class="w-2 h-2 bg-status-available rounded-full"></div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Active Loans</div>
+<div class="font-display-lg-mobile text-display-lg-mobile text-on-surface">12</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between mb-4">
+<span class="material-symbols-outlined text-status-reserved" style="font-variation-settings: 'FILL' 0;">event_seat</span>
+<div class="w-2 h-2 bg-status-reserved rounded-full"></div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Pending Reservations</div>
+<div class="font-display-lg-mobile text-display-lg-mobile text-on-surface">3</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant flex flex-col justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between mb-4">
+<span class="material-symbols-outlined text-status-issued" style="font-variation-settings: 'FILL' 0;">history</span>
+<div class="w-2 h-2 bg-status-issued rounded-full"></div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Overdue Items</div>
+<div class="font-display-lg-mobile text-display-lg-mobile text-on-surface">1</div>
+</div>
+</div>
+</div>
+<!-- Content Area: Discovery & Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Academic Discovery -->
+<div class="lg:col-span-2 flex flex-col gap-4">
+<h3 class="font-title-sm text-title-sm text-on-surface border-b border-outline-variant pb-2">Academic Discovery</h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex gap-4 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="w-24 h-32 bg-surface-dim rounded border border-outline-variant overflow-hidden flex-shrink-0 relative">
+<!-- Grayscale to color transition on hover -->
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A minimalist book cover design featuring clean geometric lines and elegant typography in a stark, high-contrast academic setting. The design uses deep blacks, stark whites, and a single accent color of intellectual blue. High key lighting creates a clinical, rigorous atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFA3eTSjwZCF2xUPnTeEbAy9F2kGTMt5b23YPNidMSrebnTCPBrt9F3qqhbrEH98hCQWY0mmg7k9GScBiYVAvCUATndwQ7bCd9vxETi-wW_FvGfnhG0rCPADqMrdy5kvH034ubxsmDScR3OAVIxWmyk2sIMPR586m0sGDusNl4r47qjpkywabbzJGvOCb7V_INcGNnvSPUhQ5tjXvNnAk-YoAxx_QQrtc6-Q_Mr2VAFyVxcBpK-uO3')"></div>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<div class="font-label-caps text-label-caps text-secondary uppercase mb-1">Recommended Based on 'Quantum Mechanics'</div>
+<h4 class="font-headline-md text-headline-md text-on-surface leading-tight mb-2">Principles of Advanced Thermodynamics</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">An essential text exploring the statistical foundations of macroscopic behavior, highly cited in recent theoretical frameworks.</p>
+</div>
+<div class="flex items-center gap-4 mt-2">
+<span class="font-data-mono text-data-mono text-on-surface-variant">LOC: QC311 .B3</span>
+<div class="flex items-center gap-1 text-status-available">
+<div class="w-1.5 h-1.5 bg-status-available rounded-full"></div>
+<span class="font-label-caps text-label-caps">Available</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex gap-4 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="w-24 h-32 bg-surface-dim rounded border border-outline-variant overflow-hidden flex-shrink-0 relative">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-300" data-alt="A minimalist academic journal cover with stark white background, featuring precise black monospaced typography and a subtle geometric diagram indicating network theory. The aesthetic is clean, corporate modern, and highly structural." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrRHgJLeR48fghMOk6iTHdjqstSd37Es_DMOBIEriJ882oid1rjkasx4MZrb9Hjf6qX_qfMNM9v-zIMVGONj3Bz2u2Tb3Vu7KRAVsH9P6VYODC1HenJIY4YEbijDaaLyxZTfFixVhDDqpSfpBcnJ1FWVi_ahE5udPkSbK-R-XPZNRG5MYRbawmiUlnf42HQ8ERnp15GYaeNPDpTmIHQAgEa8o91xaKG-w_PnXyQdvlKiuGoZohylu2')"></div>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<div class="font-label-caps text-label-caps text-secondary uppercase mb-1">New Arrival - Sociology</div>
+<h4 class="font-headline-md text-headline-md text-on-surface leading-tight mb-2">Urban Networks &amp; Structural Inequality</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">A comprehensive dataset analysis of metropolitan sprawl and its socio-economic impacts over the last decade.</p>
+</div>
+<div class="flex items-center gap-4 mt-2">
+<span class="font-data-mono text-data-mono text-on-surface-variant">LOC: HT111 .S6</span>
+<div class="flex items-center gap-1 text-status-reserved">
+<div class="w-1.5 h-1.5 bg-status-reserved rounded-full"></div>
+<span class="font-label-caps text-label-caps">Waitlist: 2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Feed -->
+<div class="flex flex-col gap-4">
+<h3 class="font-title-sm text-title-sm text-on-surface border-b border-outline-variant pb-2">Recent Activity</h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-4">
+<div class="flex gap-3 items-start border-b border-outline-variant pb-3 last:border-0 last:pb-0">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">check_circle</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Returned <span class="font-semibold">"Data Structures and Algorithms"</span></p>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-xs">Today, 09:14 AM</p>
+</div>
+</div>
+<div class="flex gap-3 items-start border-b border-outline-variant pb-3 last:border-0 last:pb-0">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">bookmark_added</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Reservation confirmed for <span class="font-semibold">"The Great Gatsby"</span></p>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-xs">Yesterday, 14:30 PM</p>
+</div>
+</div>
+<div class="flex gap-3 items-start border-b border-outline-variant pb-3 last:border-0 last:pb-0">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">search</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Search query: <span class="font-data-mono bg-surface-container-low px-1 rounded border border-outline-variant">"Machine Learning Python"</span></p>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-xs">Oct 22, 11:05 AM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

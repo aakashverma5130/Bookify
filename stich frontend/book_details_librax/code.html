@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LibraX Smart Book Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-tertiary": "#ffffff",
+                "on-surface": "#1b1b1e",
+                "status-issued": "#BA1A1A",
+                "error": "#ba1a1a",
+                "primary-container": "#081b3a",
+                "on-tertiary-fixed": "#291800",
+                "surface-bright": "#fbf8fc",
+                "tertiary": "#000000",
+                "primary-fixed": "#d8e2ff",
+                "secondary-container": "#7d85fe",
+                "on-primary-fixed-variant": "#364768",
+                "on-secondary-fixed": "#01006e",
+                "tertiary-fixed-dim": "#e8c08a",
+                "on-error-container": "#93000a",
+                "surface-container-high": "#eae7eb",
+                "tertiary-container": "#291800",
+                "map-grid-line": "#C5C6CF",
+                "surface-dim": "#dcd9dd",
+                "primary-fixed-dim": "#b6c6ee",
+                "surface": "#fbf8fc",
+                "inverse-primary": "#b6c6ee",
+                "on-background": "#1b1b1e",
+                "surface-tint": "#4e5e81",
+                "on-secondary": "#ffffff",
+                "on-primary": "#ffffff",
+                "on-surface-variant": "#44474e",
+                "outline-variant": "#c5c6cf",
+                "secondary-fixed-dim": "#bfc2ff",
+                "status-reserved": "#E36414",
+                "outline": "#75777f",
+                "surface-variant": "#e4e1e5",
+                "secondary": "#4950c7",
+                "surface-container": "#f0edf1",
+                "on-tertiary-container": "#a07e4e",
+                "surface-container-low": "#f5f3f7",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#2f35ae",
+                "status-available": "#2D6A4F",
+                "tertiary-fixed": "#ffddb1",
+                "on-tertiary-fixed-variant": "#5d4217",
+                "surface-container-highest": "#e4e1e5",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#303033",
+                "admin-table-header": "#EFEDF0",
+                "on-secondary-container": "#060693",
+                "on-primary-container": "#7384a8",
+                "inverse-on-surface": "#f3f0f4",
+                "on-error": "#ffffff",
+                "background": "#fbf8fc",
+                "secondary-fixed": "#e0e0ff",
+                "primary": "#000000",
+                "on-primary-fixed": "#081b3a"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "table-cell-px": "16px",
+                "margin-mobile": "16px",
+                "margin-desktop": "40px",
+                "gutter": "24px",
+                "table-cell-py": "12px",
+                "unit": "8px"
+        },
+        "fontFamily": {
+                "title-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "data-mono": [
+                        "monospace"
+                ],
+                "display-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-caps": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "title-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "data-mono": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "26px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<div class="fixed left-0 top-0 h-full flex flex-col pt-20 pb-8 px-4 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant w-64 hidden md:flex">
+<div class="mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">LibraX Discovery</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Intellectual Precision</p>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps py-2 px-4 rounded-xl mb-6 hover:opacity-90 transition-opacity">Quick Scan</button>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center space-x-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all active:scale-98 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Catalog</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all active:scale-98 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+<span class="font-label-caps text-label-caps">My Books</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all active:scale-98 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-label-caps text-label-caps">Reservations</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all active:scale-98 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="hourglass_empty">hourglass_empty</span>
+<span class="font-label-caps text-label-caps">Queue</span>
+</a>
+</nav>
+<div class="mt-auto space-y-2 pt-4 border-t border-outline-variant">
+<a class="flex items-center space-x-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-caps text-label-caps">Help</span>
+</a>
+</div>
+</div>
+<main class="md:ml-64 p-margin-mobile md:p-margin-desktop">
+<div class="max-w-[1280px] mx-auto">
+<nav class="flex items-center space-x-2 text-on-surface-variant font-label-caps text-label-caps mb-6">
+<a class="hover:text-primary transition-colors" href="#">Catalog</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Computer Science</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-bold">Database System Concepts</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-8 space-y-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col md:flex-row gap-8 relative overflow-hidden">
+<div class="w-full md:w-1/3 flex-shrink-0">
+<div class="aspect-[2/3] bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<img class="w-full h-full object-cover" data-alt="A clean, modern, high-contrast book cover design for 'Database System Concepts, 7th Edition'. The cover features abstract geometric shapes representing data nodes and connections in deep navy blue and crisp white, with technical precision. Soft, high-key studio lighting highlights the matte texture of the cover, conveying an intellectually precise and authoritative academic tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6BmSwXSznqV8TDJSgXLYldTXgwBxZrz0rOgt6fP2AnedBFshamtnjM_dozfHMbw9Xnk26U7U8BE6LGXesFsnlKi706XSAhgp2OfW__DchUhoYqduvH92ujl1vkTJi74ZdKlAWlYxdmzf5_xWlIWwWl3Pl9DwQlTxsW9mlRks5sc_owMbHbq4vPagrqs2fHn0CAYST-wyXGTMJWyEk-xOBxLUFeHusstNOzWZ2UjSkL_M7qEVzVPU-"/>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-2 py-1 rounded font-label-caps text-[10px]">Academic Text</span>
+<span class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded font-label-caps text-[10px]">Edition 7</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">Database System Concepts</h1>
+<p class="font-title-sm text-title-sm text-on-surface-variant mb-4">Avi Silberschatz, Henry F. Korth, S. Sudarshan</p>
+<div class="flex items-center gap-4 mb-6">
+<div class="flex items-center text-tertiary-fixed-dim">
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star_half</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4.8 (124 Ratings)</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps py-3 px-6 rounded-lg flex items-center gap-2 hover:bg-on-surface transition-colors flex-1 justify-center">
+<span class="material-symbols-outlined">event_available</span>
+                                    Reserve Book
+                                </button>
+<button class="border border-outline-variant text-on-surface font-label-caps text-label-caps py-3 px-6 rounded-lg flex items-center gap-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">share</span>
+                                    Recommend to Peer
+                                </button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h3 class="font-title-sm text-title-sm text-primary mb-4 flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined">analytics</span>
+                                Availability Status
+                            </h3>
+<div class="flex justify-between items-center mb-6">
+<span class="font-headline-md text-headline-md text-primary">5</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Total Copies</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-status-available"></div>
+<span class="font-label-caps text-label-caps">Available</span>
+</div>
+<span class="font-data-mono text-data-mono font-bold">2</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-status-issued"></div>
+<span class="font-label-caps text-label-caps">Issued</span>
+</div>
+<span class="font-data-mono text-data-mono font-bold">2</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-status-reserved"></div>
+<span class="font-label-caps text-label-caps">Reserved</span>
+</div>
+<span class="font-data-mono text-data-mono font-bold">1</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h3 class="font-title-sm text-title-sm text-primary mb-4 flex items-center gap-2 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined">info</span>
+                                Bibliographic Data
+                            </h3>
+<table class="w-full text-left font-body-sm text-body-sm">
+<tbody>
+<tr class="border-b border-outline-variant/50">
+<td class="py-2 text-on-surface-variant font-label-caps text-label-caps">ISBN</td>
+<td class="py-2 font-data-mono text-data-mono text-right">978-0078022159</td>
+</tr>
+<tr class="border-b border-outline-variant/50">
+<td class="py-2 text-on-surface-variant font-label-caps text-label-caps">Publisher</td>
+<td class="py-2 text-right">McGraw Hill</td>
+</tr>
+<tr class="border-b border-outline-variant/50">
+<td class="py-2 text-on-surface-variant font-label-caps text-label-caps">Publication Year</td>
+<td class="py-2 text-right">2019</td>
+</tr>
+<tr>
+<td class="py-2 text-on-surface-variant font-label-caps text-label-caps">Pages</td>
+<td class="py-2 font-data-mono text-data-mono text-right">1376</td>
+</tr>
+</tbody>
+</table>
+<div class="mt-4 p-3 bg-surface-container-high rounded-lg flex items-start gap-3 border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-sm">rule</span>
+<div>
+<p class="font-label-caps text-label-caps text-primary">Borrowing Rules</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Standard academic text policy. Maximum checkout period is 14 days. Renewable once if no active queue.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 space-y-gutter">
+<div class="bg-[#303033] dark:bg-inverse-surface border border-outline-variant rounded-xl overflow-hidden flex flex-col h-full shadow-[0_8px_30px_rgb(0,0,40,0.08)]">
+<div class="p-4 border-b border-outline-variant/30 bg-surface-container-lowest">
+<h3 class="font-title-sm text-title-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">map</span>
+                                Smart Location Map
+                            </h3>
+</div>
+<div class="relative h-48 bg-surface-container-lowest border-b border-outline-variant/30 overflow-hidden" style="background-image: linear-gradient(#C5C6CF 1px, transparent 1px), linear-gradient(90deg, #C5C6CF 1px, transparent 1px); background-size: 20px 20px; background-position: center;">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-32 h-32 border-2 border-outline-variant rounded-lg relative bg-surface-container-lowest shadow-sm">
+<div class="absolute top-2 left-2 right-2 h-4 bg-surface-variant rounded-sm"></div>
+<div class="absolute top-8 left-2 right-2 h-4 bg-surface-variant rounded-sm"></div>
+<div class="absolute top-14 left-2 right-2 h-4 bg-primary/20 border border-primary rounded-sm overflow-hidden">
+<div class="w-4 h-full bg-primary animate-pulse ml-4"></div>
+</div>
+<div class="absolute top-20 left-2 right-2 h-4 bg-surface-variant rounded-sm"></div>
+</div>
+</div>
+<div class="absolute bottom-4 right-4 bg-surface-container-lowest p-2 rounded-lg border border-outline-variant shadow-sm flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-caps text-label-caps text-[10px]">You are here</span>
+</div>
+</div>
+<div class="p-6 bg-surface-container-lowest flex-1">
+<div class="space-y-4 relative before:absolute before:inset-y-0 before:left-2.5 before:w-px before:bg-outline-variant">
+<div class="relative pl-8 flex items-center justify-between">
+<div class="absolute left-0 w-5 h-5 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Building</span>
+<span class="font-label-caps text-label-caps text-primary">Central</span>
+</div>
+<div class="relative pl-8 flex items-center justify-between">
+<div class="absolute left-0 w-5 h-5 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Block</span>
+<span class="font-label-caps text-label-caps text-primary">A</span>
+</div>
+<div class="relative pl-8 flex items-center justify-between">
+<div class="absolute left-0 w-5 h-5 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Floor</span>
+<span class="font-label-caps text-label-caps text-primary">2</span>
+</div>
+<div class="relative pl-8 flex items-center justify-between">
+<div class="absolute left-0 w-5 h-5 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Section</span>
+<span class="font-label-caps text-label-caps text-primary bg-secondary/10 text-secondary px-2 py-0.5 rounded">CS</span>
+</div>
+<div class="relative pl-8 flex items-center justify-between">
+<div class="absolute left-0 w-5 h-5 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-outline"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rack / Shelf</span>
+<span class="font-label-caps text-label-caps text-primary">14 / 3</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

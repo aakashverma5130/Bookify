@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up - Athenaeum</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-ink": "#1b1b1e",
+                      "primary-fixed": "#d8e2ff",
+                      "inverse-primary": "#b6c6ef",
+                      "surface-dim": "#dcd9dd",
+                      "surface-tint": "#4e5e81",
+                      "on-primary-fixed": "#081b3a",
+                      "surface-container": "#f0edf1",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#b08d5b",
+                      "tertiary-fixed": "#ffddb1",
+                      "primary-fixed-dim": "#b6c6ef",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e4e1e5",
+                      "surface-bright": "#fbf8fc",
+                      "primary": "#031635",
+                      "on-error-container": "#93000a",
+                      "surface-container-highest": "#e4e1e5",
+                      "secondary": "#4950c7",
+                      "primary-container": "#1a2b4b",
+                      "outline-variant": "#c5c6cf",
+                      "error": "#ba1a1a",
+                      "surface-paper": "#f5f3f6",
+                      "surface-container-high": "#eae7eb",
+                      "on-tertiary-fixed": "#291800",
+                      "on-surface": "#1b1b1e",
+                      "on-secondary-container": "#060693",
+                      "secondary-fixed": "#e0e0ff",
+                      "inverse-on-surface": "#f3f0f4",
+                      "inverse-surface": "#303033",
+                      "surface": "#fbf8fc",
+                      "accent-warm": "#ffddb1",
+                      "on-primary-fixed-variant": "#364768",
+                      "surface-container-low": "#f5f3f7",
+                      "tertiary-container": "#3e2700",
+                      "tertiary-fixed-dim": "#e8c08a",
+                      "tertiary": "#231400",
+                      "on-secondary-fixed": "#01006e",
+                      "on-tertiary-fixed-variant": "#5d4217",
+                      "outline": "#75777f",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#bfc2ff",
+                      "on-error": "#ffffff",
+                      "on-surface-variant": "#44474e",
+                      "secondary-container": "#7d85fe",
+                      "on-secondary-fixed-variant": "#2f35ae",
+                      "on-background": "#1b1b1e",
+                      "on-primary-container": "#8293b8",
+                      "on-tertiary": "#ffffff",
+                      "background": "#fbf8fc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-mobile": "20px",
+                      "container-max": "1440px",
+                      "margin-desktop": "64px",
+                      "gutter": "32px",
+                      "section-gap": "120px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-xl": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "title-sm": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "30px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "display-xl": [
+                              "72px",
+                              {
+                                      "lineHeight": "80px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .ghost-border {
+            border: 1px solid theme('colors.outline-variant');
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgQslDlRqDzHT3BObmrYcBfZCeDmhCrGbWc6w2q5qOoJcPPpeM10aWtk5of4yIOtWsPSE30Hl1m8A3CF_zyHVUABFgGW56mn1VEkqCBnoXdBjBzmbuNJwzdM_m3B9t-VifPdkw_kbhnT1GcTxjFuPAu3qXRNBRFCHNQ-c0KuVaKzL1XTO1f21Gg24tEsZM81Tz90lu5HDtHqLvbM3JE5LyNqESaMFYJ6sF67TEas_1BMZdvC6lfW-CT2VUrImM00U56Q'); background-size: cover; background-position: center; background-attachment: fixed;">
+<!-- Split Screen Layout -->
+<main class="flex-grow flex w-full h-screen overflow-hidden items-center justify-center min-h-screen">
+<!-- Left Side: Form Canvas -->
+<section class="max-w-md w-full mx-auto bg-surface/80 backdrop-blur-xl p-8 md:p-12 rounded-xl shadow-[0_4px_20px_rgba(26,43,75,0.08)] ghost-border z-10">
+<div class="max-w-md w-full space-y-12">
+<!-- Header -->
+<div class="space-y-4">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary tracking-tighter">Join Athenaeum</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Enter your credentials to access the digital press and research archives.</p>
+</div>
+<!-- Registration Form -->
+<form action="#" class="space-y-8" method="POST">
+<div class="space-y-6">
+<!-- Full Name -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary" for="fullName">Full Name</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" id="fullName" name="fullName" placeholder="e.g. Jane Doe" required="" type="text"/>
+</div>
+<!-- University Email -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary" for="email">University Email</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" id="email" name="email" placeholder="name@university.edu" required="" type="email"/>
+</div>
+<!-- Student ID -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary" for="studentId">Student ID</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" id="studentId" name="studentId" placeholder="Enter your ID number" required="" type="text"/>
+</div>
+<!-- Password -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary" for="password">Password</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors placeholder-on-surface-variant/50" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-4 space-y-6">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 rounded hover:bg-secondary transition-colors duration-300 shadow-[0_4px_20px_rgba(26,43,75,0.08)] flex justify-center items-center gap-2" type="submit">
+                            Create Account
+                            <span class="material-symbols-outlined text-[18px]" data-weight="fill">arrow_forward</span>
+</button>
+<div class="text-center">
+<a class="inline-flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors pb-1 border-b-2 border-transparent hover:border-tertiary-fixed-dim" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                                Back to Login
+                            </a>
+</div>
+</div>
+</form>
+</div>
+</section>
+<!-- Right Side: Immersive Image -->
+</main>
+</body></html>
