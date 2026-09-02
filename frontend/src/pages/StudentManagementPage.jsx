@@ -268,7 +268,7 @@ const StudentManagementPage = () => {
                           className="text-sm font-semibold"
                           style={{ color: hasUnpaidFines ? 'var(--color-danger)' : 'var(--color-success)' }}
                         >
-                          â‚¹{parseFloat(student.unpaid_fines).toFixed(2)}
+                          {"\u20B9"}{parseFloat(student.unpaid_fines).toFixed(2)}
                         </span>
                       </td>
 
@@ -435,7 +435,7 @@ const StudentManagementPage = () => {
                   className="text-3xl font-bold font-display mt-1"
                   style={{ color: parseFloat(selectedStudent.unpaid_fines) > 0 ? 'var(--color-danger)' : 'var(--color-success)' }}
                 >
-                  â‚¹{parseFloat(selectedStudent.unpaid_fines).toFixed(2)}
+                  {"\u20B9"}{parseFloat(student.unpaid_fines).toFixed(2)}
                 </p>
               </div>
             </div>

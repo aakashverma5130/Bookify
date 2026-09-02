@@ -163,17 +163,25 @@ const getStudents = async (req, res) => {
  */
 const suspendStudent = async (req, res) => {
   try {
-    const result = await db.query(
-      `UPDATE users SET is_active = FALSE, updated_at = NOW()
-       WHERE user_id = (SELECT user_id FROM students WHERE student_id = $1)
-       RETURNING user_id`,
+    // Fetch user_id first so we can invalidate the token cache regardless of
+    // whether the DB driver supports RETURNING (SQLite strips it).
+    const userLookup = await db.query(
+      `SELECT user_id FROM students WHERE student_id = $1`,
       [req.params.id]
+    );
+    if (!userLookup.rows.length) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+    const userId = userLookup.rows[0].user_id;
+
+    await db.query(
+      `UPDATE users SET is_active = FALSE, updated_at = NOW()
+       WHERE user_id = $1`,
+      [userId]
     );
     // L-3: invalidate the auth cache so the suspended user's existing
     // token is rejected on the next request (within the cache TTL).
-    if (result.rows.length) {
-      invalidateTokenCache(result.rows[0].user_id);
-    }
+    invalidateTokenCache(userId);
     res.json({ message: 'Student suspended' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to suspend student' });
@@ -185,15 +193,23 @@ const suspendStudent = async (req, res) => {
  */
 const activateStudent = async (req, res) => {
   try {
-    const result = await db.query(
-      `UPDATE users SET is_active = TRUE, updated_at = NOW()
-       WHERE user_id = (SELECT user_id FROM students WHERE student_id = $1)
-       RETURNING user_id`,
+    // Fetch user_id first so we can invalidate the token cache regardless of
+    // whether the DB driver supports RETURNING (SQLite strips it).
+    const userLookup = await db.query(
+      `SELECT user_id FROM students WHERE student_id = $1`,
       [req.params.id]
     );
-    if (result.rows.length) {
-      invalidateTokenCache(result.rows[0].user_id);
+    if (!userLookup.rows.length) {
+      return res.status(404).json({ error: 'Student not found' });
     }
+    const userId = userLookup.rows[0].user_id;
+
+    await db.query(
+      `UPDATE users SET is_active = TRUE, updated_at = NOW()
+       WHERE user_id = $1`,
+      [userId]
+    );
+    invalidateTokenCache(userId);
     res.json({ message: 'Student activated' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to activate student' });

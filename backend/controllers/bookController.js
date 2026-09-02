@@ -1,5 +1,5 @@
 const db = require('../config/db');
-const { withTransaction } = require('../config/db');
+const { withTransaction, isUsingPostgres } = require('../config/db');
 const fineService = require('../services/fineService');
 const notificationService = require('../services/notificationService');
 const aiClient = require('../services/aiClient');
@@ -9,7 +9,7 @@ const log = require('../logger');
 
 /**
  * GET /api/books
- * Query params: page, limit, category, author, available
+ * Query params: page, limit, category, author, available, search
  */
 const getBooks = async (req, res) => {
   try {
@@ -19,6 +19,7 @@ const getBooks = async (req, res) => {
     const category = req.query.category || null;
     const authorId = req.query.author || null;
     const availableOnly = req.query.available === 'true';
+    const search   = req.query.search ? req.query.search.trim() : null;
 
     let whereClause = 'WHERE 1=1';
     const params = [];
@@ -33,6 +34,18 @@ const getBooks = async (req, res) => {
     }
     if (availableOnly) {
       whereClause += ` AND b.available_copies > 0`;
+    }
+    // Rec 6: LIKE-based search fallback on the browse endpoint.
+    // NOTE: push search value once per OR column — SQLite does not support
+    // reusing the same $N positional parameter across multiple predicates.
+    if (search) {
+      const sv = `%${search}%`;
+      const i1 = params.length + 1;
+      const i2 = params.length + 2;
+      const i3 = params.length + 3;
+      const i4 = params.length + 4;
+      params.push(sv, sv, sv, sv);
+      whereClause += ` AND (b.title ILIKE $${i1} OR a.name ILIKE $${i2} OR b.isbn ILIKE $${i3} OR b.publisher ILIKE $${i4})`;
     }
 
     params.push(limit, offset);
@@ -111,28 +124,68 @@ const searchBooks = async (req, res) => {
       filterClause += ` AND b.available_copies > 0`;
     }
 
-    // Full-text search + trigram ILIKE fallback for partial matches
-    const result = await db.query(
-      `SELECT b.book_id, b.title, b.isbn, b.publisher, b.publication_year,
-              b.cover_image_url, b.total_copies, b.available_copies,
-              a.name AS author_name, a.author_id,
-              c.name AS category_name, c.category_id,
-              b.digital_resource_id IS NOT NULL AS has_ebook,
-              ts_rank(b.search_vector, plainto_tsquery('english', $1)) AS rank
-       FROM books b
-       LEFT JOIN authors a    ON a.author_id    = b.author_id
-       LEFT JOIN categories c ON c.category_id  = b.category_id
-       WHERE (
-         b.search_vector @@ plainto_tsquery('english', $1)
-         OR b.title ILIKE $1
-         OR b.isbn  ILIKE $1
-         OR a.name  ILIKE $1
-         OR b.publisher ILIKE $1
-       )
-       ${filterClause}
-       ORDER BY rank DESC, b.title`,
-      params
-    );
+    let result;
+
+    if (isUsingPostgres()) {
+      // PostgreSQL: Full-text search + trigram ILIKE fallback for partial matches
+      // Use a separate FTS param without the % wildcards
+      const ftsParams = [q.trim(), `%${q.trim()}%`];
+      if (category) ftsParams.push(category);
+      if (author) ftsParams.push(`%${author}%`);
+      if (year) ftsParams.push(parseInt(year));
+
+      let pgFilter = '';
+      let fi = 3;
+      if (category) { pgFilter += ` AND c.category_id = $${fi++}`; }
+      if (author)   { pgFilter += ` AND a.name ILIKE $${fi++}`; }
+      if (year)     { pgFilter += ` AND b.publication_year = $${fi++}`; }
+      if (available === 'true') { pgFilter += ` AND b.available_copies > 0`; }
+
+      result = await db.query(
+        `SELECT b.book_id, b.title, b.isbn, b.publisher, b.publication_year,
+                b.cover_image_url, b.total_copies, b.available_copies,
+                a.name AS author_name, a.author_id,
+                c.name AS category_name, c.category_id,
+                b.digital_resource_id IS NOT NULL AS has_ebook,
+                ts_rank(b.search_vector, plainto_tsquery('english', $1)) AS rank
+         FROM books b
+         LEFT JOIN authors a    ON a.author_id    = b.author_id
+         LEFT JOIN categories c ON c.category_id  = b.category_id
+         WHERE (
+           b.search_vector @@ plainto_tsquery('english', $1)
+           OR b.title ILIKE $2
+           OR b.isbn  ILIKE $2
+           OR a.name  ILIKE $2
+           OR b.publisher ILIKE $2
+         )
+         ${pgFilter}
+         ORDER BY rank DESC, b.title`,
+        ftsParams
+      );
+    } else {
+      // SQLite: pure LIKE-based search — no FTS syntax
+      result = await db.query(
+        `SELECT b.book_id, b.title, b.isbn, b.publisher, b.publication_year,
+                b.cover_image_url, b.total_copies, b.available_copies,
+                a.name AS author_name, a.author_id,
+                c.name AS category_name, c.category_id,
+                b.digital_resource_id IS NOT NULL AS has_ebook,
+                1.0 AS rank
+         FROM books b
+         LEFT JOIN authors a    ON a.author_id    = b.author_id
+         LEFT JOIN categories c ON c.category_id  = b.category_id
+         WHERE (
+           b.title ILIKE $1
+           OR b.isbn  ILIKE $1
+           OR a.name  ILIKE $1
+           OR b.publisher ILIKE $1
+           OR b.description ILIKE $1
+         )
+         ${filterClause}
+         ORDER BY b.title`,
+        params
+      );
+    }
 
     let books = result.rows;
 
@@ -165,6 +218,7 @@ const searchBooks = async (req, res) => {
     res.status(500).json({ error: 'Search failed' });
   }
 };
+
 
 /**
  * GET /api/books/:id

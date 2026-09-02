@@ -79,6 +79,14 @@ const query = async (text, params = []) => {
     sql = sql.replace(/FALSE/g, '0');
     sql = sql.replace(/NOW\(\)/gi, "DATETIME('now')");
     sql = sql.replace(/CURRENT_DATE/gi, "DATE('now')");
+    // Capture RETURNING column list before stripping, so we can simulate
+    // the returned row with correct field names mapped to param values (Rec 2 / Bug #4).
+    let returningCols = null;
+    const returningMatch = text.match(/RETURNING\s+([a-zA-Z0-9_,\s*]+)$/i);
+    if (returningMatch) {
+      returningCols = returningMatch[1].split(',').map(c => c.trim().toLowerCase()).filter(Boolean);
+    }
+
     sql = sql.replace(/RETURNING [a-zA-Z0-9_, ]+/gi, '');
 
     // Adapt DATE_TRUNC('month', col) to strftime('%Y-%m-01', col)
@@ -90,9 +98,41 @@ const query = async (text, params = []) => {
     sql = sql.replace(/GROUP BY 1/gi, 'GROUP BY 1');
     sql = sql.replace(/ORDER BY 1/gi, 'ORDER BY 1');
 
-    // Adapt full text search
-    sql = sql.replace(/search_vector\s*@@\s*plainto_tsquery\([^)]+\)/gi, "1=1");
-    sql = sql.replace(/ts_rank\([^)]+\)/gi, "1.0");
+    // Adapt full text search — strip FTS predicates and ranking.
+    // The nested-paren expressions (e.g. plainto_tsquery('english', $1)) confuse
+    // simple [^)]+ regexes, so we use a balanced-paren replacer instead.
+    const stripBalancedCall = (src, fnName, replacement) => {
+      let out = '';
+      let i = 0;
+      const upper = src.toUpperCase();
+      const fnUpper = fnName.toUpperCase();
+      while (i < src.length) {
+        const idx = upper.indexOf(fnUpper, i);
+        if (idx === -1) { out += src.slice(i); break; }
+        out += src.slice(i, idx);
+        // find the opening paren
+        let p = idx + fnName.length;
+        while (p < src.length && src[p] !== '(') p++;
+        if (p >= src.length) { out += src.slice(idx); break; }
+        // walk forward counting depth
+        let depth = 0;
+        let end = p;
+        for (; end < src.length; end++) {
+          if (src[end] === '(') depth++;
+          else if (src[end] === ')') { depth--; if (depth === 0) { end++; break; } }
+        }
+        out += replacement;
+        i = end;
+      }
+      return out;
+    };
+    // Strip: search_vector @@ plainto_tsquery(...)
+    sql = sql.replace(/search_vector\s*@@\s*/gi, '1=1 AND 1=2 AND ');
+    sql = stripBalancedCall(sql, 'plainto_tsquery', "''");
+    // Strip: ts_rank(...)
+    sql = stripBalancedCall(sql, 'ts_rank', '1.0');
+    // Clean up the awkward 1=1 AND 1=2 AND '' artifacts left by the above
+    sql = sql.replace(/1=1 AND 1=2 AND ''/gi, '1=1');
 
     // Strip PostgreSQL row-level locking clauses. SQLite is single-writer
     // so locking is implicit; the FOR UPDATE / FOR UPDATE OF keywords
@@ -135,9 +175,56 @@ const query = async (text, params = []) => {
           });
           return reject(err);
         }
-        // If query was expecting a returned id, simulate it with lastID or random uuid
+
+        // Build a simulated RETURNING row (Rec 2 / Bug #4).
+        // Strategy: if the original SQL was an INSERT INTO tbl (col1, col2, ...)
+        // VALUES ($1, $2, ...), map RETURNING column names to their param values.
+        // For columns not in the INSERT list (auto-generated IDs), provide
+        // reasonable fake values keyed by well-known column name suffixes.
+        let simulatedRow = {
+          id: this.lastID,
+          // Legacy fallbacks kept for any code that reads these directly
+          resource_id:  'dr-' + Date.now(),
+          issue_id:     'iss-' + Date.now(),
+          copy_id:      'cp-' + Date.now(),
+          request_id:   'req-' + Date.now(),
+          reservation_id: 'res-' + Date.now(),
+          fine_id:      'fin-' + Date.now(),
+          book_id:      'book-' + Date.now(),
+        };
+
+        if (returningCols && returningCols.length > 0) {
+          // Try to extract INSERT column→param mapping
+          const insertMatch = text.match(/INSERT\s+INTO\s+\w+\s*\(\s*([^)]+)\)\s*VALUES\s*\(([^)]+)\)/i);
+          const colParamMap = {};
+          if (insertMatch) {
+            const colNames = insertMatch[1].split(',').map(c => c.trim().toLowerCase());
+            const valTokens = insertMatch[2].split(',').map(v => v.trim());
+            valTokens.forEach((token, i) => {
+              const paramMatch = token.match(/\$(\d+)/);
+              if (paramMatch) {
+                const paramIdx = parseInt(paramMatch[1]) - 1; // 0-based
+                if (i < colNames.length && paramIdx < params.length) {
+                  colParamMap[colNames[i]] = params[paramIdx];
+                }
+              }
+            });
+          }
+          // Build RETURNING row from the mapping
+          const row = { id: this.lastID };
+          returningCols.forEach(col => {
+            if (colParamMap[col] !== undefined) {
+              row[col] = colParamMap[col];
+            } else {
+              // Use pre-built fake ID or undefined
+              row[col] = simulatedRow[col];
+            }
+          });
+          simulatedRow = row;
+        }
+
         resolve({
-          rows: [{ id: this.lastID, resource_id: 'dr-' + Date.now(), issue_id: 'iss-' + Date.now(), copy_id: 'cp-' + Date.now() }],
+          rows: [simulatedRow],
           rowCount: this.changes,
           lastID: this.lastID
         });
@@ -145,6 +232,7 @@ const query = async (text, params = []) => {
     }
   });
 };
+
 
 const getClient = async () => {
   await initPromise;
@@ -172,4 +260,6 @@ const withTransaction = async (fn) => {
   }
 };
 
-module.exports = { query, getClient, withTransaction, initPromise };
+const isUsingPostgres = () => usePostgres;
+
+module.exports = { query, getClient, withTransaction, initPromise, isUsingPostgres };
